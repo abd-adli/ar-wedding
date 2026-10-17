@@ -1911,13 +1911,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
 ;
-var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
+var _s = __turbopack_context__.k.signature();
 'use client';
 ;
 ;
-// ─── Target date ──────────────────────────────────────────────────────────────
-/** January 16, 2027 at 08:00 WIB (UTC+7) */ const TARGET = new Date('2027-01-16T08:00:00+07:00');
-// ─── Utility ──────────────────────────────────────────────────────────────────
+// ─── Target date: January 16, 2027 at 08:00 WIB (UTC+7) ────────────────────────
+const TARGET = new Date('2027-01-16T08:00:00+07:00');
 function calcTimeLeft() {
     const total = Math.max(0, TARGET.getTime() - Date.now());
     return {
@@ -1928,718 +1927,806 @@ function calcTimeLeft() {
         seconds: Math.floor(total % 60_000 / 1_000)
     };
 }
-// ─── Flip-digit card ──────────────────────────────────────────────────────────
-/**
- * Renders a two-digit number as a pair of glass-morphism cards.
- * The `flipKey` prop drives a brief CSS flip animation whenever the value
- * changes (works without any additional animation library dependency).
- */ function DigitCard({ value, label }) {
-    _s();
-    const formatted = String(value).padStart(2, '0');
-    const prevRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(formatted);
-    const changed = prevRef.current !== formatted;
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "DigitCard.useEffect": ()=>{
-            prevRef.current = formatted;
-        }
-    }["DigitCard.useEffect"]);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex flex-col items-center gap-1.5 sm:gap-2.5",
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex gap-1 sm:gap-1.5 relative justify-center",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute inset-0 rounded-xl scale-105 blur-sm sm:blur-md pointer-events-none",
-                        style: {
-                            background: 'rgba(180,83,9,0.22)'
-                        },
-                        "aria-hidden": true
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 61,
-                        columnNumber: 9
-                    }, this),
-                    formatted.split('').map((digit, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                            className: "relative flex items-center justify-center rounded-lg sm:rounded-xl overflow-hidden shadow-lg",
-                            style: {
-                                width: 'clamp(2.05rem, 9.8vw, 3.8rem)',
-                                height: 'clamp(2.9rem, 13.5vw, 5.2rem)',
-                                background: 'rgba(15,23,42,0.78)',
-                                border: '1px solid rgba(245,158,11,0.25)',
-                                backdropFilter: 'blur(10px)'
-                            },
-                            // Animate only when value actually changed
-                            animate: changed ? {
-                                scale: [
-                                    1,
-                                    1.06,
-                                    1
-                                ]
-                            } : {},
-                            transition: {
-                                duration: 0.22,
-                                ease: 'easeOut'
-                            },
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute top-0 inset-x-0 h-px",
-                                    style: {
-                                        background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.45), transparent)'
-                                    },
-                                    "aria-hidden": true
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/Countdown.tsx",
-                                    lineNumber: 83,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute inset-x-1 sm:inset-x-2 top-1/2 h-px",
-                                    style: {
-                                        background: 'rgba(180,83,9,0.2)'
-                                    },
-                                    "aria-hidden": true
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/Countdown.tsx",
-                                    lineNumber: 89,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "relative z-10 font-light tabular-nums select-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]",
-                                    style: {
-                                        fontFamily: "'Cinzel', serif",
-                                        fontSize: 'clamp(1.4rem, 6.2vw, 2.6rem)',
-                                        background: 'linear-gradient(175deg, #fef3c7 0%, #fbbf24 45%, #b45309 100%)',
-                                        WebkitBackgroundClip: 'text',
-                                        WebkitTextFillColor: 'transparent',
-                                        backgroundClip: 'text'
-                                    },
-                                    children: digit
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/Countdown.tsx",
-                                    lineNumber: 95,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, `${label}-${i}`, true, {
-                            fileName: "[project]/src/components/Countdown.tsx",
-                            lineNumber: 68,
-                            columnNumber: 11
-                        }, this))
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 59,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-[10px] xs:text-[11px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.28em] uppercase text-amber-400 font-semibold drop-shadow-sm mt-0.5",
-                style: {
-                    fontFamily: "'EB Garamond', serif"
-                },
-                children: label
-            }, void 0, false, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 113,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/Countdown.tsx",
-        lineNumber: 57,
-        columnNumber: 5
-    }, this);
-}
-_s(DigitCard, "cvVS7FvB/2XPI9B7dvdtm/uc/d4=");
-_c = DigitCard;
-/** Blinking colon separator */ function Colon() {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex items-center justify-center pb-5 xs:pb-6 sm:pb-8 md:pb-10 shrink-0",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
-            className: "text-base xs:text-lg sm:text-2xl md:text-3xl text-amber-500/70 font-light select-none px-0.5",
-            animate: {
-                opacity: [
-                    1,
-                    0.2,
-                    1
-                ]
-            },
-            transition: {
-                duration: 1.8,
-                repeat: Infinity,
-                ease: 'easeInOut'
-            },
-            children: ":"
-        }, void 0, false, {
-            fileName: "[project]/src/components/Countdown.tsx",
-            lineNumber: 127,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/src/components/Countdown.tsx",
-        lineNumber: 126,
-        columnNumber: 5
-    }, this);
-}
-_c1 = Colon;
-// ─── Section header ───────────────────────────────────────────────────────────
-function Header() {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-        className: "flex flex-col items-center gap-3 text-center",
-        initial: {
-            opacity: 0,
-            y: 26
-        },
-        whileInView: {
-            opacity: 1,
-            y: 0
-        },
-        viewport: {
-            once: true
-        },
-        transition: {
-            duration: 0.7
-        },
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                viewBox: "0 0 128 18",
-                className: "w-32 text-amber-700/50",
-                fill: "none",
-                "aria-hidden": true,
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                        d: "M0 9 Q32 2 64 9 Q96 16 128 9",
-                        stroke: "currentColor",
-                        strokeWidth: "1",
-                        strokeDasharray: "4 3"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 151,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                        cx: "64",
-                        cy: "9",
-                        r: "2.5",
-                        fill: "currentColor"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 152,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                        cx: "48",
-                        cy: "9",
-                        r: "1.5",
-                        fill: "currentColor",
-                        opacity: ".55"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 153,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                        cx: "80",
-                        cy: "9",
-                        r: "1.5",
-                        fill: "currentColor",
-                        opacity: ".55"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 154,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 150,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-[11px] tracking-[0.42em] uppercase text-amber-600/65",
-                style: {
-                    fontFamily: "'EB Garamond', serif"
-                },
-                children: "Menuju Hari Bahagia"
-            }, void 0, false, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 157,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                className: "text-3xl sm:text-4xl font-light",
-                style: {
-                    fontFamily: "'Cinzel', serif",
-                    background: 'linear-gradient(135deg, #fbbf24 0%, #92400e 50%, #fbbf24 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text'
-                },
-                children: "16 Januari 2027"
-            }, void 0, false, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 164,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-col items-center gap-1.5 my-1",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center gap-2 text-xs sm:text-sm text-amber-200/90 font-light tracking-widest",
-                        style: {
-                            fontFamily: "'Cormorant Garamond', serif"
-                        },
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                viewBox: "0 0 24 24",
-                                className: "w-3.5 h-3.5 text-amber-400 fill-none stroke-currentColor stroke-2",
-                                "aria-hidden": "true",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                                        cx: "12",
-                                        cy: "12",
-                                        r: "10"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 184,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
-                                        points: "12 6 12 12 16 14"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 185,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 183,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                children: "08:00 - 13:00 WIB"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 187,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 179,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center gap-2 text-sm sm:text-base text-amber-300 font-medium tracking-wider",
-                        style: {
-                            fontFamily: "'Cinzel', serif"
-                        },
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                viewBox: "0 0 24 24",
-                                className: "w-3.5 h-3.5 text-amber-400 fill-none stroke-currentColor stroke-2 shrink-0",
-                                "aria-hidden": "true",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                        d: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 195,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                                        cx: "12",
-                                        cy: "10",
-                                        r: "3"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 196,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 194,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                children: "Vator Pacific Atrium"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 198,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 190,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].a, {
-                        href: "https://maps.app.goo.gl/KKswPLoSwHeVbgDT8",
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                        className: "mt-1.5 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] sm:text-xs tracking-[0.2em] uppercase font-medium text-amber-300 border border-amber-500/40 bg-slate-900/60 hover:bg-amber-950/40 hover:border-amber-400 transition-all duration-300 shadow-md backdrop-blur-xs group",
-                        whileHover: {
-                            scale: 1.05
-                        },
-                        whileTap: {
-                            scale: 0.95
-                        },
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                viewBox: "0 0 24 24",
-                                className: "w-3 h-3 text-amber-400 group-hover:translate-x-0.5 transition-transform duration-200",
-                                fill: "none",
-                                stroke: "currentColor",
-                                strokeWidth: "2",
-                                strokeLinecap: "round",
-                                strokeLinejoin: "round",
-                                "aria-hidden": "true",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
-                                    points: "3 11 22 2 13 21 11 13 3 11"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/Countdown.tsx",
-                                    lineNumber: 211,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 210,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                children: "Buka di Google Maps"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 213,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "text-amber-400/70 text-[10px]",
-                                children: "↗"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 214,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 202,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 178,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-center gap-3 w-44",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "h-px flex-1",
-                        style: {
-                            background: 'linear-gradient(to right, transparent, rgba(180,83,9,0.45))'
-                        }
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 220,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-amber-600/50 text-xs",
-                        children: "✦"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 221,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "h-px flex-1",
-                        style: {
-                            background: 'linear-gradient(to left, transparent, rgba(180,83,9,0.45))'
-                        }
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 222,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 219,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/Countdown.tsx",
-        lineNumber: 142,
-        columnNumber: 5
-    }, this);
-}
-_c2 = Header;
 function Countdown() {
-    _s1();
+    _s();
     const [time, setTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    // Hydration-safe mount
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Countdown.useEffect": ()=>{
             setTime(calcTimeLeft());
             setMounted(true);
             const id = setInterval({
                 "Countdown.useEffect.id": ()=>setTime(calcTimeLeft())
-            }["Countdown.useEffect.id"], 1_000);
+            }["Countdown.useEffect.id"], 1000);
             return ({
                 "Countdown.useEffect": ()=>clearInterval(id)
             })["Countdown.useEffect"];
         }
     }["Countdown.useEffect"], []);
+    const handleSaveCalendar = ()=>{
+        const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Pernikahan Adli & Rima')}&dates=20270116T010000Z/20270116T060000Z&details=${encodeURIComponent('Pernikahan Adli & Rima (Tema: Anchored Realm). Pukul 08:00 - 13:00 WIB di Vator Pacific Atrium.')}&location=${encodeURIComponent('Vator Pacific Atrium')}`;
+        window.open(googleCalendarUrl, '_blank', 'noopener,noreferrer');
+    };
     const isOver = mounted && time !== null && time.total === 0;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "w-full py-8 sm:py-16 px-1 sm:px-4 flex flex-col items-center gap-6 sm:gap-10 relative overflow-hidden",
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "w-full flex flex-col items-center gap-8 sm:gap-12 my-2",
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 pointer-events-none",
-                "aria-hidden": true,
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "relative w-full pt-4 sm:pt-6 pb-64 sm:pb-80 px-4 flex flex-col items-center justify-start overflow-hidden min-h-[640px] sm:min-h-[720px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/30 shadow-2xl bg-cover bg-no-repeat",
                 style: {
-                    background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(120,53,15,0.07) 0%, transparent 70%)'
-                }
-            }, void 0, false, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 249,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Header, {}, void 0, false, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 258,
-                columnNumber: 7
-            }, this),
-            !mounted ? // SSR skeleton — invisible but reserves space to prevent layout shift
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-start justify-center gap-1 xs:gap-2 sm:gap-4 md:gap-6 w-[94vw] sm:w-full max-w-2xl mx-auto px-0.5 sm:px-4 opacity-0 pointer-events-none",
-                "aria-hidden": true,
+                    backgroundImage: "url('/countdown-bg.jpg')",
+                    backgroundPosition: 'center bottom',
+                    backgroundSize: 'cover'
+                },
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DigitCard, {
-                        value: 0,
-                        label: "Hari"
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                        src: "/countdown-bg.jpg",
+                        alt: "Wedding Countdown Background",
+                        className: "absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 264,
-                        columnNumber: 11
+                        lineNumber: 66,
+                        columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Colon, {}, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 265,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DigitCard, {
-                        value: 0,
-                        label: "Jam"
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute inset-0 pointer-events-none",
+                        style: {
+                            background: 'linear-gradient(180deg, rgba(11,21,40,0.88) 0%, rgba(11,21,40,0.68) 38%, rgba(11,21,40,0.18) 68%, transparent 100%)'
+                        },
+                        "aria-hidden": "true"
                     }, void 0, false, {
+                        fileName: "[project]/src/components/Countdown.tsx",
+                        lineNumber: 73,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-3 sm:gap-4.5",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                className: "flex flex-col items-center gap-1 sm:gap-1.5",
+                                initial: {
+                                    opacity: 0,
+                                    y: 14
+                                },
+                                whileInView: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                viewport: {
+                                    once: true
+                                },
+                                transition: {
+                                    duration: 0.6
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: "/logo-ar-gold.png",
+                                        alt: "A&R Logo",
+                                        className: "w-10 sm:w-12 h-auto mb-1 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 94,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-2.5 w-36 sm:w-44 mb-0.5",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-400/60"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 102,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-amber-400/80 text-[10px]",
+                                                children: "✦"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 103,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-400/60"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 104,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 101,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[10px] sm:text-xs tracking-[0.38em] uppercase text-amber-300 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]",
+                                        style: {
+                                            fontFamily: "'EB Garamond', serif"
+                                        },
+                                        children: "Counting The Days"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 107,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                        className: "text-2xl sm:text-3xl md:text-4xl font-light tracking-wide drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]",
+                                        style: {
+                                            fontFamily: "'Cinzel', serif",
+                                            background: 'linear-gradient(135deg, #ffffff 0%, #fef3c7 40%, #fbbf24 85%, #d97706 100%)',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                            backgroundClip: 'text'
+                                        },
+                                        children: "MENUJU HARI BAHAGIA"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 114,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-xs sm:text-sm text-amber-100/90 font-light tracking-widest drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]",
+                                        style: {
+                                            fontFamily: "'Cormorant Garamond', serif"
+                                        },
+                                        children: "Sabtu, 16 Januari 2027"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 128,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 86,
+                                columnNumber: 11
+                            }, this),
+                            !mounted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "grid grid-cols-4 gap-2 sm:gap-3.5 w-full max-w-sm sm:max-w-md mx-auto opacity-0 pointer-events-none",
+                                children: [
+                                    'Hari',
+                                    'Jam',
+                                    'Menit',
+                                    'Detik'
+                                ].map((label)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "h-20 sm:h-24 rounded-xl sm:rounded-2xl bg-white"
+                                    }, label, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 140,
+                                        columnNumber: 17
+                                    }, this))
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 138,
+                                columnNumber: 13
+                            }, this) : isOver ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                className: "text-center py-4",
+                                initial: {
+                                    opacity: 0,
+                                    scale: 0.9
+                                },
+                                animate: {
+                                    opacity: 1,
+                                    scale: 1
+                                },
+                                transition: {
+                                    duration: 0.8
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-2xl sm:text-4xl font-light",
+                                        style: {
+                                            fontFamily: "'Cinzel', serif",
+                                            background: 'linear-gradient(90deg, #fef3c7 0%, #fbbf24 50%, #fef3c7 100%)',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                            backgroundClip: 'text'
+                                        },
+                                        children: "Hari Ini! 🎊"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 150,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "mt-1 text-amber-200/90 text-xs sm:text-sm font-serif",
+                                        children: "Selamat hari pernikahan yang penuh berkah"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 162,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 144,
+                                columnNumber: 13
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                className: "grid grid-cols-4 gap-2 sm:gap-3.5 w-full max-w-sm sm:max-w-md mx-auto",
+                                initial: {
+                                    opacity: 0,
+                                    y: 16
+                                },
+                                whileInView: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                viewport: {
+                                    once: true
+                                },
+                                transition: {
+                                    duration: 0.65,
+                                    delay: 0.1
+                                },
+                                children: [
+                                    {
+                                        label: 'Hari',
+                                        value: time.days
+                                    },
+                                    {
+                                        label: 'Jam',
+                                        value: time.hours
+                                    },
+                                    {
+                                        label: 'Menit',
+                                        value: time.minutes
+                                    },
+                                    {
+                                        label: 'Detik',
+                                        value: time.seconds
+                                    }
+                                ].map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                        className: "flex flex-col items-center justify-center py-2.5 sm:py-3.5 px-1 sm:px-2 rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300 relative overflow-hidden group",
+                                        style: {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.96)',
+                                            backdropFilter: 'blur(12px)',
+                                            WebkitBackdropFilter: 'blur(12px)',
+                                            border: '1.5px solid rgba(245, 158, 11, 0.35)',
+                                            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.9)'
+                                        },
+                                        whileHover: {
+                                            y: -3,
+                                            scale: 1.03
+                                        },
+                                        transition: {
+                                            duration: 0.2
+                                        },
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-400/20 via-amber-400/50 to-amber-400/20"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 194,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-xl sm:text-3xl md:text-4xl font-bold tracking-tight text-stone-900 tabular-nums select-none leading-none drop-shadow-xs",
+                                                style: {
+                                                    fontFamily: "'Cinzel', serif"
+                                                },
+                                                children: String(item.value).padStart(2, '0')
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 195,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[9px] sm:text-[11px] tracking-[0.2em] uppercase text-stone-600 font-semibold mt-1 sm:mt-1.5 select-none",
+                                                style: {
+                                                    fontFamily: "'EB Garamond', serif"
+                                                },
+                                                children: item.label
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 201,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, item.label, true, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 180,
+                                        columnNumber: 17
+                                    }, this))
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 167,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    y: 12
+                                },
+                                whileInView: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                viewport: {
+                                    once: true
+                                },
+                                transition: {
+                                    duration: 0.6,
+                                    delay: 0.18
+                                },
+                                className: "mt-0.5",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
+                                    onClick: handleSaveCalendar,
+                                    type: "button",
+                                    className: "inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-[11px] sm:text-xs tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-slate-900/85 hover:bg-amber-950/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer group",
+                                    whileHover: {
+                                        scale: 1.04,
+                                        boxShadow: '0 6px 24px rgba(245, 158, 11, 0.45)'
+                                    },
+                                    whileTap: {
+                                        scale: 0.96
+                                    },
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                            viewBox: "0 0 24 24",
+                                            className: "w-3.5 h-3.5 text-amber-400 group-hover:scale-110 transition-transform duration-200 fill-none stroke-current stroke-2",
+                                            "aria-hidden": "true",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
+                                                    x: "3",
+                                                    y: "4",
+                                                    width: "18",
+                                                    height: "18",
+                                                    rx: "2",
+                                                    ry: "2"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/Countdown.tsx",
+                                                    lineNumber: 232,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                                                    x1: "16",
+                                                    y1: "2",
+                                                    x2: "16",
+                                                    y2: "6"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/Countdown.tsx",
+                                                    lineNumber: 233,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                                                    x1: "8",
+                                                    y1: "2",
+                                                    x2: "8",
+                                                    y2: "6"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/Countdown.tsx",
+                                                    lineNumber: 234,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                                                    x1: "3",
+                                                    y1: "10",
+                                                    x2: "21",
+                                                    y2: "10"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/Countdown.tsx",
+                                                    lineNumber: 235,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/Countdown.tsx",
+                                            lineNumber: 227,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            children: "SIMPAN TANGGAL"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/Countdown.tsx",
+                                            lineNumber: 237,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-amber-400/80 text-[10px] font-light",
+                                            children: "✦"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/Countdown.tsx",
+                                            lineNumber: 238,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/Countdown.tsx",
+                                    lineNumber: 220,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 213,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/Countdown.tsx",
+                        lineNumber: 83,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/Countdown.tsx",
+                lineNumber: 57,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "relative w-full py-14 sm:py-20 px-6 sm:px-10 flex flex-col items-center justify-center text-center overflow-hidden rounded-3xl sm:rounded-[2.5rem] border border-amber-500/35 shadow-2xl bg-[#0B1528]/90 backdrop-blur-md",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute inset-0 pointer-events-none opacity-20",
+                        style: {
+                            background: 'radial-gradient(circle at 50% 25%, rgba(245,158,11,0.3) 0%, transparent 70%)'
+                        },
+                        "aria-hidden": "true"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/Countdown.tsx",
+                        lineNumber: 251,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-400/60 rounded-tl pointer-events-none"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/Countdown.tsx",
+                        lineNumber: 260,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-amber-400/60 rounded-tr pointer-events-none"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/Countdown.tsx",
+                        lineNumber: 261,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-400/60 rounded-bl pointer-events-none"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/Countdown.tsx",
+                        lineNumber: 262,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-400/60 rounded-br pointer-events-none"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/Countdown.tsx",
+                        lineNumber: 263,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "relative z-10 w-full max-w-xl mx-auto flex flex-col items-center text-center gap-3 sm:gap-4",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    y: 18
+                                },
+                                whileInView: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                viewport: {
+                                    once: true
+                                },
+                                transition: {
+                                    duration: 0.8
+                                },
+                                className: "flex justify-center mb-1",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                    src: "/gunungan.png",
+                                    alt: "Gunungan Wayang",
+                                    className: "w-28 sm:w-36 md:w-44 h-auto object-contain filter drop-shadow-[0_0_25px_rgba(245,158,11,0.35)]"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/Countdown.tsx",
+                                    lineNumber: 276,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 269,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    y: 16
+                                },
+                                whileInView: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                viewport: {
+                                    once: true
+                                },
+                                transition: {
+                                    duration: 0.7,
+                                    delay: 0.1
+                                },
+                                className: "flex flex-col items-center",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        className: "text-2xl sm:text-3xl md:text-4xl font-light tracking-[0.25em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]",
+                                        style: {
+                                            fontFamily: "'Cinzel', serif"
+                                        },
+                                        children: "RESEPSI PERNIKAHAN"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 291,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-center gap-3 w-44 my-2.5",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/50"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 300,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-amber-400/80 text-xs",
+                                                children: "✦"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 301,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/50"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 302,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 299,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 284,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    y: 16
+                                },
+                                whileInView: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                viewport: {
+                                    once: true
+                                },
+                                transition: {
+                                    duration: 0.7,
+                                    delay: 0.2
+                                },
+                                className: "flex flex-col items-center gap-1.5",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-base sm:text-lg text-amber-200/95 font-medium tracking-widest drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]",
+                                        style: {
+                                            fontFamily: "'Cormorant Garamond', serif"
+                                        },
+                                        children: "Sabtu, 16 Januari 2027"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 314,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-2 text-sm sm:text-base text-amber-300 font-light tracking-wider drop-shadow-sm",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                viewBox: "0 0 24 24",
+                                                className: "w-4 h-4 text-amber-400 fill-none stroke-current stroke-2 shrink-0",
+                                                "aria-hidden": "true",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                                        cx: "12",
+                                                        cy: "12",
+                                                        r: "10"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/Countdown.tsx",
+                                                        lineNumber: 327,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
+                                                        points: "12 6 12 12 16 14"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/Countdown.tsx",
+                                                        lineNumber: 328,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 322,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                style: {
+                                                    fontFamily: "'EB Garamond', serif"
+                                                },
+                                                children: "Pukul 08:00 - 13:00 WIB"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Countdown.tsx",
+                                                lineNumber: 330,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 321,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 307,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    y: 16
+                                },
+                                whileInView: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                viewport: {
+                                    once: true
+                                },
+                                transition: {
+                                    duration: 0.7,
+                                    delay: 0.3
+                                },
+                                className: "flex flex-col items-center mt-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                        className: "text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-amber-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]",
+                                        style: {
+                                            fontFamily: "'Cinzel', serif"
+                                        },
+                                        children: "VATOR PACIFIC ATRIUM"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 344,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-xs sm:text-sm text-slate-300/90 leading-relaxed max-w-md mx-auto font-light mt-1.5 px-2",
+                                        style: {
+                                            fontFamily: "'Cormorant Garamond', serif"
+                                        },
+                                        children: "Jl. Raya Karadenan No.7, RT.003/RW.10, Karadenan, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16913"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/Countdown.tsx",
+                                        lineNumber: 352,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 337,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    y: 16
+                                },
+                                whileInView: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                viewport: {
+                                    once: true
+                                },
+                                transition: {
+                                    duration: 0.7,
+                                    delay: 0.4
+                                },
+                                className: "mt-3",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].a, {
+                                    href: "https://maps.app.goo.gl/KKswPLoSwHeVbgDT8",
+                                    target: "_blank",
+                                    rel: "noopener noreferrer",
+                                    className: "inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-xs sm:text-sm tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-gradient-to-r from-amber-950/70 via-slate-900/80 to-amber-950/70 hover:from-amber-900/80 hover:to-amber-900/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md group",
+                                    whileHover: {
+                                        scale: 1.05,
+                                        boxShadow: '0 8px 30px rgba(245, 158, 11, 0.45)'
+                                    },
+                                    whileTap: {
+                                        scale: 0.96
+                                    },
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                            viewBox: "0 0 24 24",
+                                            className: "w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform duration-200 fill-none stroke-current stroke-2 shrink-0",
+                                            "aria-hidden": "true",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                    d: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/Countdown.tsx",
+                                                    lineNumber: 381,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                                    cx: "12",
+                                                    cy: "10",
+                                                    r: "3"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/Countdown.tsx",
+                                                    lineNumber: 382,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/Countdown.tsx",
+                                            lineNumber: 376,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            children: "BUKA GOOGLE MAPS"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/Countdown.tsx",
+                                            lineNumber: 384,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-amber-400/80 text-xs",
+                                            children: "↗"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/Countdown.tsx",
+                                            lineNumber: 385,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/Countdown.tsx",
+                                    lineNumber: 368,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/Countdown.tsx",
+                                lineNumber: 361,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/components/Countdown.tsx",
                         lineNumber: 266,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Colon, {}, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 267,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DigitCard, {
-                        value: 0,
-                        label: "Menit"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 268,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Colon, {}, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 269,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DigitCard, {
-                        value: 0,
-                        label: "Detik"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 270,
-                        columnNumber: 11
+                        columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 263,
-                columnNumber: 9
-            }, this) : isOver ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                className: "text-center",
-                initial: {
-                    opacity: 0,
-                    scale: 0.85
-                },
-                animate: {
-                    opacity: 1,
-                    scale: 1
-                },
-                transition: {
-                    duration: 0.8
-                },
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-3xl sm:text-6xl font-light",
-                        style: {
-                            fontFamily: "'Cinzel', serif",
-                            background: 'linear-gradient(90deg, #b45309 0%, #f59e0b 50%, #b45309 100%)',
-                            backgroundSize: '200% auto',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text',
-                            animation: 'countdown-shimmer 3s linear infinite'
-                        },
-                        children: "Hari Ini! 🎊"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 279,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "mt-3 text-amber-400/75 text-base sm:text-lg",
-                        style: {
-                            fontFamily: "'Cormorant Garamond', serif"
-                        },
-                        children: "Selamat hari pernikahan yang penuh berkah"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 293,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 273,
-                columnNumber: 9
-            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                className: "flex items-start justify-center gap-1 xs:gap-2 sm:gap-4 md:gap-6 w-[94vw] sm:w-full max-w-2xl mx-auto px-0.5 sm:px-4",
-                initial: {
-                    opacity: 0,
-                    y: 18
-                },
-                animate: {
-                    opacity: 1,
-                    y: 0
-                },
-                transition: {
-                    duration: 0.55,
-                    delay: 0.15
-                },
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DigitCard, {
-                        value: time.days,
-                        label: "Hari"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 307,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Colon, {}, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 308,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DigitCard, {
-                        value: time.hours,
-                        label: "Jam"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 309,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Colon, {}, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 310,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DigitCard, {
-                        value: time.minutes,
-                        label: "Menit"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 311,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Colon, {}, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 312,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DigitCard, {
-                        value: time.seconds,
-                        label: "Detik"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 313,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 301,
-                columnNumber: 9
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
-                className: "text-[11px] tracking-[0.35em] uppercase text-amber-800/40",
-                style: {
-                    fontFamily: "'EB Garamond', serif"
-                },
-                initial: {
-                    opacity: 0
-                },
-                whileInView: {
-                    opacity: 1
-                },
-                viewport: {
-                    once: true
-                },
-                transition: {
-                    duration: 1,
-                    delay: 0.4
-                },
-                children: "Adli & Rima"
-            }, void 0, false, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 318,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
-                children: `
-        @keyframes countdown-shimmer {
-          from { background-position: 0    center; }
-          to   { background-position: 200% center; }
-        }
-      `
-            }, void 0, false, {
-                fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 330,
+                lineNumber: 248,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Countdown.tsx",
-        lineNumber: 246,
+        lineNumber: 52,
         columnNumber: 5
     }, this);
 }
-_s1(Countdown, "NFkkwV2tswodCd/hrsAWeqy05s8=");
-_c3 = Countdown;
-var _c, _c1, _c2, _c3;
-__turbopack_context__.k.register(_c, "DigitCard");
-__turbopack_context__.k.register(_c1, "Colon");
-__turbopack_context__.k.register(_c2, "Header");
-__turbopack_context__.k.register(_c3, "Countdown");
+_s(Countdown, "hIdH065GB9CgNaXrcH330h+MbjA=");
+_c = Countdown;
+var _c;
+__turbopack_context__.k.register(_c, "Countdown");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -6029,155 +6116,459 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$mo
 ;
 const FONT_SERIF = "'EB Garamond', 'Cormorant Garamond', Georgia, serif";
 const FONT_DISPLAY = "'Cinzel', 'Playfair Display', serif";
+const STORIES = [
+    {
+        chapter: '01',
+        title: 'AWAL PERTEMUAN',
+        subtitle: 'Awal Sebuah Kisah',
+        date: '2019 - 2024',
+        story: 'Pertama kali kenal di tahun 2019, kami sempat hilang kontak. Lucunya, takdir malah mempertemukan kami lagi lima tahun kemudian di tengah riuhnya ribuan penonton konser tanpa janjian. Dari sekadar nganterin pulang sampai bertemu orangtua Riri , akhirnya kami resmi menjalani hubungan di Juni 2024.'
+    },
+    {
+        chapter: '02',
+        title: 'PERJALANAN CINTA',
+        subtitle: 'Anchored Realm — Menambatkan Hati',
+        date: '2024 - 2026',
+        story: 'Tema Anchored Realm adalah cerminan perjalanan kami. Mengarungi berbagai dinamika dan gelombang ujian kehidupan, setiap keraguan perlahan luruh berganti keyakinan yang utuh. Di sanalah kami menambatkan jangkar (Anchored) rasa percaya, untuk membangun dunia (Realm) kami bersama. Membuktikan bahwa sekuat apapun ombak menerpa, ikatan ini tak akan goyah. Rima adalah tempat Adli berlabuh untuk selamanya.'
+    },
+    {
+        chapter: '03',
+        title: 'LAMARAN',
+        subtitle: 'Menuju Ikatan Suci',
+        date: '11 Oktober 2026',
+        story: 'Janji cowok yang dua tahun lalu sowan ke rumah akhirnya ditebus secara ksatria. Tepat di tanggal 11 Oktober 2026, di hadapan keluarga besar kedua belah pihak, Adli secara resmi melamar Riri untuk melangkah bersama menuju pernikahan.'
+    }
+];
 function LoveStory() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "relative w-full flex flex-col items-center py-6 sm:py-10 px-4 sm:px-6",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-            className: "w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-3.5 px-6 sm:px-12 py-7 sm:py-9 rounded-2xl relative overflow-hidden",
-            style: {
-                background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 15, 5, 0.6) 100%)',
-                border: '1px solid rgba(245, 158, 11, 0.25)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.45), inset 0 0 20px rgba(245, 158, 11, 0.05)',
-                backdropFilter: 'blur(8px)'
-            },
-            initial: {
-                opacity: 0,
-                y: 24
-            },
-            whileInView: {
-                opacity: 1,
-                y: 0
-            },
-            viewport: {
-                once: true
-            },
-            transition: {
-                duration: 0.7
-            },
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex items-center gap-3 w-36",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/50"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/LoveStory.tsx",
-                            lineNumber: 26,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "text-amber-500/70 text-xs",
-                            children: "❦"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/LoveStory.tsx",
-                            lineNumber: 27,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/50"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/LoveStory.tsx",
-                            lineNumber: 28,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/components/LoveStory.tsx",
-                    lineNumber: 25,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-[11px] sm:text-xs tracking-[0.35em] uppercase text-amber-500/80 font-medium",
-                    style: {
-                        fontFamily: FONT_SERIF
-                    },
-                    children: "Love Story"
-                }, void 0, false, {
-                    fileName: "[project]/src/components/LoveStory.tsx",
-                    lineNumber: 32,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                    className: "text-2xl sm:text-3xl md:text-4xl font-light tracking-wide",
-                    style: {
-                        fontFamily: FONT_DISPLAY,
-                        background: 'linear-gradient(135deg, #fbbf24 0%, #d97706 50%, #fbbf24 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                        textShadow: '0 2px 10px rgba(0,0,0,0.4)'
-                    },
-                    children: "Cerita Kita"
-                }, void 0, false, {
-                    fileName: "[project]/src/components/LoveStory.tsx",
-                    lineNumber: 40,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-sm sm:text-base md:text-lg text-amber-100/90 leading-relaxed sm:leading-loose font-normal italic max-w-xl px-2 sm:px-6 my-1.5 text-center",
-                    style: {
-                        fontFamily: FONT_SERIF,
-                        textShadow: '0 1px 4px rgba(0,0,0,0.85)'
-                    },
-                    children: "“Tema Anchored Realm adalah cerminan perjalanan kami. Setelah mengarungi berbagai gelombang keraguan dan badai ujian, hati ini pada akhirnya menemukan pelabuhan terakhirnya. Sebuah ikatan tempat kami menambatkan jangkar (Anchored) rasa percaya, untuk membangun dunia (Realm) kami bersama. Membuktikan bahwa sekuat apapun ombak menerpa, jangkar ini tak akan goyah. Karena dari semua perjalanan panjang, Rima adalah satu-satunya tempat Adli berlabuh untuk selamanya.”"
-                }, void 0, false, {
-                    fileName: "[project]/src/components/LoveStory.tsx",
-                    lineNumber: 55,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex items-center gap-2 mt-1",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "w-1.5 h-1.5 rounded-full bg-amber-500/50"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/LoveStory.tsx",
-                            lineNumber: 67,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "w-8 sm:w-12 h-px bg-amber-500/40"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/LoveStory.tsx",
-                            lineNumber: 68,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "w-2.5 h-2.5 rotate-45 border border-amber-500/60 bg-amber-950/60"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/LoveStory.tsx",
-                            lineNumber: 69,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "w-8 sm:w-12 h-px bg-amber-500/40"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/LoveStory.tsx",
-                            lineNumber: 70,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "w-1.5 h-1.5 rounded-full bg-amber-500/50"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/LoveStory.tsx",
-                            lineNumber: 71,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/components/LoveStory.tsx",
-                    lineNumber: 66,
-                    columnNumber: 9
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/src/components/LoveStory.tsx",
-            lineNumber: 11,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
+        className: "relative w-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center overflow-hidden min-h-[700px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/25 shadow-2xl bg-[#0B1528]/85 backdrop-blur-md my-4",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-0 pointer-events-none opacity-20",
+                style: {
+                    background: 'radial-gradient(circle at 50% 30%, rgba(245,158,11,0.25) 0%, transparent 70%)'
+                },
+                "aria-hidden": "true"
+            }, void 0, false, {
+                fileName: "[project]/src/components/LoveStory.tsx",
+                lineNumber: 39,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-400/60 rounded-tl pointer-events-none"
+            }, void 0, false, {
+                fileName: "[project]/src/components/LoveStory.tsx",
+                lineNumber: 48,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-amber-400/60 rounded-tr pointer-events-none"
+            }, void 0, false, {
+                fileName: "[project]/src/components/LoveStory.tsx",
+                lineNumber: 49,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-400/60 rounded-bl pointer-events-none"
+            }, void 0, false, {
+                fileName: "[project]/src/components/LoveStory.tsx",
+                lineNumber: 50,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-400/60 rounded-br pointer-events-none"
+            }, void 0, false, {
+                fileName: "[project]/src/components/LoveStory.tsx",
+                lineNumber: 51,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center text-center gap-7 sm:gap-9",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "flex flex-col items-center gap-2.5",
+                        initial: {
+                            opacity: 0,
+                            y: 22
+                        },
+                        whileInView: {
+                            opacity: 1,
+                            y: 0
+                        },
+                        viewport: {
+                            once: true
+                        },
+                        transition: {
+                            duration: 0.7
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-3 w-40",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/60"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 66,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-amber-400 text-xs",
+                                        children: "❦"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 67,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/60"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 68,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 65,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "text-[11px] sm:text-xs tracking-[0.42em] uppercase text-amber-400 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]",
+                                style: {
+                                    fontFamily: FONT_SERIF
+                                },
+                                children: "Our Journey"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 71,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "text-3xl sm:text-4xl md:text-5xl font-light tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]",
+                                style: {
+                                    fontFamily: FONT_DISPLAY,
+                                    background: 'linear-gradient(135deg, #ffffff 0%, #fef3c7 40%, #fbbf24 85%, #d97706 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text'
+                                },
+                                children: "Kisah Cinta Kami"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 78,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-xs sm:text-sm text-amber-100/90 max-w-md font-light italic drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]",
+                                style: {
+                                    fontFamily: FONT_SERIF
+                                },
+                                children: "“Setiap lembar perjalanan adalah bukti takdir yang tertulis indah.”"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 91,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/LoveStory.tsx",
+                        lineNumber: 57,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "relative w-full max-w-xl mx-auto my-2 sm:my-4 group",
+                        initial: {
+                            opacity: 0,
+                            scale: 0.95
+                        },
+                        whileInView: {
+                            opacity: 1,
+                            scale: 1
+                        },
+                        viewport: {
+                            once: true
+                        },
+                        transition: {
+                            duration: 0.75,
+                            delay: 0.15
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-500/30 via-amber-700/20 to-amber-500/30 blur-md opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 108,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/80 backdrop-blur-sm aspect-[16/10] sm:aspect-[16/9]",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: "/lovestory-bg.jpg",
+                                        alt: "Adli & Rima Love Story",
+                                        className: "w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 112,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute inset-0 pointer-events-none",
+                                        style: {
+                                            background: 'linear-gradient(to top, rgba(11,21,40,0.65) 0%, transparent 40%)'
+                                        },
+                                        "aria-hidden": "true"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 119,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute top-2.5 left-2.5 w-4 h-4 border-t-2 border-l-2 border-amber-400/80 rounded-tl pointer-events-none"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 128,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute top-2.5 right-2.5 w-4 h-4 border-t-2 border-r-2 border-amber-400/80 rounded-tr pointer-events-none"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 129,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute bottom-2.5 left-2.5 w-4 h-4 border-b-2 border-l-2 border-amber-400/80 rounded-bl pointer-events-none"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 130,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute bottom-2.5 right-2.5 w-4 h-4 border-b-2 border-r-2 border-amber-400/80 rounded-br pointer-events-none"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 131,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute bottom-3 inset-x-0 flex justify-center pointer-events-none",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-200/90 font-medium px-4 py-1 rounded-full bg-slate-950/70 border border-amber-500/40 backdrop-blur-xs shadow-md",
+                                            style: {
+                                                fontFamily: FONT_SERIF
+                                            },
+                                            children: "Adli & Rima • Our Story"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/LoveStory.tsx",
+                                            lineNumber: 135,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 134,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 111,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/LoveStory.tsx",
+                        lineNumber: 100,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "w-full flex flex-col gap-6 sm:gap-8 mt-1",
+                        children: STORIES.map((item, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].article, {
+                                className: "relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl backdrop-blur-md text-left group",
+                                style: {
+                                    backgroundColor: 'rgba(15, 23, 42, 0.78)',
+                                    boxShadow: '0 14px 40px rgba(0, 0, 0, 0.6), inset 0 0 24px rgba(245, 158, 11, 0.05)'
+                                },
+                                initial: {
+                                    opacity: 0,
+                                    y: 28
+                                },
+                                whileInView: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                viewport: {
+                                    once: true,
+                                    margin: '-40px'
+                                },
+                                transition: {
+                                    duration: 0.65,
+                                    delay: index * 0.12
+                                },
+                                whileHover: {
+                                    y: -3,
+                                    borderColor: 'rgba(245, 158, 11, 0.6)'
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute top-2.5 left-2.5 w-3.5 h-3.5 border-t border-l border-amber-400/50 pointer-events-none"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 163,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute top-2.5 right-2.5 w-3.5 h-3.5 border-t border-r border-amber-400/50 pointer-events-none"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 164,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute bottom-2.5 left-2.5 w-3.5 h-3.5 border-b border-l border-amber-400/50 pointer-events-none"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 165,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute bottom-2.5 right-2.5 w-3.5 h-3.5 border-b border-r border-amber-400/50 pointer-events-none"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 166,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-3.5 border-b border-amber-500/25 pb-3",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center gap-3",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-xs font-bold text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-500/50 bg-amber-950/60 tracking-wider shadow-inner",
+                                                        style: {
+                                                            fontFamily: FONT_DISPLAY
+                                                        },
+                                                        children: [
+                                                            "BAB ",
+                                                            item.chapter
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                                        lineNumber: 171,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                        className: "text-lg sm:text-xl md:text-2xl font-semibold tracking-wider text-amber-200 drop-shadow-sm",
+                                                        style: {
+                                                            fontFamily: FONT_DISPLAY
+                                                        },
+                                                        children: item.title
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                                        lineNumber: 177,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/LoveStory.tsx",
+                                                lineNumber: 170,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-xs tracking-widest text-amber-400/80 font-medium sm:text-right",
+                                                style: {
+                                                    fontFamily: FONT_SERIF
+                                                },
+                                                children: item.subtitle
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/LoveStory.tsx",
+                                                lineNumber: 185,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 169,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-sm sm:text-base text-slate-200/90 leading-relaxed sm:leading-loose font-normal text-justify",
+                                        style: {
+                                            fontFamily: FONT_SERIF
+                                        },
+                                        children: item.story
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/LoveStory.tsx",
+                                        lineNumber: 194,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, item.title, true, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 148,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/LoveStory.tsx",
+                        lineNumber: 146,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center gap-2 mt-2",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-1.5 h-1.5 rounded-full bg-amber-500/50"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 206,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-10 sm:w-16 h-px bg-amber-500/40"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 207,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-2.5 h-2.5 rotate-45 border border-amber-500/60 bg-amber-950/60"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 208,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-10 sm:w-16 h-px bg-amber-500/40"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 209,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-1.5 h-1.5 rounded-full bg-amber-500/50"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/LoveStory.tsx",
+                                lineNumber: 210,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/LoveStory.tsx",
+                        lineNumber: 205,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/LoveStory.tsx",
+                lineNumber: 54,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
         fileName: "[project]/src/components/LoveStory.tsx",
-        lineNumber: 10,
+        lineNumber: 37,
         columnNumber: 5
     }, this);
 }

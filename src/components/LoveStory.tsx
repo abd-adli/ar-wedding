@@ -5,72 +5,212 @@ import { motion } from 'framer-motion';
 const FONT_SERIF = "'EB Garamond', 'Cormorant Garamond', Georgia, serif";
 const FONT_DISPLAY = "'Cinzel', 'Playfair Display', serif";
 
+const STORIES = [
+  {
+    chapter: '01',
+    title: 'AWAL PERTEMUAN',
+    subtitle: 'Awal Sebuah Kisah',
+    date: '2019 - 2024',
+    story:
+      'Pertama kali kenal di tahun 2019, kami sempat hilang kontak. Lucunya, takdir malah mempertemukan kami lagi lima tahun kemudian di tengah riuhnya ribuan penonton konser tanpa janjian. Dari sekadar nganterin pulang sampai bertemu orangtua Riri , akhirnya kami resmi menjalani hubungan di Juni 2024.',
+  },
+  {
+    chapter: '02',
+    title: 'PERJALANAN CINTA',
+    subtitle: 'Anchored Realm — Menambatkan Hati',
+    date: '2024 - 2026',
+    story:
+      'Tema Anchored Realm adalah cerminan perjalanan kami. Mengarungi berbagai dinamika dan gelombang ujian kehidupan, setiap keraguan perlahan luruh berganti keyakinan yang utuh. Di sanalah kami menambatkan jangkar (Anchored) rasa percaya, untuk membangun dunia (Realm) kami bersama. Membuktikan bahwa sekuat apapun ombak menerpa, ikatan ini tak akan goyah. Rima adalah tempat Adli berlabuh untuk selamanya.',
+  },
+  {
+    chapter: '03',
+    title: 'LAMARAN',
+    subtitle: 'Menuju Ikatan Suci',
+    date: '11 Oktober 2026',
+    story:
+      'Janji cowok yang dua tahun lalu sowan ke rumah akhirnya ditebus secara ksatria. Tepat di tanggal 11 Oktober 2026, di hadapan keluarga besar kedua belah pihak, Adli secara resmi melamar Riri untuk melangkah bersama menuju pernikahan.',
+  },
+];
+
 export default function LoveStory() {
   return (
-    <section className="relative w-full flex flex-col items-center py-6 sm:py-10 px-4 sm:px-6">
-      <motion.div
-        className="w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-3.5 px-6 sm:px-12 py-7 sm:py-9 rounded-2xl relative overflow-hidden"
+    <section className="relative w-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center overflow-hidden min-h-[700px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/25 shadow-2xl bg-[#0B1528]/85 backdrop-blur-md my-4">
+      {/* Subtle ambient gold background glow */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
         style={{
-          background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 15, 5, 0.6) 100%)',
-          border: '1px solid rgba(245, 158, 11, 0.25)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.45), inset 0 0 20px rgba(245, 158, 11, 0.05)',
-          backdropFilter: 'blur(8px)',
+          background: 'radial-gradient(circle at 50% 30%, rgba(245,158,11,0.25) 0%, transparent 70%)',
         }}
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-      >
-        {/* Subtle decorative motif */}
-        <div className="flex items-center gap-3 w-36">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/50" />
-          <span className="text-amber-500/70 text-xs">❦</span>
-          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/50" />
+        aria-hidden="true"
+      />
+
+      {/* Sogan Corner Filigrees on Main Card */}
+      <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-400/60 rounded-tl pointer-events-none" />
+      <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-amber-400/60 rounded-tr pointer-events-none" />
+      <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-400/60 rounded-bl pointer-events-none" />
+      <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-400/60 rounded-br pointer-events-none" />
+
+      {/* Content Container */}
+      <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center text-center gap-7 sm:gap-9">
+        
+        {/* Section Header */}
+        <motion.div
+          className="flex flex-col items-center gap-2.5"
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          {/* Sogan decorative motif */}
+          <div className="flex items-center gap-3 w-40">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/60" />
+            <span className="text-amber-400 text-xs">❦</span>
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/60" />
+          </div>
+
+          <span
+            className="text-[11px] sm:text-xs tracking-[0.42em] uppercase text-amber-400 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
+            style={{ fontFamily: FONT_SERIF }}
+          >
+            Our Journey
+          </span>
+
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]"
+            style={{
+              fontFamily: FONT_DISPLAY,
+              background: 'linear-gradient(135deg, #ffffff 0%, #fef3c7 40%, #fbbf24 85%, #d97706 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor : 'transparent',
+              backgroundClip      : 'text',
+            }}
+          >
+            Kisah Cinta Kami
+          </h2>
+
+          <p
+            className="text-xs sm:text-sm text-amber-100/90 max-w-md font-light italic drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]"
+            style={{ fontFamily: FONT_SERIF }}
+          >
+            &ldquo;Setiap lembar perjalanan adalah bukti takdir yang tertulis indah.&rdquo;
+          </p>
+        </motion.div>
+
+        {/* ── Dedicated Landscape Photo Card with Sogan Framing ── */}
+        <motion.div
+          className="relative w-full max-w-xl mx-auto my-2 sm:my-4 group"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.75, delay: 0.15 }}
+        >
+          {/* Ambient Glow */}
+          <div className="absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-500/30 via-amber-700/20 to-amber-500/30 blur-md opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+
+          {/* Photo Frame Container */}
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/80 backdrop-blur-sm aspect-[16/10] sm:aspect-[16/9]">
+            <img
+              src="/lovestory-bg.jpg"
+              alt="Adli & Rima Love Story"
+              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            />
+
+            {/* Subtle Gradient Shade on bottom of photo */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'linear-gradient(to top, rgba(11,21,40,0.65) 0%, transparent 40%)',
+              }}
+              aria-hidden="true"
+            />
+
+            {/* Sogan Corner Filigrees on the photo */}
+            <div className="absolute top-2.5 left-2.5 w-4 h-4 border-t-2 border-l-2 border-amber-400/80 rounded-tl pointer-events-none" />
+            <div className="absolute top-2.5 right-2.5 w-4 h-4 border-t-2 border-r-2 border-amber-400/80 rounded-tr pointer-events-none" />
+            <div className="absolute bottom-2.5 left-2.5 w-4 h-4 border-b-2 border-l-2 border-amber-400/80 rounded-bl pointer-events-none" />
+            <div className="absolute bottom-2.5 right-2.5 w-4 h-4 border-b-2 border-r-2 border-amber-400/80 rounded-br pointer-events-none" />
+
+            {/* Bottom Caption Pill on Photo */}
+            <div className="absolute bottom-3 inset-x-0 flex justify-center pointer-events-none">
+              <span
+                className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-200/90 font-medium px-4 py-1 rounded-full bg-slate-950/70 border border-amber-500/40 backdrop-blur-xs shadow-md"
+                style={{ fontFamily: FONT_SERIF }}
+              >
+                Adli &amp; Rima • Our Story
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ── Story Chapters Cards ── */}
+        <div className="w-full flex flex-col gap-6 sm:gap-8 mt-1">
+          {STORIES.map((item, index) => (
+            <motion.article
+              key={item.title}
+              className="relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl backdrop-blur-md text-left group"
+              style={{
+                backgroundColor: 'rgba(15, 23, 42, 0.78)',
+                boxShadow:
+                  '0 14px 40px rgba(0, 0, 0, 0.6), inset 0 0 24px rgba(245, 158, 11, 0.05)',
+              }}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.65, delay: index * 0.12 }}
+              whileHover={{ y: -3, borderColor: 'rgba(245, 158, 11, 0.6)' }}
+            >
+              {/* Corner Filigrees (Sogan Javanese aesthetic) */}
+              <div className="absolute top-2.5 left-2.5 w-3.5 h-3.5 border-t border-l border-amber-400/50 pointer-events-none" />
+              <div className="absolute top-2.5 right-2.5 w-3.5 h-3.5 border-t border-r border-amber-400/50 pointer-events-none" />
+              <div className="absolute bottom-2.5 left-2.5 w-3.5 h-3.5 border-b border-l border-amber-400/50 pointer-events-none" />
+              <div className="absolute bottom-2.5 right-2.5 w-3.5 h-3.5 border-b border-r border-amber-400/50 pointer-events-none" />
+
+              {/* Header inside Card */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-3.5 border-b border-amber-500/25 pb-3">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="text-xs font-bold text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-500/50 bg-amber-950/60 tracking-wider shadow-inner"
+                    style={{ fontFamily: FONT_DISPLAY }}
+                  >
+                    BAB {item.chapter}
+                  </span>
+                  <h3
+                    className="text-lg sm:text-xl md:text-2xl font-semibold tracking-wider text-amber-200 drop-shadow-sm"
+                    style={{ fontFamily: FONT_DISPLAY }}
+                  >
+                    {item.title}
+                  </h3>
+                </div>
+
+                <span
+                  className="text-xs tracking-widest text-amber-400/80 font-medium sm:text-right"
+                  style={{ fontFamily: FONT_SERIF }}
+                >
+                  {item.subtitle}
+                </span>
+              </div>
+
+              {/* Story Paragraph */}
+              <p
+                className="text-sm sm:text-base text-slate-200/90 leading-relaxed sm:leading-loose font-normal text-justify"
+                style={{ fontFamily: FONT_SERIF }}
+              >
+                {item.story}
+              </p>
+            </motion.article>
+          ))}
         </div>
 
-        {/* Section Subtitle */}
-        <p
-          className="text-[11px] sm:text-xs tracking-[0.35em] uppercase text-amber-500/80 font-medium"
-          style={{ fontFamily: FONT_SERIF }}
-        >
-          Love Story
-        </p>
-
-        {/* Section Heading: Cerita Kita */}
-        <h2
-          className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide"
-          style={{
-            fontFamily: FONT_DISPLAY,
-            background: 'linear-gradient(135deg, #fbbf24 0%, #d97706 50%, #fbbf24 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            textShadow: '0 2px 10px rgba(0,0,0,0.4)',
-          }}
-        >
-          Cerita Kita
-        </h2>
-
-        {/* Story Text */}
-        <p
-          className="text-sm sm:text-base md:text-lg text-amber-100/90 leading-relaxed sm:leading-loose font-normal italic max-w-xl px-2 sm:px-6 my-1.5 text-center"
-          style={{
-            fontFamily: FONT_SERIF,
-            textShadow: '0 1px 4px rgba(0,0,0,0.85)',
-          }}
-        >
-          &ldquo;Tema Anchored Realm adalah cerminan perjalanan kami. Setelah mengarungi berbagai gelombang keraguan dan badai ujian, hati ini pada akhirnya menemukan pelabuhan terakhirnya. Sebuah ikatan tempat kami menambatkan jangkar (Anchored) rasa percaya, untuk membangun dunia (Realm) kami bersama. Membuktikan bahwa sekuat apapun ombak menerpa, jangkar ini tak akan goyah. Karena dari semua perjalanan panjang, Rima adalah satu-satunya tempat Adli berlabuh untuk selamanya.&rdquo;
-        </p>
-
-        {/* Bottom Filigree / Divider */}
-        <div className="flex items-center gap-2 mt-1">
+        {/* Closing Filigree Accent */}
+        <div className="flex items-center gap-2 mt-2">
           <div className="w-1.5 h-1.5 rounded-full bg-amber-500/50" />
-          <div className="w-8 sm:w-12 h-px bg-amber-500/40" />
+          <div className="w-10 sm:w-16 h-px bg-amber-500/40" />
           <div className="w-2.5 h-2.5 rotate-45 border border-amber-500/60 bg-amber-950/60" />
-          <div className="w-8 sm:w-12 h-px bg-amber-500/40" />
+          <div className="w-10 sm:w-16 h-px bg-amber-500/40" />
           <div className="w-1.5 h-1.5 rounded-full bg-amber-500/50" />
         </div>
-      </motion.div>
+
+      </div>
     </section>
   );
 }
