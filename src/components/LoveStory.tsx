@@ -111,7 +111,7 @@ export default function LoveStory() {
           {/* Photo Frame Container */}
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/80 backdrop-blur-sm aspect-[16/10] sm:aspect-[16/9]">
             <Image
-              src="/lovestory-bg.jpg"
+              src="/lovestory-bg.webp"
               alt="Adli & Rima Love Story"
               fill
               sizes="(max-width: 640px) 100vw, 576px"

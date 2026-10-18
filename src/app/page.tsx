@@ -167,7 +167,7 @@ function CoverPage({
             transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}
           >
             <Image
-              src="/logo-ar-gold.png"
+              src="/logo-ar-gold.webp"
               alt="A&R Logo"
               width={80}
               height={80}
@@ -199,7 +199,7 @@ function CoverPage({
             transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
-              src="/gunungan.png"
+              src="/gunungan.webp"
               alt="Gunungan Wayang"
               width={480}
               height={600}
@@ -224,7 +224,7 @@ function CoverPage({
             transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
-              src="/gunungan.png"
+              src="/gunungan.webp"
               alt="Gunungan Wayang"
               width={480}
               height={600}
@@ -469,7 +469,7 @@ export default function Home() {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <Image
-            src="/logo-ar-gold.png"
+            src="/logo-ar-gold.webp"
             alt="A&R Logo"
             width={60}
             height={60}
@@ -512,7 +512,7 @@ export default function Home() {
           transition={{ duration: 1.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
-            src="/joglo-bg.png"
+            src="/joglo-bg.webp"
             alt="Joglo Outline"
             width={1024}
             height={600}
@@ -540,7 +540,7 @@ export default function Home() {
             style={{ transformOrigin: 'top center' }}
           >
             <Image
-              src="/lampu-gantung.png"
+              src="/lampu-gantung.webp"
               alt="Lampu Gantung"
               width={112}
               height={200}
@@ -565,7 +565,7 @@ export default function Home() {
             style={{ transformOrigin: 'top left' }}
           >
             <Image
-              src="/ornamen-kiri-atas.png"
+              src="/ornamen-kiri-atas.webp"
               alt=""
               width={280}
               height={156}
@@ -589,7 +589,7 @@ export default function Home() {
             style={{ transformOrigin: 'top right' }}
           >
             <Image
-              src="/ornamen-kanan-atas.png"
+              src="/ornamen-kanan-atas.webp"
               alt=""
               width={280}
               height={156}
@@ -613,7 +613,7 @@ export default function Home() {
             style={{ transformOrigin: 'bottom left' }}
           >
             <Image
-              src="/ornamen-kiri-bawah.png"
+              src="/ornamen-kiri-bawah.webp"
               alt=""
               width={300}
               height={167}
@@ -637,7 +637,7 @@ export default function Home() {
             style={{ transformOrigin: 'bottom right' }}
           >
             <Image
-              src="/ornamen-kanan-bawah.png"
+              src="/ornamen-kanan-bawah.webp"
               alt=""
               width={300}
               height={167}
@@ -857,7 +857,7 @@ export default function Home() {
         className="w-full flex flex-col items-center gap-4 py-16 px-4 border-t border-amber-500/10 text-center"
       >
         <Image
-          src="/logo-ar-gold.png"
+          src="/logo-ar-gold.webp"
           alt="A&R"
           width={48}
           height={48}

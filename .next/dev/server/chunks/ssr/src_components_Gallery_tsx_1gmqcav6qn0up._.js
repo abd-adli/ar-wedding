@@ -20,70 +20,70 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$mo
 const DEFAULT_ITEMS = [
     {
         id: 'def-1',
-        src: '/prewed-1.jpg',
+        src: '/prewed-1.webp',
         alt: 'Adli & Rima — Tepian Senja',
         caption: 'Berdua di Tepian Senja',
         span: 'tall'
     },
     {
         id: 'def-2',
-        src: '/prewed-2.jpg',
+        src: '/prewed-2.webp',
         alt: 'Adli & Rima — Kebun Teh',
         caption: 'Di Antara Hijau Abadi',
         span: 'normal'
     },
     {
         id: 'def-3',
-        src: '/prewed-3.jpg',
+        src: '/prewed-3.webp',
         alt: 'Adli & Rima — Detail Batik',
         caption: 'Warisan Nusantara',
         span: 'normal'
     },
     {
         id: 'def-4',
-        src: '/prewed-4.jpg',
+        src: '/prewed-4.webp',
         alt: 'Adli & Rima — Candi',
         caption: 'Dua Jiwa, Satu Candi',
         span: 'wide'
     },
     {
         id: 'def-5',
-        src: '/prewed-5.jpg',
+        src: '/prewed-5.webp',
         alt: 'Adli & Rima — Sawah',
         caption: 'Di Lembah Padi',
         span: 'normal'
     },
     {
         id: 'def-6',
-        src: '/prewed-6.jpg',
+        src: '/prewed-6.webp',
         alt: 'Adli & Rima — Indoor',
         caption: 'Senyum Pertama',
         span: 'tall'
     },
     {
         id: 'def-7',
-        src: '/prewed-7.jpg',
+        src: '/prewed-7.webp',
         alt: 'Adli & Rima — Outdoor',
         caption: 'Perjalanan Dimulai',
         span: 'normal'
     },
     {
         id: 'def-8',
-        src: '/prewed-8.jpg',
+        src: '/prewed-8.webp',
         alt: 'Adli & Rima — Close-up',
         caption: 'Cinta Dalam Detail',
         span: 'wide'
     },
     {
         id: 'def-9',
-        src: '/prewed-9.jpg',
+        src: '/prewed-9.webp',
         alt: 'Adli & Rima — Golden Hour',
         caption: 'Cahaya Sore yang Abadi',
         span: 'normal'
     },
     {
         id: 'def-10',
-        src: '/prewed-10.jpg',
+        src: '/prewed-10.webp',
         alt: 'Adli & Rima — Formal Portrait',
         caption: 'Potret Pengantin Sogan',
         span: 'normal'
@@ -214,7 +214,9 @@ function GalleryCard({ item, index, onSelect }) {
                 quality: 75,
                 onLoad: ()=>setLoaded(true),
                 onError: ()=>{
-                    if (imgSrc.endsWith('.jpg')) {
+                    if (imgSrc.endsWith('.webp')) {
+                        setImgSrc(imgSrc.replace(/\.webp$/, '.jpg'));
+                    } else if (imgSrc.endsWith('.jpg')) {
                         setImgSrc(imgSrc.replace(/\.jpg$/, '.JPG'));
                     } else if (imgSrc.endsWith('.JPG')) {
                         setImgSrc(imgSrc.replace(/\.JPG$/, '.jpg'));
@@ -236,7 +238,7 @@ function GalleryCard({ item, index, onSelect }) {
                         className: "w-14 h-14 text-amber-700/40 group-hover:scale-110 transition-transform duration-700"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 134,
+                        lineNumber: 136,
                         columnNumber: 11
                     }, this),
                     [
@@ -248,7 +250,7 @@ function GalleryCard({ item, index, onSelect }) {
                             className: `absolute w-4 h-4 border-amber-800/30 ${cls}`
                         }, cls, false, {
                             fileName: "[project]/src/components/Gallery.tsx",
-                            lineNumber: 143,
+                            lineNumber: 145,
                             columnNumber: 13
                         }, this)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -259,13 +261,13 @@ function GalleryCard({ item, index, onSelect }) {
                         children: hasImage ? 'Memuat...' : 'Segera'
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 149,
+                        lineNumber: 151,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 129,
+                lineNumber: 131,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -284,7 +286,7 @@ function GalleryCard({ item, index, onSelect }) {
                             children: item.caption
                         }, void 0, false, {
                             fileName: "[project]/src/components/Gallery.tsx",
-                            lineNumber: 164,
+                            lineNumber: 166,
                             columnNumber: 11
                         }, this),
                         hasImage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -292,18 +294,18 @@ function GalleryCard({ item, index, onSelect }) {
                             children: "Perbesar ↗"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Gallery.tsx",
-                            lineNumber: 171,
+                            lineNumber: 173,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Gallery.tsx",
-                    lineNumber: 163,
+                    lineNumber: 165,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 159,
+                lineNumber: 161,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -314,7 +316,7 @@ function GalleryCard({ item, index, onSelect }) {
                 "aria-hidden": true
             }, void 0, false, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 179,
+                lineNumber: 181,
                 columnNumber: 7
             }, this)
         ]
@@ -368,7 +370,7 @@ function Lightbox({ item, onClose }) {
                             children: "Tutup"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Gallery.tsx",
-                            lineNumber: 218,
+                            lineNumber: 220,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -376,13 +378,13 @@ function Lightbox({ item, onClose }) {
                             children: "×"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Gallery.tsx",
-                            lineNumber: 219,
+                            lineNumber: 221,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Gallery.tsx",
-                    lineNumber: 213,
+                    lineNumber: 215,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -396,12 +398,12 @@ function Lightbox({ item, onClose }) {
                         className: "object-contain"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 223,
+                        lineNumber: 225,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/Gallery.tsx",
-                    lineNumber: 222,
+                    lineNumber: 224,
                     columnNumber: 9
                 }, this),
                 item.caption && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -412,18 +414,18 @@ function Lightbox({ item, onClose }) {
                     children: item.caption
                 }, void 0, false, {
                     fileName: "[project]/src/components/Gallery.tsx",
-                    lineNumber: 234,
+                    lineNumber: 236,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Gallery.tsx",
-            lineNumber: 205,
+            lineNumber: 207,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Gallery.tsx",
-        lineNumber: 198,
+        lineNumber: 200,
         columnNumber: 5
     }, this);
 }
@@ -460,7 +462,7 @@ function Header() {
                         strokeDasharray: "4 3"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 258,
+                        lineNumber: 260,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -470,7 +472,7 @@ function Header() {
                         fill: "currentColor"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 259,
+                        lineNumber: 261,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -481,7 +483,7 @@ function Header() {
                         opacity: ".55"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 260,
+                        lineNumber: 262,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -492,13 +494,13 @@ function Header() {
                         opacity: ".55"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 261,
+                        lineNumber: 263,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 257,
+                lineNumber: 259,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -509,7 +511,7 @@ function Header() {
                 children: "Dokumentasi Pre-Wedding"
             }, void 0, false, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 264,
+                lineNumber: 266,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -524,7 +526,7 @@ function Header() {
                 children: "Galeri Pra-Nikah"
             }, void 0, false, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 271,
+                lineNumber: 273,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -535,7 +537,7 @@ function Header() {
                 children: "Setiap gambar menyimpan sepotong cerita dari perjalanan kami menuju altar"
             }, void 0, false, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 284,
+                lineNumber: 286,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -548,7 +550,7 @@ function Header() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 292,
+                        lineNumber: 294,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -556,7 +558,7 @@ function Header() {
                         children: "✦"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 293,
+                        lineNumber: 295,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -566,19 +568,19 @@ function Header() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 294,
+                        lineNumber: 296,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 291,
+                lineNumber: 293,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Gallery.tsx",
-        lineNumber: 250,
+        lineNumber: 252,
         columnNumber: 5
     }, this);
 }
@@ -603,7 +605,7 @@ function Gallery() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 310,
+                        lineNumber: 312,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -618,18 +620,18 @@ function Gallery() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 315,
+                        lineNumber: 317,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 309,
+                lineNumber: 311,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Header, {}, void 0, false, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 322,
+                lineNumber: 324,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -643,12 +645,12 @@ function Gallery() {
                         onSelect: setSelectedPhoto
                     }, item.id, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 330,
+                        lineNumber: 332,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 325,
+                lineNumber: 327,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -657,12 +659,12 @@ function Gallery() {
                     onClose: ()=>setSelectedPhoto(null)
                 }, void 0, false, {
                     fileName: "[project]/src/components/Gallery.tsx",
-                    lineNumber: 342,
+                    lineNumber: 344,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 340,
+                lineNumber: 342,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].blockquote, {
@@ -692,7 +694,7 @@ function Gallery() {
                         children: "“Seperti batik Sogan yang tumbuh dari akar bumi Jawa, cinta kami terpatri dalam setiap lembar kehidupan.”"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 357,
+                        lineNumber: 359,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
@@ -703,19 +705,19 @@ function Gallery() {
                         children: "— Adli & Rima"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
-                        lineNumber: 364,
+                        lineNumber: 366,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Gallery.tsx",
-                lineNumber: 350,
+                lineNumber: 352,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Gallery.tsx",
-        lineNumber: 306,
+        lineNumber: 308,
         columnNumber: 5
     }, this);
 }

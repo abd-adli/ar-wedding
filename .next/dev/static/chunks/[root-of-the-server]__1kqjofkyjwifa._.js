@@ -391,7 +391,7 @@ function CoverPage({ guestName, onOpen, onPlayAudio }) {
                                 repeat: Infinity
                             },
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                src: "/logo-ar-gold.png",
+                                src: "/logo-ar-gold.webp",
                                 alt: "A&R Logo",
                                 width: 80,
                                 height: 80,
@@ -454,7 +454,7 @@ function CoverPage({ guestName, onOpen, onPlayAudio }) {
                                     ]
                                 },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                    src: "/gunungan.png",
+                                    src: "/gunungan.webp",
                                     alt: "Gunungan Wayang",
                                     width: 480,
                                     height: 600,
@@ -497,7 +497,7 @@ function CoverPage({ guestName, onOpen, onPlayAudio }) {
                                     ]
                                 },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                    src: "/gunungan.png",
+                                    src: "/gunungan.webp",
                                     alt: "Gunungan Wayang",
                                     width: 480,
                                     height: 600,
@@ -991,7 +991,7 @@ function Home() {
                             behavior: 'smooth'
                         }),
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                        src: "/logo-ar-gold.png",
+                        src: "/logo-ar-gold.webp",
                         alt: "A&R Logo",
                         width: 60,
                         height: 60,
@@ -1064,7 +1064,7 @@ function Home() {
                             ]
                         },
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                            src: "/joglo-bg.png",
+                            src: "/joglo-bg.webp",
                             alt: "Joglo Outline",
                             width: 1024,
                             height: 600,
@@ -1127,7 +1127,7 @@ function Home() {
                                 transformOrigin: 'top center'
                             },
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                src: "/lampu-gantung.png",
+                                src: "/lampu-gantung.webp",
                                 alt: "Lampu Gantung",
                                 width: 112,
                                 height: 200,
@@ -1188,7 +1188,7 @@ function Home() {
                                 transformOrigin: 'top left'
                             },
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                src: "/ornamen-kiri-atas.png",
+                                src: "/ornamen-kiri-atas.webp",
                                 alt: "",
                                 width: 280,
                                 height: 156,
@@ -1250,7 +1250,7 @@ function Home() {
                                 transformOrigin: 'top right'
                             },
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                src: "/ornamen-kanan-atas.png",
+                                src: "/ornamen-kanan-atas.webp",
                                 alt: "",
                                 width: 280,
                                 height: 156,
@@ -1312,7 +1312,7 @@ function Home() {
                                 transformOrigin: 'bottom left'
                             },
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                src: "/ornamen-kiri-bawah.png",
+                                src: "/ornamen-kiri-bawah.webp",
                                 alt: "",
                                 width: 300,
                                 height: 167,
@@ -1374,7 +1374,7 @@ function Home() {
                                 transformOrigin: 'bottom right'
                             },
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                src: "/ornamen-kanan-bawah.png",
+                                src: "/ornamen-kanan-bawah.webp",
                                 alt: "",
                                 width: 300,
                                 height: 167,
@@ -2027,7 +2027,7 @@ function Home() {
                 className: "w-full flex flex-col items-center gap-4 py-16 px-4 border-t border-amber-500/10 text-center",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                        src: "/logo-ar-gold.png",
+                        src: "/logo-ar-gold.webp",
                         alt: "A&R",
                         width: 48,
                         height: 48,
@@ -2474,7 +2474,7 @@ function MempelaiSection() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/60 backdrop-blur-sm",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                            src: "/groom.jpg",
+                                            src: "/groom.webp",
                                             alt: "Foto Abdul Qodir Adli",
                                             fill: true,
                                             sizes: "(max-width: 640px) 192px, 224px",
@@ -2664,7 +2664,7 @@ function MempelaiSection() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/60 backdrop-blur-sm",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                            src: "/bride.jpg",
+                                            src: "/bride.webp",
                                             alt: "Foto Rima Sugiarto",
                                             fill: true,
                                             sizes: "(max-width: 640px) 192px, 224px",

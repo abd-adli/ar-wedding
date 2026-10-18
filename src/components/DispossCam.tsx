@@ -219,7 +219,7 @@ export default function DispossCam() {
   useEffect(() => {
     const img       = new window.Image();
     img.crossOrigin = 'anonymous';
-    img.src         = '/frame-sogan.png';
+    img.src         = '/frame-sogan.webp';
     img.onload      = () => { overlayImg.current = img; setFrameError(false); };
     img.onerror     = () => { overlayImg.current = null; setFrameError(true); };
   }, []);
@@ -536,7 +536,7 @@ export default function DispossCam() {
               <div className="absolute inset-0 pointer-events-none z-10">
                 {!frameError ? (
                   <Image
-                    src="/frame-sogan.png"
+                    src="/frame-sogan.webp"
                     alt="Frame Sogan"
                     fill
                     className="object-cover"

@@ -60,7 +60,7 @@ export default function Countdown() {
       >
         {/* Optimized background Image, lazy loaded and anchored to bottom */}
         <Image
-          src="/countdown-bg.jpg"
+          src="/countdown-bg.webp"
           alt="Wedding Countdown Background"
           fill
           sizes="(max-width: 768px) 100vw, 896px"
@@ -91,7 +91,7 @@ export default function Countdown() {
           >
             {/* A&R Monogram Logo */}
             <Image
-              src="/logo-ar-gold.png"
+              src="/logo-ar-gold.webp"
               alt="A&R Logo"
               width={48}
               height={48}
@@ -275,7 +275,7 @@ export default function Countdown() {
             className="flex justify-center mb-1"
           >
             <Image
-              src="/gunungan.png"
+              src="/gunungan.webp"
               alt="Gunungan Wayang"
               width={176}
               height={176}

@@ -77,7 +77,7 @@ export default function MempelaiSection() {
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/30 to-amber-700/10 blur-sm opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
             <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/60 backdrop-blur-sm">
               <Image
-                src="/groom.jpg"
+                src="/groom.webp"
                 alt="Foto Abdul Qodir Adli"
                 fill
                 sizes="(max-width: 640px) 192px, 224px"
@@ -150,7 +150,7 @@ export default function MempelaiSection() {
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/30 to-amber-700/10 blur-sm opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
             <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/60 backdrop-blur-sm">
               <Image
-                src="/bride.jpg"
+                src="/bride.webp"
                 alt="Foto Rima Sugiarto"
                 fill
                 sizes="(max-width: 640px) 192px, 224px"

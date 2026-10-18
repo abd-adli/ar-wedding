@@ -311,7 +311,7 @@ function DispossCam() {
         "DispossCam.useEffect": ()=>{
             const img = new window.Image();
             img.crossOrigin = 'anonymous';
-            img.src = '/frame-sogan.png';
+            img.src = '/frame-sogan.webp';
             img.onload = ({
                 "DispossCam.useEffect": ()=>{
                     overlayImg.current = img;
@@ -666,7 +666,7 @@ function DispossCam() {
                                     isLive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute inset-0 pointer-events-none z-10",
                                         children: !frameError ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                            src: "/frame-sogan.png",
+                                            src: "/frame-sogan.webp",
                                             alt: "Frame Sogan",
                                             fill: true,
                                             className: "object-cover",

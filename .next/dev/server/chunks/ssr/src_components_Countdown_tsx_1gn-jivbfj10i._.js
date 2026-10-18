@@ -48,7 +48,7 @@ function Countdown() {
                 className: "relative w-full pt-4 sm:pt-6 pb-64 sm:pb-80 px-4 flex flex-col items-center justify-start overflow-hidden min-h-[640px] sm:min-h-[720px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/30 shadow-2xl",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                        src: "/countdown-bg.jpg",
+                        src: "/countdown-bg.webp",
                         alt: "Wedding Countdown Background",
                         fill: true,
                         sizes: "(max-width: 768px) 100vw, 896px",
@@ -92,7 +92,7 @@ function Countdown() {
                                 },
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                        src: "/logo-ar-gold.png",
+                                        src: "/logo-ar-gold.webp",
                                         alt: "A&R Logo",
                                         width: 48,
                                         height: 48,
@@ -515,7 +515,7 @@ function Countdown() {
                                 },
                                 className: "flex justify-center mb-1",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                    src: "/gunungan.png",
+                                    src: "/gunungan.webp",
                                     alt: "Gunungan Wayang",
                                     width: 176,
                                     height: 176,
