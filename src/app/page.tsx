@@ -5,17 +5,23 @@ import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
-import MempelaiSection     from '@/components/MempelaiSection';
 import FloatingMusicButton from '@/components/FloatingMusicButton';
 
 // ─── Dynamic imports for heavy below-the-fold components ──────────────────────
+const MempelaiSection = dynamic(() => import('@/components/MempelaiSection'), {
+  ssr: false,
+  loading: () => <div className="min-h-[500px]" />,
+});
 const Countdown = dynamic(() => import('@/components/Countdown'), {
+  ssr: false,
   loading: () => <div className="min-h-[600px]" />,
 });
 const LoveStory = dynamic(() => import('@/components/LoveStory'), {
+  ssr: false,
   loading: () => <div className="min-h-[500px]" />,
 });
 const Gallery = dynamic(() => import('@/components/Gallery'), {
+  ssr: false,
   loading: () => <div className="min-h-[500px]" />,
 });
 const DispossCam = dynamic(() => import('@/components/DispossCam'), {
@@ -23,6 +29,7 @@ const DispossCam = dynamic(() => import('@/components/DispossCam'), {
   loading: () => <div className="min-h-[350px]" />,
 });
 const DigitalGift = dynamic(() => import('@/components/DigitalGift'), {
+  ssr: false,
   loading: () => <div className="min-h-[400px]" />,
 });
 const Guestbook = dynamic(() => import('@/components/Guestbook'), {
