@@ -73,8 +73,8 @@ export default function DigitalGift() {
       <div className="relative z-10 w-full max-w-4xl flex flex-col items-center text-center">
         {/* Subtitle / Header Badge */}
         <motion.p
-          className="text-xs sm:text-sm tracking-[0.38em] uppercase text-amber-500/80 mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
-          style={{ fontFamily: FONT_SERIF }}
+          className="text-xs sm:text-sm tracking-[0.38em] uppercase text-amber-500/80 mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] transform-gpu"
+          style={{ fontFamily: FONT_SERIF, willChange: 'transform, opacity' }}
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -85,8 +85,8 @@ export default function DigitalGift() {
 
         {/* Title */}
         <motion.h2
-          className="text-3xl sm:text-4xl text-amber-300 font-normal tracking-wider mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]"
-          style={{ fontFamily: FONT_DISPLAY }}
+          className="text-3xl sm:text-4xl text-amber-300 font-normal tracking-wider mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] transform-gpu"
+          style={{ fontFamily: FONT_DISPLAY, willChange: 'transform, opacity' }}
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -97,8 +97,8 @@ export default function DigitalGift() {
 
         {/* Description */}
         <motion.p
-          className="text-xs sm:text-sm text-slate-300/85 italic leading-relaxed max-w-lg mb-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
-          style={{ fontFamily: FONT_SERIF }}
+          className="text-xs sm:text-sm text-slate-300/85 italic leading-relaxed max-w-lg mb-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] transform-gpu"
+          style={{ fontFamily: FONT_SERIF, willChange: 'transform, opacity' }}
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -114,8 +114,9 @@ export default function DigitalGift() {
             return (
               <motion.div
                 key={bank.id}
-                className="relative flex flex-col justify-between p-6 rounded-2xl border backdrop-blur-md overflow-hidden text-left shadow-xl group transition-all duration-300"
+                className="relative flex flex-col justify-between p-6 rounded-2xl border backdrop-blur-md overflow-hidden text-left shadow-xl group transition-all duration-300 transform-gpu"
                 style={{
+                  willChange: 'transform, opacity',
                   background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%)',
                   borderColor: 'rgba(245, 158, 11, 0.25)',
                   boxShadow: `0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px ${bank.colorAccent}`,
@@ -175,7 +176,8 @@ export default function DigitalGift() {
                     {isCopied ? (
                       <motion.span
                         key="copied"
-                        className="flex items-center gap-1.5"
+                        className="flex items-center gap-1.5 transform-gpu"
+                        style={{ willChange: 'transform, opacity' }}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
@@ -189,7 +191,8 @@ export default function DigitalGift() {
                     ) : (
                       <motion.span
                         key="copy"
-                        className="flex items-center gap-1.5"
+                        className="flex items-center gap-1.5 transform-gpu"
+                        style={{ willChange: 'transform, opacity' }}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}

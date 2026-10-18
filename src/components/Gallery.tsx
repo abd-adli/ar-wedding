@@ -85,11 +85,12 @@ function GalleryCard({
     <motion.article
       onClick={() => hasImage && onSelect({ ...item, src: imgSrc })}
       className={`
-        relative group overflow-hidden rounded-2xl
+        relative group overflow-hidden rounded-2xl transform-gpu
         ${hasImage ? 'cursor-pointer' : 'cursor-default'}
         ${SPAN_CLASSES[item.span]}
       `}
       style={{
+        willChange   : 'transform, opacity',
         background   : 'rgba(15,23,42,0.55)',
         border       : '1px solid rgba(245,158,11,0.12)',
         backdropFilter: 'blur(10px)',
@@ -198,14 +199,16 @@ function Lightbox({
 }) {
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transform-gpu"
+      style={{ willChange: 'opacity' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
     >
       <motion.div
-        className="relative max-w-4xl max-h-[90vh] flex flex-col items-center"
+        className="relative max-w-4xl max-h-[90vh] flex flex-col items-center transform-gpu"
+        style={{ willChange: 'transform, opacity' }}
         initial={{ scale: 0.92, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.92, opacity: 0 }}
@@ -227,7 +230,7 @@ function Lightbox({
             alt={item.alt}
             fill
             sizes="(max-width: 768px) 88vw, 672px"
-            quality={85}
+            quality={75}
             className="object-contain"
           />
         </div>
@@ -250,7 +253,8 @@ function Lightbox({
 function Header() {
   return (
     <motion.div
-      className="flex flex-col items-center gap-3 text-center"
+      className="flex flex-col items-center gap-3 text-center transform-gpu"
+      style={{ willChange: 'transform, opacity' }}
       initial={{ opacity: 0, y: 26 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -350,7 +354,8 @@ export default function Gallery() {
 
       {/* ─── Closing Quote ──────────────────────────────────────────────────── */}
       <motion.blockquote
-        className="text-center max-w-sm relative z-10 mt-4"
+        className="text-center max-w-sm relative z-10 mt-4 transform-gpu"
+        style={{ willChange: 'transform, opacity' }}
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}

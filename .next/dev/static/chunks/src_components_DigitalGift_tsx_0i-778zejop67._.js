@@ -76,9 +76,10 @@ function DigitalGift() {
                 className: "relative z-10 w-full max-w-4xl flex flex-col items-center text-center",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
-                        className: "text-xs sm:text-sm tracking-[0.38em] uppercase text-amber-500/80 mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]",
+                        className: "text-xs sm:text-sm tracking-[0.38em] uppercase text-amber-500/80 mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] transform-gpu",
                         style: {
-                            fontFamily: FONT_SERIF
+                            fontFamily: FONT_SERIF,
+                            willChange: 'transform, opacity'
                         },
                         initial: {
                             opacity: 0,
@@ -102,9 +103,10 @@ function DigitalGift() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].h2, {
-                        className: "text-3xl sm:text-4xl text-amber-300 font-normal tracking-wider mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]",
+                        className: "text-3xl sm:text-4xl text-amber-300 font-normal tracking-wider mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] transform-gpu",
                         style: {
-                            fontFamily: FONT_DISPLAY
+                            fontFamily: FONT_DISPLAY,
+                            willChange: 'transform, opacity'
                         },
                         initial: {
                             opacity: 0,
@@ -129,9 +131,10 @@ function DigitalGift() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
-                        className: "text-xs sm:text-sm text-slate-300/85 italic leading-relaxed max-w-lg mb-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]",
+                        className: "text-xs sm:text-sm text-slate-300/85 italic leading-relaxed max-w-lg mb-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] transform-gpu",
                         style: {
-                            fontFamily: FONT_SERIF
+                            fontFamily: FONT_SERIF,
+                            willChange: 'transform, opacity'
                         },
                         initial: {
                             opacity: 0,
@@ -160,8 +163,9 @@ function DigitalGift() {
                         children: BANK_ACCOUNTS.map((bank, index)=>{
                             const isCopied = copiedId === bank.id;
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "relative flex flex-col justify-between p-6 rounded-2xl border backdrop-blur-md overflow-hidden text-left shadow-xl group transition-all duration-300",
+                                className: "relative flex flex-col justify-between p-6 rounded-2xl border backdrop-blur-md overflow-hidden text-left shadow-xl group transition-all duration-300 transform-gpu",
                                 style: {
+                                    willChange: 'transform, opacity',
                                     background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%)',
                                     borderColor: 'rgba(245, 158, 11, 0.25)',
                                     boxShadow: `0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px ${bank.colorAccent}`
@@ -199,37 +203,37 @@ function DigitalGift() {
                                                             className: "border-r border-b border-amber-400/30"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/DigitalGift.tsx",
-                                                            lineNumber: 134,
+                                                            lineNumber: 135,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "border-b border-amber-400/30"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/DigitalGift.tsx",
-                                                            lineNumber: 135,
+                                                            lineNumber: 136,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "border-r border-amber-400/30"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/DigitalGift.tsx",
-                                                            lineNumber: 136,
+                                                            lineNumber: 137,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {}, void 0, false, {
                                                             fileName: "[project]/src/components/DigitalGift.tsx",
-                                                            lineNumber: 137,
+                                                            lineNumber: 138,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/DigitalGift.tsx",
-                                                    lineNumber: 133,
+                                                    lineNumber: 134,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/DigitalGift.tsx",
-                                                lineNumber: 132,
+                                                lineNumber: 133,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -240,13 +244,13 @@ function DigitalGift() {
                                                 children: bank.bankBadge
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/DigitalGift.tsx",
-                                                lineNumber: 142,
+                                                lineNumber: 143,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/DigitalGift.tsx",
-                                        lineNumber: 130,
+                                        lineNumber: 131,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -260,7 +264,7 @@ function DigitalGift() {
                                                 children: "Nomor Rekening"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/DigitalGift.tsx",
-                                                lineNumber: 152,
+                                                lineNumber: 153,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -268,7 +272,7 @@ function DigitalGift() {
                                                 children: bank.accountNumber
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/DigitalGift.tsx",
-                                                lineNumber: 155,
+                                                lineNumber: 156,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -282,13 +286,13 @@ function DigitalGift() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/DigitalGift.tsx",
-                                                lineNumber: 158,
+                                                lineNumber: 159,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/DigitalGift.tsx",
-                                        lineNumber: 151,
+                                        lineNumber: 152,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -301,7 +305,10 @@ function DigitalGift() {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
                                             mode: "wait",
                                             children: isCopied ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
-                                                className: "flex items-center gap-1.5",
+                                                className: "flex items-center gap-1.5 transform-gpu",
+                                                style: {
+                                                    willChange: 'transform, opacity'
+                                                },
                                                 initial: {
                                                     opacity: 0,
                                                     scale: 0.8
@@ -330,22 +337,25 @@ function DigitalGift() {
                                                             d: "M5 13l4 4L19 7"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/DigitalGift.tsx",
-                                                            lineNumber: 185,
+                                                            lineNumber: 187,
                                                             columnNumber: 27
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/DigitalGift.tsx",
-                                                        lineNumber: 184,
+                                                        lineNumber: 186,
                                                         columnNumber: 25
                                                     }, this),
                                                     "Tersalin!"
                                                 ]
                                             }, "copied", true, {
                                                 fileName: "[project]/src/components/DigitalGift.tsx",
-                                                lineNumber: 176,
+                                                lineNumber: 177,
                                                 columnNumber: 23
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
-                                                className: "flex items-center gap-1.5",
+                                                className: "flex items-center gap-1.5 transform-gpu",
+                                                style: {
+                                                    willChange: 'transform, opacity'
+                                                },
                                                 initial: {
                                                     opacity: 0,
                                                     scale: 0.8
@@ -374,29 +384,29 @@ function DigitalGift() {
                                                             d: "M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/DigitalGift.tsx",
-                                                            lineNumber: 199,
+                                                            lineNumber: 202,
                                                             columnNumber: 27
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/DigitalGift.tsx",
-                                                        lineNumber: 198,
+                                                        lineNumber: 201,
                                                         columnNumber: 25
                                                     }, this),
                                                     "Salin No. Rekening"
                                                 ]
                                             }, "copy", true, {
                                                 fileName: "[project]/src/components/DigitalGift.tsx",
-                                                lineNumber: 190,
+                                                lineNumber: 192,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/DigitalGift.tsx",
-                                            lineNumber: 174,
+                                            lineNumber: 175,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DigitalGift.tsx",
-                                        lineNumber: 164,
+                                        lineNumber: 165,
                                         columnNumber: 17
                                     }, this)
                                 ]

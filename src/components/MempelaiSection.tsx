@@ -31,7 +31,8 @@ export default function MempelaiSection() {
 
       {/* ── 1. JUDUL SECTION ── */}
       <motion.div
-        className="flex flex-col items-center text-center max-w-xl mb-16 relative z-10"
+        className="flex flex-col items-center text-center max-w-xl mb-16 relative z-10 transform-gpu"
+        style={{ willChange: 'transform, opacity' }}
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
@@ -66,7 +67,8 @@ export default function MempelaiSection() {
         
         {/* ── 2. PROFIL MEMPELAI PRIA (ADLI) ── */}
         <motion.div
-          className="flex flex-col items-center text-center w-full"
+          className="flex flex-col items-center text-center w-full transform-gpu"
+          style={{ willChange: 'transform, opacity' }}
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -81,6 +83,7 @@ export default function MempelaiSection() {
                 alt="Foto Abdul Qodir Adli"
                 fill
                 sizes="(max-width: 640px) 192px, 224px"
+                quality={75}
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -111,7 +114,8 @@ export default function MempelaiSection() {
             href="https://www.instagram.com/abd.adli_/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/40 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/40 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md backdrop-blur-sm transform-gpu"
+            style={{ willChange: 'transform' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -122,7 +126,8 @@ export default function MempelaiSection() {
 
         {/* ── 3. DIVIDER: SIMBOL "&" ELEGAN BESAR ── */}
         <motion.div
-          className="flex items-center justify-center gap-4 w-full my-2"
+          className="flex items-center justify-center gap-4 w-full my-2 transform-gpu"
+          style={{ willChange: 'transform, opacity' }}
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -139,7 +144,8 @@ export default function MempelaiSection() {
 
         {/* ── 4. PROFIL MEMPELAI WANITA (RIMA) ── */}
         <motion.div
-          className="flex flex-col items-center text-center w-full"
+          className="flex flex-col items-center text-center w-full transform-gpu"
+          style={{ willChange: 'transform, opacity' }}
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -154,6 +160,7 @@ export default function MempelaiSection() {
                 alt="Foto Rima Sugiarto"
                 fill
                 sizes="(max-width: 640px) 192px, 224px"
+                quality={75}
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -184,7 +191,8 @@ export default function MempelaiSection() {
             href="https://www.instagram.com/rsp_1104/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/40 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/40 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md backdrop-blur-sm transform-gpu"
+            style={{ willChange: 'transform' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

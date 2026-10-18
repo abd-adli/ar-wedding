@@ -85,7 +85,10 @@ function LoveStory() {
                 className: "relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center text-center gap-7 sm:gap-9",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                        className: "flex flex-col items-center gap-2.5",
+                        className: "flex flex-col items-center gap-2.5 transform-gpu",
+                        style: {
+                            willChange: 'transform, opacity'
+                        },
                         initial: {
                             opacity: 0,
                             y: 22
@@ -109,7 +112,7 @@ function LoveStory() {
                                         className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/60"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 67,
+                                        lineNumber: 68,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -117,20 +120,20 @@ function LoveStory() {
                                         children: "❦"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 68,
+                                        lineNumber: 69,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/60"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 69,
+                                        lineNumber: 70,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 66,
+                                lineNumber: 67,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -141,7 +144,7 @@ function LoveStory() {
                                 children: "Our Journey"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 72,
+                                lineNumber: 73,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -156,7 +159,7 @@ function LoveStory() {
                                 children: "Kisah Cinta Kami"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 79,
+                                lineNumber: 80,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -167,7 +170,7 @@ function LoveStory() {
                                 children: "“Setiap lembar perjalanan adalah bukti takdir yang tertulis indah.”"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 92,
+                                lineNumber: 93,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -177,7 +180,10 @@ function LoveStory() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                        className: "relative w-full max-w-xl mx-auto my-2 sm:my-4 group",
+                        className: "relative w-full max-w-xl mx-auto my-2 sm:my-4 group transform-gpu",
+                        style: {
+                            willChange: 'transform, opacity'
+                        },
                         initial: {
                             opacity: 0,
                             scale: 0.95
@@ -199,7 +205,7 @@ function LoveStory() {
                                 className: "absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-500/30 via-amber-700/20 to-amber-500/30 blur-md opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 109,
+                                lineNumber: 111,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -210,11 +216,11 @@ function LoveStory() {
                                         alt: "Adli & Rima Love Story",
                                         fill: true,
                                         sizes: "(max-width: 640px) 100vw, 576px",
-                                        quality: 80,
+                                        quality: 75,
                                         className: "object-cover object-center transition-transform duration-700 group-hover:scale-105"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 113,
+                                        lineNumber: 115,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -225,35 +231,35 @@ function LoveStory() {
                                         "aria-hidden": "true"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 123,
+                                        lineNumber: 125,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute top-2.5 left-2.5 w-4 h-4 border-t-2 border-l-2 border-amber-400/80 rounded-tl pointer-events-none"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 132,
+                                        lineNumber: 134,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute top-2.5 right-2.5 w-4 h-4 border-t-2 border-r-2 border-amber-400/80 rounded-tr pointer-events-none"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 133,
+                                        lineNumber: 135,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute bottom-2.5 left-2.5 w-4 h-4 border-b-2 border-l-2 border-amber-400/80 rounded-bl pointer-events-none"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 134,
+                                        lineNumber: 136,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute bottom-2.5 right-2.5 w-4 h-4 border-b-2 border-r-2 border-amber-400/80 rounded-br pointer-events-none"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 135,
+                                        lineNumber: 137,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -266,31 +272,32 @@ function LoveStory() {
                                             children: "Adli & Rima • Our Story"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/LoveStory.tsx",
-                                            lineNumber: 139,
+                                            lineNumber: 141,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 138,
+                                        lineNumber: 140,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 112,
+                                lineNumber: 114,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/LoveStory.tsx",
-                        lineNumber: 101,
+                        lineNumber: 102,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-full flex flex-col gap-6 sm:gap-8 mt-1",
                         children: STORIES.map((item, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].article, {
-                                className: "relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl backdrop-blur-md text-left group",
+                                className: "relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl backdrop-blur-md text-left group transform-gpu",
                                 style: {
+                                    willChange: 'transform, opacity',
                                     backgroundColor: 'rgba(15, 23, 42, 0.78)',
                                     boxShadow: '0 14px 40px rgba(0, 0, 0, 0.6), inset 0 0 24px rgba(245, 158, 11, 0.05)'
                                 },
@@ -320,28 +327,28 @@ function LoveStory() {
                                         className: "absolute top-2.5 left-2.5 w-3.5 h-3.5 border-t border-l border-amber-400/50 pointer-events-none"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 167,
+                                        lineNumber: 170,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute top-2.5 right-2.5 w-3.5 h-3.5 border-t border-r border-amber-400/50 pointer-events-none"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 168,
+                                        lineNumber: 171,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute bottom-2.5 left-2.5 w-3.5 h-3.5 border-b border-l border-amber-400/50 pointer-events-none"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 169,
+                                        lineNumber: 172,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute bottom-2.5 right-2.5 w-3.5 h-3.5 border-b border-r border-amber-400/50 pointer-events-none"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 170,
+                                        lineNumber: 173,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -361,7 +368,7 @@ function LoveStory() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                                        lineNumber: 175,
+                                                        lineNumber: 178,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -372,13 +379,13 @@ function LoveStory() {
                                                         children: item.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                                        lineNumber: 181,
+                                                        lineNumber: 184,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                                lineNumber: 174,
+                                                lineNumber: 177,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -389,13 +396,13 @@ function LoveStory() {
                                                 children: item.subtitle
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                                lineNumber: 189,
+                                                lineNumber: 192,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 173,
+                                        lineNumber: 176,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -406,18 +413,18 @@ function LoveStory() {
                                         children: item.story
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LoveStory.tsx",
-                                        lineNumber: 198,
+                                        lineNumber: 201,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, item.title, true, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 152,
+                                lineNumber: 154,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/LoveStory.tsx",
-                        lineNumber: 150,
+                        lineNumber: 152,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -427,41 +434,41 @@ function LoveStory() {
                                 className: "w-1.5 h-1.5 rounded-full bg-amber-500/50"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 210,
+                                lineNumber: 213,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-10 sm:w-16 h-px bg-amber-500/40"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 211,
+                                lineNumber: 214,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-2.5 h-2.5 rotate-45 border border-amber-500/60 bg-amber-950/60"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 212,
+                                lineNumber: 215,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-10 sm:w-16 h-px bg-amber-500/40"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 213,
+                                lineNumber: 216,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-1.5 h-1.5 rounded-full bg-amber-500/50"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
-                                lineNumber: 214,
+                                lineNumber: 217,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/LoveStory.tsx",
-                        lineNumber: 209,
+                        lineNumber: 212,
                         columnNumber: 9
                     }, this)
                 ]

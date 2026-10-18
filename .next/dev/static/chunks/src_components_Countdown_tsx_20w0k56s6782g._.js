@@ -60,7 +60,7 @@ function Countdown() {
                         alt: "Wedding Countdown Background",
                         fill: true,
                         sizes: "(max-width: 768px) 100vw, 896px",
-                        quality: 80,
+                        quality: 75,
                         className: "object-cover object-bottom pointer-events-none"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Countdown.tsx",
@@ -82,7 +82,10 @@ function Countdown() {
                         className: "relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-3 sm:gap-4.5",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "flex flex-col items-center gap-1 sm:gap-1.5",
+                                className: "flex flex-col items-center gap-1 sm:gap-1.5 transform-gpu",
+                                style: {
+                                    willChange: 'transform, opacity'
+                                },
                                 initial: {
                                     opacity: 0,
                                     y: 14
@@ -104,10 +107,11 @@ function Countdown() {
                                         alt: "A&R Logo",
                                         width: 48,
                                         height: 48,
+                                        quality: 75,
                                         className: "w-10 sm:w-12 h-auto mb-1 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 93,
+                                        lineNumber: 94,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -117,7 +121,7 @@ function Countdown() {
                                                 className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-400/60"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 103,
+                                                lineNumber: 105,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -125,20 +129,20 @@ function Countdown() {
                                                 children: "✦"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 104,
+                                                lineNumber: 106,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-400/60"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 105,
+                                                lineNumber: 107,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 102,
+                                        lineNumber: 104,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -149,7 +153,7 @@ function Countdown() {
                                         children: "Counting The Days"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 108,
+                                        lineNumber: 110,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -164,7 +168,7 @@ function Countdown() {
                                         children: "MENUJU HARI BAHAGIA"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 115,
+                                        lineNumber: 117,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -175,7 +179,7 @@ function Countdown() {
                                         children: "Sabtu, 16 Januari 2027"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 129,
+                                        lineNumber: 131,
                                         columnNumber: 13
                                     }, this)
                                 ]
@@ -195,15 +199,18 @@ function Countdown() {
                                         className: "h-20 sm:h-24 rounded-xl sm:rounded-2xl bg-white"
                                     }, label, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 141,
+                                        lineNumber: 143,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 139,
+                                lineNumber: 141,
                                 columnNumber: 13
                             }, this) : isOver ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "text-center py-4",
+                                className: "text-center py-4 transform-gpu",
+                                style: {
+                                    willChange: 'transform, opacity'
+                                },
                                 initial: {
                                     opacity: 0,
                                     scale: 0.9
@@ -228,7 +235,7 @@ function Countdown() {
                                         children: "Hari Ini! 🎊"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 151,
+                                        lineNumber: 154,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -239,16 +246,19 @@ function Countdown() {
                                         children: "Selamat hari pernikahan yang penuh berkah"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 163,
+                                        lineNumber: 166,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 145,
+                                lineNumber: 147,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "grid grid-cols-4 gap-2 sm:gap-3.5 w-full max-w-sm sm:max-w-md mx-auto",
+                                className: "grid grid-cols-4 gap-2 sm:gap-3.5 w-full max-w-sm sm:max-w-md mx-auto transform-gpu",
+                                style: {
+                                    willChange: 'transform, opacity'
+                                },
                                 initial: {
                                     opacity: 0,
                                     y: 16
@@ -283,8 +293,9 @@ function Countdown() {
                                         value: time.seconds
                                     }
                                 ].map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                        className: "flex flex-col items-center justify-center py-2.5 sm:py-3.5 px-1 sm:px-2 rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300 relative overflow-hidden group",
+                                        className: "flex flex-col items-center justify-center py-2.5 sm:py-3.5 px-1 sm:px-2 rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300 relative overflow-hidden group transform-gpu",
                                         style: {
+                                            willChange: 'transform',
                                             backgroundColor: 'rgba(255, 255, 255, 0.96)',
                                             backdropFilter: 'blur(12px)',
                                             WebkitBackdropFilter: 'blur(12px)',
@@ -303,7 +314,7 @@ function Countdown() {
                                                 className: "absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-400/20 via-amber-400/50 to-amber-400/20"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 195,
+                                                lineNumber: 200,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -314,7 +325,7 @@ function Countdown() {
                                                 children: String(item.value).padStart(2, '0')
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 196,
+                                                lineNumber: 201,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -325,18 +336,18 @@ function Countdown() {
                                                 children: item.label
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 202,
+                                                lineNumber: 207,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, item.label, true, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 181,
+                                        lineNumber: 185,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 168,
+                                lineNumber: 171,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -356,11 +367,17 @@ function Countdown() {
                                     duration: 0.6,
                                     delay: 0.18
                                 },
-                                className: "mt-0.5",
+                                className: "mt-0.5 transform-gpu",
+                                style: {
+                                    willChange: 'transform, opacity'
+                                },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
                                     onClick: handleSaveCalendar,
                                     type: "button",
-                                    className: "inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-[11px] sm:text-xs tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-slate-900/85 hover:bg-amber-950/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer group",
+                                    className: "inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-[11px] sm:text-xs tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-slate-900/85 hover:bg-amber-950/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer group transform-gpu",
+                                    style: {
+                                        willChange: 'transform'
+                                    },
                                     whileHover: {
                                         scale: 1.04,
                                         boxShadow: '0 6px 24px rgba(245, 158, 11, 0.45)'
@@ -383,7 +400,7 @@ function Countdown() {
                                                     ry: "2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Countdown.tsx",
-                                                    lineNumber: 233,
+                                                    lineNumber: 240,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -393,7 +410,7 @@ function Countdown() {
                                                     y2: "6"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Countdown.tsx",
-                                                    lineNumber: 234,
+                                                    lineNumber: 241,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -403,7 +420,7 @@ function Countdown() {
                                                     y2: "6"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Countdown.tsx",
-                                                    lineNumber: 235,
+                                                    lineNumber: 242,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -413,20 +430,20 @@ function Countdown() {
                                                     y2: "10"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Countdown.tsx",
-                                                    lineNumber: 236,
+                                                    lineNumber: 243,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Countdown.tsx",
-                                            lineNumber: 228,
+                                            lineNumber: 235,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "SIMPAN TANGGAL"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Countdown.tsx",
-                                            lineNumber: 238,
+                                            lineNumber: 245,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -434,18 +451,18 @@ function Countdown() {
                                             children: "✦"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Countdown.tsx",
-                                            lineNumber: 239,
+                                            lineNumber: 246,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Countdown.tsx",
-                                    lineNumber: 221,
+                                    lineNumber: 227,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 214,
+                                lineNumber: 219,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -471,35 +488,35 @@ function Countdown() {
                         "aria-hidden": "true"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 252,
+                        lineNumber: 259,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-400/60 rounded-tl pointer-events-none"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 261,
+                        lineNumber: 268,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-amber-400/60 rounded-tr pointer-events-none"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 262,
+                        lineNumber: 269,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-400/60 rounded-bl pointer-events-none"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 263,
+                        lineNumber: 270,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-400/60 rounded-br pointer-events-none"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 264,
+                        lineNumber: 271,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -521,22 +538,26 @@ function Countdown() {
                                 transition: {
                                     duration: 0.8
                                 },
-                                className: "flex justify-center mb-1",
+                                className: "flex justify-center mb-1 transform-gpu",
+                                style: {
+                                    willChange: 'transform, opacity'
+                                },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
                                     src: "/gunungan.webp",
                                     alt: "Gunungan Wayang",
                                     width: 176,
                                     height: 176,
                                     sizes: "(max-width: 640px) 112px, (max-width: 768px) 144px, 176px",
+                                    quality: 75,
                                     className: "w-28 sm:w-36 md:w-44 h-auto object-contain filter drop-shadow-[0_0_25px_rgba(245,158,11,0.35)]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Countdown.tsx",
-                                    lineNumber: 277,
+                                    lineNumber: 285,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 270,
+                                lineNumber: 277,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -556,7 +577,10 @@ function Countdown() {
                                     duration: 0.7,
                                     delay: 0.1
                                 },
-                                className: "flex flex-col items-center",
+                                className: "flex flex-col items-center transform-gpu",
+                                style: {
+                                    willChange: 'transform, opacity'
+                                },
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                         className: "text-2xl sm:text-3xl md:text-4xl font-light tracking-[0.25em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]",
@@ -566,7 +590,7 @@ function Countdown() {
                                         children: "RESEPSI PERNIKAHAN"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 295,
+                                        lineNumber: 305,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -576,7 +600,7 @@ function Countdown() {
                                                 className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/50"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 304,
+                                                lineNumber: 314,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -584,26 +608,26 @@ function Countdown() {
                                                 children: "✦"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 305,
+                                                lineNumber: 315,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/50"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 306,
+                                                lineNumber: 316,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 303,
+                                        lineNumber: 313,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 288,
+                                lineNumber: 297,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -623,7 +647,10 @@ function Countdown() {
                                     duration: 0.7,
                                     delay: 0.2
                                 },
-                                className: "flex flex-col items-center gap-1.5",
+                                className: "flex flex-col items-center gap-1.5 transform-gpu",
+                                style: {
+                                    willChange: 'transform, opacity'
+                                },
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-base sm:text-lg text-amber-200/95 font-medium tracking-widest drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]",
@@ -633,7 +660,7 @@ function Countdown() {
                                         children: "Sabtu, 16 Januari 2027"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 318,
+                                        lineNumber: 329,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -650,20 +677,20 @@ function Countdown() {
                                                         r: "10"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Countdown.tsx",
-                                                        lineNumber: 331,
+                                                        lineNumber: 342,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                                                         points: "12 6 12 12 16 14"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Countdown.tsx",
-                                                        lineNumber: 332,
+                                                        lineNumber: 343,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 326,
+                                                lineNumber: 337,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -673,19 +700,19 @@ function Countdown() {
                                                 children: "Pukul 08:00 - 13:00 WIB"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Countdown.tsx",
-                                                lineNumber: 334,
+                                                lineNumber: 345,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 325,
+                                        lineNumber: 336,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 311,
+                                lineNumber: 321,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -705,7 +732,10 @@ function Countdown() {
                                     duration: 0.7,
                                     delay: 0.3
                                 },
-                                className: "flex flex-col items-center mt-2",
+                                className: "flex flex-col items-center mt-2 transform-gpu",
+                                style: {
+                                    willChange: 'transform, opacity'
+                                },
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
                                         className: "text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-amber-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]",
@@ -715,7 +745,7 @@ function Countdown() {
                                         children: "VATOR PACIFIC ATRIUM"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 348,
+                                        lineNumber: 360,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -726,13 +756,13 @@ function Countdown() {
                                         children: "Jl. Raya Karadenan No.7, RT.003/RW.10, Karadenan, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16913"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
-                                        lineNumber: 356,
+                                        lineNumber: 368,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 341,
+                                lineNumber: 352,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -752,12 +782,18 @@ function Countdown() {
                                     duration: 0.7,
                                     delay: 0.4
                                 },
-                                className: "mt-3",
+                                className: "mt-3 transform-gpu",
+                                style: {
+                                    willChange: 'transform, opacity'
+                                },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].a, {
                                     href: "https://maps.app.goo.gl/KKswPLoSwHeVbgDT8",
                                     target: "_blank",
                                     rel: "noopener noreferrer",
-                                    className: "inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-xs sm:text-sm tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-gradient-to-r from-amber-950/70 via-slate-900/80 to-amber-950/70 hover:from-amber-900/80 hover:to-amber-900/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md group",
+                                    className: "inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-xs sm:text-sm tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-gradient-to-r from-amber-950/70 via-slate-900/80 to-amber-950/70 hover:from-amber-900/80 hover:to-amber-900/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md group transform-gpu",
+                                    style: {
+                                        willChange: 'transform'
+                                    },
                                     whileHover: {
                                         scale: 1.05,
                                         boxShadow: '0 8px 30px rgba(245, 158, 11, 0.45)'
@@ -775,7 +811,7 @@ function Countdown() {
                                                     d: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Countdown.tsx",
-                                                    lineNumber: 385,
+                                                    lineNumber: 399,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -784,20 +820,20 @@ function Countdown() {
                                                     r: "3"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Countdown.tsx",
-                                                    lineNumber: 386,
+                                                    lineNumber: 400,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Countdown.tsx",
-                                            lineNumber: 380,
+                                            lineNumber: 394,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "BUKA GOOGLE MAPS"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Countdown.tsx",
-                                            lineNumber: 388,
+                                            lineNumber: 402,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -805,30 +841,30 @@ function Countdown() {
                                             children: "↗"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Countdown.tsx",
-                                            lineNumber: 389,
+                                            lineNumber: 403,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Countdown.tsx",
-                                    lineNumber: 372,
+                                    lineNumber: 385,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Countdown.tsx",
-                                lineNumber: 365,
+                                lineNumber: 377,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Countdown.tsx",
-                        lineNumber: 267,
+                        lineNumber: 274,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Countdown.tsx",
-                lineNumber: 249,
+                lineNumber: 256,
                 columnNumber: 7
             }, this)
         ]

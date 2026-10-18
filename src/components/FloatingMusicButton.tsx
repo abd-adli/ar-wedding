@@ -19,8 +19,9 @@ export default function FloatingMusicButton({
       onClick={onToggle}
       aria-label={isPlaying ? 'Jeda Musik (Cundamani)' : 'Putar Musik (Cundamani)'}
       title={isPlaying ? 'Jeda Musik' : 'Putar Musik (Cundamani)'}
-      className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 p-1.5 rounded-full cursor-pointer focus:outline-none select-none transition-shadow duration-300 group"
+      className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 p-1.5 rounded-full cursor-pointer focus:outline-none select-none transition-shadow duration-300 group transform-gpu"
       style={{
+        willChange: 'transform, opacity',
         backgroundColor: 'rgba(15, 23, 42, 0.88)',
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
@@ -39,8 +40,9 @@ export default function FloatingMusicButton({
       <div className="relative w-11 h-11 sm:w-13 sm:h-13 rounded-full flex items-center justify-center">
         {/* Spinning Vinyl Disc */}
         <motion.div
-          className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden shadow-inner"
+          className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden shadow-inner transform-gpu"
           style={{
+            willChange: 'transform',
             background: 'radial-gradient(circle, #292524 0%, #1c1917 38%, #0c0a09 72%, #1c1917 100%)',
           }}
           animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
@@ -78,7 +80,8 @@ export default function FloatingMusicButton({
             </div>
           ) : (
             <motion.div
-              className="text-amber-100 text-[10px] sm:text-xs font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.95)]"
+              className="text-amber-100 text-[10px] sm:text-xs font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.95)] transform-gpu"
+              style={{ willChange: 'transform' }}
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
             >

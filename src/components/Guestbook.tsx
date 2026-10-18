@@ -256,8 +256,8 @@ export default function Guestbook() {
 
       {/* ── 2. Form UI (Name input, Message textarea, Submit button) ── */}
       <motion.div
-        className="w-full max-w-lg rounded-2xl relative overflow-hidden shadow-2xl"
-        style={GLASS}
+        className="w-full max-w-lg rounded-2xl relative overflow-hidden shadow-2xl transform-gpu"
+        style={{ willChange: 'transform, opacity', ...GLASS }}
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
@@ -270,8 +270,9 @@ export default function Guestbook() {
           <AnimatePresence>
             {showSuccessToast && (
               <motion.div
-                className="mb-5 p-3.5 rounded-xl border flex items-center gap-3 shadow-lg"
+                className="mb-5 p-3.5 rounded-xl border flex items-center gap-3 shadow-lg transform-gpu"
                 style={{
+                  willChange: 'transform, opacity',
                   background: 'rgba(16, 185, 129, 0.15)',
                   borderColor: 'rgba(52, 211, 153, 0.45)',
                   backdropFilter: 'blur(8px)',
@@ -341,8 +342,9 @@ export default function Guestbook() {
             <motion.button
               type="submit"
               disabled={submitting}
-              className="mt-2 w-full py-3.5 rounded-xl text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold overflow-hidden shadow-lg cursor-pointer transition-all duration-300 relative group"
+              className="mt-2 w-full py-3.5 rounded-xl text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold overflow-hidden shadow-lg cursor-pointer transition-all duration-300 relative group transform-gpu"
               style={{
+                willChange: 'transform',
                 fontFamily: FONT_SANS,
                 background: 'linear-gradient(135deg, rgba(180, 83, 9, 0.88) 0%, rgba(120, 53, 15, 0.95) 100%)',
                 border: '1px solid rgba(245, 158, 11, 0.55)',
@@ -409,8 +411,8 @@ export default function Guestbook() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: idx * 0.03 }}
-                className="p-4 rounded-xl border flex flex-col gap-2 relative overflow-hidden"
-                style={GLASS_INNER}
+                className="p-4 rounded-xl border flex flex-col gap-2 relative overflow-hidden transform-gpu"
+                style={{ willChange: 'transform, opacity', ...GLASS_INNER }}
               >
                 <div className="flex items-center justify-between gap-2 border-b border-amber-500/10 pb-2">
                   <div className="flex items-center gap-2">

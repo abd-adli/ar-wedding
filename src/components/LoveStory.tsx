@@ -56,7 +56,8 @@ export default function LoveStory() {
         
         {/* Section Header */}
         <motion.div
-          className="flex flex-col items-center gap-2.5"
+          className="flex flex-col items-center gap-2.5 transform-gpu"
+          style={{ willChange: 'transform, opacity' }}
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -99,7 +100,8 @@ export default function LoveStory() {
 
         {/* ── Dedicated Landscape Photo Card with Sogan Framing ── */}
         <motion.div
-          className="relative w-full max-w-xl mx-auto my-2 sm:my-4 group"
+          className="relative w-full max-w-xl mx-auto my-2 sm:my-4 group transform-gpu"
+          style={{ willChange: 'transform, opacity' }}
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -115,7 +117,7 @@ export default function LoveStory() {
               alt="Adli & Rima Love Story"
               fill
               sizes="(max-width: 640px) 100vw, 576px"
-              quality={80}
+              quality={75}
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />
 
@@ -151,8 +153,9 @@ export default function LoveStory() {
           {STORIES.map((item, index) => (
             <motion.article
               key={item.title}
-              className="relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl backdrop-blur-md text-left group"
+              className="relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl backdrop-blur-md text-left group transform-gpu"
               style={{
+                willChange: 'transform, opacity',
                 backgroundColor: 'rgba(15, 23, 42, 0.78)',
                 boxShadow:
                   '0 14px 40px rgba(0, 0, 0, 0.6), inset 0 0 24px rgba(245, 158, 11, 0.05)',

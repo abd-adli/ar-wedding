@@ -64,7 +64,7 @@ export default function Countdown() {
           alt="Wedding Countdown Background"
           fill
           sizes="(max-width: 768px) 100vw, 896px"
-          quality={80}
+          quality={75}
           className="object-cover object-bottom pointer-events-none"
         />
 
@@ -83,7 +83,8 @@ export default function Countdown() {
           
           {/* Heading Block */}
           <motion.div
-            className="flex flex-col items-center gap-1 sm:gap-1.5"
+            className="flex flex-col items-center gap-1 sm:gap-1.5 transform-gpu"
+            style={{ willChange: 'transform, opacity' }}
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
@@ -95,6 +96,7 @@ export default function Countdown() {
               alt="A&R Logo"
               width={48}
               height={48}
+              quality={75}
               className="w-10 sm:w-12 h-auto mb-1 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
             />
 
@@ -143,7 +145,8 @@ export default function Countdown() {
             </div>
           ) : isOver ? (
             <motion.div
-              className="text-center py-4"
+              className="text-center py-4 transform-gpu"
+              style={{ willChange: 'transform, opacity' }}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
@@ -166,7 +169,8 @@ export default function Countdown() {
             </motion.div>
           ) : (
             <motion.div
-              className="grid grid-cols-4 gap-2 sm:gap-3.5 w-full max-w-sm sm:max-w-md mx-auto"
+              className="grid grid-cols-4 gap-2 sm:gap-3.5 w-full max-w-sm sm:max-w-md mx-auto transform-gpu"
+              style={{ willChange: 'transform, opacity' }}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
@@ -180,8 +184,9 @@ export default function Countdown() {
               ].map((item) => (
                 <motion.div
                   key={item.label}
-                  className="flex flex-col items-center justify-center py-2.5 sm:py-3.5 px-1 sm:px-2 rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  className="flex flex-col items-center justify-center py-2.5 sm:py-3.5 px-1 sm:px-2 rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300 relative overflow-hidden group transform-gpu"
                   style={{
+                    willChange: 'transform',
                     backgroundColor: 'rgba(255, 255, 255, 0.96)',
                     backdropFilter: 'blur(12px)',
                     WebkitBackdropFilter: 'blur(12px)',
@@ -216,12 +221,14 @@ export default function Countdown() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.18 }}
-            className="mt-0.5"
+            className="mt-0.5 transform-gpu"
+            style={{ willChange: 'transform, opacity' }}
           >
             <motion.button
               onClick={handleSaveCalendar}
               type="button"
-              className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-[11px] sm:text-xs tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-slate-900/85 hover:bg-amber-950/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer group"
+              className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-[11px] sm:text-xs tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-slate-900/85 hover:bg-amber-950/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer group transform-gpu"
+              style={{ willChange: 'transform' }}
               whileHover={{ scale: 1.04, boxShadow: '0 6px 24px rgba(245, 158, 11, 0.45)' }}
               whileTap={{ scale: 0.96 }}
             >
@@ -272,7 +279,8 @@ export default function Countdown() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center mb-1"
+            className="flex justify-center mb-1 transform-gpu"
+            style={{ willChange: 'transform, opacity' }}
           >
             <Image
               src="/gunungan.webp"
@@ -280,6 +288,7 @@ export default function Countdown() {
               width={176}
               height={176}
               sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, 176px"
+              quality={75}
               className="w-28 sm:w-36 md:w-44 h-auto object-contain filter drop-shadow-[0_0_25px_rgba(245,158,11,0.35)]"
             />
           </motion.div>
@@ -290,7 +299,8 @@ export default function Countdown() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center transform-gpu"
+            style={{ willChange: 'transform, opacity' }}
           >
             <h3
               className="text-2xl sm:text-3xl md:text-4xl font-light tracking-[0.25em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
@@ -313,7 +323,8 @@ export default function Countdown() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex flex-col items-center gap-1.5"
+            className="flex flex-col items-center gap-1.5 transform-gpu"
+            style={{ willChange: 'transform, opacity' }}
           >
             <p
               className="text-base sm:text-lg text-amber-200/95 font-medium tracking-widest drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]"
@@ -343,7 +354,8 @@ export default function Countdown() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex flex-col items-center mt-2"
+            className="flex flex-col items-center mt-2 transform-gpu"
+            style={{ willChange: 'transform, opacity' }}
           >
             <h4
               className="text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-amber-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
@@ -367,13 +379,15 @@ export default function Countdown() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-3"
+            className="mt-3 transform-gpu"
+            style={{ willChange: 'transform, opacity' }}
           >
             <motion.a
               href="https://maps.app.goo.gl/KKswPLoSwHeVbgDT8"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-xs sm:text-sm tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-gradient-to-r from-amber-950/70 via-slate-900/80 to-amber-950/70 hover:from-amber-900/80 hover:to-amber-900/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md group"
+              className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-xs sm:text-sm tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-gradient-to-r from-amber-950/70 via-slate-900/80 to-amber-950/70 hover:from-amber-900/80 hover:to-amber-900/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md group transform-gpu"
+              style={{ willChange: 'transform' }}
               whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(245, 158, 11, 0.45)' }}
               whileTap={{ scale: 0.96 }}
             >

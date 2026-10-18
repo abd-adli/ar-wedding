@@ -480,7 +480,8 @@ export default function DispossCam() {
 
       {/* ── Camera body (Polaroid style) ── */}
       <motion.div
-        className="w-full max-w-sm"
+        className="w-full max-w-sm transform-gpu"
+        style={{ willChange: 'transform, opacity' }}
         initial={{ opacity: 0, y: 24, scale: 0.97 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true }}
@@ -513,7 +514,8 @@ export default function DispossCam() {
               {flash && (
                 <motion.div
                   key="flash"
-                  className="absolute inset-0 bg-white z-50"
+                  className="absolute inset-0 bg-white z-50 transform-gpu"
+                  style={{ willChange: 'opacity' }}
                   initial={{ opacity: 0.85 }}
                   animate={{ opacity: 0 }}
                   exit={{ opacity: 0 }}
@@ -540,6 +542,7 @@ export default function DispossCam() {
                     alt="Frame Sogan"
                     fill
                     className="object-cover"
+                    quality={75}
                     priority
                     onError={() => setFrameError(true)}
                   />
@@ -558,7 +561,8 @@ export default function DispossCam() {
                   key="captured"
                   src={capturedUrl}
                   alt="Foto berhasil diambil"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover transform-gpu"
+                  style={{ willChange: 'opacity' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
@@ -571,7 +575,8 @@ export default function DispossCam() {
               {(isIdle || isError) && (
                 <motion.div
                   key="idle-panel"
-                  className="absolute inset-0 flex flex-col items-center justify-center gap-4"
+                  className="absolute inset-0 flex flex-col items-center justify-center gap-4 transform-gpu"
+                  style={{ willChange: 'opacity' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -606,8 +611,8 @@ export default function DispossCam() {
               {isBusy && (
                 <motion.div
                   key="busy-panel"
-                  className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-20"
-                  style={{ background: 'rgba(2,6,23,0.75)', backdropFilter: 'blur(6px)' }}
+                  className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-20 transform-gpu"
+                  style={{ willChange: 'opacity', background: 'rgba(2,6,23,0.75)', backdropFilter: 'blur(6px)' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -656,8 +661,8 @@ export default function DispossCam() {
               <motion.button
                 key="btn-open"
                 onClick={startCamera}
-                className="px-8 py-3 rounded-full text-sm tracking-[0.22em] uppercase text-amber-500 transition-colors duration-300"
-                style={{ border: '1px solid rgba(217,119,6,0.45)' }}
+                className="px-8 py-3 rounded-full text-sm tracking-[0.22em] uppercase text-amber-500 transition-colors duration-300 transform-gpu"
+                style={{ willChange: 'transform, opacity', border: '1px solid rgba(217,119,6,0.45)' }}
                 whileHover={{ scale: 1.04, backgroundColor: 'rgba(245,158,11,0.08)' }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 8 }}
@@ -674,8 +679,8 @@ export default function DispossCam() {
                 key="btn-shutter"
                 onClick={handleCapture}
                 aria-label="Ambil foto"
-                className="relative w-16 h-16 rounded-full flex items-center justify-center group"
-                style={{ border: '2px solid rgba(217,119,6,0.55)', background: 'rgba(15,23,42,0.8)' }}
+                className="relative w-16 h-16 rounded-full flex items-center justify-center group transform-gpu"
+                style={{ willChange: 'transform, opacity', border: '2px solid rgba(217,119,6,0.55)', background: 'rgba(15,23,42,0.8)' }}
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.88 }}
                 initial={{ opacity: 0, scale: 0.7 }}
@@ -695,8 +700,8 @@ export default function DispossCam() {
               <motion.button
                 key="btn-retry"
                 onClick={handleRetake}
-                className="px-8 py-3 rounded-full text-sm tracking-[0.22em] uppercase text-red-400 transition-colors duration-300"
-                style={{ border: '1px solid rgba(239,68,68,0.35)' }}
+                className="px-8 py-3 rounded-full text-sm tracking-[0.22em] uppercase text-red-400 transition-colors duration-300 transform-gpu"
+                style={{ willChange: 'transform, opacity', border: '1px solid rgba(239,68,68,0.35)' }}
                 whileHover={{ scale: 1.04, backgroundColor: 'rgba(239,68,68,0.07)' }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 8 }}
@@ -711,7 +716,8 @@ export default function DispossCam() {
             {isSuccess && (
               <motion.div
                 key="btn-success-group"
-                className="flex gap-3"
+                className="flex gap-3 transform-gpu"
+                style={{ willChange: 'transform, opacity' }}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
@@ -748,8 +754,9 @@ export default function DispossCam() {
         <AnimatePresence>
           {isSuccess && (
             <motion.div
-              className="mt-4 flex items-center gap-3 px-4 py-3 rounded-xl"
+              className="mt-4 flex items-center gap-3 px-4 py-3 rounded-xl transform-gpu"
               style={{
+                willChange  : 'transform, opacity',
                 background  : 'rgba(15,23,42,0.6)',
                 border      : '1px solid rgba(180,83,9,0.25)',
                 backdropFilter: 'blur(12px)',
