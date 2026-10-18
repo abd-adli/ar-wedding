@@ -131,14 +131,24 @@ function OrnamentDivider() {
     }, this);
 }
 _c = OrnamentDivider;
-// ─── Guest Name Reader ────────────────────────────────────────────────────────
+// ─── Guest Name Parser & Reader ───────────────────────────────────────────────
+function parseGuestName(raw) {
+    if (!raw) return 'Tamu Undangan';
+    try {
+        const normalized = raw.replace(/\+/g, ' ').trim();
+        const decoded = decodeURIComponent(normalized).trim();
+        return decoded || 'Tamu Undangan';
+    } catch  {
+        return raw.replace(/\+/g, ' ').trim() || 'Tamu Undangan';
+    }
+}
 function GuestNameReader({ onName }) {
     _s();
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"])();
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "GuestNameReader.useEffect": ()=>{
-            const to = searchParams.get('to') ?? searchParams.get('guest') ?? '';
-            if (to) onName(decodeURIComponent(to));
+            const rawTo = searchParams.get('to') ?? searchParams.get('guest');
+            onName(parseGuestName(rawTo));
         }
     }["GuestNameReader.useEffect"], [
         searchParams,
@@ -181,7 +191,7 @@ function CoverPage({ guestName, onOpen, onPlayAudio }) {
         } else if (onPlayAudio) {
             onPlayAudio();
         }
-        // Smoothly allow the Gunungan 2.8s split animation to open gracefully before unmounting cover
+        // Smoothly allow the Gunungan split animation to open gracefully before unmounting cover
         setTimeout(()=>{
             onOpen();
         }, 1800);
@@ -200,159 +210,43 @@ function CoverPage({ guestName, onOpen, onPlayAudio }) {
                 ]
             }
         },
-        className: "fixed inset-0 z-50 flex flex-col justify-center items-center origin-center bg-[#0B1528] overflow-hidden py-8 px-4",
+        className: "fixed inset-0 z-50 flex flex-col justify-center items-center origin-center bg-[#0B1528] overflow-y-auto overflow-x-hidden py-6 sm:py-8 px-4",
         style: {
             background: 'radial-gradient(ellipse at center, #11203d 0%, #0B1528 75%)'
         },
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                className: "absolute top-6 sm:top-8 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center",
-                initial: {
-                    opacity: 0,
-                    y: -20
-                },
-                animate: isOpening ? {
-                    opacity: 0,
-                    y: -15
-                } : {
-                    opacity: 1,
-                    y: 0
-                },
-                transition: {
-                    duration: isOpening ? 0.6 : 1.1,
-                    ease: [
-                        0.22,
-                        1,
-                        0.36,
-                        1
-                    ]
-                },
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].img, {
-                    src: "/logo-ar-gold.png",
-                    alt: "A&R Logo",
-                    className: "w-20 sm:w-24 md:w-28 h-auto drop-shadow-[0_0_20px_rgba(245,158,11,0.45)]",
-                    animate: {
-                        y: [
-                            0,
-                            -4,
-                            0
-                        ]
-                    },
-                    transition: {
-                        duration: 4.5,
-                        repeat: Infinity,
-                        ease: 'easeInOut'
-                    }
-                }, void 0, false, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 122,
-                    columnNumber: 9
-                }, this)
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-500/40 rounded-tl pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 116,
+                lineNumber: 127,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 flex items-center justify-center pointer-events-none z-10 overflow-hidden",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "relative w-[85vw] sm:w-[70vw] md:w-[52vw] max-w-[440px] h-[72vh] max-h-[580px] flex items-center justify-center",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                            className: "absolute inset-0 flex items-center justify-center",
-                            style: {
-                                clipPath: 'polygon(0% 0%, calc(50% + 0.5px) 0%, calc(50% + 0.5px) 100%, 0% 100%)',
-                                WebkitClipPath: 'polygon(0% 0%, calc(50% + 0.5px) 0%, calc(50% + 0.5px) 100%, 0% 100%)'
-                            },
-                            initial: {
-                                x: 0,
-                                opacity: 0.48
-                            },
-                            animate: isOpening ? {
-                                x: '-110vw',
-                                opacity: 0
-                            } : {
-                                x: 0,
-                                opacity: 0.48
-                            },
-                            transition: {
-                                duration: 2.8,
-                                ease: [
-                                    0.25,
-                                    1,
-                                    0.35,
-                                    1
-                                ]
-                            },
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                src: "/gunungan.png",
-                                alt: "Gunungan Wayang",
-                                className: "w-full h-full object-contain filter drop-shadow-[0_0_25px_rgba(245,158,11,0.25)]"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 149,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 135,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                            className: "absolute inset-0 flex items-center justify-center",
-                            style: {
-                                clipPath: 'polygon(calc(50% - 0.5px) 0%, 100% 0%, 100% 100%, calc(50% - 0.5px) 100%)',
-                                WebkitClipPath: 'polygon(calc(50% - 0.5px) 0%, 100% 0%, 100% 100%, calc(50% - 0.5px) 100%)'
-                            },
-                            initial: {
-                                x: 0,
-                                opacity: 0.48
-                            },
-                            animate: isOpening ? {
-                                x: '110vw',
-                                opacity: 0
-                            } : {
-                                x: 0,
-                                opacity: 0.48
-                            },
-                            transition: {
-                                duration: 2.8,
-                                ease: [
-                                    0.25,
-                                    1,
-                                    0.35,
-                                    1
-                                ]
-                            },
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                src: "/gunungan.png",
-                                alt: "Gunungan Wayang",
-                                className: "w-full h-full object-contain filter drop-shadow-[0_0_25px_rgba(245,158,11,0.25)]"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 171,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 157,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 133,
-                    columnNumber: 9
-                }, this)
+                className: "absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-amber-500/40 rounded-tr pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 132,
+                lineNumber: 128,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-500/40 rounded-bl pointer-events-none"
+            }, void 0, false, {
+                fileName: "[project]/src/app/page.tsx",
+                lineNumber: 129,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-500/40 rounded-br pointer-events-none"
+            }, void 0, false, {
+                fileName: "[project]/src/app/page.tsx",
+                lineNumber: 130,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                className: "relative z-20 flex flex-col items-center justify-center px-4 sm:px-6 text-center my-auto max-w-lg w-full pt-16 sm:pt-20 overflow-visible",
+                className: "relative z-20 flex flex-col items-center justify-center px-4 text-center my-auto max-w-lg w-full overflow-visible",
                 initial: {
-                    scale: 0.95,
+                    scale: 0.96,
                     opacity: 0
                 },
                 animate: isOpening ? {
@@ -365,7 +259,7 @@ function CoverPage({ guestName, onOpen, onPlayAudio }) {
                     y: 0
                 },
                 transition: {
-                    duration: isOpening ? 0.6 : 1.1,
+                    duration: isOpening ? 0.6 : 1.0,
                     ease: [
                         0.22,
                         1,
@@ -374,22 +268,85 @@ function CoverPage({ guestName, onOpen, onPlayAudio }) {
                     ]
                 },
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-400/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "flex flex-col items-center mb-1",
+                        initial: {
+                            opacity: 0,
+                            y: -16
+                        },
+                        animate: isOpening ? {
+                            opacity: 0,
+                            y: -12
+                        } : {
+                            opacity: 1,
+                            y: 0
+                        },
+                        transition: {
+                            duration: isOpening ? 0.6 : 1.0,
+                            ease: [
+                                0.22,
+                                1,
+                                0.36,
+                                1
+                            ]
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].img, {
+                            src: "/logo-ar-gold.png",
+                            alt: "A&R Logo",
+                            className: "w-16 sm:w-20 md:w-24 h-auto drop-shadow-[0_0_20px_rgba(245,158,11,0.45)]",
+                            animate: {
+                                y: [
+                                    0,
+                                    -3,
+                                    0
+                                ]
+                            },
+                            transition: {
+                                duration: 4.5,
+                                repeat: Infinity,
+                                ease: 'easeInOut'
+                            }
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/page.tsx",
+                            lineNumber: 146,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/page.tsx",
+                        lineNumber: 140,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
+                        className: "text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-400/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] mt-1 select-none",
                         style: {
                             fontFamily: FONT_SERIF,
                             textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.9)'
                         },
+                        initial: {
+                            opacity: 0,
+                            y: 12
+                        },
+                        animate: isOpening ? {
+                            opacity: 0,
+                            y: -8
+                        } : {
+                            opacity: 1,
+                            y: 0
+                        },
+                        transition: {
+                            duration: 0.8,
+                            delay: 0.1
+                        },
                         children: "The Wedding Of"
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 188,
+                        lineNumber: 156,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "w-full flex justify-center overflow-visible my-1",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                            className: `text-5xl sm:text-6xl md:text-7xl leading-[1.2] px-6 sm:px-8 py-2 overflow-visible inline-block select-none ${__TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$great_vibes_54975429$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].className}`,
+                        className: "w-full flex justify-center overflow-visible my-0.5 sm:my-1",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].h1, {
+                            className: `text-5xl sm:text-6xl md:text-7xl leading-[1.25] px-6 sm:px-8 py-1 overflow-visible inline-block select-none ${__TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$great_vibes_54975429$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].className}`,
                             style: {
                                 background: 'linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #d97706 65%, #92400e 100%)',
                                 WebkitBackgroundClip: 'text',
@@ -398,254 +355,201 @@ function CoverPage({ guestName, onOpen, onPlayAudio }) {
                                 overflow: 'visible',
                                 filter: 'drop-shadow(0 1px 2px #000) drop-shadow(0 0 3px #000) drop-shadow(0 4px 16px rgba(0,0,0,0.95))'
                             },
+                            initial: {
+                                opacity: 0,
+                                scale: 0.95
+                            },
+                            animate: isOpening ? {
+                                opacity: 0,
+                                scale: 0.92
+                            } : {
+                                opacity: 1,
+                                scale: 1
+                            },
+                            transition: {
+                                duration: 0.9,
+                                delay: 0.15
+                            },
                             children: "Adli & Rima"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 197,
+                            lineNumber: 168,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 196,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-xs sm:text-sm tracking-[0.35em] uppercase text-amber-300 font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] my-1",
-                        style: {
-                            fontFamily: FONT_SERIF,
-                            textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.95)'
-                        },
-                        children: "16 Januari 2027"
-                    }, void 0, false, {
-                        fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 213,
+                        lineNumber: 167,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center gap-1.5 my-2 z-20",
+                        className: "relative w-36 sm:w-44 md:w-52 h-32 sm:h-40 md:h-48 my-1 sm:my-2 flex items-center justify-center overflow-visible",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-2 text-xs sm:text-sm text-amber-200/90 font-light tracking-widest drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                className: "absolute inset-0 flex items-center justify-center",
                                 style: {
-                                    fontFamily: FONT_SERIF
+                                    clipPath: 'polygon(0% 0%, calc(50% + 0.5px) 0%, calc(50% + 0.5px) 100%, 0% 100%)',
+                                    WebkitClipPath: 'polygon(0% 0%, calc(50% + 0.5px) 0%, calc(50% + 0.5px) 100%, 0% 100%)'
                                 },
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                        viewBox: "0 0 24 24",
-                                        className: "w-3.5 h-3.5 text-amber-400/80 fill-none stroke-current stroke-2",
-                                        "aria-hidden": "true",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                                                cx: "12",
-                                                cy: "12",
-                                                r: "10"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 227,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
-                                                points: "12 6 12 12 16 14"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 228,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 226,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "08:00 - 13:00 WIB"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 230,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 222,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-2 text-sm sm:text-base text-amber-300 font-medium tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]",
-                                style: {
-                                    fontFamily: FONT_DISPLAY
+                                initial: {
+                                    x: 0,
+                                    opacity: 0.95
                                 },
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                        viewBox: "0 0 24 24",
-                                        className: "w-3.5 h-3.5 text-amber-400 fill-none stroke-current stroke-2 shrink-0",
-                                        "aria-hidden": "true",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                d: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 238,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                                                cx: "12",
-                                                cy: "10",
-                                                r: "3"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 239,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 237,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Vator Pacific Atrium"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 241,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 233,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].a, {
-                                href: "https://maps.app.goo.gl/KKswPLoSwHeVbgDT8",
-                                target: "_blank",
-                                rel: "noopener noreferrer",
-                                className: "mt-1 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-xs tracking-[0.22em] uppercase font-medium text-amber-300 border border-amber-500/40 bg-slate-900/60 hover:bg-amber-950/40 hover:border-amber-400 transition-all duration-300 shadow-md backdrop-blur-xs group",
-                                whileHover: {
-                                    scale: 1.05
+                                animate: isOpening ? {
+                                    x: '-80vw',
+                                    opacity: 0
+                                } : {
+                                    x: 0,
+                                    opacity: 0.95
                                 },
-                                whileTap: {
-                                    scale: 0.95
+                                transition: {
+                                    duration: 2.2,
+                                    ease: [
+                                        0.25,
+                                        1,
+                                        0.35,
+                                        1
+                                    ]
                                 },
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                        viewBox: "0 0 24 24",
-                                        className: "w-3 h-3 text-amber-400 group-hover:translate-x-0.5 transition-transform duration-200",
-                                        fill: "none",
-                                        stroke: "currentColor",
-                                        strokeWidth: "2",
-                                        strokeLinecap: "round",
-                                        strokeLinejoin: "round",
-                                        "aria-hidden": "true",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
-                                            points: "3 11 22 2 13 21 11 13 3 11"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 254,
-                                            columnNumber: 15
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 253,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Buka di Google Maps"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 256,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-amber-400/70 text-[10px]",
-                                        children: "↗"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 257,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 245,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 221,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center gap-3 w-40 my-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/40"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 263,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                viewBox: "0 0 20 20",
-                                className: "w-2.5 h-2.5 text-amber-500/70 shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]",
-                                fill: "currentColor",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                    d: "M10 1l1.5 6H18l-5.5 4 2 7L10 14l-4.5 4 2-7L2 7h6.5z"
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                    src: "/gunungan.png",
+                                    alt: "Gunungan Wayang",
+                                    className: "w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(245,158,11,0.35)]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 265,
+                                    lineNumber: 203,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 264,
+                                lineNumber: 189,
                                 columnNumber: 11
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/40"
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                className: "absolute inset-0 flex items-center justify-center",
+                                style: {
+                                    clipPath: 'polygon(calc(50% - 0.5px) 0%, 100% 0%, 100% 100%, calc(50% - 0.5px) 100%)',
+                                    WebkitClipPath: 'polygon(calc(50% - 0.5px) 0%, 100% 0%, 100% 100%, calc(50% - 0.5px) 100%)'
+                                },
+                                initial: {
+                                    x: 0,
+                                    opacity: 0.95
+                                },
+                                animate: isOpening ? {
+                                    x: '80vw',
+                                    opacity: 0
+                                } : {
+                                    x: 0,
+                                    opacity: 0.95
+                                },
+                                transition: {
+                                    duration: 2.2,
+                                    ease: [
+                                        0.25,
+                                        1,
+                                        0.35,
+                                        1
+                                    ]
+                                },
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                    src: "/gunungan.png",
+                                    alt: "Gunungan Wayang",
+                                    className: "w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(245,158,11,0.35)]"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/page.tsx",
+                                    lineNumber: 225,
+                                    columnNumber: 13
+                                }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 267,
+                                lineNumber: 211,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 262,
+                        lineNumber: 187,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center gap-1.5 px-6 py-3.5 mt-5 mb-4 rounded-2xl border text-center max-w-xs w-full shadow-xl",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "flex flex-col items-center gap-1.5 px-6 sm:px-8 py-3.5 sm:py-4 my-2 rounded-2xl border text-center max-w-xs sm:max-w-sm w-full shadow-2xl relative",
                         style: {
-                            backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                            backdropFilter: 'blur(2px)',
-                            WebkitBackdropFilter: 'blur(2px)',
+                            backgroundColor: 'rgba(15, 23, 42, 0.65)',
+                            backdropFilter: 'blur(8px)',
+                            WebkitBackdropFilter: 'blur(8px)',
                             borderColor: 'rgba(245, 158, 11, 0.45)',
-                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 16px rgba(245, 158, 11, 0.06)'
+                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.45), inset 0 0 16px rgba(245, 158, 11, 0.08)'
+                        },
+                        initial: {
+                            opacity: 0,
+                            y: 15
+                        },
+                        animate: isOpening ? {
+                            opacity: 0,
+                            y: 12
+                        } : {
+                            opacity: 1,
+                            y: 0
+                        },
+                        transition: {
+                            duration: isOpening ? 0.5 : 0.9,
+                            delay: 0.2,
+                            ease: [
+                                0.22,
+                                1,
+                                0.36,
+                                1
+                            ]
                         },
                         children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-amber-400/70 rounded-tl pointer-events-none"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 248,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute top-2 right-2 w-2.5 h-2.5 border-t border-r border-amber-400/70 rounded-tr pointer-events-none"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 249,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute bottom-2 left-2 w-2.5 h-2.5 border-b border-l border-amber-400/70 rounded-bl pointer-events-none"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 250,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute bottom-2 right-2 w-2.5 h-2.5 border-b border-r border-amber-400/70 rounded-br pointer-events-none"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 251,
+                                columnNumber: 11
+                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-[10px] sm:text-[11px] tracking-[0.28em] text-amber-200 uppercase font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,1)]",
                                 style: {
                                     fontFamily: FONT_SERIF,
                                     textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.95)'
                                 },
-                                children: "Kepada Yth. Bapak/Ibu/Saudara/i"
+                                children: "KEPADA YTH. BAPAK/IBU/SAUDARA/I"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 281,
+                                lineNumber: 253,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-px w-20 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent my-0.5"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 287,
+                                lineNumber: 259,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-base sm:text-lg text-amber-300 font-semibold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,1)]",
+                                className: "text-base sm:text-lg md:text-xl text-amber-300 font-semibold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,1)]",
                                 style: {
                                     fontFamily: FONT_DISPLAY,
                                     textShadow: '0 1px 3px #000, 0 2px 8px rgba(0,0,0,0.95)'
@@ -653,87 +557,120 @@ function CoverPage({ guestName, onOpen, onPlayAudio }) {
                                 children: guestName && guestName.trim() ? guestName : 'Tamu Undangan'
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 288,
+                                lineNumber: 260,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 271,
+                        lineNumber: 234,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
-                        onClick: handleOpen,
-                        className: "mt-1 px-8 py-3 rounded-full text-xs tracking-[0.3em] uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer shadow-lg",
-                        style: {
-                            fontFamily: FONT_SERIF,
-                            background: 'linear-gradient(135deg, rgba(180, 83, 9, 0.85) 0%, rgba(120, 53, 15, 0.95) 100%)',
-                            border: '1px solid rgba(245, 158, 11, 0.6)',
-                            color: '#fef3c7',
-                            boxShadow: '0 4px 25px rgba(217, 119, 6, 0.35), 0 0 15px rgba(0,0,0,0.8)',
-                            textShadow: '0 1px 2px rgba(0,0,0,0.8)'
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        initial: {
+                            opacity: 0,
+                            y: 15
                         },
-                        whileHover: {
-                            scale: 1.05,
-                            boxShadow: '0 6px 30px rgba(245, 158, 11, 0.5)'
+                        animate: isOpening ? {
+                            opacity: 0,
+                            y: 15
+                        } : {
+                            opacity: 1,
+                            y: 0
                         },
-                        whileTap: {
-                            scale: 0.96
+                        transition: {
+                            duration: isOpening ? 0.5 : 0.9,
+                            delay: 0.3,
+                            ease: [
+                                0.22,
+                                1,
+                                0.36,
+                                1
+                            ]
                         },
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none",
-                                style: {
-                                    background: 'linear-gradient(90deg, transparent, rgba(254, 243, 199, 0.25), transparent)'
-                                },
-                                "aria-hidden": true
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 311,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "flex items-center gap-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                        viewBox: "0 0 24 24",
-                                        className: "w-4 h-4 text-amber-300 fill-current",
-                                        "aria-hidden": "true",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                            d: "M19 4H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-7 4.5L5 8V6l7 4.5L19 6v2z"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 318,
-                                            columnNumber: 15
-                                        }, this)
+                        className: "mt-2 sm:mt-3 mb-1",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
+                            onClick: handleOpen,
+                            className: "px-8 sm:px-10 py-3 rounded-full text-xs sm:text-sm tracking-[0.3em] uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer shadow-xl flex items-center gap-2.5",
+                            style: {
+                                fontFamily: FONT_SERIF,
+                                background: 'linear-gradient(135deg, rgba(180, 83, 9, 0.9) 0%, rgba(120, 53, 15, 0.95) 100%)',
+                                border: '1px solid rgba(245, 158, 11, 0.65)',
+                                color: '#fef3c7',
+                                boxShadow: '0 6px 30px rgba(217, 119, 6, 0.4), 0 0 15px rgba(0,0,0,0.8)',
+                                textShadow: '0 1px 2px rgba(0,0,0,0.8)'
+                            },
+                            whileHover: {
+                                scale: 1.05,
+                                boxShadow: '0 8px 35px rgba(245, 158, 11, 0.55)'
+                            },
+                            whileTap: {
+                                scale: 0.96
+                            },
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none",
+                                    style: {
+                                        background: 'linear-gradient(90deg, transparent, rgba(254, 243, 199, 0.25), transparent)'
+                                    },
+                                    "aria-hidden": true
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/page.tsx",
+                                    lineNumber: 289,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                    viewBox: "0 0 24 24",
+                                    className: "w-4 h-4 text-amber-300 fill-current",
+                                    "aria-hidden": "true",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                        d: "M19 4H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-7 4.5L5 8V6l7 4.5L19 6v2z"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 317,
-                                        columnNumber: 13
-                                    }, this),
-                                    "Buka Undangan"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 316,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                                        lineNumber: 295,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/page.tsx",
+                                    lineNumber: 294,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    children: "BUKA UNDANGAN"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/page.tsx",
+                                    lineNumber: 297,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-amber-400/80 text-xs font-light",
+                                    children: "✦"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/page.tsx",
+                                    lineNumber: 298,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/page.tsx",
+                            lineNumber: 275,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 297,
+                        lineNumber: 269,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 181,
+                lineNumber: 133,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/page.tsx",
-        lineNumber: 105,
+        lineNumber: 116,
         columnNumber: 5
     }, this);
 }
@@ -833,12 +770,12 @@ function Home() {
                     type: "audio/mpeg"
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 420,
+                    lineNumber: 398,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 408,
+                lineNumber: 386,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$FloatingMusicButton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -847,7 +784,7 @@ function Home() {
                 isOpened: isOpened
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 424,
+                lineNumber: 402,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
@@ -856,12 +793,12 @@ function Home() {
                     onName: setGuestName
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 432,
+                    lineNumber: 410,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 431,
+                lineNumber: 409,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].header, {
@@ -906,17 +843,17 @@ function Home() {
                         className: "w-11 sm:w-13 md:w-15 h-auto drop-shadow-[0_2px_12px_rgba(245,158,11,0.5)]"
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 453,
+                        lineNumber: 431,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 442,
+                    lineNumber: 420,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 436,
+                lineNumber: 414,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -926,29 +863,40 @@ function Home() {
                     onPlayAudio: handlePlayMusic
                 }, "cover", false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 464,
+                    lineNumber: 442,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 462,
+                lineNumber: 440,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-                className: "relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 py-24 sm:py-32",
+                className: "relative min-h-[75vh] sm:min-h-[85vh] flex flex-col items-center justify-start overflow-hidden px-4 pt-10 sm:pt-14 pb-12 sm:pb-16 text-center bg-[#0B1528]",
                 children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute inset-0 pointer-events-none",
+                        style: {
+                            background: 'radial-gradient(circle at 50% 35%, rgba(245,158,11,0.09) 0%, transparent 65%)'
+                        },
+                        "aria-hidden": "true"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/page.tsx",
+                        lineNumber: 457,
+                        columnNumber: 9
+                    }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                        className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] sm:w-[110%] md:w-[95%] max-w-4xl md:max-w-5xl z-0 pointer-events-none flex items-center justify-center",
+                        className: "absolute top-[38%] sm:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] sm:w-[110%] md:w-[95%] max-w-4xl md:max-w-5xl z-0 pointer-events-none flex items-center justify-center",
                         initial: {
                             opacity: 0,
-                            scale: 0.92
+                            scale: 0.95
                         },
                         animate: isOpened ? {
-                            opacity: 0.22,
+                            opacity: 0.20,
                             scale: 1
                         } : {
                             opacity: 0,
-                            scale: 0.92
+                            scale: 0.95
                         },
                         transition: {
                             duration: 1.5,
@@ -962,30 +910,30 @@ function Home() {
                         },
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                             src: "/joglo-bg.png",
-                            alt: "",
+                            alt: "Joglo Outline",
                             className: "w-full h-auto object-contain"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 485,
+                            lineNumber: 472,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 479,
+                        lineNumber: 466,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                         className: "absolute top-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none flex flex-col items-center",
                         initial: {
                             opacity: 0,
-                            y: -30
+                            y: -20
                         },
                         animate: isOpened ? {
                             opacity: 1,
                             y: 0
                         } : {
                             opacity: 0,
-                            y: -30
+                            y: -20
                         },
                         transition: {
                             duration: 1.2,
@@ -1000,21 +948,16 @@ function Home() {
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].img, {
                             src: "/lampu-gantung.png",
                             alt: "Lampu Gantung",
-                            className: "w-28 sm:w-32 md:w-36 drop-shadow-md mx-auto block",
+                            className: "w-20 sm:w-24 md:w-28 drop-shadow-md mx-auto block opacity-40",
                             animate: {
                                 rotate: [
-                                    -2,
-                                    2,
-                                    -2
-                                ],
-                                opacity: [
-                                    0.25,
-                                    0.45,
-                                    0.25
+                                    -1.5,
+                                    1.5,
+                                    -1.5
                                 ]
                             },
                             transition: {
-                                duration: 4,
+                                duration: 4.5,
                                 repeat: Infinity,
                                 ease: 'easeInOut'
                             },
@@ -1023,399 +966,131 @@ function Home() {
                             }
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 499,
+                            lineNumber: 486,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 493,
+                        lineNumber: 480,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                        className: "absolute -top-1 -left-1 sm:top-0 sm:left-0 z-10 pointer-events-none w-40 sm:w-52 md:w-64 lg:w-72 xl:w-80",
+                        className: "absolute top-0 left-0 z-10 pointer-events-none w-28 sm:w-36 md:w-44",
                         initial: {
-                            opacity: 0,
-                            scale: 0.88,
-                            x: -30,
-                            y: -30
+                            opacity: 0
                         },
                         animate: isOpened ? {
-                            opacity: 1,
-                            scale: 1,
-                            x: 0,
-                            y: 0
+                            opacity: 0.85
                         } : {
-                            opacity: 0,
-                            scale: 0.88,
-                            x: -30,
-                            y: -30
+                            opacity: 0
                         },
                         transition: {
-                            duration: 1.3,
-                            delay: 0.4,
-                            ease: [
-                                0.22,
-                                1,
-                                0.36,
-                                1
-                            ]
+                            duration: 1.2,
+                            delay: 0.3
                         },
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].img, {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                             src: "/ornamen-kiri-atas.png",
                             alt: "",
-                            className: "w-full h-auto object-contain",
-                            animate: {
-                                rotate: [
-                                    -2.5,
-                                    2.5,
-                                    -2.5
-                                ]
-                            },
-                            transition: {
-                                duration: 5.5,
-                                repeat: Infinity,
-                                ease: 'easeInOut'
-                            },
-                            style: {
-                                transformOrigin: 'top left'
-                            }
+                            className: "w-full h-auto object-contain"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 525,
+                            lineNumber: 511,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 519,
+                        lineNumber: 505,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                        className: "absolute -top-1 -right-1 sm:top-0 sm:right-0 z-10 pointer-events-none w-40 sm:w-52 md:w-64 lg:w-72 xl:w-80",
+                        className: "absolute top-0 right-0 z-10 pointer-events-none w-28 sm:w-36 md:w-44",
                         initial: {
-                            opacity: 0,
-                            scale: 0.88,
-                            x: 30,
-                            y: -30
+                            opacity: 0
                         },
                         animate: isOpened ? {
-                            opacity: 1,
-                            scale: 1,
-                            x: 0,
-                            y: 0
+                            opacity: 0.85
                         } : {
-                            opacity: 0,
-                            scale: 0.88,
-                            x: 30,
-                            y: -30
+                            opacity: 0
                         },
                         transition: {
-                            duration: 1.3,
-                            delay: 0.4,
-                            ease: [
-                                0.22,
-                                1,
-                                0.36,
-                                1
-                            ]
+                            duration: 1.2,
+                            delay: 0.3
                         },
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].img, {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                             src: "/ornamen-kanan-atas.png",
                             alt: "",
-                            className: "w-full h-auto object-contain",
-                            animate: {
-                                rotate: [
-                                    2.5,
-                                    -2.5,
-                                    2.5
-                                ]
-                            },
-                            transition: {
-                                duration: 5.5,
-                                repeat: Infinity,
-                                ease: 'easeInOut'
-                            },
-                            style: {
-                                transformOrigin: 'top right'
-                            }
+                            className: "w-full h-auto object-contain"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 542,
+                            lineNumber: 521,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 536,
+                        lineNumber: 515,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                        className: "absolute bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-20 left-0 z-10 pointer-events-none w-[44%] sm:w-[42%] md:w-[40%] lg:w-[38%] max-w-[300px] sm:max-w-[380px] md:max-w-[460px] lg:max-w-[520px]",
+                        className: "absolute bottom-0 left-0 z-10 pointer-events-none w-32 sm:w-40 md:w-48",
                         initial: {
-                            opacity: 0,
-                            y: 50,
-                            scale: 0.92
+                            opacity: 0
                         },
                         animate: isOpened ? {
-                            opacity: 1,
-                            y: 0,
-                            scale: 1
+                            opacity: 0.8
                         } : {
-                            opacity: 0,
-                            y: 50,
-                            scale: 0.92
+                            opacity: 0
                         },
                         transition: {
-                            duration: 1.4,
-                            delay: 0.55,
-                            ease: [
-                                0.22,
-                                1,
-                                0.36,
-                                1
-                            ]
+                            duration: 1.2,
+                            delay: 0.45
                         },
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].img, {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                             src: "/ornamen-kiri-bawah.png",
                             alt: "",
-                            className: "w-full h-auto object-contain object-bottom",
-                            animate: {
-                                rotate: [
-                                    -2.5,
-                                    2.5,
-                                    -2.5
-                                ]
-                            },
-                            transition: {
-                                duration: 5.5,
-                                repeat: Infinity,
-                                ease: 'easeInOut'
-                            },
-                            style: {
-                                transformOrigin: 'bottom center'
-                            }
+                            className: "w-full h-auto object-contain object-bottom"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 559,
+                            lineNumber: 531,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 553,
+                        lineNumber: 525,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                        className: "absolute bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-20 right-0 z-10 pointer-events-none w-[44%] sm:w-[42%] md:w-[40%] lg:w-[38%] max-w-[300px] sm:max-w-[380px] md:max-w-[460px] lg:max-w-[520px]",
+                        className: "absolute bottom-0 right-0 z-10 pointer-events-none w-32 sm:w-40 md:w-48",
                         initial: {
-                            opacity: 0,
-                            y: 50,
-                            scale: 0.92
+                            opacity: 0
                         },
                         animate: isOpened ? {
-                            opacity: 1,
-                            y: 0,
-                            scale: 1
+                            opacity: 0.8
                         } : {
-                            opacity: 0,
-                            y: 50,
-                            scale: 0.92
+                            opacity: 0
                         },
                         transition: {
-                            duration: 1.4,
-                            delay: 0.55,
-                            ease: [
-                                0.22,
-                                1,
-                                0.36,
-                                1
-                            ]
+                            duration: 1.2,
+                            delay: 0.45
                         },
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].img, {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                             src: "/ornamen-kanan-bawah.png",
                             alt: "",
-                            className: "w-full h-auto object-contain object-bottom",
-                            animate: {
-                                rotate: [
-                                    2.5,
-                                    -2.5,
-                                    2.5
-                                ]
-                            },
-                            transition: {
-                                duration: 5.5,
-                                repeat: Infinity,
-                                ease: 'easeInOut'
-                            },
-                            style: {
-                                transformOrigin: 'bottom center'
-                            }
+                            className: "w-full h-auto object-contain object-bottom"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 576,
+                            lineNumber: 541,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 570,
+                        lineNumber: 535,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "relative z-30 text-center flex flex-col items-center gap-4 max-w-2xl mx-auto",
+                        className: "relative z-30 text-center flex flex-col items-center gap-2 sm:gap-3 max-w-2xl mx-auto px-4 mt-2 sm:mt-4",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
-                                className: "text-xs sm:text-sm tracking-[0.38em] uppercase text-amber-400/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]",
-                                style: {
-                                    fontFamily: FONT_SERIF,
-                                    textShadow: '0 1px 2px #000, 0 2px 8px rgba(0,0,0,0.95)'
-                                },
-                                initial: {
-                                    opacity: 0,
-                                    y: 18
-                                },
-                                animate: isOpened ? {
-                                    opacity: 1,
-                                    y: 0
-                                } : {
-                                    opacity: 0,
-                                    y: 18
-                                },
-                                transition: {
-                                    duration: 0.9,
-                                    delay: 0.7,
-                                    ease: [
-                                        0.22,
-                                        1,
-                                        0.36,
-                                        1
-                                    ]
-                                },
-                                children: "Dengan Rahmat Allah SWT"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 589,
-                                columnNumber: 11
-                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "flex flex-col items-center gap-1",
-                                initial: {
-                                    opacity: 0,
-                                    y: 20
-                                },
-                                animate: isOpened ? {
-                                    opacity: 1,
-                                    y: 0
-                                } : {
-                                    opacity: 0,
-                                    y: 20
-                                },
-                                transition: {
-                                    duration: 0.9,
-                                    delay: 0.85,
-                                    ease: [
-                                        0.22,
-                                        1,
-                                        0.36,
-                                        1
-                                    ]
-                                },
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-[10px] tracking-[0.35em] uppercase text-amber-500/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]",
-                                        style: {
-                                            fontFamily: FONT_SERIF,
-                                            textShadow: '0 1px 2px #000, 0 1px 4px rgba(0,0,0,0.9)'
-                                        },
-                                        children: "Mempelai Pria"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 606,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-base sm:text-lg text-amber-300 font-light tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]",
-                                        style: {
-                                            fontFamily: FONT_DISPLAY,
-                                            textShadow: '0 1px 2px #000, 0 2px 8px rgba(0,0,0,0.95), 0 0 14px rgba(0,0,0,0.85)'
-                                        },
-                                        children: "Abdul Qodir Adli S.si"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 612,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-xs sm:text-sm text-slate-300/90 italic leading-snug text-center max-w-[260px] drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]",
-                                        style: {
-                                            fontFamily: FONT_SERIF,
-                                            textShadow: '0 1px 2px #000, 0 1px 6px rgba(0,0,0,0.9)'
-                                        },
-                                        children: [
-                                            "Putra dari Bapak Much Taryo",
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
-                                                fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 622,
-                                                columnNumber: 42
-                                            }, this),
-                                            "& Ibu Karmini"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 618,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 600,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "w-full flex justify-center overflow-visible my-1",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].h1, {
-                                    className: `text-6xl sm:text-7xl md:text-8xl leading-[1.2] px-6 sm:px-8 py-2 overflow-visible inline-block select-none ${__TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$great_vibes_54975429$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].className}`,
-                                    style: {
-                                        background: 'linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #d97706 65%, #92400e 100%)',
-                                        WebkitBackgroundClip: 'text',
-                                        WebkitTextFillColor: 'transparent',
-                                        backgroundClip: 'text',
-                                        overflow: 'visible',
-                                        filter: 'drop-shadow(0 1px 2px rgba(0,0,0,1)) drop-shadow(0 0 2px #000) drop-shadow(0 2px 8px rgba(0,0,0,0.95)) drop-shadow(0 0 20px rgba(0,0,0,0.9))'
-                                    },
-                                    initial: {
-                                        opacity: 0,
-                                        scale: 0.9,
-                                        y: 15
-                                    },
-                                    animate: isOpened ? {
-                                        opacity: 1,
-                                        scale: 1,
-                                        y: 0
-                                    } : {
-                                        opacity: 0,
-                                        scale: 0.9,
-                                        y: 15
-                                    },
-                                    transition: {
-                                        duration: 1.1,
-                                        delay: 1.0,
-                                        ease: [
-                                            0.16,
-                                            1,
-                                            0.3,
-                                            1
-                                        ]
-                                    },
-                                    children: "Adli & Rima"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 629,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 628,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "flex items-center gap-3 w-56 my-1",
+                                className: "flex items-center gap-2.5 w-32 sm:w-40 mb-0.5",
                                 initial: {
                                     opacity: 0,
                                     scaleX: 0
@@ -1429,7 +1104,56 @@ function Home() {
                                 },
                                 transition: {
                                     duration: 0.8,
-                                    delay: 1.15,
+                                    delay: 0.35
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-400/60"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 554,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-amber-400/80 text-[10px]",
+                                        children: "✦"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 555,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-400/60"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 556,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 548,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
+                                className: "text-[10px] sm:text-xs tracking-[0.42em] uppercase text-amber-300 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] select-none",
+                                style: {
+                                    fontFamily: "'EB Garamond', serif"
+                                },
+                                initial: {
+                                    opacity: 0,
+                                    y: 12
+                                },
+                                animate: isOpened ? {
+                                    opacity: 1,
+                                    y: 0
+                                } : {
+                                    opacity: 0,
+                                    y: 12
+                                },
+                                transition: {
+                                    duration: 0.7,
+                                    delay: 0.4,
                                     ease: [
                                         0.22,
                                         1,
@@ -1437,198 +1161,318 @@ function Home() {
                                         1
                                     ]
                                 },
+                                children: "The Wedding Celebration Of"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 560,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    scale: 0.94,
+                                    y: 15
+                                },
+                                animate: isOpened ? {
+                                    opacity: 1,
+                                    scale: 1,
+                                    y: 0
+                                } : {
+                                    opacity: 0,
+                                    scale: 0.94,
+                                    y: 15
+                                },
+                                transition: {
+                                    duration: 0.9,
+                                    delay: 0.5,
+                                    ease: [
+                                        0.16,
+                                        1,
+                                        0.3,
+                                        1
+                                    ]
+                                },
+                                className: "my-0.5 sm:my-1 overflow-visible relative flex flex-col items-center",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/50"
-                                    }, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                        className: `text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[1.18] px-6 sm:px-10 py-1 select-none ${__TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$great_vibes_54975429$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].className} inline-flex items-baseline justify-center relative z-10 overflow-visible`,
+                                        style: {
+                                            background: 'linear-gradient(145deg, #ffffff 0%, #fef3c7 20%, #fde68a 45%, #f59e0b 70%, #d97706 88%, #92400e 100%)',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                            backgroundClip: 'text',
+                                            filter: 'drop-shadow(0 2px 2px rgba(0,0,0,0.95)) drop-shadow(0 0 3px #000) drop-shadow(0 4px 16px rgba(0,0,0,0.95)) drop-shadow(0 0 25px rgba(245,158,11,0.35))'
+                                        },
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[1.22em] inline-block -translate-y-1 drop-shadow-sm font-normal",
+                                                children: "A"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 589,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "-ml-1",
+                                                children: "dli"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 590,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "mx-2 sm:mx-3 text-[0.88em] opacity-95 inline-block translate-y-1 text-amber-300 font-light",
+                                                children: "&"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 591,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[1.22em] inline-block -translate-y-1 drop-shadow-sm font-normal",
+                                                children: "R"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 592,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "-ml-1",
+                                                children: "ima"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/page.tsx",
+                                                lineNumber: 593,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 654,
+                                        lineNumber: 577,
                                         columnNumber: 13
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                        viewBox: "0 0 20 20",
-                                        className: "w-3.5 h-3.5 text-amber-500/80 shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]",
-                                        fill: "currentColor",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                            d: "M10 1l1.5 6H18l-5.5 4 2 7L10 14l-4.5 4 2-7L2 7h6.5z"
-                                        }, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-center -mt-2 sm:-mt-3 w-full max-w-xs sm:max-w-md pointer-events-none opacity-85",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                            viewBox: "0 0 300 28",
+                                            className: "w-full h-auto text-amber-400 drop-shadow-[0_2px_6px_rgba(245,158,11,0.35)]",
+                                            fill: "none",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                    d: "M15 14 C 55 14, 70 4, 110 14 C 130 19, 140 22, 150 14 C 160 6, 170 9, 190 14 C 230 22, 245 14, 285 14",
+                                                    stroke: "url(#swashGoldHero)",
+                                                    strokeWidth: "1.5",
+                                                    strokeLinecap: "round"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/page.tsx",
+                                                    lineNumber: 599,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                                    cx: "150",
+                                                    cy: "15",
+                                                    r: "2",
+                                                    fill: "#fef3c7"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/page.tsx",
+                                                    lineNumber: 605,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                                                        id: "swashGoldHero",
+                                                        x1: "0",
+                                                        y1: "0",
+                                                        x2: "300",
+                                                        y2: "0",
+                                                        gradientUnits: "userSpaceOnUse",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                                                offset: "0%",
+                                                                stopColor: "#f59e0b",
+                                                                stopOpacity: "0"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/page.tsx",
+                                                                lineNumber: 608,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                                                offset: "25%",
+                                                                stopColor: "#fbbf24",
+                                                                stopOpacity: "0.8"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/page.tsx",
+                                                                lineNumber: 609,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                                                offset: "50%",
+                                                                stopColor: "#ffffff",
+                                                                stopOpacity: "1"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/page.tsx",
+                                                                lineNumber: 610,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                                                offset: "75%",
+                                                                stopColor: "#fbbf24",
+                                                                stopOpacity: "0.8"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/page.tsx",
+                                                                lineNumber: 611,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                                                offset: "100%",
+                                                                stopColor: "#f59e0b",
+                                                                stopOpacity: "0"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/page.tsx",
+                                                                lineNumber: 612,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/page.tsx",
+                                                        lineNumber: 607,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/page.tsx",
+                                                    lineNumber: 606,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/src/app/page.tsx",
-                                            lineNumber: 656,
+                                            lineNumber: 598,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 655,
+                                        lineNumber: 597,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 571,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
+                                className: "text-xs sm:text-sm md:text-base text-slate-200/90 font-light leading-relaxed max-w-md sm:max-w-lg mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] px-2 mt-0.5",
+                                style: {
+                                    fontFamily: FONT_SERIF
+                                },
+                                initial: {
+                                    opacity: 0,
+                                    y: 12
+                                },
+                                animate: isOpened ? {
+                                    opacity: 1,
+                                    y: 0
+                                } : {
+                                    opacity: 0,
+                                    y: 12
+                                },
+                                transition: {
+                                    duration: 0.8,
+                                    delay: 0.6,
+                                    ease: [
+                                        0.22,
+                                        1,
+                                        0.36,
+                                        1
+                                    ]
+                                },
+                                children: "Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri dan memberikan doa restu pada hari bahagia kami."
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 620,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                className: "flex items-center justify-center gap-3 w-full max-w-xs mx-auto mt-1 sm:mt-2",
+                                initial: {
+                                    opacity: 0,
+                                    y: 12
+                                },
+                                animate: isOpened ? {
+                                    opacity: 1,
+                                    y: 0
+                                } : {
+                                    opacity: 0,
+                                    y: 12
+                                },
+                                transition: {
+                                    duration: 0.8,
+                                    delay: 0.7,
+                                    ease: [
+                                        0.22,
+                                        1,
+                                        0.36,
+                                        1
+                                    ]
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/50 to-amber-500/80"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 637,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-xs sm:text-sm tracking-[0.35em] text-amber-300 font-medium select-none drop-shadow-sm",
+                                        style: {
+                                            fontFamily: FONT_DISPLAY
+                                        },
+                                        children: "— 16.01.2027 —"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 638,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/50"
+                                        className: "h-px flex-1 bg-gradient-to-l from-transparent via-amber-500/50 to-amber-500/80"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 658,
+                                        lineNumber: 644,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 648,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "flex flex-col items-center gap-1",
-                                initial: {
-                                    opacity: 0,
-                                    y: 20
-                                },
-                                animate: isOpened ? {
-                                    opacity: 1,
-                                    y: 0
-                                } : {
-                                    opacity: 0,
-                                    y: 20
-                                },
-                                transition: {
-                                    duration: 0.9,
-                                    delay: 1.3,
-                                    ease: [
-                                        0.22,
-                                        1,
-                                        0.36,
-                                        1
-                                    ]
-                                },
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-[10px] tracking-[0.35em] uppercase text-amber-500/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]",
-                                        style: {
-                                            fontFamily: FONT_SERIF,
-                                            textShadow: '0 1px 2px #000, 0 1px 4px rgba(0,0,0,0.9)'
-                                        },
-                                        children: "Mempelai Wanita"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 668,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-base sm:text-lg text-amber-300 font-light tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]",
-                                        style: {
-                                            fontFamily: FONT_DISPLAY,
-                                            textShadow: '0 1px 2px #000, 0 2px 8px rgba(0,0,0,0.95), 0 0 14px rgba(0,0,0,0.85)'
-                                        },
-                                        children: "Rima Sugiarto S.Farm"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 674,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-xs sm:text-sm text-slate-300/90 italic leading-snug text-center max-w-[260px] drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]",
-                                        style: {
-                                            fontFamily: FONT_SERIF,
-                                            textShadow: '0 1px 2px #000, 0 1px 6px rgba(0,0,0,0.9)'
-                                        },
-                                        children: [
-                                            "Putri dari Bapak BambangSugiarto",
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
-                                                fileName: "[project]/src/app/page.tsx",
-                                                lineNumber: 684,
-                                                columnNumber: 47
-                                            }, this),
-                                            "& Ibu Sri Marminah"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 680,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 662,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "flex flex-col items-center gap-1.5 pt-3",
-                                initial: {
-                                    opacity: 0,
-                                    y: 15
-                                },
-                                animate: isOpened ? {
-                                    opacity: 1,
-                                    y: 0
-                                } : {
-                                    opacity: 0,
-                                    y: 15
-                                },
-                                transition: {
-                                    duration: 0.9,
-                                    delay: 1.45,
-                                    ease: [
-                                        0.22,
-                                        1,
-                                        0.36,
-                                        1
-                                    ]
-                                },
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-xs sm:text-sm text-slate-300/85 italic leading-relaxed text-center max-w-sm drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]",
-                                        style: {
-                                            fontFamily: FONT_SERIF,
-                                            textShadow: '0 1px 2px #000, 0 2px 8px rgba(0,0,0,0.95)'
-                                        },
-                                        children: "“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya.”"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 696,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-[10px] tracking-[0.28em] text-amber-500/80 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]",
-                                        style: {
-                                            fontFamily: FONT_SERIF,
-                                            textShadow: '0 1px 2px #000, 0 1px 4px rgba(0,0,0,0.9)'
-                                        },
-                                        children: "— QS. Ar-Rum: 21"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 704,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 690,
+                                lineNumber: 631,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 587,
+                        lineNumber: 545,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 476,
+                lineNumber: 454,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$MempelaiSection$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 720,
+                lineNumber: 656,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "w-full py-6 px-8 flex justify-center",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(OrnamentDivider, {}, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 723,
+                    lineNumber: 659,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 722,
+                lineNumber: 658,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1651,46 +1495,46 @@ function Home() {
                     },
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Countdown$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 735,
+                        lineNumber: 671,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 728,
+                    lineNumber: 664,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 727,
+                lineNumber: 663,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "w-full py-6 px-8 flex justify-center",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(OrnamentDivider, {}, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 740,
+                    lineNumber: 676,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 739,
+                lineNumber: 675,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$LoveStory$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 744,
+                lineNumber: 680,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "w-full py-6 px-8 flex justify-center",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(OrnamentDivider, {}, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 747,
+                    lineNumber: 683,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 746,
+                lineNumber: 682,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1713,29 +1557,29 @@ function Home() {
                     },
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Gallery$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 759,
+                        lineNumber: 695,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 752,
+                    lineNumber: 688,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 751,
+                lineNumber: 687,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "w-full py-6 px-8 flex justify-center",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(OrnamentDivider, {}, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 764,
+                    lineNumber: 700,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 763,
+                lineNumber: 699,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1758,34 +1602,34 @@ function Home() {
                     },
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$DispossCam$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 776,
+                        lineNumber: 712,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 769,
+                    lineNumber: 705,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 768,
+                lineNumber: 704,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$DigitalGift$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 781,
+                lineNumber: 717,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "w-full py-6 px-8 flex justify-center",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(OrnamentDivider, {}, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 784,
+                    lineNumber: 720,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 783,
+                lineNumber: 719,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1808,17 +1652,17 @@ function Home() {
                     },
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Guestbook$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 798,
+                        lineNumber: 734,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 791,
+                    lineNumber: 727,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 790,
+                lineNumber: 726,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
@@ -1830,7 +1674,7 @@ function Home() {
                         className: "w-12 h-auto opacity-50"
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 808,
+                        lineNumber: 744,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1845,7 +1689,7 @@ function Home() {
                                 children: "Adli & Rima"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 814,
+                                lineNumber: 750,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1856,13 +1700,13 @@ function Home() {
                                 children: "16 · I · MMXXVII"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 820,
+                                lineNumber: 756,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 813,
+                        lineNumber: 749,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1873,19 +1717,19 @@ function Home() {
                         children: "Dibuat dengan ❤️ — Anchored Realm"
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 827,
+                        lineNumber: 763,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 805,
+                lineNumber: 741,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/page.tsx",
-        lineNumber: 405,
+        lineNumber: 383,
         columnNumber: 5
     }, this);
 }

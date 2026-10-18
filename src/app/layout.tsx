@@ -1,5 +1,36 @@
 import type { Metadata } from 'next';
+import { Cinzel, Cormorant_Garamond, EB_Garamond, Great_Vibes } from 'next/font/google';
 import './globals.css';
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-cinzel',
+  display: 'swap',
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+  display: 'swap',
+});
+
+const ebGaramond = EB_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-eb-garamond',
+  display: 'swap',
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-great-vibes',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Adli & Rima — The Wedding | Anchored Realm',
@@ -19,7 +50,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className="grain">
+    <html
+      lang="id"
+      className={`grain ${cinzel.variable} ${cormorant.variable} ${ebGaramond.variable} ${greatVibes.variable}`}
+    >
       <body className="antialiased">{children}</body>
     </html>
   );

@@ -1,9 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const FONT_SERIF = "'EB Garamond', 'Cormorant Garamond', Georgia, serif";
-const FONT_DISPLAY = "'Cinzel', 'Playfair Display', serif";
+const FONT_SERIF = "var(--font-eb-garamond), serif";
+const FONT_DISPLAY = "var(--font-cinzel), serif";
 
 const STORIES = [
   {
@@ -58,7 +59,7 @@ export default function LoveStory() {
           className="flex flex-col items-center gap-2.5"
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.7 }}
         >
           {/* Sogan decorative motif */}
@@ -101,7 +102,7 @@ export default function LoveStory() {
           className="relative w-full max-w-xl mx-auto my-2 sm:my-4 group"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.75, delay: 0.15 }}
         >
           {/* Ambient Glow */}
@@ -109,10 +110,13 @@ export default function LoveStory() {
 
           {/* Photo Frame Container */}
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/80 backdrop-blur-sm aspect-[16/10] sm:aspect-[16/9]">
-            <img
+            <Image
               src="/lovestory-bg.jpg"
               alt="Adli & Rima Love Story"
-              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              fill
+              sizes="(max-width: 640px) 100vw, 576px"
+              quality={80}
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />
 
             {/* Subtle Gradient Shade on bottom of photo */}
@@ -155,7 +159,7 @@ export default function LoveStory() {
               }}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, margin: '-40px', amount: 0.1 }}
               transition={{ duration: 0.65, delay: index * 0.12 }}
               whileHover={{ y: -3, borderColor: 'rgba(245, 158, 11, 0.6)' }}
             >

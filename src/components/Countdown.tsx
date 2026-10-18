@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 // ─── Target date: January 16, 2027 at 08:00 WIB (UTC+7) ────────────────────────
@@ -55,18 +56,16 @@ export default function Countdown() {
           SECTION 1: DEDICATED COUNTDOWN (Top Block)
           ══════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full pt-4 sm:pt-6 pb-64 sm:pb-80 px-4 flex flex-col items-center justify-start overflow-hidden min-h-[640px] sm:min-h-[720px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/30 shadow-2xl bg-cover bg-no-repeat"
-        style={{
-          backgroundImage: "url('/countdown-bg.jpg')",
-          backgroundPosition: 'center bottom',
-          backgroundSize: 'cover',
-        }}
+        className="relative w-full pt-4 sm:pt-6 pb-64 sm:pb-80 px-4 flex flex-col items-center justify-start overflow-hidden min-h-[640px] sm:min-h-[720px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/30 shadow-2xl"
       >
-        {/* Background <img> element for guaranteed cross-browser rendering, anchored to bottom */}
-        <img
+        {/* Optimized background Image, lazy loaded and anchored to bottom */}
+        <Image
           src="/countdown-bg.jpg"
           alt="Wedding Countdown Background"
-          className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none"
+          fill
+          sizes="(max-width: 768px) 100vw, 896px"
+          quality={80}
+          className="object-cover object-bottom pointer-events-none"
         />
 
         {/* Smooth top-to-bottom gradient: dark contrast at top for text/cards, fading to transparent at bottom for faces */}
@@ -87,13 +86,15 @@ export default function Countdown() {
             className="flex flex-col items-center gap-1 sm:gap-1.5"
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
           >
             {/* A&R Monogram Logo */}
-            <img
+            <Image
               src="/logo-ar-gold.png"
               alt="A&R Logo"
+              width={48}
+              height={48}
               className="w-10 sm:w-12 h-auto mb-1 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
             />
 
@@ -106,7 +107,7 @@ export default function Countdown() {
 
             <span
               className="text-[10px] sm:text-xs tracking-[0.38em] uppercase text-amber-300 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]"
-              style={{ fontFamily: "'EB Garamond', serif" }}
+              style={{ fontFamily: "var(--font-eb-garamond), serif" }}
             >
               Counting The Days
             </span>
@@ -114,7 +115,7 @@ export default function Countdown() {
             <h2
               className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]"
               style={{
-                fontFamily: "'Cinzel', serif",
+                fontFamily: "var(--font-cinzel), serif",
                 background:
                   'linear-gradient(135deg, #ffffff 0%, #fef3c7 40%, #fbbf24 85%, #d97706 100%)',
                 WebkitBackgroundClip: 'text',
@@ -127,7 +128,7 @@ export default function Countdown() {
 
             <p
               className="text-xs sm:text-sm text-amber-100/90 font-light tracking-widest drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              style={{ fontFamily: "var(--font-cormorant), serif" }}
             >
               Sabtu, 16 Januari 2027
             </p>
@@ -150,7 +151,7 @@ export default function Countdown() {
               <p
                 className="text-2xl sm:text-4xl font-light"
                 style={{
-                  fontFamily: "'Cinzel', serif",
+                  fontFamily: "var(--font-cinzel), serif",
                   background: 'linear-gradient(90deg, #fef3c7 0%, #fbbf24 50%, #fef3c7 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor : 'transparent',
@@ -159,7 +160,7 @@ export default function Countdown() {
               >
                 Hari Ini! 🎊
               </p>
-              <p className="mt-1 text-amber-200/90 text-xs sm:text-sm font-serif">
+              <p className="mt-1 text-amber-200/90 text-xs sm:text-sm" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Selamat hari pernikahan yang penuh berkah
               </p>
             </motion.div>
@@ -168,7 +169,7 @@ export default function Countdown() {
               className="grid grid-cols-4 gap-2 sm:gap-3.5 w-full max-w-sm sm:max-w-md mx-auto"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.65, delay: 0.1 }}
             >
               {[
@@ -194,13 +195,13 @@ export default function Countdown() {
                   <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-400/20 via-amber-400/50 to-amber-400/20" />
                   <span
                     className="text-xl sm:text-3xl md:text-4xl font-bold tracking-tight text-stone-900 tabular-nums select-none leading-none drop-shadow-xs"
-                    style={{ fontFamily: "'Cinzel', serif" }}
+                    style={{ fontFamily: "var(--font-cinzel), serif" }}
                   >
                     {String(item.value).padStart(2, '0')}
                   </span>
                   <span
                     className="text-[9px] sm:text-[11px] tracking-[0.2em] uppercase text-stone-600 font-semibold mt-1 sm:mt-1.5 select-none"
-                    style={{ fontFamily: "'EB Garamond', serif" }}
+                    style={{ fontFamily: "var(--font-eb-garamond), serif" }}
                   >
                     {item.label}
                   </span>
@@ -213,7 +214,7 @@ export default function Countdown() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.18 }}
             className="mt-0.5"
           >
@@ -269,13 +270,16 @@ export default function Countdown() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8 }}
             className="flex justify-center mb-1"
           >
-            <img
+            <Image
               src="/gunungan.png"
               alt="Gunungan Wayang"
+              width={176}
+              height={176}
+              sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, 176px"
               className="w-28 sm:w-36 md:w-44 h-auto object-contain filter drop-shadow-[0_0_25px_rgba(245,158,11,0.35)]"
             />
           </motion.div>
@@ -284,13 +288,13 @@ export default function Countdown() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="flex flex-col items-center"
           >
             <h3
               className="text-2xl sm:text-3xl md:text-4xl font-light tracking-[0.25em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
-              style={{ fontFamily: "'Cinzel', serif" }}
+              style={{ fontFamily: "var(--font-cinzel), serif" }}
             >
               RESEPSI PERNIKAHAN
             </h3>
@@ -307,13 +311,13 @@ export default function Countdown() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="flex flex-col items-center gap-1.5"
           >
             <p
               className="text-base sm:text-lg text-amber-200/95 font-medium tracking-widest drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              style={{ fontFamily: "var(--font-cormorant), serif" }}
             >
               Sabtu, 16 Januari 2027
             </p>
@@ -327,7 +331,7 @@ export default function Countdown() {
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
               </svg>
-              <span style={{ fontFamily: "'EB Garamond', serif" }}>
+              <span style={{ fontFamily: "var(--font-eb-garamond), serif" }}>
                 Pukul 08:00 - 13:00 WIB
               </span>
             </div>
@@ -337,13 +341,13 @@ export default function Countdown() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-col items-center mt-2"
           >
             <h4
               className="text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-amber-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
-              style={{ fontFamily: "'Cinzel', serif" }}
+              style={{ fontFamily: "var(--font-cinzel), serif" }}
             >
               VATOR PACIFIC ATRIUM
             </h4>
@@ -351,7 +355,7 @@ export default function Countdown() {
             {/* 5. Full Address */}
             <p
               className="text-xs sm:text-sm text-slate-300/90 leading-relaxed max-w-md mx-auto font-light mt-1.5 px-2"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              style={{ fontFamily: "var(--font-cormorant), serif" }}
             >
               Jl. Raya Karadenan No.7, RT.003/RW.10, Karadenan, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16913
             </p>
@@ -361,7 +365,7 @@ export default function Countdown() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-3"
           >

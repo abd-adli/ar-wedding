@@ -1,6 +1,3 @@
-/* Google Fonts must come before @import "tailwindcss" in Tailwind v4 */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap');
-
 @import "tailwindcss";
 
 @theme {
@@ -25,9 +22,10 @@
   --color-slate-800: #1e293b;
   --color-slate-900: #0f172a;
   --color-slate-950: #020617;
-  --font-serif: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
-  --font-display: 'Cinzel', 'Cormorant Garamond', serif;
-  --font-sans: 'EB Garamond', Georgia, serif;
+  --font-serif: var(--font-cormorant), var(--font-eb-garamond), Georgia, serif;
+  --font-display: var(--font-cinzel), serif;
+  --font-sans: var(--font-eb-garamond), Georgia, serif;
+  --font-script: var(--font-great-vibes), cursive;
 }
 
 html {
@@ -37,7 +35,7 @@ html {
 body {
   background-color: #0f172a;
   color: #f1f5f9;
-  font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  font-family: var(--font-cormorant), var(--font-eb-garamond), Georgia, serif;
   overflow-x: hidden;
 }
 

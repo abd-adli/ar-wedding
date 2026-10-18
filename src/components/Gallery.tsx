@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -96,16 +97,18 @@ function GalleryCard({
       }}
       initial={{ opacity: 0, y: 28, scale: 0.97 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-40px' }}
+      viewport={{ once: true, margin: '-40px', amount: 0.1 }}
       transition={{ duration: 0.55, delay: index * 0.05, ease: 'easeOut' }}
       whileHover={{ y: -4, transition: { duration: 0.25 } }}
     >
       {/* ── Real image ── */}
       {hasImage && (
-        <img
+        <Image
           src={imgSrc}
           alt={item.alt}
-          loading="lazy"
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
+          quality={75}
           onLoad={() => setLoaded(true)}
           onError={() => {
             if (imgSrc.endsWith('.jpg')) {
@@ -115,8 +118,7 @@ function GalleryCard({
             }
           }}
           className={`
-            absolute inset-0 w-full h-full object-cover
-            transition-transform duration-700 group-hover:scale-105
+            object-cover transition-transform duration-700 group-hover:scale-105
             ${loaded ? 'opacity-100' : 'opacity-0'}
           `}
         />
@@ -217,18 +219,21 @@ function Lightbox({
           <span className="text-xl">×</span>
         </button>
 
-        <div className="relative rounded-2xl overflow-hidden border border-amber-500/25 shadow-2xl bg-slate-950">
-          <img
+        <div className="relative rounded-2xl overflow-hidden border border-amber-500/25 shadow-2xl bg-slate-950 w-[88vw] max-w-2xl h-[65vh] sm:h-[75vh]">
+          <Image
             src={item.src}
             alt={item.alt}
-            className="max-h-[75vh] w-auto max-w-full object-contain"
+            fill
+            sizes="(max-width: 768px) 88vw, 672px"
+            quality={85}
+            className="object-contain"
           />
         </div>
 
         {item.caption && (
           <p
             className="mt-3 text-center text-sm sm:text-base text-amber-200/90 font-light tracking-wide px-4"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
           >
             {item.caption}
           </p>
@@ -246,7 +251,7 @@ function Header() {
       className="flex flex-col items-center gap-3 text-center"
       initial={{ opacity: 0, y: 26 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.7 }}
     >
       <svg viewBox="0 0 128 18" className="w-32 text-amber-700/50" fill="none" aria-hidden>
@@ -258,7 +263,7 @@ function Header() {
 
       <p
         className="text-[11px] tracking-[0.42em] uppercase text-amber-600/65"
-        style={{ fontFamily: "'EB Garamond', serif" }}
+        style={{ fontFamily: "var(--font-eb-garamond), serif" }}
       >
         Dokumentasi Pre-Wedding
       </p>
@@ -266,7 +271,7 @@ function Header() {
       <h2
         className="text-3xl sm:text-4xl font-light"
         style={{
-          fontFamily: "'Cinzel', serif",
+          fontFamily: "var(--font-cinzel), serif",
           background: 'linear-gradient(135deg, #fbbf24 0%, #92400e 50%, #fbbf24 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor : 'transparent',
@@ -278,7 +283,7 @@ function Header() {
 
       <p
         className="text-sm text-slate-400 max-w-[280px] leading-relaxed"
-        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        style={{ fontFamily: "var(--font-cormorant), serif" }}
       >
         Setiap gambar menyimpan sepotong cerita dari perjalanan kami menuju altar
       </p>
@@ -346,19 +351,19 @@ export default function Gallery() {
         className="text-center max-w-sm relative z-10 mt-4"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.7, delay: 0.25 }}
       >
         <p
           className="text-sm text-slate-500 italic leading-relaxed"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          style={{ fontFamily: "var(--font-cormorant), serif" }}
         >
           &ldquo;Seperti batik Sogan yang tumbuh dari akar bumi Jawa,
           cinta kami terpatri dalam setiap lembar kehidupan.&rdquo;
         </p>
         <footer
           className="mt-3 text-[11px] tracking-[0.32em] uppercase text-amber-800/45"
-          style={{ fontFamily: "'EB Garamond', serif" }}
+          style={{ fontFamily: "var(--font-eb-garamond), serif" }}
         >
           — Adli &amp; Rima
         </footer>

@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const FONT_DISPLAY = "'Cinzel', serif";
-const FONT_SERIF   = "'Cormorant Garamond', serif";
+const FONT_DISPLAY = "var(--font-cinzel), serif";
+const FONT_SERIF   = "var(--font-cormorant), serif";
 
 interface BankAccount {
   id: string;
@@ -77,7 +77,7 @@ export default function DigitalGift() {
           style={{ fontFamily: FONT_SERIF }}
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
         >
           Tanda Kasih
@@ -89,7 +89,7 @@ export default function DigitalGift() {
           style={{ fontFamily: FONT_DISPLAY }}
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           Amplop Digital
@@ -101,7 +101,7 @@ export default function DigitalGift() {
           style={{ fontFamily: FONT_SERIF }}
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           Doa restu Anda merupakan karunia terindah bagi kami. Namun jika memberi adalah ungkapan kasih Anda, kado digital dapat disalurkan melalui rekening berikut:
@@ -122,7 +122,7 @@ export default function DigitalGift() {
                 }}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, delay: 0.15 * index }}
                 whileHover={{ y: -4, borderColor: 'rgba(245, 158, 11, 0.5)' }}
               >

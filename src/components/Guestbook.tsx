@@ -18,9 +18,9 @@ export interface GuestbookEntry {
 }
 
 // ─── Style Constants ──────────────────────────────────────────────────────────
-const FONT_DISPLAY = "'Cinzel', serif";
-const FONT_SERIF   = "'Cormorant Garamond', serif";
-const FONT_SANS    = "'EB Garamond', serif";
+const FONT_DISPLAY = "var(--font-cinzel), serif";
+const FONT_SERIF   = "var(--font-cormorant), serif";
+const FONT_SANS    = "var(--font-eb-garamond), serif";
 
 const GLASS: React.CSSProperties = {
   background: 'rgba(15, 23, 42, 0.65)',
@@ -260,7 +260,7 @@ export default function Guestbook() {
         style={GLASS}
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="h-px w-full bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />

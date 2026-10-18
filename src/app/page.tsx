@@ -2,17 +2,35 @@
 
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Great_Vibes } from 'next/font/google';
 
-import Countdown           from '@/components/Countdown';
-import LoveStory           from '@/components/LoveStory';
-import Gallery             from '@/components/Gallery';
-import DispossCam          from '@/components/DispossCam';
-import DigitalGift         from '@/components/DigitalGift';
-import Guestbook           from '@/components/Guestbook';
 import MempelaiSection     from '@/components/MempelaiSection';
 import FloatingMusicButton from '@/components/FloatingMusicButton';
+
+// ─── Dynamic imports for heavy below-the-fold components ──────────────────────
+const Countdown = dynamic(() => import('@/components/Countdown'), {
+  loading: () => <div className="min-h-[600px]" />,
+});
+const LoveStory = dynamic(() => import('@/components/LoveStory'), {
+  loading: () => <div className="min-h-[500px]" />,
+});
+const Gallery = dynamic(() => import('@/components/Gallery'), {
+  loading: () => <div className="min-h-[500px]" />,
+});
+const DispossCam = dynamic(() => import('@/components/DispossCam'), {
+  ssr: false,
+  loading: () => <div className="min-h-[350px]" />,
+});
+const DigitalGift = dynamic(() => import('@/components/DigitalGift'), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+const Guestbook = dynamic(() => import('@/components/Guestbook'), {
+  ssr: false,
+  loading: () => <div className="min-h-[400px]" />,
+});
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
 const greatVibes = Great_Vibes({
@@ -22,8 +40,8 @@ const greatVibes = Great_Vibes({
   variable : '--font-great-vibes',
 });
 
-const FONT_DISPLAY = "'Cinzel', serif";
-const FONT_SERIF   = "'Cormorant Garamond', serif";
+const FONT_DISPLAY = "var(--font-cinzel), serif";
+const FONT_SERIF   = "var(--font-cormorant), serif";
 
 // ─── Decorative Divider ───────────────────────────────────────────────────────
 function OrnamentDivider() {
@@ -44,12 +62,23 @@ function OrnamentDivider() {
   );
 }
 
-// ─── Guest Name Reader ────────────────────────────────────────────────────────
+// ─── Guest Name Parser & Reader ───────────────────────────────────────────────
+function parseGuestName(raw: string | null | undefined): string {
+  if (!raw) return 'Tamu Undangan';
+  try {
+    const normalized = raw.replace(/\+/g, ' ').trim();
+    const decoded = decodeURIComponent(normalized).trim();
+    return decoded || 'Tamu Undangan';
+  } catch {
+    return raw.replace(/\+/g, ' ').trim() || 'Tamu Undangan';
+  }
+}
+
 function GuestNameReader({ onName }: { onName: (name: string) => void }) {
   const searchParams = useSearchParams();
   useEffect(() => {
-    const to = searchParams.get('to') ?? searchParams.get('guest') ?? '';
-    if (to) onName(decodeURIComponent(to));
+    const rawTo = searchParams.get('to') ?? searchParams.get('guest');
+    onName(parseGuestName(rawTo));
   }, [searchParams, onName]);
   return null;
 }
@@ -95,7 +124,7 @@ function CoverPage({
       onPlayAudio();
     }
 
-    // Smoothly allow the Gunungan 2.8s split animation to open gracefully before unmounting cover
+    // Smoothly allow the Gunungan split animation to open gracefully before unmounting cover
     setTimeout(() => {
       onOpen();
     }, 1800);
@@ -107,30 +136,53 @@ function CoverPage({
         opacity   : 0,
         transition: { duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] },
       }}
-      className="fixed inset-0 z-50 flex flex-col justify-center items-center origin-center bg-[#0B1528] overflow-hidden py-8 px-4"
+      className="fixed inset-0 z-50 flex justify-center items-center bg-[#0B1528] overflow-hidden select-none"
       style={{
         background: 'radial-gradient(ellipse at center, #11203d 0%, #0B1528 75%)',
       }}
     >
-      {/* ── RESTORED TOP LOGO (Very top center of the cover page) ── */}
-      <motion.div
-        className="absolute top-6 sm:top-8 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center"
-        initial={{ opacity: 0, y: -20 }}
-        animate={isOpening ? { opacity: 0, y: -15 } : { opacity: 1, y: 0 }}
-        transition={{ duration: isOpening ? 0.6 : 1.1, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <motion.img
-          src="/logo-ar-gold.png"
-          alt="A&R Logo"
-          className="w-20 sm:w-24 md:w-28 h-auto drop-shadow-[0_0_20px_rgba(245,158,11,0.45)]"
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </motion.div>
+      {/* Subtle Sogan Corner Accents */}
+      <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-500/30 rounded-tl pointer-events-none z-0" />
+      <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-amber-500/30 rounded-tr pointer-events-none z-0" />
+      <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-500/30 rounded-bl pointer-events-none z-0" />
+      <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-500/30 rounded-br pointer-events-none z-0" />
 
-      {/* ── 1. GUNUNGAN FULL ASSET (Clearly visible 0.48 opacity background, Splits gracefully over 2.8s) ── */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 overflow-hidden">
-        <div className="relative w-[85vw] sm:w-[70vw] md:w-[52vw] max-w-[440px] h-[72vh] max-h-[580px] flex items-center justify-center">
+      {/* ── COVER CONTENT (Absolute Positioning Structure - Zero Flexbox Clashes) ── */}
+      <motion.div
+        className="relative w-full h-full max-w-lg mx-auto overflow-hidden pointer-events-auto"
+        initial={{ opacity: 0 }}
+        animate={isOpening ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: isOpening ? 0.6 : 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {/* 1. THE LOGO (PINNED TO TOP-8) */}
+        <motion.div
+          className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={isOpening ? { opacity: 0, y: -16 } : { opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div
+            className="w-14 sm:w-16 md:w-20 drop-shadow-[0_0_20px_rgba(245,158,11,0.5)]"
+            animate={{ y: [-4, 4, -4] }}
+            transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}
+          >
+            <Image
+              src="/logo-ar-gold.png"
+              alt="A&R Logo"
+              width={80}
+              height={80}
+              priority
+              className="w-full h-auto"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* 2. THE GUNUNGAN (MASSIVE BACKGROUND PUSHED DOWN TO TOP-[60%]) */}
+        <motion.div
+          animate={{ y: [-4, 4, -4] }}
+          transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}
+          className="absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[420px] min-w-[380px] max-w-[95%] scale-110 sm:scale-120 z-0 pointer-events-none flex items-center justify-center overflow-visible opacity-90 h-[520px] sm:h-[580px] md:h-[620px]"
+        >
           {/* Left Half of Gunungan */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center"
@@ -138,18 +190,21 @@ function CoverPage({
               clipPath: 'polygon(0% 0%, calc(50% + 0.5px) 0%, calc(50% + 0.5px) 100%, 0% 100%)',
               WebkitClipPath: 'polygon(0% 0%, calc(50% + 0.5px) 0%, calc(50% + 0.5px) 100%, 0% 100%)',
             }}
-            initial={{ x: 0, opacity: 0.48 }}
+            initial={{ x: 0, opacity: 0.95 }}
             animate={
               isOpening
-                ? { x: '-110vw', opacity: 0 }
-                : { x: 0, opacity: 0.48 }
+                ? { x: '-90vw', opacity: 0 }
+                : { x: 0, opacity: 0.95 }
             }
-            transition={{ duration: 2.8, ease: [0.25, 1, 0.35, 1] }}
+            transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
           >
-            <img
+            <Image
               src="/gunungan.png"
               alt="Gunungan Wayang"
-              className="w-full h-full object-contain filter drop-shadow-[0_0_25px_rgba(245,158,11,0.25)]"
+              width={480}
+              height={600}
+              priority
+              className="w-full h-full object-contain filter drop-shadow-[0_0_35px_rgba(245,158,11,0.5)]"
             />
           </motion.div>
 
@@ -160,166 +215,129 @@ function CoverPage({
               clipPath: 'polygon(calc(50% - 0.5px) 0%, 100% 0%, 100% 100%, calc(50% - 0.5px) 100%)',
               WebkitClipPath: 'polygon(calc(50% - 0.5px) 0%, 100% 0%, 100% 100%, calc(50% - 0.5px) 100%)',
             }}
-            initial={{ x: 0, opacity: 0.48 }}
+            initial={{ x: 0, opacity: 0.95 }}
             animate={
               isOpening
-                ? { x: '110vw', opacity: 0 }
-                : { x: 0, opacity: 0.48 }
+                ? { x: '90vw', opacity: 0 }
+                : { x: 0, opacity: 0.95 }
             }
-            transition={{ duration: 2.8, ease: [0.25, 1, 0.35, 1] }}
+            transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
           >
-            <img
+            <Image
               src="/gunungan.png"
               alt="Gunungan Wayang"
-              className="w-full h-full object-contain filter drop-shadow-[0_0_25px_rgba(245,158,11,0.25)]"
+              width={480}
+              height={600}
+              priority
+              className="w-full h-full object-contain filter drop-shadow-[0_0_35px_rgba(245,158,11,0.5)]"
             />
           </motion.div>
-        </div>
-      </div>
+        </motion.div>
 
-      {/* ── 2. COVER CONTENT (The Wedding Of, Adli & Rima, Sharper Defined Guest Card, Buka Undangan) ── */}
-      <motion.div
-        className="relative z-20 flex flex-col items-center justify-center px-4 sm:px-6 text-center my-auto max-w-lg w-full pt-16 sm:pt-20 overflow-visible"
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={isOpening ? { scale: 0.94, opacity: 0, y: -12 } : { scale: 1, opacity: 1, y: 0 }}
-        transition={{ duration: isOpening ? 0.6 : 1.1, ease: [0.22, 1, 0.36, 1] }}
-      >
-        {/* 'THE WEDDING OF' */}
-        <p
-          className="text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-400/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
-          style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.9)' }}
-        >
-          The Wedding Of
-        </p>
+        {/* 3. THE MAIN CONTENT (NAMES + SLIM GUEST BOX + BUTTON) - BOTTOM-8 */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full flex flex-col items-center gap-3 z-20 px-4">
+          {/* 'THE WEDDING OF' in small gold serif */}
+          <motion.p
+            className="text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-400/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] select-none m-0 p-0"
+            style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.9)' }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={isOpening ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          >
+            The Wedding Of
+          </motion.p>
 
-        {/* 'Adli & Rima' with extra horizontal padding & overflow-visible to prevent swash clipping */}
-        <div className="w-full flex justify-center overflow-visible my-1">
-          <h1
-            className={`text-5xl sm:text-6xl md:text-7xl leading-[1.2] px-6 sm:px-8 py-2 overflow-visible inline-block select-none ${greatVibes.className}`}
+          {/* 'Adli & Rima' in grand, expressive gold calligraphy */}
+          <div className="w-full flex justify-center text-center items-center pl-3 sm:pl-4 m-0 p-0">
+            <motion.div
+              animate={{ y: [-4, 4, -4] }}
+              transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}
+              className="flex justify-center items-center text-center w-full"
+            >
+              <motion.h1
+                className={`text-5xl sm:text-6xl md:text-7xl leading-[1.1] select-none text-center w-full m-0 p-0 ${greatVibes.className}`}
+                style={{
+                  background: 'linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #d97706 65%, #92400e 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor : 'transparent',
+                  backgroundClip      : 'text',
+                  overflow            : 'visible',
+                  filter              : 'drop-shadow(0 1px 2px #000) drop-shadow(0 0 3px #000) drop-shadow(0 4px 16px rgba(0,0,0,0.95))',
+                }}
+                initial={{ opacity: 0, scale: 0.93, y: 16 }}
+                animate={isOpening ? { opacity: 0, scale: 0.9, y: -10 } : { opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 1.0, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              >
+                Adli &amp; Rima
+              </motion.h1>
+            </motion.div>
+          </div>
+
+          {/* Sleek, Slim Glass Guest Box */}
+          <motion.div
+            className="guest-box bg-[#0a1128]/20 backdrop-blur-[2px] border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 shadow-xl text-center w-[85%] max-w-[260px]"
             style={{
-              background: 'linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #d97706 65%, #92400e 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor : 'transparent',
-              backgroundClip      : 'text',
-              overflow            : 'visible',
-              filter              : 'drop-shadow(0 1px 2px #000) drop-shadow(0 0 3px #000) drop-shadow(0 4px 16px rgba(0,0,0,0.95))',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2), inset 0 0 16px rgba(245, 158, 11, 0.1)',
             }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={isOpening ? { opacity: 0, y: 12 } : { opacity: 1, y: 0 }}
+            transition={{ duration: isOpening ? 0.5 : 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            Adli &amp; Rima
-          </h1>
+            {/* Sogan Corner Filigrees */}
+            <div className="absolute top-1.5 left-1.5 w-2 h-2 border-t border-l border-amber-400/70 rounded-tl pointer-events-none" />
+            <div className="absolute top-1.5 right-1.5 w-2 h-2 border-t border-r border-amber-400/70 rounded-tr pointer-events-none" />
+            <div className="absolute bottom-1.5 left-1.5 w-2 h-2 border-b border-l border-amber-400/70 rounded-bl pointer-events-none" />
+            <div className="absolute bottom-1.5 right-1.5 w-2 h-2 border-b border-r border-amber-400/70 rounded-br pointer-events-none" />
+
+            <p
+              className="text-[9px] sm:text-[10px] tracking-[0.25em] text-amber-200 uppercase font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,1)]"
+              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.95)' }}
+            >
+              KEPADA YTH. BAPAK/IBU/SAUDARA/I
+            </p>
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent my-0.5" />
+            <p
+              className="text-sm sm:text-base text-amber-300 font-semibold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,1)] truncate max-w-[220px]"
+              style={{ fontFamily: FONT_DISPLAY, textShadow: '0 1px 3px #000, 0 2px 8px rgba(0,0,0,0.95)' }}
+            >
+              {guestName && guestName.trim() ? guestName : 'Tamu Undangan'}
+            </p>
+          </motion.div>
+
+          {/* Sleek, Slim 'BUKA UNDANGAN' Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
+            transition={{ duration: isOpening ? 0.5 : 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-20 w-full flex justify-center"
+          >
+            <motion.button
+              onClick={handleOpen}
+              className="px-6 py-2 rounded-full text-xs sm:text-sm tracking-[0.25em] uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer shadow-lg flex items-center gap-2"
+              style={{
+                fontFamily: FONT_SERIF,
+                background: 'linear-gradient(135deg, rgba(180, 83, 9, 0.9) 0%, rgba(120, 53, 15, 0.95) 100%)',
+                border    : '1px solid rgba(245, 158, 11, 0.65)',
+                color     : '#fef3c7',
+                boxShadow : '0 4px 20px rgba(217, 119, 6, 0.35), 0 0 12px rgba(0,0,0,0.8)',
+                textShadow: '0 1px 2px rgba(0,0,0,0.8)',
+              }}
+              whileHover={{ scale: 1.05, boxShadow: '0 6px 25px rgba(245, 158, 11, 0.5)' }}
+              whileTap  ={{ scale: 0.96 }}
+            >
+              <span
+                className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(254, 243, 199, 0.25), transparent)' }}
+                aria-hidden
+              />
+              <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-amber-300 fill-current" aria-hidden="true">
+                <path d="M19 4H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-7 4.5L5 8V6l7 4.5L19 6v2z" />
+              </svg>
+              <span>BUKA UNDANGAN</span>
+              <span className="text-amber-400/80 text-xs font-light">✦</span>
+            </motion.button>
+          </motion.div>
         </div>
-
-        {/* Visible Wedding Date: 16 Januari 2027 */}
-        <p
-          className="text-xs sm:text-sm tracking-[0.35em] uppercase text-amber-300 font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] my-1"
-          style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.95)' }}
-        >
-          16 Januari 2027
-        </p>
-
-        {/* Reception Time, Venue & Maps Link (Sogan Minimal Vector Aesthetic) */}
-        <div className="flex flex-col items-center gap-1.5 my-2 z-20">
-          <div
-            className="flex items-center gap-2 text-xs sm:text-sm text-amber-200/90 font-light tracking-widest drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]"
-            style={{ fontFamily: FONT_SERIF }}
-          >
-            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-amber-400/80 fill-none stroke-current stroke-2" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-            <span>08:00 - 13:00 WIB</span>
-          </div>
-
-          <div
-            className="flex items-center gap-2 text-sm sm:text-base text-amber-300 font-medium tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]"
-            style={{ fontFamily: FONT_DISPLAY }}
-          >
-            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-amber-400 fill-none stroke-current stroke-2 shrink-0" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <span>Vator Pacific Atrium</span>
-          </div>
-
-          {/* Stylish 'Buka di Google Maps' Button */}
-          <motion.a
-            href="https://maps.app.goo.gl/KKswPLoSwHeVbgDT8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-xs tracking-[0.22em] uppercase font-medium text-amber-300 border border-amber-500/40 bg-slate-900/60 hover:bg-amber-950/40 hover:border-amber-400 transition-all duration-300 shadow-md backdrop-blur-xs group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg viewBox="0 0 24 24" className="w-3 h-3 text-amber-400 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <polygon points="3 11 22 2 13 21 11 13 3 11" />
-            </svg>
-            <span>Buka di Google Maps</span>
-            <span className="text-amber-400/70 text-[10px]">↗</span>
-          </motion.a>
-        </div>
-
-        {/* Ornamental Divider */}
-        <div className="flex items-center gap-3 w-40 my-2">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/40" />
-          <svg viewBox="0 0 20 20" className="w-2.5 h-2.5 text-amber-500/70 shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]" fill="currentColor">
-            <path d="M10 1l1.5 6H18l-5.5 4 2 7L10 14l-4.5 4 2-7L2 7h6.5z" />
-          </svg>
-          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/40" />
-        </div>
-
-        {/* Guest Name Section (Glassmorphic semi-transparent box, Gunungan visible through while text remains crisp) */}
-        <div
-          className="flex flex-col items-center gap-1.5 px-6 py-3.5 mt-5 mb-4 rounded-2xl border text-center max-w-xs w-full shadow-xl"
-          style={{
-            backgroundColor: 'rgba(15, 23, 42, 0.6)',
-            backdropFilter: 'blur(2px)',
-            WebkitBackdropFilter: 'blur(2px)',
-            borderColor: 'rgba(245, 158, 11, 0.45)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 16px rgba(245, 158, 11, 0.06)',
-          }}
-        >
-          <p
-            className="text-[10px] sm:text-[11px] tracking-[0.28em] text-amber-200 uppercase font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,1)]"
-            style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.95)' }}
-          >
-            Kepada Yth. Bapak/Ibu/Saudara/i
-          </p>
-          <div className="h-px w-20 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent my-0.5" />
-          <p
-            className="text-base sm:text-lg text-amber-300 font-semibold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,1)]"
-            style={{ fontFamily: FONT_DISPLAY, textShadow: '0 1px 3px #000, 0 2px 8px rgba(0,0,0,0.95)' }}
-          >
-            {guestName && guestName.trim() ? guestName : 'Tamu Undangan'}
-          </p>
-        </div>
-
-        {/* 'BUKA UNDANGAN' Button */}
-        <motion.button
-          onClick={handleOpen}
-          className="mt-1 px-8 py-3 rounded-full text-xs tracking-[0.3em] uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer shadow-lg"
-          style={{
-            fontFamily: FONT_SERIF,
-            background: 'linear-gradient(135deg, rgba(180, 83, 9, 0.85) 0%, rgba(120, 53, 15, 0.95) 100%)',
-            border    : '1px solid rgba(245, 158, 11, 0.6)',
-            color     : '#fef3c7',
-            boxShadow : '0 4px 25px rgba(217, 119, 6, 0.35), 0 0 15px rgba(0,0,0,0.8)',
-            textShadow: '0 1px 2px rgba(0,0,0,0.8)',
-          }}
-          whileHover={{ scale: 1.05, boxShadow: '0 6px 30px rgba(245, 158, 11, 0.5)' }}
-          whileTap  ={{ scale: 0.96 }}
-        >
-          <span
-            className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none"
-            style={{ background: 'linear-gradient(90deg, transparent, rgba(254, 243, 199, 0.25), transparent)' }}
-            aria-hidden
-          />
-          <span className="flex items-center gap-2">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 text-amber-300 fill-current" aria-hidden="true">
-              <path d="M19 4H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-7 4.5L5 8V6l7 4.5L19 6v2z" />
-            </svg>
-            Buka Undangan
-          </span>
-        </motion.button>
       </motion.div>
     </motion.div>
   );
@@ -450,9 +468,11 @@ export default function Home() {
           }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <img
+          <Image
             src="/logo-ar-gold.png"
             alt="A&R Logo"
+            width={60}
+            height={60}
             className="w-11 sm:w-13 md:w-15 h-auto drop-shadow-[0_2px_12px_rgba(245,158,11,0.5)]"
           />
         </div>
@@ -473,241 +493,272 @@ export default function Home() {
       {/* ════════════════════════════════════════════════════════════════
           1. SECTION HERO (Tinggi min-h-screen, relatif)
           ════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 py-24 sm:py-32">
+      <section className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden px-4 pt-12 sm:pt-16 pb-12 sm:pb-16 text-center bg-[#0B1528]">
 
-        {/* ── 1. RUMAH JOGLO SEBAGAI BACKGROUND (Prominen di belakang 'Adli & Rima', Skala pas di z-0) ── */}
+        {/* ── Subtle Ambient Gold Radial Glow ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at 50% 40%, rgba(245,158,11,0.11) 0%, transparent 68%)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* ── 1. RUMAH JOGLO SEBAGAI BACKGROUND (Centered behind typography) ── */}
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] sm:w-[110%] md:w-[95%] max-w-4xl md:max-w-5xl z-0 pointer-events-none flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={isOpened ? { opacity: 0.22, scale: 1 } : { opacity: 0, scale: 0.92 }}
-          transition={{ duration: 1.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={isOpened ? { opacity: 0.22, scale: 1 } : { opacity: 0, scale: 0.94 }}
+          transition={{ duration: 1.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <img
+          <Image
             src="/joglo-bg.png"
-            alt=""
+            alt="Joglo Outline"
+            width={1024}
+            height={600}
+            priority
+            sizes="(max-width: 768px) 100vw, 95vw"
             className="w-full h-auto object-contain"
           />
         </motion.div>
 
-        {/* ── 2. ANIMASI LAMPU GANTUNG (Centered at top-0, gently overlaps with sticky logo) ── */}
+        {/* ── 2. ANIMASI LAMPU GANTUNG (Snugly tucked at top with pendulum sway) ── */}
         <motion.div
           className="absolute top-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none flex flex-col items-center"
           initial={{ opacity: 0, y: -30 }}
           animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 1.2, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.img
-            src="/lampu-gantung.png"
-            alt="Lampu Gantung"
-            className="w-28 sm:w-32 md:w-36 drop-shadow-md mx-auto block"
-            animate={{
-              rotate: [-2, 2, -2],
-              opacity: [0.25, 0.45, 0.25],
-            }}
+          <motion.div
+            className="w-20 sm:w-24 md:w-28 drop-shadow-md mx-auto block opacity-50"
+            animate={{ rotate: [-4, 4, -4], y: [-2, 2, -2] }}
             transition={{
-              duration: 4,
-              repeat: Infinity,
+              duration: 5.5,
               ease: 'easeInOut',
+              repeat: Infinity,
             }}
             style={{ transformOrigin: 'top center' }}
-          />
-        </motion.div>
-
-        {/* ── 3. 4 SUDUT ORNAMEN BUNGA (Top & Bottom, Staggered Entrance + Gentle Sway) ── */}
-
-        {/* Bunga Kiri Atas (ornamen-kiri-atas.png - Diperbesar signifikan untuk frame sudut atas) */}
-        <motion.div
-          className="absolute -top-1 -left-1 sm:top-0 sm:left-0 z-10 pointer-events-none w-40 sm:w-52 md:w-64 lg:w-72 xl:w-80"
-          initial={{ opacity: 0, scale: 0.88, x: -30, y: -30 }}
-          animate={isOpened ? { opacity: 1, scale: 1, x: 0, y: 0 } : { opacity: 0, scale: 0.88, x: -30, y: -30 }}
-          transition={{ duration: 1.3, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.img
-            src="/ornamen-kiri-atas.png"
-            alt=""
-            className="w-full h-auto object-contain"
-            animate={{ rotate: [-2.5, 2.5, -2.5] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ transformOrigin: 'top left' }}
-          />
-        </motion.div>
-
-        {/* Bunga Kanan Atas (ornamen-kanan-atas.png - Diperbesar signifikan untuk frame sudut atas) */}
-        <motion.div
-          className="absolute -top-1 -right-1 sm:top-0 sm:right-0 z-10 pointer-events-none w-40 sm:w-52 md:w-64 lg:w-72 xl:w-80"
-          initial={{ opacity: 0, scale: 0.88, x: 30, y: -30 }}
-          animate={isOpened ? { opacity: 1, scale: 1, x: 0, y: 0 } : { opacity: 0, scale: 0.88, x: 30, y: -30 }}
-          transition={{ duration: 1.3, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.img
-            src="/ornamen-kanan-atas.png"
-            alt=""
-            className="w-full h-auto object-contain"
-            animate={{ rotate: [2.5, -2.5, 2.5] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ transformOrigin: 'top right' }}
-          />
-        </motion.div>
-
-        {/* Bunga Kiri Bawah (ornamen-kiri-bawah.png - Skala pas, membingkai sudut dengan gap jelas di tengah tanpa bersentuhan) */}
-        <motion.div
-          className="absolute bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-20 left-0 z-10 pointer-events-none w-[44%] sm:w-[42%] md:w-[40%] lg:w-[38%] max-w-[300px] sm:max-w-[380px] md:max-w-[460px] lg:max-w-[520px]"
-          initial={{ opacity: 0, y: 50, scale: 0.92 }}
-          animate={isOpened ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.92 }}
-          transition={{ duration: 1.4, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.img
-            src="/ornamen-kiri-bawah.png"
-            alt=""
-            className="w-full h-auto object-contain object-bottom"
-            animate={{ rotate: [-2.5, 2.5, -2.5] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ transformOrigin: 'bottom center' }}
-          />
-        </motion.div>
-
-        {/* Bunga Kanan Bawah (ornamen-kanan-bawah.png - Skala pas, membingkai sudut dengan gap jelas di tengah tanpa bersentuhan) */}
-        <motion.div
-          className="absolute bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-20 right-0 z-10 pointer-events-none w-[44%] sm:w-[42%] md:w-[40%] lg:w-[38%] max-w-[300px] sm:max-w-[380px] md:max-w-[460px] lg:max-w-[520px]"
-          initial={{ opacity: 0, y: 50, scale: 0.92 }}
-          animate={isOpened ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.92 }}
-          transition={{ duration: 1.4, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.img
-            src="/ornamen-kanan-bawah.png"
-            alt=""
-            className="w-full h-auto object-contain object-bottom"
-            animate={{ rotate: [2.5, -2.5, 2.5] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ transformOrigin: 'bottom center' }}
-          />
-        </motion.div>
-
-        {/* ── 4. LAYER KONTEN TEKS (Paling Depan / Z-Index Tertinggi: relative z-30, Staggered Fluid Entrance) ── */}
-        <div className="relative z-30 text-center flex flex-col items-center gap-4 max-w-2xl mx-auto">
-          {/* Teks Pembuka */}
-          <motion.p
-            className="text-xs sm:text-sm tracking-[0.38em] uppercase text-amber-400/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]"
-            style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 2px #000, 0 2px 8px rgba(0,0,0,0.95)' }}
-            initial={{ opacity: 0, y: 18 }}
-            animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-            transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            Dengan Rahmat Allah SWT
-          </motion.p>
-
-          {/* Mempelai Pria */}
-          <motion.div
-            className="flex flex-col items-center gap-1"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.9, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p
-              className="text-[10px] tracking-[0.35em] uppercase text-amber-500/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
-              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 2px #000, 0 1px 4px rgba(0,0,0,0.9)' }}
-            >
-              Mempelai Pria
-            </p>
-            <p
-              className="text-base sm:text-lg text-amber-300 font-light tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]"
-              style={{ fontFamily: FONT_DISPLAY, textShadow: '0 1px 2px #000, 0 2px 8px rgba(0,0,0,0.95), 0 0 14px rgba(0,0,0,0.85)' }}
-            >
-              Abdul Qodir Adli S.si
-            </p>
-            <p
-              className="text-xs sm:text-sm text-slate-300/90 italic leading-snug text-center max-w-[260px] drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]"
-              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 2px #000, 0 1px 6px rgba(0,0,0,0.9)' }}
-            >
-              Putra dari Bapak Much Taryo<br />
-              &amp; Ibu Karmini
-            </p>
+            <Image
+              src="/lampu-gantung.png"
+              alt="Lampu Gantung"
+              width={112}
+              height={200}
+              priority
+              className="w-full h-auto"
+            />
           </motion.div>
+        </motion.div>
 
-          {/* Nama Mempelai (Kaligrafi Besar - Great Vibes dengan Dark Outline Tebal) */}
-          <div className="w-full flex justify-center overflow-visible my-1">
-            <motion.h1
-              className={`text-6xl sm:text-7xl md:text-8xl leading-[1.2] px-6 sm:px-8 py-2 overflow-visible inline-block select-none ${greatVibes.className}`}
-              style={{
-                background: 'linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #d97706 65%, #92400e 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor : 'transparent',
-                backgroundClip      : 'text',
-                overflow            : 'visible',
-                filter              : 'drop-shadow(0 1px 2px rgba(0,0,0,1)) drop-shadow(0 0 2px #000) drop-shadow(0 2px 8px rgba(0,0,0,0.95)) drop-shadow(0 0 20px rgba(0,0,0,0.9))',
-              }}
-              initial={{ opacity: 0, scale: 0.9, y: 15 }}
-              animate={isOpened ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 15 }}
-              transition={{ duration: 1.1, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        {/* ── 3. 4 SUDUT ORNAMEN BUNGA (Subtle, Ambient Breeze Swaying) ── */}
+
+        {/* Bunga Kiri Atas */}
+        <motion.div
+          className="absolute top-0 left-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={isOpened ? { opacity: 0.95, scale: 1 } : { opacity: 0, scale: 0.92 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div
+            animate={{ rotate: [-2, 2, -2] }}
+            transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
+            style={{ transformOrigin: 'top left' }}
+          >
+            <Image
+              src="/ornamen-kiri-atas.png"
+              alt=""
+              width={280}
+              height={156}
+              priority
+              sizes="(max-width: 640px) 192px, (max-width: 768px) 240px, 300px"
+              className="w-full h-auto object-contain"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* Bunga Kanan Atas */}
+        <motion.div
+          className="absolute top-0 right-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={isOpened ? { opacity: 0.95, scale: 1 } : { opacity: 0, scale: 0.92 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div
+            animate={{ rotate: [2, -2, 2] }}
+            transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
+            style={{ transformOrigin: 'top right' }}
+          >
+            <Image
+              src="/ornamen-kanan-atas.png"
+              alt=""
+              width={280}
+              height={156}
+              priority
+              sizes="(max-width: 640px) 192px, (max-width: 768px) 240px, 300px"
+              className="w-full h-auto object-contain"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* Bunga Kiri Bawah */}
+        <motion.div
+          className="absolute bottom-0 left-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={isOpened ? { opacity: 0.92, scale: 1 } : { opacity: 0, scale: 0.92 }}
+          transition={{ duration: 1.2, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div
+            animate={{ rotate: [-2, 2, -2] }}
+            transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
+            style={{ transformOrigin: 'bottom left' }}
+          >
+            <Image
+              src="/ornamen-kiri-bawah.png"
+              alt=""
+              width={300}
+              height={167}
+              priority
+              sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 320px"
+              className="w-full h-auto object-contain object-bottom"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* Bunga Kanan Bawah */}
+        <motion.div
+          className="absolute bottom-0 right-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={isOpened ? { opacity: 0.92, scale: 1 } : { opacity: 0, scale: 0.92 }}
+          transition={{ duration: 1.2, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div
+            animate={{ rotate: [2, -2, 2] }}
+            transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
+            style={{ transformOrigin: 'bottom right' }}
+          >
+            <Image
+              src="/ornamen-kanan-bawah.png"
+              alt=""
+              width={300}
+              height={167}
+              priority
+              sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 320px"
+              className="w-full h-auto object-contain object-bottom"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* ── 4. LAYER KONTEN TEKS (Balanced Vertical Spacing & Ornate Calligraphy) ── */}
+        <div className="relative z-30 text-center flex flex-col items-center justify-between flex-1 w-full max-w-2xl mx-auto px-4 py-8 sm:py-12 my-auto min-h-[68vh] sm:min-h-[75vh]">
+          
+          {/* Top Block: Sogan Filigree & The Wedding Celebration Of */}
+          <div className="flex flex-col items-center pt-2 sm:pt-4">
+            <motion.div
+              className="flex items-center gap-2.5 w-32 sm:w-40 mb-2.5"
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={isOpened ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
-              Adli &amp; Rima
-            </motion.h1>
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-400/60" />
+              <span className="text-amber-400/80 text-[10px]">✦</span>
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-400/60" />
+            </motion.div>
+
+            <motion.p
+              className="text-[10px] sm:text-xs tracking-[0.45em] uppercase text-amber-300 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] select-none"
+              style={{ fontFamily: "var(--font-eb-garamond), serif" }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              The Wedding Celebration Of
+            </motion.p>
           </div>
 
-          {/* Ornamen Pemisah */}
+          {/* Center Block: Grand Calligraphic 'Adli & Rima' with generous vertical breathing room */}
           <motion.div
-            className="flex items-center gap-3 w-56 my-1"
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={isOpened ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
-            transition={{ duration: 0.8, delay: 1.15, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            animate={isOpened ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.92, y: 20 }}
+            transition={{ duration: 1.0, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="my-8 sm:my-12 md:my-16 overflow-visible relative flex flex-col items-center"
           >
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/50" />
-            <svg viewBox="0 0 20 20" className="w-3.5 h-3.5 text-amber-500/80 shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]" fill="currentColor">
-              <path d="M10 1l1.5 6H18l-5.5 4 2 7L10 14l-4.5 4 2-7L2 7h6.5z" />
-            </svg>
-            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/50" />
+            <motion.div
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+              className="flex flex-col items-center"
+            >
+              <h1
+                className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[1.18] px-6 sm:px-10 py-1 select-none ${greatVibes.className} inline-flex items-baseline justify-center relative z-10 overflow-visible`}
+                style={{
+                  background:
+                    'linear-gradient(145deg, #ffffff 0%, #fef3c7 20%, #fde68a 45%, #f59e0b 70%, #d97706 88%, #92400e 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor : 'transparent',
+                  backgroundClip      : 'text',
+                  filter:
+                    'drop-shadow(0 2px 2px rgba(0,0,0,0.95)) drop-shadow(0 0 3px #000) drop-shadow(0 4px 16px rgba(0,0,0,0.95)) drop-shadow(0 0 25px rgba(245,158,11,0.35))',
+                }}
+              >
+                <span className="text-[1.22em] inline-block -translate-y-1 drop-shadow-sm font-normal">A</span>
+                <span className="-ml-1">dli</span>
+                <span className="mx-2 sm:mx-3 text-[0.88em] opacity-95 inline-block translate-y-1 text-amber-300 font-light">&amp;</span>
+                <span className="text-[1.22em] inline-block -translate-y-1 drop-shadow-sm font-normal">R</span>
+                <span className="-ml-1">ima</span>
+              </h1>
+
+              {/* Calligraphic Flourish Swash Beneath Name */}
+              <div className="flex items-center justify-center -mt-2 sm:-mt-3 w-full max-w-xs sm:max-w-md pointer-events-none opacity-85">
+                <svg viewBox="0 0 300 28" className="w-full h-auto text-amber-400 drop-shadow-[0_2px_6px_rgba(245,158,11,0.35)]" fill="none">
+                  <path
+                    d="M15 14 C 55 14, 70 4, 110 14 C 130 19, 140 22, 150 14 C 160 6, 170 9, 190 14 C 230 22, 245 14, 285 14"
+                    stroke="url(#swashGoldHero)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="150" cy="15" r="2" fill="#fef3c7" />
+                  <defs>
+                    <linearGradient id="swashGoldHero" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#f59e0b" stopOpacity="0" />
+                      <stop offset="25%" stopColor="#fbbf24" stopOpacity="0.8" />
+                      <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
+                      <stop offset="75%" stopColor="#fbbf24" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Mempelai Wanita */}
-          <motion.div
-            className="flex flex-col items-center gap-1"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.9, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p
-              className="text-[10px] tracking-[0.35em] uppercase text-amber-500/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
-              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 2px #000, 0 1px 4px rgba(0,0,0,0.9)' }}
+          {/* Bottom Block: Warm Invitation Text & Dated Separator (Pushed further down naturally) */}
+          <div className="flex flex-col items-center gap-5 sm:gap-6 pb-4 sm:pb-8">
+            <motion.p
+              className="text-xs sm:text-sm md:text-base text-slate-200/90 font-light leading-relaxed max-w-md sm:max-w-lg mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] px-4"
+              style={{ fontFamily: FONT_SERIF }}
+              initial={{ opacity: 0, y: 18 }}
+              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+              transition={{ duration: 0.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              Mempelai Wanita
-            </p>
-            <p
-              className="text-base sm:text-lg text-amber-300 font-light tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]"
-              style={{ fontFamily: FONT_DISPLAY, textShadow: '0 1px 2px #000, 0 2px 8px rgba(0,0,0,0.95), 0 0 14px rgba(0,0,0,0.85)' }}
-            >
-              Rima Sugiarto S.Farm
-            </p>
-            <p
-              className="text-xs sm:text-sm text-slate-300/90 italic leading-snug text-center max-w-[260px] drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]"
-              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 2px #000, 0 1px 6px rgba(0,0,0,0.9)' }}
-            >
-              Putri dari Bapak BambangSugiarto<br />
-              &amp; Ibu Sri Marminah
-            </p>
-          </motion.div>
+              Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri dan memberikan doa restu pada hari bahagia kami.
+            </motion.p>
 
-          {/* Ayat Suci QS Ar-Rum 21 */}
-          <motion.div
-            className="flex flex-col items-center gap-1.5 pt-3"
-            initial={{ opacity: 0, y: 15 }}
-            animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.9, delay: 1.45, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p
-              className="text-xs sm:text-sm text-slate-300/85 italic leading-relaxed text-center max-w-sm drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]"
-              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 2px #000, 0 2px 8px rgba(0,0,0,0.95)' }}
+            <motion.div
+              className="flex items-center justify-center gap-3 w-full max-w-xs mx-auto"
+              initial={{ opacity: 0, y: 18 }}
+              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+              transition={{ duration: 0.9, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
             >
-              &ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan
-              untukmu pasangan hidup dari jenismu sendiri, supaya kamu cenderung
-              dan merasa tenteram kepadanya.&rdquo;
-            </p>
-            <p
-              className="text-[10px] tracking-[0.28em] text-amber-500/80 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
-              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 2px #000, 0 1px 4px rgba(0,0,0,0.9)' }}
-            >
-              — QS. Ar-Rum: 21
-            </p>
-          </motion.div>
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/50 to-amber-500/80" />
+              <span
+                className="text-xs sm:text-sm tracking-[0.35em] text-amber-300 font-medium select-none drop-shadow-sm"
+                style={{ fontFamily: FONT_DISPLAY }}
+              >
+                — 16.01.2027 —
+              </span>
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent via-amber-500/50 to-amber-500/80" />
+            </motion.div>
+          </div>
+
         </div>
 
       </section>
@@ -729,7 +780,7 @@ export default function Home() {
           className="w-full max-w-4xl flex justify-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.7 }}
         >
           <Countdown />
@@ -753,7 +804,7 @@ export default function Home() {
           className="w-full max-w-5xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.7 }}
         >
           <Gallery />
@@ -770,7 +821,7 @@ export default function Home() {
           className="w-full max-w-md"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.7 }}
         >
           <DispossCam />
@@ -792,7 +843,7 @@ export default function Home() {
           className="w-full max-w-lg"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.7 }}
         >
           <Guestbook />
@@ -805,9 +856,11 @@ export default function Home() {
       <footer
         className="w-full flex flex-col items-center gap-4 py-16 px-4 border-t border-amber-500/10 text-center"
       >
-        <img
+        <Image
           src="/logo-ar-gold.png"
           alt="A&R"
+          width={48}
+          height={48}
           className="w-12 h-auto opacity-50"
         />
         <div className="text-center">

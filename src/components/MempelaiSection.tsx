@@ -34,7 +34,7 @@ export default function MempelaiSection() {
         className="flex flex-col items-center text-center max-w-xl mb-16 relative z-10"
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         <span className="text-xs uppercase tracking-[0.4em] text-amber-500/80 mb-2 font-serif">
@@ -69,7 +69,7 @@ export default function MempelaiSection() {
           className="flex flex-col items-center text-center w-full"
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           {/* Frame Foto Portrait */}
@@ -82,7 +82,6 @@ export default function MempelaiSection() {
                 fill
                 sizes="(max-width: 640px) 192px, 224px"
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                priority
               />
             </div>
             {/* Elegant corner accents */}
@@ -126,7 +125,7 @@ export default function MempelaiSection() {
           className="flex items-center justify-center gap-4 w-full my-2"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <div className="h-px flex-1 max-w-[80px] sm:max-w-[120px] bg-gradient-to-r from-transparent via-amber-500/40 to-amber-500/70" />
@@ -143,7 +142,7 @@ export default function MempelaiSection() {
           className="flex flex-col items-center text-center w-full"
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           {/* Frame Foto Portrait */}

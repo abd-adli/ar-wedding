@@ -118,7 +118,7 @@ function SectionHeader() {
       <h2
         className="text-3xl sm:text-4xl font-light tracking-wide"
         style={{
-          fontFamily: "'Cinzel', serif",
+          fontFamily: "var(--font-cinzel), serif",
           background:
             'linear-gradient(135deg, #fbbf24 0%, #92400e 50%, #fbbf24 100%)',
           WebkitBackgroundClip: 'text',
@@ -130,7 +130,7 @@ function SectionHeader() {
       </h2>
 
       <p className="text-sm text-slate-400 max-w-[260px] leading-relaxed"
-         style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+         style={{ fontFamily: "var(--font-cormorant), serif" }}>
         Abadikan momen indah dengan sentuhan kamera analog bergaya Sogan
       </p>
 
