@@ -99,26 +99,28 @@ function CoverPage({
     if (isOpening) return;
     setIsOpening(true);
 
-    // [AUDIO TEMPORARILY DISABLED FOR IOS STABILITY]
-    // const audio = (document.getElementById('bg-music') as HTMLAudioElement) || document.querySelector('audio');
-    // if (audio) { ... }
-    if (onPlayAudio) {
-      onPlayAudio();
-    }
+    // 1. Beri jeda 400ms: Jangan jalankan pemutaran musik dan animasi Cover secara serentak
+    setTimeout(() => {
+      try {
+        if (onPlayAudio) {
+          onPlayAudio();
+        }
+      } catch (err) {
+        console.warn('Audio playback error on open:', err);
+      }
+    }, 400);
 
-    // Smoothly allow the Gunungan split animation to open gracefully before unmounting cover
+    // 2. Cover menghilang secara mulus (cukup ubah opacity 0 & pointer-events none)
     setTimeout(() => {
       onOpen();
-    }, 1800);
+    }, 800);
   };
 
   return (
-    <motion.div
-      exit={{
-        opacity   : 0,
-        transition: { duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] },
-      }}
-      className="fixed inset-0 z-50 flex justify-center items-center bg-[#0B1528] overflow-hidden select-none transform-gpu"
+    <div
+      className={`fixed inset-0 z-50 flex justify-center items-center bg-[#0B1528] overflow-hidden select-none transition-opacity duration-700 ease-out transform-gpu ${
+        isOpening ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
+      }`}
       style={{
         background: 'radial-gradient(ellipse at center, #11203d 0%, #0B1528 75%)',
         willChange: 'opacity',
@@ -131,21 +133,9 @@ function CoverPage({
       <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-500/30 rounded-br pointer-events-none z-0" />
 
       {/* ── COVER CONTENT (Absolute Positioning Structure - Zero Flexbox Clashes) ── */}
-      <motion.div
-        className="relative w-full h-full max-w-lg mx-auto overflow-hidden pointer-events-auto transform-gpu"
-        style={{ willChange: 'opacity' }}
-        initial={{ opacity: 0 }}
-        animate={isOpening ? { opacity: 0 } : { opacity: 1 }}
-        transition={{ duration: isOpening ? 0.6 : 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <div className="relative w-full h-full max-w-lg mx-auto overflow-hidden pointer-events-auto">
         {/* 1. THE LOGO (PINNED TO TOP-8) */}
-        <motion.div
-          className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: -20 }}
-          animate={isOpening ? { opacity: 0, y: -16 } : { opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center">
           <div className="w-14 sm:w-16 md:w-20 drop-shadow-[0_0_20px_rgba(245,158,11,0.5)]">
             <Image
               src="/logo-ar-gold.webp"
@@ -157,84 +147,37 @@ function CoverPage({
               className="w-full h-auto"
             />
           </div>
-        </motion.div>
+        </div>
 
         {/* 2. THE GUNUNGAN (MASSIVE BACKGROUND PUSHED DOWN TO TOP-[60%]) */}
         <div
           className="absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[420px] min-w-[380px] max-w-[95%] scale-110 sm:scale-120 z-0 pointer-events-none flex items-center justify-center overflow-visible opacity-90 h-[520px] sm:h-[580px] md:h-[620px]"
         >
-          {/* Left Half of Gunungan */}
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center transform-gpu"
-            style={{
-              clipPath: 'polygon(0% 0%, calc(50% + 0.5px) 0%, calc(50% + 0.5px) 100%, 0% 100%)',
-              WebkitClipPath: 'polygon(0% 0%, calc(50% + 0.5px) 0%, calc(50% + 0.5px) 100%, 0% 100%)',
-              willChange: 'transform, opacity',
-            }}
-            initial={{ x: 0, opacity: 0.95 }}
-            animate={
-              isOpening
-                ? { x: '-90vw', opacity: 0 }
-                : { x: 0, opacity: 0.95 }
-            }
-            transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Image
-              src="/gunungan.webp"
-              alt="Gunungan Wayang"
-              width={480}
-              height={600}
-              priority
-              quality={75}
-              className="w-full h-full object-contain filter drop-shadow-[0_0_35px_rgba(245,158,11,0.5)]"
-            />
-          </motion.div>
-
-          {/* Right Half of Gunungan */}
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center transform-gpu"
-            style={{
-              clipPath: 'polygon(calc(50% - 0.5px) 0%, 100% 0%, 100% 100%, calc(50% - 0.5px) 100%)',
-              WebkitClipPath: 'polygon(calc(50% - 0.5px) 0%, 100% 0%, 100% 100%, calc(50% - 0.5px) 100%)',
-              willChange: 'transform, opacity',
-            }}
-            initial={{ x: 0, opacity: 0.95 }}
-            animate={
-              isOpening
-                ? { x: '90vw', opacity: 0 }
-                : { x: 0, opacity: 0.95 }
-            }
-            transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Image
-              src="/gunungan.webp"
-              alt="Gunungan Wayang"
-              width={480}
-              height={600}
-              priority
-              quality={75}
-              className="w-full h-full object-contain filter drop-shadow-[0_0_35px_rgba(245,158,11,0.5)]"
-            />
-          </motion.div>
+          <Image
+            src="/gunungan.webp"
+            alt="Gunungan Wayang"
+            width={480}
+            height={600}
+            priority
+            quality={75}
+            className="w-full h-full object-contain filter drop-shadow-[0_0_35px_rgba(245,158,11,0.5)]"
+          />
         </div>
 
         {/* 3. THE MAIN CONTENT (NAMES + SLIM GUEST BOX + BUTTON) - BOTTOM-8 */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full flex flex-col items-center gap-3 z-20 px-4">
           {/* 'THE WEDDING OF' in small gold serif */}
-          <motion.p
-            className="text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-400/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] select-none m-0 p-0 transform-gpu"
-            style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.9)', willChange: 'transform, opacity' }}
-            initial={{ opacity: 0, y: 16 }}
-            animate={isOpening ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          <p
+            className="text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-400/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] select-none m-0 p-0"
+            style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.9)' }}
           >
             The Wedding Of
-          </motion.p>
+          </p>
 
           {/* 'Adli & Rima' in grand, expressive gold calligraphy */}
           <div className="w-full flex justify-center text-center items-center pl-3 sm:pl-4 m-0 p-0">
-            <motion.h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.15] select-none text-center w-full m-0 p-0 transform-gpu ${greatVibes.className}`}
+            <h1
+              className={`text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.15] select-none text-center w-full m-0 p-0 ${greatVibes.className}`}
               style={{
                 background: 'linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #d97706 65%, #92400e 100%)',
                 WebkitBackgroundClip: 'text',
@@ -242,26 +185,18 @@ function CoverPage({
                 backgroundClip      : 'text',
                 overflow            : 'visible',
                 filter              : 'drop-shadow(0 2px 8px rgba(0,0,0,0.9))',
-                willChange          : 'transform, opacity',
               }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={isOpening ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             >
               <span>A</span>dli &amp; <span>R</span>ima
-            </motion.h1>
+            </h1>
           </div>
 
           {/* Sleek, Slim Guest Box - STATIC and ISOLATED */}
-          <motion.div
-            className="guest-box transform-gpu bg-[#0a1128]/85 border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 shadow-xl text-center w-[85%] max-w-[260px]"
+          <div
+            className="guest-box bg-[#0a1128]/85 border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 shadow-xl text-center w-[85%] max-w-[260px]"
             style={{
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2), inset 0 0 16px rgba(245, 158, 11, 0.1)',
-              willChange: 'transform, opacity',
             }}
-            initial={{ opacity: 0, y: 15 }}
-            animate={isOpening ? { opacity: 0, y: 12 } : { opacity: 1, y: 0 }}
-            transition={{ duration: isOpening ? 0.5 : 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* Sogan Corner Filigrees */}
             <div className="absolute top-1.5 left-1.5 w-2 h-2 border-t border-l border-amber-400/70 rounded-tl pointer-events-none" />
@@ -282,19 +217,14 @@ function CoverPage({
             >
               {guestName && guestName.trim() ? guestName : 'Tamu Undangan'}
             </p>
-          </motion.div>
+          </div>
 
           {/* Sleek, Slim 'BUKA UNDANGAN' Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
-            transition={{ duration: isOpening ? 0.5 : 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-20 w-full flex justify-center transform-gpu"
-            style={{ willChange: 'transform, opacity' }}
-          >
-            <motion.button
+          <div className="relative z-20 w-full flex justify-center pt-0.5">
+            <button
+              type="button"
               onClick={handleOpen}
-              className="px-6 py-2 rounded-full text-xs sm:text-sm tracking-[0.25em] uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer shadow-lg flex items-center gap-2 transform-gpu"
+              className="px-6 py-2 rounded-full text-xs sm:text-sm tracking-[0.25em] uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95"
               style={{
                 fontFamily: FONT_SERIF,
                 background: 'linear-gradient(135deg, rgba(180, 83, 9, 0.9) 0%, rgba(120, 53, 15, 0.95) 100%)',
@@ -302,10 +232,7 @@ function CoverPage({
                 color     : '#fef3c7',
                 boxShadow : '0 4px 20px rgba(217, 119, 6, 0.35), 0 0 12px rgba(0,0,0,0.8)',
                 textShadow: '0 1px 2px rgba(0,0,0,0.8)',
-                willChange: 'transform',
               }}
-              whileHover={{ scale: 1.05, boxShadow: '0 6px 25px rgba(245, 158, 11, 0.5)' }}
-              whileTap  ={{ scale: 0.96 }}
             >
               <span
                 className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none"
@@ -317,11 +244,11 @@ function CoverPage({
               </svg>
               <span>BUKA UNDANGAN</span>
               <span className="text-amber-400/80 text-xs font-light">✦</span>
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -341,27 +268,45 @@ export default function Home() {
 
   // Auto-play music on invitation entry (triggered by Buka Undangan user click)
   const handlePlayMusic = () => {
-    if (audioRef.current) {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch((err) => {
-        console.log('Audio autoplay prevented:', err);
-      });
+    try {
+      if (audioRef.current) {
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsPlaying(true);
+            })
+            .catch((err) => {
+              console.warn('Audio autoplay prevented by browser/iOS policy:', err);
+            });
+        }
+      }
+    } catch (err) {
+      console.warn('Audio play exception:', err);
     }
   };
 
   // Toggle play/pause for the floating music controller
   const toggleMusic = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch((err) => {
-        console.log('Audio playback prevented:', err);
-      });
+    try {
+      if (!audioRef.current) return;
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsPlaying(true);
+            })
+            .catch((err) => {
+              console.warn('Audio playback prevented:', err);
+            });
+        }
+      }
+    } catch (err) {
+      console.warn('Audio toggle exception:', err);
     }
   };
 
@@ -437,16 +382,13 @@ export default function Home() {
       </motion.header>
 
       {/* ── Opening Cover ── */}
-      <AnimatePresence>
-        {!isOpened && (
-          <CoverPage
-            key="cover"
-            guestName={guestName}
-            onOpen={() => setIsOpened(true)}
-            onPlayAudio={handlePlayMusic}
-          />
-        )}
-      </AnimatePresence>
+      {!isOpened && (
+        <CoverPage
+          guestName={guestName}
+          onOpen={() => setIsOpened(true)}
+          onPlayAudio={handlePlayMusic}
+        />
+      )}
 
       {/* ════════════════════════════════════════════════════════════════
           1. SECTION HERO (Tinggi min-h-screen, relatif)
