@@ -24,8 +24,8 @@ export default function MempelaiSection() {
     <section className="relative w-full py-16 sm:py-24 px-4 flex flex-col items-center bg-[#0B1528] text-white overflow-hidden">
       {/* Background ambient gold glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none rounded-full blur-3xl opacity-10"
-        style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.5) 0%, transparent 70%)' }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none rounded-full opacity-10"
+        style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.35) 0%, transparent 70%)' }}
         aria-hidden="true"
       />
 
@@ -76,7 +76,7 @@ export default function MempelaiSection() {
         >
           {/* Frame Foto Portrait */}
           <div className="relative group mb-6">
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/30 to-amber-700/10 blur-sm opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/25 to-amber-700/10 opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
             <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/90">
               <Image
                 src="/groom.webp"
@@ -128,8 +128,8 @@ export default function MempelaiSection() {
         <motion.div
           className="flex items-center justify-center gap-4 w-full my-2 transform-gpu"
           style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
@@ -153,7 +153,7 @@ export default function MempelaiSection() {
         >
           {/* Frame Foto Portrait */}
           <div className="relative group mb-6">
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/30 to-amber-700/10 blur-sm opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/25 to-amber-700/10 opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
             <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/90">
               <Image
                 src="/bride.webp"

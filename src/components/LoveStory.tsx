@@ -102,13 +102,13 @@ export default function LoveStory() {
         <motion.div
           className="relative w-full max-w-xl mx-auto my-2 sm:my-4 group transform-gpu"
           style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.75, delay: 0.15 }}
         >
           {/* Ambient Glow */}
-          <div className="absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-500/30 via-amber-700/20 to-amber-500/30 blur-md opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+          <div className="absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-500/20 via-amber-700/10 to-amber-500/20 opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none" />
 
           {/* Photo Frame Container */}
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/90 aspect-[16/10] sm:aspect-[16/9]">

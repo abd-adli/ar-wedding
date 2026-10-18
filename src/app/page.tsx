@@ -146,12 +146,7 @@ function CoverPage({
           animate={isOpening ? { opacity: 0, y: -16 } : { opacity: 1, y: 0 }}
           transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.div
-            className="w-14 sm:w-16 md:w-20 drop-shadow-[0_0_20px_rgba(245,158,11,0.5)] transform-gpu"
-            style={{ willChange: 'transform' }}
-            animate={{ y: [-4, 4, -4] }}
-            transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}
-          >
+          <div className="w-14 sm:w-16 md:w-20 drop-shadow-[0_0_20px_rgba(245,158,11,0.5)]">
             <Image
               src="/logo-ar-gold.webp"
               alt="A&R Logo"
@@ -161,15 +156,12 @@ function CoverPage({
               quality={75}
               className="w-full h-auto"
             />
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* 2. THE GUNUNGAN (MASSIVE BACKGROUND PUSHED DOWN TO TOP-[60%]) */}
-        <motion.div
-          animate={{ y: [-4, 4, -4] }}
-          transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}
-          style={{ willChange: 'transform' }}
-          className="absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[420px] min-w-[380px] max-w-[95%] scale-110 sm:scale-120 z-0 pointer-events-none flex items-center justify-center overflow-visible opacity-90 h-[520px] sm:h-[580px] md:h-[620px] transform-gpu"
+        <div
+          className="absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[420px] min-w-[380px] max-w-[95%] scale-110 sm:scale-120 z-0 pointer-events-none flex items-center justify-center overflow-visible opacity-90 h-[520px] sm:h-[580px] md:h-[620px]"
         >
           {/* Left Half of Gunungan */}
           <motion.div
@@ -224,7 +216,7 @@ function CoverPage({
               className="w-full h-full object-contain filter drop-shadow-[0_0_35px_rgba(245,158,11,0.5)]"
             />
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* 3. THE MAIN CONTENT (NAMES + SLIM GUEST BOX + BUTTON) - BOTTOM-8 */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full flex flex-col items-center gap-3 z-20 px-4">
@@ -241,30 +233,23 @@ function CoverPage({
 
           {/* 'Adli & Rima' in grand, expressive gold calligraphy */}
           <div className="w-full flex justify-center text-center items-center pl-3 sm:pl-4 m-0 p-0">
-            <motion.div
-              animate={{ y: [-4, 4, -4] }}
-              transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}
-              style={{ willChange: 'transform' }}
-              className="flex justify-center items-center text-center w-full transform-gpu"
+            <motion.h1
+              className={`text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.15] select-none text-center w-full m-0 p-0 transform-gpu ${greatVibes.className}`}
+              style={{
+                background: 'linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #d97706 65%, #92400e 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor : 'transparent',
+                backgroundClip      : 'text',
+                overflow            : 'visible',
+                filter              : 'drop-shadow(0 2px 8px rgba(0,0,0,0.9))',
+                willChange          : 'transform, opacity',
+              }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={isOpening ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
+              transition={{ duration: 1.0, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             >
-              <motion.h1
-                className={`text-5xl sm:text-6xl md:text-7xl leading-[1.1] select-none text-center w-full m-0 p-0 transform-gpu ${greatVibes.className}`}
-                style={{
-                  background: 'linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #d97706 65%, #92400e 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor : 'transparent',
-                  backgroundClip      : 'text',
-                  overflow            : 'visible',
-                  filter              : 'drop-shadow(0 1px 2px #000) drop-shadow(0 0 3px #000) drop-shadow(0 4px 16px rgba(0,0,0,0.95))',
-                  willChange          : 'transform, opacity',
-                }}
-                initial={{ opacity: 0, scale: 0.93, y: 16 }}
-                animate={isOpening ? { opacity: 0, scale: 0.9, y: -10 } : { opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 1.0, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Adli &amp; Rima
-              </motion.h1>
-            </motion.div>
+              <span>A</span>dli &amp; <span>R</span>ima
+            </motion.h1>
           </div>
 
           {/* Sleek, Slim Guest Box - STATIC and ISOLATED */}
@@ -354,15 +339,30 @@ export default function Home() {
     }
   }, []);
 
-  // [AUDIO TEMPORARILY DISABLED FOR IOS STABILITY]
   // Auto-play music on invitation entry (triggered by Buka Undangan user click)
   const handlePlayMusic = () => {
-    // Audio playback disabled temporarily for iOS stability
+    if (audioRef.current) {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((err) => {
+        console.log('Audio autoplay prevented:', err);
+      });
+    }
   };
 
   // Toggle play/pause for the floating music controller
   const toggleMusic = () => {
-    // Audio playback disabled temporarily for iOS stability
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((err) => {
+        console.log('Audio playback prevented:', err);
+      });
+    }
   };
 
   // Prevent background scrolling while the cover is active
@@ -380,7 +380,7 @@ export default function Home() {
   return (
     <main className="bg-[#0f172a] text-amber-500 overflow-x-hidden min-h-screen relative">
 
-      {/* Background Audio - Cundamani (Looping) - TEMPORARILY DISABLED FOR IOS STABILITY
+      {/* Background Audio - Cundamani (Looping) */}
       <audio
         id="bg-music"
         ref={audioRef}
@@ -395,15 +395,13 @@ export default function Home() {
       >
         <source src="/cundamani.mp3" type="audio/mpeg" />
       </audio>
-      */}
 
-      {/* Floating Music Controller (Spinning Vinyl Record) - TEMPORARILY DISABLED FOR IOS STABILITY
+      {/* Floating Music Controller (Spinning Vinyl Record) */}
       <FloatingMusicButton
         isPlaying={isPlaying}
         onToggle={toggleMusic}
         isOpened={isOpened}
       />
-      */}
 
       {/* Read ?to= or ?guest= query parameter */}
       <Suspense fallback={null}>
@@ -654,20 +652,15 @@ export default function Home() {
 
           {/* Center Block: Grand Calligraphic 'Adli & Rima' with generous vertical breathing room */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 20 }}
-            animate={isOpened ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.92, y: 20 }}
-            transition={{ duration: 1.0, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             style={{ willChange: 'transform, opacity' }}
             className="my-8 sm:my-12 md:my-16 overflow-visible relative flex flex-col items-center transform-gpu"
           >
-            <motion.div
-              animate={{ y: [0, -4, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-              style={{ willChange: 'transform' }}
-              className="flex flex-col items-center transform-gpu"
-            >
+            <div className="flex flex-col items-center">
               <h1
-                className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[1.18] px-6 sm:px-10 py-1 select-none ${greatVibes.className} inline-flex items-baseline justify-center relative z-10 overflow-visible`}
+                className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-normal leading-[1.18] px-6 sm:px-10 py-2 select-none ${greatVibes.className} text-center relative z-10 overflow-visible`}
                 style={{
                   background:
                     'linear-gradient(145deg, #ffffff 0%, #fef3c7 20%, #fde68a 45%, #f59e0b 70%, #d97706 88%, #92400e 100%)',
@@ -675,14 +668,10 @@ export default function Home() {
                   WebkitTextFillColor : 'transparent',
                   backgroundClip      : 'text',
                   filter:
-                    'drop-shadow(0 2px 2px rgba(0,0,0,0.95)) drop-shadow(0 0 3px #000) drop-shadow(0 4px 16px rgba(0,0,0,0.95)) drop-shadow(0 0 25px rgba(245,158,11,0.35))',
+                    'drop-shadow(0 2px 8px rgba(0,0,0,0.9)) drop-shadow(0 0 15px rgba(245,158,11,0.25))',
                 }}
               >
-                <span className="text-[1.22em] inline-block -translate-y-1 drop-shadow-sm font-normal">A</span>
-                <span className="-ml-1">dli</span>
-                <span className="mx-2 sm:mx-3 text-[0.88em] opacity-95 inline-block translate-y-1 text-amber-300 font-light">&amp;</span>
-                <span className="text-[1.22em] inline-block -translate-y-1 drop-shadow-sm font-normal">R</span>
-                <span className="-ml-1">ima</span>
+                <span>A</span>dli &amp; <span>R</span>ima
               </h1>
 
               {/* Calligraphic Flourish Swash Beneath Name */}
@@ -706,7 +695,7 @@ export default function Home() {
                   </defs>
                 </svg>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Bottom Block: Warm Invitation Text & Dated Separator (Pushed further down naturally) */}

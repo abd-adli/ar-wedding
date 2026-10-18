@@ -36,19 +36,14 @@ export default function FloatingMusicButton({
     >
       {/* Vinyl record container */}
       <div className="relative w-11 h-11 sm:w-13 sm:h-13 rounded-full flex items-center justify-center">
-        {/* Spinning Vinyl Disc */}
-        <motion.div
-          className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden shadow-inner transform-gpu"
+        {/* Spinning Vinyl Disc - Pure Tailwind animate-[spin_3s_linear_infinite] CSS animation */}
+        <div
+          className={`w-full h-full rounded-full flex items-center justify-center relative overflow-hidden shadow-inner transform-gpu ${
+            isPlaying ? 'animate-[spin_3s_linear_infinite]' : ''
+          }`}
           style={{
-            willChange: 'transform',
             background: 'radial-gradient(circle, #292524 0%, #1c1917 38%, #0c0a09 72%, #1c1917 100%)',
           }}
-          animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
-          transition={
-            isPlaying
-              ? { repeat: Infinity, duration: 3.5, ease: 'linear' }
-              : { duration: 0.3 }
-          }
         >
           {/* Concentric Vinyl Grooves */}
           <div className="absolute inset-1 rounded-full border border-amber-500/15 pointer-events-none" />
@@ -66,7 +61,7 @@ export default function FloatingMusicButton({
             {/* Spindle hole */}
             <div className="w-1.5 h-1.5 rounded-full bg-slate-900 shadow-inner" />
           </div>
-        </motion.div>
+        </div>
 
         {/* Center Music Note / Play Icon Overlay */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
@@ -77,14 +72,9 @@ export default function FloatingMusicButton({
               </svg>
             </div>
           ) : (
-            <motion.div
-              className="text-amber-100 text-[10px] sm:text-xs font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.95)] transform-gpu"
-              style={{ willChange: 'transform' }}
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-            >
+            <div className="text-amber-100 text-[10px] sm:text-xs font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.95)]">
               ♫
-            </motion.div>
+            </div>
           )}
         </div>
 

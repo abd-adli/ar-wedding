@@ -186,11 +186,11 @@ function LoveStory() {
                         },
                         initial: {
                             opacity: 0,
-                            scale: 0.95
+                            y: 20
                         },
                         whileInView: {
                             opacity: 1,
-                            scale: 1
+                            y: 0
                         },
                         viewport: {
                             once: true,
@@ -202,7 +202,7 @@ function LoveStory() {
                         },
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-500/30 via-amber-700/20 to-amber-500/30 blur-md opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none"
+                                className: "absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-500/20 via-amber-700/10 to-amber-500/20 opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LoveStory.tsx",
                                 lineNumber: 111,
