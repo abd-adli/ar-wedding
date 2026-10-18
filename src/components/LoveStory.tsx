@@ -35,7 +35,7 @@ const STORIES = [
 
 export default function LoveStory() {
   return (
-    <section className="relative w-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center overflow-hidden min-h-[700px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/25 shadow-2xl bg-[#0B1528]/85 backdrop-blur-md my-4">
+    <section className="relative w-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center overflow-hidden min-h-[700px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/25 shadow-2xl bg-[#0B1528] my-4">
       {/* Subtle ambient gold background glow */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20"
@@ -111,7 +111,7 @@ export default function LoveStory() {
           <div className="absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-500/30 via-amber-700/20 to-amber-500/30 blur-md opacity-70 group-hover:opacity-100 transition duration-500 pointer-events-none" />
 
           {/* Photo Frame Container */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/80 backdrop-blur-sm aspect-[16/10] sm:aspect-[16/9]">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/90 aspect-[16/10] sm:aspect-[16/9]">
             <Image
               src="/lovestory-bg.webp"
               alt="Adli & Rima Love Story"
@@ -139,7 +139,7 @@ export default function LoveStory() {
             {/* Bottom Caption Pill on Photo */}
             <div className="absolute bottom-3 inset-x-0 flex justify-center pointer-events-none">
               <span
-                className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-200/90 font-medium px-4 py-1 rounded-full bg-slate-950/70 border border-amber-500/40 backdrop-blur-xs shadow-md"
+                className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-200/90 font-medium px-4 py-1 rounded-full bg-slate-950/90 border border-amber-500/40 shadow-md"
                 style={{ fontFamily: FONT_SERIF }}
               >
                 Adli &amp; Rima • Our Story
@@ -153,10 +153,10 @@ export default function LoveStory() {
           {STORIES.map((item, index) => (
             <motion.article
               key={item.title}
-              className="relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl backdrop-blur-md text-left group transform-gpu"
+              className="relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl text-left group transform-gpu"
               style={{
                 willChange: 'transform, opacity',
-                backgroundColor: 'rgba(15, 23, 42, 0.78)',
+                backgroundColor: 'rgba(15, 23, 42, 0.95)',
                 boxShadow:
                   '0 14px 40px rgba(0, 0, 0, 0.6), inset 0 0 24px rgba(245, 158, 11, 0.05)',
               }}

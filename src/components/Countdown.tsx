@@ -188,8 +188,6 @@ export default function Countdown() {
                   style={{
                     willChange: 'transform',
                     backgroundColor: 'rgba(255, 255, 255, 0.96)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
                     border: '1.5px solid rgba(245, 158, 11, 0.35)',
                     boxShadow:
                       '0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.9)',
@@ -227,7 +225,7 @@ export default function Countdown() {
             <motion.button
               onClick={handleSaveCalendar}
               type="button"
-              className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-[11px] sm:text-xs tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-slate-900/85 hover:bg-amber-950/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md cursor-pointer group transform-gpu"
+              className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-[11px] sm:text-xs tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-slate-900/90 hover:bg-amber-950/80 hover:border-amber-400 transition-all duration-300 shadow-xl cursor-pointer group transform-gpu"
               style={{ willChange: 'transform' }}
               whileHover={{ scale: 1.04, boxShadow: '0 6px 24px rgba(245, 158, 11, 0.45)' }}
               whileTap={{ scale: 0.96 }}
@@ -253,7 +251,7 @@ export default function Countdown() {
       {/* ══════════════════════════════════════════════════════════════════
           SECTION 2: THE NEW VENUE & TIME BLOCK (Directly Below)
           ══════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full py-14 sm:py-20 px-6 sm:px-10 flex flex-col items-center justify-center text-center overflow-hidden rounded-3xl sm:rounded-[2.5rem] border border-amber-500/35 shadow-2xl bg-[#0B1528]/90 backdrop-blur-md">
+      <section className="relative w-full py-14 sm:py-20 px-6 sm:px-10 flex flex-col items-center justify-center text-center overflow-hidden rounded-3xl sm:rounded-[2.5rem] border border-amber-500/35 shadow-2xl bg-[#0B1528]">
         
         {/* Subtle Ambient Gold Radial Glow */}
         <div
@@ -386,7 +384,7 @@ export default function Countdown() {
               href="https://maps.app.goo.gl/KKswPLoSwHeVbgDT8"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-xs sm:text-sm tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-gradient-to-r from-amber-950/70 via-slate-900/80 to-amber-950/70 hover:from-amber-900/80 hover:to-amber-900/80 hover:border-amber-400 transition-all duration-300 shadow-xl backdrop-blur-md group transform-gpu"
+              className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-xs sm:text-sm tracking-[0.22em] uppercase font-semibold text-amber-200 border border-amber-500/60 bg-gradient-to-r from-amber-950/90 via-slate-900/95 to-amber-950/90 hover:from-amber-900/80 hover:to-amber-900/80 hover:border-amber-400 transition-all duration-300 shadow-xl group transform-gpu"
               style={{ willChange: 'transform' }}
               whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(245, 158, 11, 0.45)' }}
               whileTap={{ scale: 0.96 }}

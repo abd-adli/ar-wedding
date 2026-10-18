@@ -114,10 +114,10 @@ export default function DigitalGift() {
             return (
               <motion.div
                 key={bank.id}
-                className="relative flex flex-col justify-between p-6 rounded-2xl border backdrop-blur-md overflow-hidden text-left shadow-xl group transition-all duration-300 transform-gpu"
+                className="relative flex flex-col justify-between p-6 rounded-2xl border overflow-hidden text-left shadow-xl group transition-all duration-300 transform-gpu"
                 style={{
                   willChange: 'transform, opacity',
-                  background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%)',
+                  background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%)',
                   borderColor: 'rgba(245, 158, 11, 0.25)',
                   boxShadow: `0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px ${bank.colorAccent}`,
                 }}

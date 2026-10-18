@@ -161,10 +161,10 @@ function DigitalGift() {
                         children: BANK_ACCOUNTS.map((bank, index)=>{
                             const isCopied = copiedId === bank.id;
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "relative flex flex-col justify-between p-6 rounded-2xl border backdrop-blur-md overflow-hidden text-left shadow-xl group transition-all duration-300 transform-gpu",
+                                className: "relative flex flex-col justify-between p-6 rounded-2xl border overflow-hidden text-left shadow-xl group transition-all duration-300 transform-gpu",
                                 style: {
                                     willChange: 'transform, opacity',
-                                    background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%)',
+                                    background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%)',
                                     borderColor: 'rgba(245, 158, 11, 0.25)',
                                     boxShadow: `0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px ${bank.colorAccent}`
                                 },

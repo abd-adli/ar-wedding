@@ -99,28 +99,10 @@ function CoverPage({
     if (isOpening) return;
     setIsOpening(true);
 
-    // Select the <audio> element directly from DOM and trigger .play() inside user click gesture
-    const audio = (document.getElementById('bg-music') as HTMLAudioElement) || document.querySelector('audio');
-    if (audio) {
-      audio.muted = false;
-      audio.volume = 0.3;
-      try {
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              if (onPlayAudio) onPlayAudio();
-            })
-            .catch((err) => {
-              console.warn('Autoplay check:', err);
-              if (onPlayAudio) onPlayAudio();
-            });
-        }
-      } catch (err) {
-        console.warn('Audio play error:', err);
-        if (onPlayAudio) onPlayAudio();
-      }
-    } else if (onPlayAudio) {
+    // [AUDIO TEMPORARILY DISABLED FOR IOS STABILITY]
+    // const audio = (document.getElementById('bg-music') as HTMLAudioElement) || document.querySelector('audio');
+    // if (audio) { ... }
+    if (onPlayAudio) {
       onPlayAudio();
     }
 
@@ -285,9 +267,9 @@ function CoverPage({
             </motion.div>
           </div>
 
-          {/* Sleek, Slim Glass Guest Box - STATIC and ISOLATED to avoid iOS Safari backdrop-blur GPU memory leak */}
+          {/* Sleek, Slim Guest Box - STATIC and ISOLATED */}
           <motion.div
-            className="guest-box transform-gpu bg-[#0a1128]/40 backdrop-blur-[2px] border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 shadow-xl text-center w-[85%] max-w-[260px]"
+            className="guest-box transform-gpu bg-[#0a1128]/85 border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 shadow-xl text-center w-[85%] max-w-[260px]"
             style={{
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2), inset 0 0 16px rgba(245, 158, 11, 0.1)',
               willChange: 'transform, opacity',
@@ -372,54 +354,15 @@ export default function Home() {
     }
   }, []);
 
+  // [AUDIO TEMPORARILY DISABLED FOR IOS STABILITY]
   // Auto-play music on invitation entry (triggered by Buka Undangan user click)
   const handlePlayMusic = () => {
-    const audio = audioRef.current || (document.getElementById('bg-music') as HTMLAudioElement) || document.querySelector('audio');
-    if (audio) {
-      audio.muted = false;
-      audio.volume = 0.3;
-      try {
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsPlaying(true);
-            })
-            .catch((err) => {
-              console.warn('Audio playback info:', err);
-            });
-        }
-      } catch (err) {
-        console.warn('Audio play error:', err);
-      }
-    }
+    // Audio playback disabled temporarily for iOS stability
   };
 
   // Toggle play/pause for the floating music controller
   const toggleMusic = () => {
-    const audio = audioRef.current || (document.getElementById('bg-music') as HTMLAudioElement) || document.querySelector('audio');
-    if (!audio) return;
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-    } else {
-      audio.muted = false;
-      audio.volume = 0.3;
-      try {
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsPlaying(true);
-            })
-            .catch((err) => {
-              console.warn('Audio toggle playback info:', err);
-            });
-        }
-      } catch (err) {
-        console.warn('Audio toggle error:', err);
-      }
-    }
+    // Audio playback disabled temporarily for iOS stability
   };
 
   // Prevent background scrolling while the cover is active
@@ -437,7 +380,7 @@ export default function Home() {
   return (
     <main className="bg-[#0f172a] text-amber-500 overflow-x-hidden min-h-screen relative">
 
-      {/* Background Audio - Cundamani (Looping) */}
+      {/* Background Audio - Cundamani (Looping) - TEMPORARILY DISABLED FOR IOS STABILITY
       <audio
         id="bg-music"
         ref={audioRef}
@@ -452,20 +395,22 @@ export default function Home() {
       >
         <source src="/cundamani.mp3" type="audio/mpeg" />
       </audio>
+      */}
 
-      {/* Floating Music Controller (Spinning Vinyl Record) */}
+      {/* Floating Music Controller (Spinning Vinyl Record) - TEMPORARILY DISABLED FOR IOS STABILITY
       <FloatingMusicButton
         isPlaying={isPlaying}
         onToggle={toggleMusic}
         isOpened={isOpened}
       />
+      */}
 
       {/* Read ?to= or ?guest= query parameter */}
       <Suspense fallback={null}>
         <GuestNameReader onName={setGuestName} />
       </Suspense>
 
-      {/* ── STICKY HEADER (Fixed Top Logo with localized radial blur behind logo only) ── */}
+      {/* ── STICKY HEADER (Fixed Top Logo with localized radial background) ── */}
       <motion.header
         className="fixed top-0 left-0 right-0 z-40 flex items-center justify-center pointer-events-none pt-2 sm:pt-2.5 transform-gpu"
         style={{ willChange: 'transform, opacity' }}
@@ -476,9 +421,7 @@ export default function Home() {
         <div
           className="relative pointer-events-auto cursor-pointer flex items-center justify-center px-6 sm:px-8 py-2 sm:py-2.5 rounded-full"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(11, 21, 40, 0.88) 0%, rgba(11, 21, 40, 0.6) 45%, transparent 75%)',
-            backdropFilter: 'blur(6px)',
-            WebkitBackdropFilter: 'blur(6px)',
+            background: 'radial-gradient(ellipse at center, rgba(11, 21, 40, 0.95) 0%, rgba(11, 21, 40, 0.75) 45%, transparent 75%)',
             maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
             WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
           }}

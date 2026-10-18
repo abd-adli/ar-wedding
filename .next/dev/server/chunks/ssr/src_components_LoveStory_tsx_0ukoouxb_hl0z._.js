@@ -40,7 +40,7 @@ const STORIES = [
 ];
 function LoveStory() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "relative w-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center overflow-hidden min-h-[700px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/25 shadow-2xl bg-[#0B1528]/85 backdrop-blur-md my-4",
+        className: "relative w-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center overflow-hidden min-h-[700px] rounded-3xl sm:rounded-[2.5rem] border border-amber-500/25 shadow-2xl bg-[#0B1528] my-4",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute inset-0 pointer-events-none opacity-20",
@@ -209,7 +209,7 @@ function LoveStory() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/80 backdrop-blur-sm aspect-[16/10] sm:aspect-[16/9]",
+                                className: "relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/90 aspect-[16/10] sm:aspect-[16/9]",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
                                         src: "/lovestory-bg.webp",
@@ -265,7 +265,7 @@ function LoveStory() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute bottom-3 inset-x-0 flex justify-center pointer-events-none",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-200/90 font-medium px-4 py-1 rounded-full bg-slate-950/70 border border-amber-500/40 backdrop-blur-xs shadow-md",
+                                            className: "text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-200/90 font-medium px-4 py-1 rounded-full bg-slate-950/90 border border-amber-500/40 shadow-md",
                                             style: {
                                                 fontFamily: FONT_SERIF
                                             },
@@ -295,10 +295,10 @@ function LoveStory() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-full flex flex-col gap-6 sm:gap-8 mt-1",
                         children: STORIES.map((item, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].article, {
-                                className: "relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl backdrop-blur-md text-left group transform-gpu",
+                                className: "relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-500/35 overflow-hidden shadow-2xl text-left group transform-gpu",
                                 style: {
                                     willChange: 'transform, opacity',
-                                    backgroundColor: 'rgba(15, 23, 42, 0.78)',
+                                    backgroundColor: 'rgba(15, 23, 42, 0.95)',
                                     boxShadow: '0 14px 40px rgba(0, 0, 0, 0.6), inset 0 0 24px rgba(245, 158, 11, 0.05)'
                                 },
                                 initial: {

@@ -491,8 +491,7 @@ export default function DispossCam() {
         <div
           className="rounded-2xl p-3 pb-14 relative"
           style={{
-            background  : 'rgba(15,23,42,0.65)',
-            backdropFilter: 'blur(18px)',
+            background  : 'rgba(15,23,42,0.92)',
             border      : '1px solid rgba(245,158,11,0.15)',
           }}
         >
@@ -612,7 +611,7 @@ export default function DispossCam() {
                 <motion.div
                   key="busy-panel"
                   className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-20 transform-gpu"
-                  style={{ willChange: 'opacity', background: 'rgba(2,6,23,0.75)', backdropFilter: 'blur(6px)' }}
+                  style={{ willChange: 'opacity', background: 'rgba(2,6,23,0.92)' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -757,9 +756,8 @@ export default function DispossCam() {
               className="mt-4 flex items-center gap-3 px-4 py-3 rounded-xl transform-gpu"
               style={{
                 willChange  : 'transform, opacity',
-                background  : 'rgba(15,23,42,0.6)',
+                background  : 'rgba(15,23,42,0.92)',
                 border      : '1px solid rgba(180,83,9,0.25)',
-                backdropFilter: 'blur(12px)',
               }}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}

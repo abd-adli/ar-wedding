@@ -23,17 +23,13 @@ const FONT_SERIF   = "var(--font-cormorant), serif";
 const FONT_SANS    = "var(--font-eb-garamond), serif";
 
 const GLASS: React.CSSProperties = {
-  background: 'rgba(15, 23, 42, 0.65)',
-  backdropFilter: 'blur(16px)',
-  WebkitBackdropFilter: 'blur(16px)',
+  background: 'rgba(15, 23, 42, 0.92)',
   border: '1px solid rgba(245, 158, 11, 0.22)',
   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
 };
 
 const GLASS_INNER: React.CSSProperties = {
-  background: 'rgba(15, 23, 42, 0.45)',
-  backdropFilter: 'blur(10px)',
-  WebkitBackdropFilter: 'blur(10px)',
+  background: 'rgba(15, 23, 42, 0.75)',
   border: '1px solid rgba(245, 158, 11, 0.16)',
 };
 
@@ -273,9 +269,8 @@ export default function Guestbook() {
                 className="mb-5 p-3.5 rounded-xl border flex items-center gap-3 shadow-lg transform-gpu"
                 style={{
                   willChange: 'transform, opacity',
-                  background: 'rgba(16, 185, 129, 0.15)',
+                  background: 'rgba(16, 185, 129, 0.25)',
                   borderColor: 'rgba(52, 211, 153, 0.45)',
-                  backdropFilter: 'blur(8px)',
                 }}
                 initial={{ opacity: 0, y: -10, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}

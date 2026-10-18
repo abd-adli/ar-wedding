@@ -595,8 +595,7 @@ function DispossCam() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "rounded-2xl p-3 pb-14 relative",
                         style: {
-                            background: 'rgba(15,23,42,0.65)',
-                            backdropFilter: 'blur(18px)',
+                            background: 'rgba(15,23,42,0.92)',
                             border: '1px solid rgba(245,158,11,0.15)'
                         },
                         children: [
@@ -608,7 +607,7 @@ function DispossCam() {
                                         children: "Anchored Realm"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 501,
+                                        lineNumber: 500,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -616,13 +615,13 @@ function DispossCam() {
                                         children: "AR — 2027"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 504,
+                                        lineNumber: 503,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/DispossCam.tsx",
-                                lineNumber: 500,
+                                lineNumber: 499,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -648,12 +647,12 @@ function DispossCam() {
                                             }
                                         }, "flash", false, {
                                             fileName: "[project]/src/components/DispossCam.tsx",
-                                            lineNumber: 515,
+                                            lineNumber: 514,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 513,
+                                        lineNumber: 512,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("video", {
@@ -666,7 +665,7 @@ function DispossCam() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 528,
+                                        lineNumber: 527,
                                         columnNumber: 13
                                     }, this),
                                     isLive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -681,7 +680,7 @@ function DispossCam() {
                                             onError: ()=>setFrameError(true)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/DispossCam.tsx",
-                                            lineNumber: 540,
+                                            lineNumber: 539,
                                             columnNumber: 19
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "absolute inset-2 border-2 border-amber-500/60 rounded-xl pointer-events-none",
@@ -689,17 +688,17 @@ function DispossCam() {
                                                 className: "absolute inset-1.5 border border-amber-600/35 rounded-lg pointer-events-none"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/DispossCam.tsx",
-                                                lineNumber: 551,
+                                                lineNumber: 550,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/DispossCam.tsx",
-                                            lineNumber: 550,
+                                            lineNumber: 549,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 538,
+                                        lineNumber: 537,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -721,12 +720,12 @@ function DispossCam() {
                                             }
                                         }, "captured", false, {
                                             fileName: "[project]/src/components/DispossCam.tsx",
-                                            lineNumber: 560,
+                                            lineNumber: 559,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 558,
+                                        lineNumber: 557,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -759,12 +758,12 @@ function DispossCam() {
                                                         className: "w-10 h-10 text-amber-700/60"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                                        lineNumber: 593,
+                                                        lineNumber: 592,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                                    lineNumber: 585,
+                                                    lineNumber: 584,
                                                     columnNumber: 19
                                                 }, this),
                                                 isError ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -772,25 +771,25 @@ function DispossCam() {
                                                     children: errorMsg
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                                    lineNumber: 597,
+                                                    lineNumber: 596,
                                                     columnNumber: 21
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     className: "text-xs text-amber-800/50 tracking-wide",
                                                     children: "Ketuk untuk membuka kamera"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                                    lineNumber: 601,
+                                                    lineNumber: 600,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, "idle-panel", true, {
                                             fileName: "[project]/src/components/DispossCam.tsx",
-                                            lineNumber: 576,
+                                            lineNumber: 575,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 574,
+                                        lineNumber: 573,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -798,8 +797,7 @@ function DispossCam() {
                                             className: "absolute inset-0 flex flex-col items-center justify-center gap-4 z-20 transform-gpu",
                                             style: {
                                                 willChange: 'opacity',
-                                                background: 'rgba(2,6,23,0.75)',
-                                                backdropFilter: 'blur(6px)'
+                                                background: 'rgba(2,6,23,0.92)'
                                             },
                                             initial: {
                                                 opacity: 0
@@ -816,7 +814,7 @@ function DispossCam() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Spinner, {}, void 0, false, {
                                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                                    lineNumber: 621,
+                                                    lineNumber: 620,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -824,18 +822,18 @@ function DispossCam() {
                                                     children: busyLabel
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                                    lineNumber: 622,
+                                                    lineNumber: 621,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, "busy-panel", true, {
                                             fileName: "[project]/src/components/DispossCam.tsx",
-                                            lineNumber: 612,
+                                            lineNumber: 611,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 610,
+                                        lineNumber: 609,
                                         columnNumber: 13
                                     }, this),
                                     isLive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -848,18 +846,18 @@ function DispossCam() {
                                                 className: `absolute w-5 h-5 border-amber-500/50 z-20 ${cls}`
                                             }, cls, false, {
                                                 fileName: "[project]/src/components/DispossCam.tsx",
-                                                lineNumber: 638,
+                                                lineNumber: 637,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 631,
+                                        lineNumber: 630,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/DispossCam.tsx",
-                                lineNumber: 510,
+                                lineNumber: 509,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -869,12 +867,12 @@ function DispossCam() {
                                     children: isSuccess ? '✦  Tersimpan  ✦' : 'Anchored Realm  ·  AR Wedding 2027'
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                    lineNumber: 649,
+                                    lineNumber: 648,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DispossCam.tsx",
-                                lineNumber: 648,
+                                lineNumber: 647,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -917,7 +915,7 @@ function DispossCam() {
                                     children: "Buka Kamera"
                                 }, "btn-open", false, {
                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                    lineNumber: 661,
+                                    lineNumber: 660,
                                     columnNumber: 15
                                 }, this),
                                 isLive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -959,12 +957,12 @@ function DispossCam() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 691,
+                                        lineNumber: 690,
                                         columnNumber: 17
                                     }, this)
                                 }, "btn-shutter", false, {
                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                    lineNumber: 678,
+                                    lineNumber: 677,
                                     columnNumber: 15
                                 }, this),
                                 isError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -996,7 +994,7 @@ function DispossCam() {
                                     children: "Coba Lagi"
                                 }, "btn-retry", false, {
                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                    lineNumber: 700,
+                                    lineNumber: 699,
                                     columnNumber: 15
                                 }, this),
                                 isSuccess && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1039,19 +1037,19 @@ function DispossCam() {
                                                         d: "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0\n                         0l-4-4m4 4V4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                                        lineNumber: 733,
+                                                        lineNumber: 732,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                                    lineNumber: 732,
+                                                    lineNumber: 731,
                                                     columnNumber: 19
                                                 }, this),
                                                 "Simpan"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/DispossCam.tsx",
-                                            lineNumber: 725,
+                                            lineNumber: 724,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1063,24 +1061,24 @@ function DispossCam() {
                                             children: "Foto Lagi"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/DispossCam.tsx",
-                                            lineNumber: 740,
+                                            lineNumber: 739,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, "btn-success-group", true, {
                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                    lineNumber: 717,
+                                    lineNumber: 716,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/DispossCam.tsx",
-                            lineNumber: 657,
+                            lineNumber: 656,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/DispossCam.tsx",
-                        lineNumber: 656,
+                        lineNumber: 655,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -1088,9 +1086,8 @@ function DispossCam() {
                             className: "mt-4 flex items-center gap-3 px-4 py-3 rounded-xl transform-gpu",
                             style: {
                                 willChange: 'transform, opacity',
-                                background: 'rgba(15,23,42,0.6)',
-                                border: '1px solid rgba(180,83,9,0.25)',
-                                backdropFilter: 'blur(12px)'
+                                background: 'rgba(15,23,42,0.92)',
+                                border: '1px solid rgba(180,83,9,0.25)'
                             },
                             initial: {
                                 opacity: 0,
@@ -1116,12 +1113,12 @@ function DispossCam() {
                                         d: "M5 13l4 4L19 7"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/DispossCam.tsx",
-                                        lineNumber: 769,
+                                        lineNumber: 767,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                    lineNumber: 768,
+                                    lineNumber: 766,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1129,18 +1126,18 @@ function DispossCam() {
                                     children: "Kenangan berhasil diabadikan & tersimpan di album kami ✨"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/DispossCam.tsx",
-                                    lineNumber: 771,
+                                    lineNumber: 769,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/DispossCam.tsx",
-                            lineNumber: 756,
+                            lineNumber: 755,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/DispossCam.tsx",
-                        lineNumber: 754,
+                        lineNumber: 753,
                         columnNumber: 9
                     }, this)
                 ]
@@ -1155,7 +1152,7 @@ function DispossCam() {
                 "aria-hidden": true
             }, void 0, false, {
                 fileName: "[project]/src/components/DispossCam.tsx",
-                lineNumber: 780,
+                lineNumber: 778,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
@@ -1172,7 +1169,7 @@ function DispossCam() {
       `
             }, void 0, false, {
                 fileName: "[project]/src/components/DispossCam.tsx",
-                lineNumber: 783,
+                lineNumber: 781,
                 columnNumber: 7
             }, this)
         ]

@@ -12,7 +12,7 @@ const cinzel = Cinzel({
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+ 
   variable: '--font-cormorant',
   display: 'swap',
 });
@@ -20,8 +20,7 @@ const cormorant = Cormorant_Garamond({
 const ebGaramond = EB_Garamond({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
-  style: ['normal', 'italic'],
-  variable: '--font-eb-garamond',
+ 
   display: 'swap',
 });
 

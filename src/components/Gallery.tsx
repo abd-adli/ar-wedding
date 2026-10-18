@@ -91,9 +91,8 @@ function GalleryCard({
       `}
       style={{
         willChange   : 'transform, opacity',
-        background   : 'rgba(15,23,42,0.55)',
+        background   : 'rgba(15,23,42,0.85)',
         border       : '1px solid rgba(245,158,11,0.12)',
-        backdropFilter: 'blur(10px)',
         minHeight    : '10rem',
       }}
       initial={{ opacity: 0, y: 28, scale: 0.97 }}
@@ -199,7 +198,7 @@ function Lightbox({
 }) {
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transform-gpu"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 transform-gpu"
       style={{ willChange: 'opacity' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

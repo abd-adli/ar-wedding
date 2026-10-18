@@ -77,7 +77,7 @@ export default function MempelaiSection() {
           {/* Frame Foto Portrait */}
           <div className="relative group mb-6">
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/30 to-amber-700/10 blur-sm opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
-            <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/60 backdrop-blur-sm">
+            <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/90">
               <Image
                 src="/groom.webp"
                 alt="Foto Abdul Qodir Adli"
@@ -114,7 +114,7 @@ export default function MempelaiSection() {
             href="https://www.instagram.com/abd.adli_/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/40 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md backdrop-blur-sm transform-gpu"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/80 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md transform-gpu"
             style={{ willChange: 'transform' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -154,7 +154,7 @@ export default function MempelaiSection() {
           {/* Frame Foto Portrait */}
           <div className="relative group mb-6">
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/30 to-amber-700/10 blur-sm opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
-            <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/60 backdrop-blur-sm">
+            <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/90">
               <Image
                 src="/bride.webp"
                 alt="Foto Rima Sugiarto"
@@ -191,7 +191,7 @@ export default function MempelaiSection() {
             href="https://www.instagram.com/rsp_1104/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/40 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md backdrop-blur-sm transform-gpu"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/80 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md transform-gpu"
             style={{ willChange: 'transform' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

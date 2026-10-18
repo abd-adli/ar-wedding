@@ -22,9 +22,7 @@ export default function FloatingMusicButton({
       className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 p-1.5 rounded-full cursor-pointer focus:outline-none select-none transition-shadow duration-300 group transform-gpu"
       style={{
         willChange: 'transform, opacity',
-        backgroundColor: 'rgba(15, 23, 42, 0.88)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
+        backgroundColor: 'rgba(15, 23, 42, 0.96)',
         border: '1.5px solid rgba(245, 158, 11, 0.55)',
         boxShadow: isPlaying
           ? '0 6px 25px rgba(0, 0, 0, 0.6), 0 0 18px rgba(245, 158, 11, 0.4)'
@@ -73,7 +71,7 @@ export default function FloatingMusicButton({
         {/* Center Music Note / Play Icon Overlay */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
           {!isPlaying ? (
-            <div className="w-5 h-5 rounded-full bg-black/60 backdrop-blur-xs flex items-center justify-center text-amber-300">
+            <div className="w-5 h-5 rounded-full bg-black/80 flex items-center justify-center text-amber-300">
               <svg viewBox="0 0 24 24" className="w-3 h-3 fill-current ml-0.5" aria-hidden="true">
                 <path d="M8 5v14l11-7z" />
               </svg>
