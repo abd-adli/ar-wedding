@@ -4,8 +4,6 @@ import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Great_Vibes } from 'next/font/google';
 
 import MempelaiSection     from '@/components/MempelaiSection';
 import FloatingMusicButton from '@/components/FloatingMusicButton';
@@ -33,13 +31,6 @@ const Guestbook = dynamic(() => import('@/components/Guestbook'), {
 });
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
-const greatVibes = Great_Vibes({
-  weight   : '400',
-  subsets  : ['latin'],
-  display  : 'swap',
-  variable : '--font-great-vibes',
-});
-
 const FONT_DISPLAY = "var(--font-cinzel), serif";
 const FONT_SERIF   = "var(--font-cormorant), serif";
 
@@ -83,7 +74,7 @@ function GuestNameReader({ onName }: { onName: (name: string) => void }) {
   return null;
 }
 
-// ─── Cover Page ───────────────────────────────────────────────────────────────
+// ─── Cover Page (Pure HTML & Tailwind, No Framer Motion) ──────────────────────
 function CoverPage({
   guestName,
   onOpen,
@@ -110,7 +101,7 @@ function CoverPage({
       }
     }, 400);
 
-    // 2. Cover menghilang secara mulus (cukup ubah opacity 0 & pointer-events none)
+    // 2. Cover menghilang secara mulus dengan transisi CSS murni
     setTimeout(() => {
       onOpen();
     }, 800);
@@ -118,12 +109,11 @@ function CoverPage({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex justify-center items-center bg-[#0B1528] overflow-hidden select-none transition-opacity duration-700 ease-out transform-gpu ${
+      className={`fixed inset-0 z-50 flex justify-center items-center bg-[#0B1528] overflow-hidden select-none transition-opacity duration-700 ease-out ${
         isOpening ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
       }`}
       style={{
         background: 'radial-gradient(ellipse at center, #11203d 0%, #0B1528 75%)',
-        willChange: 'opacity',
       }}
     >
       {/* Subtle Sogan Corner Accents */}
@@ -132,11 +122,11 @@ function CoverPage({
       <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-500/30 rounded-bl pointer-events-none z-0" />
       <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-500/30 rounded-br pointer-events-none z-0" />
 
-      {/* ── COVER CONTENT (Absolute Positioning Structure - Zero Flexbox Clashes) ── */}
+      {/* ── COVER CONTENT (Absolute Positioning Structure) ── */}
       <div className="relative w-full h-full max-w-lg mx-auto overflow-hidden pointer-events-auto">
         {/* 1. THE LOGO (PINNED TO TOP-8) */}
         <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center">
-          <div className="w-14 sm:w-16 md:w-20 drop-shadow-[0_0_20px_rgba(245,158,11,0.5)]">
+          <div className="w-14 sm:w-16 md:w-20">
             <Image
               src="/logo-ar-gold.webp"
               alt="A&R Logo"
@@ -144,7 +134,7 @@ function CoverPage({
               height={80}
               priority
               quality={75}
-              className="w-full h-auto"
+              className="w-full h-auto drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
             />
           </div>
         </div>
@@ -160,7 +150,7 @@ function CoverPage({
             height={600}
             priority
             quality={75}
-            className="w-full h-full object-contain filter drop-shadow-[0_0_35px_rgba(245,158,11,0.5)]"
+            className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(245,158,11,0.4)]"
           />
         </div>
 
@@ -168,29 +158,24 @@ function CoverPage({
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full flex flex-col items-center gap-3 z-20 px-4">
           {/* 'THE WEDDING OF' in small gold serif */}
           <p
-            className="text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-400/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] select-none m-0 p-0"
+            className="text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-400/90 select-none m-0 p-0"
             style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.9)' }}
           >
             The Wedding Of
           </p>
 
-          {/* 'Adli & Rima' in grand, expressive gold calligraphy */}
-          <div className="w-full flex justify-center text-center items-center pl-3 sm:pl-4 m-0 p-0">
-            <h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.15] select-none text-center w-full m-0 p-0 text-amber-300 drop-shadow-[0_4px_16px_rgba(245,158,11,0.6)] ${greatVibes.className}`}
-              style={{
-                textShadow: '0 2px 8px rgba(0,0,0,1), 0 4px 16px rgba(245,158,11,0.4)',
-              }}
-            >
-              <span>A</span>dli &amp; <span>R</span>ima
+          {/* Hardcoded Standard Couple Name */}
+          <div className="w-full flex justify-center text-center items-center m-0 p-0">
+            <h1 className="text-4xl font-serif text-amber-500">
+              Adli &amp; Rima
             </h1>
           </div>
 
-          {/* Sleek, Slim Guest Box - STATIC and ISOLATED */}
+          {/* Sleek, Slim Guest Box - No backdrop-blur, solid dark bg */}
           <div
-            className="guest-box bg-[#0a1128]/85 border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 shadow-xl text-center w-[85%] max-w-[260px]"
+            className="guest-box bg-[#0a1128]/90 border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 shadow-xl text-center w-[85%] max-w-[260px]"
             style={{
-              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2), inset 0 0 16px rgba(245, 158, 11, 0.1)',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4), inset 0 0 16px rgba(245, 158, 11, 0.1)',
             }}
           >
             {/* Sogan Corner Filigrees */}
@@ -200,15 +185,15 @@ function CoverPage({
             <div className="absolute bottom-1.5 right-1.5 w-2 h-2 border-b border-r border-amber-400/70 rounded-br pointer-events-none" />
 
             <p
-              className="text-[9px] sm:text-[10px] tracking-[0.25em] text-amber-200 uppercase font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,1)]"
-              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.95)' }}
+              className="text-[9px] sm:text-[10px] tracking-[0.25em] text-amber-200 uppercase font-medium"
+              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000' }}
             >
               KEPADA YTH. BAPAK/IBU/SAUDARA/I
             </p>
             <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent my-0.5" />
             <p
-              className="text-sm sm:text-base text-amber-300 font-semibold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,1)] truncate max-w-[220px]"
-              style={{ fontFamily: FONT_DISPLAY, textShadow: '0 1px 3px #000, 0 2px 8px rgba(0,0,0,0.95)' }}
+              className="text-sm sm:text-base text-amber-300 font-semibold tracking-wide truncate max-w-[220px]"
+              style={{ fontFamily: FONT_DISPLAY, textShadow: '0 1px 3px #000' }}
             >
               {guestName && guestName.trim() ? guestName : 'Tamu Undangan'}
             </p>
@@ -229,11 +214,6 @@ function CoverPage({
                 textShadow: '0 1px 2px rgba(0,0,0,0.8)',
               }}
             >
-              <span
-                className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none"
-                style={{ background: 'linear-gradient(90deg, transparent, rgba(254, 243, 199, 0.25), transparent)' }}
-                aria-hidden
-              />
               <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-amber-300 fill-current" aria-hidden="true">
                 <path d="M19 4H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-7 4.5L5 8V6l7 4.5L19 6v2z" />
               </svg>
@@ -297,7 +277,7 @@ export default function Home() {
               setIsPlaying(true);
             })
             .catch((err) => {
-              console.warn('Audio playback prevented:', err);
+              console.warn('Audio toggle prevented:', err);
             });
         }
       }
@@ -349,14 +329,14 @@ export default function Home() {
         <GuestNameReader onName={setGuestName} />
       </Suspense>
 
-      {/* ── STICKY HEADER ── */}
+      {/* ── STICKY HEADER (CSS Murni) ── */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 flex items-center justify-center pointer-events-none pt-2 transition-all duration-700 ease-in-out ${
           isOpened ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'
         }`}
       >
         <div
-          className="relative pointer-events-auto cursor-pointer flex items-center justify-center px-6 py-2 rounded-full bg-slate-900/40 backdrop-blur-none"
+          className="relative pointer-events-auto cursor-pointer flex items-center justify-center px-6 py-2 rounded-full bg-slate-900/40"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <Image
@@ -380,7 +360,7 @@ export default function Home() {
       )}
 
       {/* ════════════════════════════════════════════════════════════════
-          ISI UNDANGAN
+          ISI UNDANGAN (Murni HTML & Tailwind - Zero Framer Motion)
           ════════════════════════════════════════════════════════════════ */}
 
       {/* ── 1. SECTION HERO ── */}
@@ -394,14 +374,8 @@ export default function Home() {
           aria-hidden="true"
         />
 
-        {/* 1. RUMAH JOGLO SEBAGAI BACKGROUND */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] sm:w-[110%] md:w-[95%] max-w-4xl md:max-w-5xl z-0 pointer-events-none flex items-center justify-center transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isOpened ? { opacity: 0.22, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.9, delay: 0.15, ease: 'easeOut' }}
-        >
+        {/* 1. RUMAH JOGLO SEBAGAI BACKGROUND (Statis) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] sm:w-[110%] md:w-[95%] max-w-4xl md:max-w-5xl z-0 pointer-events-none flex items-center justify-center opacity-20">
           <Image
             src="/joglo-bg.webp"
             alt="Joglo Outline"
@@ -412,11 +386,11 @@ export default function Home() {
             sizes="(max-width: 768px) 100vw, 95vw"
             className="w-full h-auto object-contain"
           />
-        </motion.div>
+        </div>
 
-        {/* 2. ANIMASI LAMPU GANTUNG (CSS Wiggle Murni) */}
+        {/* 2. LAMPU GANTUNG (Gambar Statis Murni) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none flex flex-col items-center">
-          <div className="w-20 sm:w-24 md:w-28 drop-shadow-md mx-auto block opacity-50 origin-top animate-[wiggle_4s_ease-in-out_infinite]">
+          <div className="w-20 sm:w-24 md:w-28 drop-shadow-md mx-auto block opacity-50">
             <Image
               src="/lampu-gantung.webp"
               alt="Lampu Gantung"
@@ -429,170 +403,131 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 3. 4 SUDUT ORNAMEN BUNGA (CSS Wiggle Murni, Bebas Framer Motion) */}
+        {/* 3. 4 SUDUT ORNAMEN BUNGA (Gambar Statis Murni - No Animation) */}
 
         {/* Bunga Kiri Atas */}
         <div className="absolute top-0 left-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84">
-          <div className="origin-top-left animate-[wiggle_4s_ease-in-out_infinite]">
-            <Image
-              src="/ornamen-kiri-atas.webp"
-              alt=""
-              width={280}
-              height={156}
-              priority
-              quality={75}
-              sizes="(max-width: 640px) 192px, (max-width: 768px) 240px, 300px"
-              className="w-full h-auto object-contain"
-            />
-          </div>
+          <Image
+            src="/ornamen-kiri-atas.webp"
+            alt=""
+            width={280}
+            height={156}
+            priority
+            quality={75}
+            sizes="(max-width: 640px) 192px, (max-width: 768px) 240px, 300px"
+            className="w-full h-auto object-contain"
+          />
         </div>
 
         {/* Bunga Kanan Atas */}
         <div className="absolute top-0 right-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84">
-          <div className="origin-top-right animate-[wiggle_4s_ease-in-out_infinite]">
-            <Image
-              src="/ornamen-kanan-atas.webp"
-              alt=""
-              width={280}
-              height={156}
-              priority
-              quality={75}
-              sizes="(max-width: 640px) 192px, (max-width: 768px) 240px, 300px"
-              className="w-full h-auto object-contain"
-            />
-          </div>
+          <Image
+            src="/ornamen-kanan-atas.webp"
+            alt=""
+            width={280}
+            height={156}
+            priority
+            quality={75}
+            sizes="(max-width: 640px) 192px, (max-width: 768px) 240px, 300px"
+            className="w-full h-auto object-contain"
+          />
         </div>
 
         {/* Bunga Kiri Bawah */}
         <div className="absolute bottom-0 left-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92">
-          <div className="origin-bottom-left animate-[wiggle_4s_ease-in-out_infinite]">
-            <Image
-              src="/ornamen-kiri-bawah.webp"
-              alt=""
-              width={300}
-              height={167}
-              priority
-              quality={75}
-              sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 320px"
-              className="w-full h-auto object-contain object-bottom"
-            />
-          </div>
+          <Image
+            src="/ornamen-kiri-bawah.webp"
+            alt=""
+            width={300}
+            height={167}
+            priority
+            quality={75}
+            sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 320px"
+            className="w-full h-auto object-contain object-bottom"
+          />
         </div>
 
         {/* Bunga Kanan Bawah */}
         <div className="absolute bottom-0 right-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92">
-          <div className="origin-bottom-right animate-[wiggle_4s_ease-in-out_infinite]">
-            <Image
-              src="/ornamen-kanan-bawah.webp"
-              alt=""
-              width={300}
-              height={167}
-              priority
-              quality={75}
-              sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 320px"
-              className="w-full h-auto object-contain object-bottom"
-            />
-          </div>
+          <Image
+            src="/ornamen-kanan-bawah.webp"
+            alt=""
+            width={300}
+            height={167}
+            priority
+            quality={75}
+            sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 320px"
+            className="w-full h-auto object-contain object-bottom"
+          />
         </div>
 
-        {/* 4. LAYER KONTEN TEKS */}
+        {/* 4. LAYER KONTEN TEKS (HTML Standar) */}
         <div className="relative z-30 text-center flex flex-col items-center justify-between flex-1 w-full max-w-2xl mx-auto px-4 py-8 sm:py-12 my-auto min-h-[68vh] sm:min-h-[75vh]">
           
           {/* Top Block: Sogan Filigree & The Wedding Celebration Of */}
           <div className="flex flex-col items-center pt-2 sm:pt-4">
-            <motion.div
-              className="flex items-center gap-2.5 w-32 sm:w-40 mb-2.5 transform-gpu"
-              style={{ willChange: 'transform, opacity' }}
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={isOpened ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-            >
+            <div className="flex items-center gap-2.5 w-32 sm:w-40 mb-2.5">
               <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-400/60" />
               <span className="text-amber-400/80 text-[10px]">✦</span>
               <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-400/60" />
-            </motion.div>
+            </div>
 
-            <motion.p
-              className="text-[10px] sm:text-xs tracking-[0.45em] uppercase text-amber-300 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] select-none transform-gpu"
-              style={{ fontFamily: "var(--font-eb-garamond), serif", willChange: 'transform, opacity' }}
-              initial={{ opacity: 0, y: 12 }}
-              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-              transition={{ duration: 0.6, delay: 0.25, ease: 'easeOut' }}
+            <p
+              className="text-[10px] sm:text-xs tracking-[0.45em] uppercase text-amber-300 font-semibold select-none"
+              style={{ fontFamily: "var(--font-eb-garamond), serif", textShadow: '0 1px 3px #000' }}
             >
               The Wedding Celebration Of
-            </motion.p>
+            </p>
           </div>
 
-          {/* Center Block: Grand Calligraphic 'Adli & Rima' with safe text rendering */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }}
-            style={{ willChange: 'transform, opacity' }}
-            className="my-8 sm:my-12 md:my-16 overflow-visible relative flex flex-col items-center transform-gpu"
-          >
-            <div className="flex flex-col items-center">
-              <h1
-                className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-normal leading-[1.18] px-6 sm:px-10 py-2 select-none ${greatVibes.className} text-center relative z-10 overflow-visible text-amber-300`}
-                style={{
-                  textShadow: '0 2px 12px rgba(0,0,0,0.95), 0 0 20px rgba(245,158,11,0.4)',
-                }}
-              >
-                <span>A</span>dli <span className="text-amber-400 font-light">&amp;</span> <span>R</span>ima
-              </h1>
+          {/* Center Block: Hardcoded Standard Couple Name */}
+          <div className="my-8 sm:my-12 md:my-16 flex flex-col items-center">
+            <h1 className="text-4xl font-serif text-amber-500">
+              Adli &amp; Rima
+            </h1>
 
-              {/* Calligraphic Flourish Swash Beneath Name */}
-              <div className="flex items-center justify-center -mt-2 sm:-mt-3 w-full max-w-xs sm:max-w-md pointer-events-none opacity-85">
-                <svg viewBox="0 0 300 28" className="w-full h-auto text-amber-400 drop-shadow-[0_2px_6px_rgba(245,158,11,0.35)]" fill="none">
-                  <path
-                    d="M15 14 C 55 14, 70 4, 110 14 C 130 19, 140 22, 150 14 C 160 6, 170 9, 190 14 C 230 22, 245 14, 285 14"
-                    stroke="url(#swashGoldHero)"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                  <circle cx="150" cy="15" r="2" fill="#fef3c7" />
-                  <defs>
-                    <linearGradient id="swashGoldHero" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
-                      <stop offset="0%" stopColor="#f59e0b" stopOpacity="0" />
-                      <stop offset="25%" stopColor="#fbbf24" stopOpacity="0.8" />
-                      <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
-                      <stop offset="75%" stopColor="#fbbf24" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
+            {/* Calligraphic Flourish Swash Beneath Name */}
+            <div className="flex items-center justify-center mt-2 w-full max-w-xs sm:max-w-md pointer-events-none opacity-85">
+              <svg viewBox="0 0 300 28" className="w-full h-auto text-amber-400" fill="none">
+                <path
+                  d="M15 14 C 55 14, 70 4, 110 14 C 130 19, 140 22, 150 14 C 160 6, 170 9, 190 14 C 230 22, 245 14, 285 14"
+                  stroke="url(#swashGoldHero)"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+                <circle cx="150" cy="15" r="2" fill="#fef3c7" />
+                <defs>
+                  <linearGradient id="swashGoldHero" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#f59e0b" stopOpacity="0" />
+                    <stop offset="25%" stopColor="#fbbf24" stopOpacity="0.8" />
+                    <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
+                    <stop offset="75%" stopColor="#fbbf24" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
-          </motion.div>
+          </div>
 
           {/* Bottom Block: Warm Invitation Text & Dated Separator */}
           <div className="flex flex-col items-center gap-5 sm:gap-6 pb-4 sm:pb-8">
-            <motion.p
-              className="text-xs sm:text-sm md:text-base text-slate-200/90 font-light leading-relaxed max-w-md sm:max-w-lg mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] px-4 transform-gpu"
-              style={{ fontFamily: FONT_SERIF, willChange: 'transform, opacity' }}
-              initial={{ opacity: 0, y: 15 }}
-              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-              transition={{ duration: 0.6, delay: 0.45, ease: 'easeOut' }}
+            <p
+              className="text-xs sm:text-sm md:text-base text-slate-200/90 font-light leading-relaxed max-w-md sm:max-w-lg mx-auto px-4"
+              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000' }}
             >
               Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri dan memberikan doa restu pada hari bahagia kami.
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="flex items-center justify-center gap-3 w-full max-w-xs mx-auto transform-gpu"
-              style={{ willChange: 'transform, opacity' }}
-              initial={{ opacity: 0, y: 15 }}
-              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-              transition={{ duration: 0.6, delay: 0.55, ease: 'easeOut' }}
-            >
+            <div className="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
               <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/50 to-amber-500/80" />
               <span
-                className="text-xs sm:text-sm tracking-[0.35em] text-amber-300 font-medium select-none drop-shadow-sm"
-                style={{ fontFamily: FONT_DISPLAY }}
+                className="text-xs sm:text-sm tracking-[0.35em] text-amber-300 font-medium select-none"
+                style={{ fontFamily: FONT_DISPLAY, textShadow: '0 1px 2px #000' }}
               >
                 — 16.01.2027 —
               </span>
               <div className="h-px flex-1 bg-gradient-to-l from-transparent via-amber-500/50 to-amber-500/80" />
-            </motion.div>
+            </div>
           </div>
 
         </div>
@@ -610,16 +545,9 @@ export default function Home() {
 
       {/* Countdown (Waktu & Acara) */}
       <section className="relative w-full flex flex-col items-center px-0.5 sm:px-4 overflow-hidden">
-        <motion.div
-          className="w-full max-w-4xl flex justify-center transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
+        <div className="w-full max-w-4xl flex justify-center">
           <Countdown />
-        </motion.div>
+        </div>
       </section>
 
       <div className="w-full py-6 px-8 flex justify-center">
@@ -635,16 +563,9 @@ export default function Home() {
 
       {/* Gallery Prewedding */}
       <section className="relative w-full flex flex-col items-center px-4">
-        <motion.div
-          className="w-full max-w-5xl transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
+        <div className="w-full max-w-5xl">
           <Gallery />
-        </motion.div>
+        </div>
       </section>
 
       <div className="w-full py-6 px-8 flex justify-center">
@@ -696,16 +617,9 @@ export default function Home() {
 
       {/* Buku Tamu / Guestbook & Ucapan */}
       <section className="relative w-full flex flex-col items-center py-16 px-4">
-        <motion.div
-          className="w-full max-w-lg transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
+        <div className="w-full max-w-lg">
           <Guestbook />
-        </motion.div>
+        </div>
       </section>
 
       {/* Footer */}
@@ -722,10 +636,9 @@ export default function Home() {
         />
         <div className="text-center">
           <p
-            className="text-amber-500/80 tracking-[0.25em]"
-            style={{ fontFamily: FONT_DISPLAY, fontSize: '0.95rem' }}
+            className="text-amber-500 tracking-[0.25em] text-sm sm:text-base font-serif"
           >
-            <span>A</span>dli &amp; <span>R</span>ima
+            Adli &amp; Rima
           </p>
           <p
             className="text-[10px] text-slate-500 mt-1 tracking-[0.22em]"
