@@ -353,21 +353,14 @@ export default function Home() {
         <GuestNameReader onName={setGuestName} />
       </Suspense>
 
-      ── STICKY HEADER (COMMENTED OUT FOR IOS MEMORY DEBUGGING) ──
-      <motion.header
-        className="fixed top-0 left-0 right-0 z-40 flex items-center justify-center pointer-events-none pt-2 sm:pt-2.5 transform-gpu"
-        style={{ willChange: 'transform, opacity' }}
-        initial={{ opacity: 0, y: -25 }}
-        animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: -25 }}
-        transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      {/* ── STICKY HEADER ── */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 flex items-center justify-center pointer-events-none pt-2 transition-all duration-700 ease-in-out ${
+          isOpened ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'
+        }`}
       >
         <div
-          className="relative pointer-events-auto cursor-pointer flex items-center justify-center px-6 sm:px-8 py-2 sm:py-2.5 rounded-full"
-          style={{
-            background: 'radial-gradient(ellipse at center, rgba(11, 21, 40, 0.95) 0%, rgba(11, 21, 40, 0.75) 45%, transparent 75%)',
-            maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
-          }}
+          className="relative pointer-events-auto cursor-pointer flex items-center justify-center px-6 py-2 rounded-full bg-slate-900/40 backdrop-blur-none"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <Image
@@ -376,11 +369,10 @@ export default function Home() {
             width={60}
             height={60}
             quality={75}
-            className="w-11 sm:w-13 md:w-15 h-auto drop-shadow-[0_2px_12px_rgba(245,158,11,0.5)]"
+            className="w-11 sm:w-13 md:w-15 h-auto drop-shadow-[0_2px_10px_rgba(245,158,11,0.5)]"
           />
         </div>
-      </motion.header>
-     
+      </header>
 
       {/* ── Opening Cover ── */}
       {!isOpened && (
