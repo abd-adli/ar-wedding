@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Cinzel, Cormorant_Garamond, EB_Garamond, Great_Vibes } from 'next/font/google';
+import { Cinzel, Cormorant_Garamond, EB_Garamond } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 
 const cinzel = Cinzel({
@@ -24,10 +25,9 @@ const ebGaramond = EB_Garamond({
   display: 'swap',
 });
 
-const greatVibes = Great_Vibes({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-great-vibes',
+const jawaPalsu = localFont({
+  src: './fonts/JawaPalsu.ttf',
+  variable: '--font-jawapalsu',
   display: 'swap',
 });
 
@@ -51,9 +51,9 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`grain ${cinzel.variable} ${cormorant.variable} ${ebGaramond.variable} ${greatVibes.variable}`}
+      className={`grain ${cinzel.variable} ${cormorant.variable} ${ebGaramond.variable} ${jawaPalsu.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      <body className={`antialiased ${jawaPalsu.variable}`}>{children}</body>
     </html>
   );
 }

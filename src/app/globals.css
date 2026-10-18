@@ -25,7 +25,9 @@
   --font-serif: var(--font-cormorant), var(--font-eb-garamond), Georgia, serif;
   --font-display: var(--font-cinzel), serif;
   --font-sans: var(--font-eb-garamond), Georgia, serif;
-  --font-script: var(--font-great-vibes), cursive;
+  --font-script: var(--font-jawapalsu), cursive;
+  --font-jawapalsu: var(--font-jawapalsu), serif;
+  --font-arjuna: var(--font-jawapalsu), serif;
 }
 
 html {

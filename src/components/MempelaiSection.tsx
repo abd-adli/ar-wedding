@@ -2,13 +2,8 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Great_Vibes } from 'next/font/google';
 
-const greatVibes = Great_Vibes({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
+const FONT_JAWA = "var(--font-jawapalsu), serif";
 
 // Instagram SVG Icon
 function InstagramIcon({ className = 'w-4 h-4' }: { className?: string }) {
@@ -96,7 +91,8 @@ export default function MempelaiSection() {
 
           {/* Nama Lengkap */}
           <h3
-            className={`text-4xl sm:text-5xl text-amber-400 mb-2 drop-shadow-[0_2px_15px_rgba(245,158,11,0.25)] ${greatVibes.className}`}
+            className="text-4xl sm:text-5xl text-amber-400 mb-2 drop-shadow-[0_2px_15px_rgba(245,158,11,0.25)] select-none"
+            style={{ fontFamily: FONT_JAWA }}
           >
             Abdul Qodir Adli S.si
           </h3>
@@ -135,7 +131,8 @@ export default function MempelaiSection() {
         >
           <div className="h-px flex-1 max-w-[80px] sm:max-w-[120px] bg-gradient-to-r from-transparent via-amber-500/40 to-amber-500/70" />
           <span
-            className={`text-5xl sm:text-6xl text-amber-400/90 font-serif leading-none select-none ${greatVibes.className} drop-shadow-[0_2px_10px_rgba(245,158,11,0.3)]`}
+            className="text-5xl sm:text-6xl text-amber-400/90 leading-none select-none drop-shadow-[0_2px_10px_rgba(245,158,11,0.3)]"
+            style={{ fontFamily: FONT_JAWA }}
           >
             &amp;
           </span>
@@ -173,7 +170,8 @@ export default function MempelaiSection() {
 
           {/* Nama Lengkap */}
           <h3
-            className={`text-4xl sm:text-5xl text-amber-400 mb-2 drop-shadow-[0_2px_15px_rgba(245,158,11,0.25)] ${greatVibes.className}`}
+            className="text-4xl sm:text-5xl text-amber-400 mb-2 drop-shadow-[0_2px_15px_rgba(245,158,11,0.25)] select-none"
+            style={{ fontFamily: FONT_JAWA }}
           >
             Rima Sugiarto S.Farm
           </h3>

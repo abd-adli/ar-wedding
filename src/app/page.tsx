@@ -40,6 +40,7 @@ const Guestbook = dynamic(() => import('@/components/Guestbook'), {
 // ─── Fonts ────────────────────────────────────────────────────────────────────
 const FONT_DISPLAY = "var(--font-cinzel), serif";
 const FONT_SERIF   = "var(--font-cormorant), serif";
+const FONT_JAWA    = "var(--font-jawapalsu), serif";
 
 // ─── Decorative Divider ───────────────────────────────────────────────────────
 function OrnamentDivider() {
@@ -169,23 +170,35 @@ function CoverPage({
           {/* Contrast gradient behind text group to enhance legibility against Gunungan without backdrop-blur */}
           <div className="absolute -inset-x-4 -top-6 -bottom-2 bg-gradient-to-t from-black/75 via-black/40 to-transparent pointer-events-none -z-10 rounded-2xl" />
 
-          {/* 'THE WEDDING OF' in small gold serif with drop-shadow */}
-          <p
-            className="text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-300 font-medium select-none m-0 p-0 drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]"
-            style={{ fontFamily: FONT_SERIF, textShadow: '0 2px 4px rgba(0,0,0,0.9)' }}
+          {/* 'THE WEDDING OF' with required [text-shadow:_0_4px_10px_black] */}
+      {/* 'THE WEDDING OF' dengan Radial Glow Gelap biar gak ketabrak */}
+        <div className="relative inline-block mt-4 mb-1">
+          {/* Efek lampu sorot hitam (Glow) di belakang teks */}
+          <div className="absolute inset-0 bg-black/60 blur-md rounded-full -m-2 z-0"></div>
+          
+          <p 
+            className="relative z-10 text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-300 font-bold"
+            style={{ 
+              fontFamily: FONT_SERIF,
+              textShadow: '1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black' 
+            }}
           >
-            The Wedding Of
+            THE WEDDING OF
           </p>
+        </div>
 
-          {/* Hardcoded Standard Couple Name with drop-shadow */}
-          <div className="w-full flex justify-center text-center items-center m-0 p-0">
-            <h1
-              className="text-4xl font-serif text-amber-500 font-bold drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]"
-              style={{ textShadow: '0 2px 6px rgba(0,0,0,0.95), 0 4px 10px rgba(0,0,0,0.9)' }}
-            >
-              Adli &amp; Rima
-            </h1>
-          </div>
+        {/* Couple Name (Aksara Jawa / Jawa Palsu) dengan outline kuli */}
+        <div className="w-full flex justify-center text-center items-center m-0 p-0">
+          <h1 
+            className="text-5xl sm:text-6xl md:text-7xl text-amber-400 font-normal select-none"
+            style={{ 
+              fontFamily: FONT_JAWA,
+              textShadow: '3px 3px 8px rgba(0,0,0,0.9), -1px -1px 3px black, 1px -1px 3px black, -1px 1px 3px black, 1px 1px 3px black' 
+            }}
+          >
+            Adli &amp; Rima
+          </h1>
+        </div>
 
           {/* Sleek, Slim Guest Box - No backdrop-blur, solid dark bg */}
           <div className="guest-box bg-[#0a1128] border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 text-center w-[85%] max-w-[260px]">
@@ -251,7 +264,7 @@ export default function Home() {
     }
   }, []);
 
-  // Pause music when tab/browser is minimized or hidden, resume when visible
+  // Handle browser visibility change (pause music when minimized/hidden, resume when active)
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -497,16 +510,19 @@ export default function Home() {
             </div>
 
             <p
-              className="text-[10px] sm:text-xs tracking-[0.45em] uppercase text-amber-300 font-semibold select-none"
-              style={{ fontFamily: "var(--font-eb-garamond), serif", textShadow: '0 1px 3px #000' }}
+              className="text-[10px] sm:text-xs tracking-[0.45em] uppercase text-amber-300 font-semibold select-none [text-shadow:_0_4px_10px_black]"
+              style={{ fontFamily: "var(--font-eb-garamond), serif" }}
             >
               The Wedding Celebration Of
             </p>
           </div>
 
-          {/* Center Block: Hardcoded Standard Couple Name */}
+          {/* Center Block: Couple Name (Aksara Jawa / Jawa Palsu) with [text-shadow:_0_4px_10px_black] */}
           <div className="my-8 sm:my-12 md:my-16 flex flex-col items-center">
-            <h1 className="text-4xl font-serif text-amber-500">
+            <h1
+              className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-normal text-amber-400 [text-shadow:_0_4px_10px_black] text-center select-none"
+              style={{ fontFamily: FONT_JAWA }}
+            >
               Adli &amp; Rima
             </h1>
 
@@ -536,8 +552,8 @@ export default function Home() {
           {/* Bottom Block: Warm Invitation Text & Dated Separator */}
           <div className="flex flex-col items-center gap-5 sm:gap-6 pb-4 sm:pb-8">
             <p
-              className="text-xs sm:text-sm md:text-base text-slate-200/90 font-light leading-relaxed max-w-md sm:max-w-lg mx-auto px-4"
-              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000' }}
+              className="text-xs sm:text-sm md:text-base text-slate-200/90 font-light leading-relaxed max-w-md sm:max-w-lg mx-auto px-4 [text-shadow:_0_4px_10px_black]"
+              style={{ fontFamily: FONT_SERIF }}
             >
               Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri dan memberikan doa restu pada hari bahagia kami.
             </p>
@@ -545,8 +561,8 @@ export default function Home() {
             <div className="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
               <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/50 to-amber-500/80" />
               <span
-                className="text-xs sm:text-sm tracking-[0.35em] text-amber-300 font-medium select-none"
-                style={{ fontFamily: FONT_DISPLAY, textShadow: '0 1px 2px #000' }}
+                className="text-xs sm:text-sm tracking-[0.35em] text-amber-300 font-medium select-none [text-shadow:_0_4px_10px_black]"
+                style={{ fontFamily: FONT_DISPLAY }}
               >
                 — 16.01.2027 —
               </span>
@@ -660,7 +676,8 @@ export default function Home() {
         />
         <div className="text-center">
           <p
-            className="text-amber-500 tracking-[0.25em] text-sm sm:text-base font-serif"
+            className="text-3xl sm:text-4xl text-amber-400 [text-shadow:_0_4px_10px_black]"
+            style={{ fontFamily: FONT_JAWA }}
           >
             Adli &amp; Rima
           </p>

@@ -1,0 +1,25 @@
+/* [project]/src/app/jawapalsu_a423a86e.module.css [app-client] (css) */
+@font-face {
+  font-family: jawaPalsu;
+  src: url("../media/JawaPalsu-s.p.28jxwrue903w5.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: jawaPalsu Fallback;
+  src: local(Arial);
+  ascent-override: 79.13%;
+  descent-override: 52.01%;
+  line-gap-override: 0.0%;
+  size-adjust: 139.01%;
+}
+
+.jawapalsu_a423a86e-module__SqNPxa__className {
+  font-family: jawaPalsu, jawaPalsu Fallback;
+}
+
+.jawapalsu_a423a86e-module__SqNPxa__variable {
+  --font-jawapalsu: "jawaPalsu", "jawaPalsu Fallback";
+}
+
+/*# sourceMappingURL=src_app_jawapalsu_a423a86e_module_css_1igg3k2-ikub5._.single.css.map*/

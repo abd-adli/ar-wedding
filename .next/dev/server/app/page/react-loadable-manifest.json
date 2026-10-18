@@ -2,8 +2,7 @@
   "[project]/src/components/MempelaiSection.tsx [app-client] (ecmascript, next/dynamic entry)": {
     "id": "[project]/src/components/MempelaiSection.tsx [app-client] (ecmascript, next/dynamic entry)",
     "files": [
-      "static/chunks/[next]_internal_font_google_great_vibes_d2f4e430_module_0ke11yemu1rru.css",
-      "static/chunks/[root-of-the-server]__0pzkfv0qd_-p1._.js"
+      "static/chunks/src_components_MempelaiSection_tsx_131mtges1bewm._.js"
     ]
   },
   "[project]/src/components/Countdown.tsx [app-client] (ecmascript, next/dynamic entry)": {
