@@ -116,12 +116,9 @@ function CoverPage({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex justify-center items-center bg-[#0B1528] overflow-hidden select-none transition-opacity duration-700 ease-out ${
+      className={`fixed inset-0 z-50 flex justify-center items-center bg-[#0B1528] overflow-hidden select-none transition-all duration-1000 ease-in-out ${
         isOpening ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
       }`}
-      style={{
-        background: 'radial-gradient(ellipse at center, #11203d 0%, #0B1528 75%)',
-      }}
     >
       {/* Subtle Sogan Corner Accents */}
       <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-500/30 rounded-tl pointer-events-none z-0" />
@@ -132,7 +129,11 @@ function CoverPage({
       {/* ── COVER CONTENT (Absolute Positioning Structure) ── */}
       <div className="relative w-full h-full max-w-lg mx-auto overflow-hidden pointer-events-auto">
         {/* 1. THE LOGO (PINNED TO TOP-8) */}
-        <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center">
+        <div
+          className={`absolute top-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center transition-all duration-700 ease-in-out ${
+            isOpening ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'
+          }`}
+        >
           <div className="w-14 sm:w-16 md:w-20">
             <Image
               src="/logo-ar-gold.webp"
@@ -141,50 +142,53 @@ function CoverPage({
               height={80}
               priority
               quality={75}
-              className="w-full h-auto drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
+              className="w-full h-auto"
             />
           </div>
         </div>
 
-        {/* 2. THE GUNUNGAN (MASSIVE BACKGROUND PUSHED DOWN TO TOP-[60%]) */}
+        {/* 2. THE GUNUNGAN (HTML <img> biasa, Tanpa Drop-Shadow, Animasi Tailwind Murni) */}
         <div
-          className="absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[420px] min-w-[380px] max-w-[95%] scale-110 sm:scale-120 z-0 pointer-events-none flex items-center justify-center overflow-visible opacity-90 h-[520px] sm:h-[580px] md:h-[620px]"
+          className={`absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] min-w-[380px] max-w-[95%] scale-110 sm:scale-120 z-0 pointer-events-none flex items-center justify-center overflow-visible h-[520px] sm:h-[580px] md:h-[620px] transition-all duration-1000 ease-in-out ${
+            isOpening ? 'opacity-0 scale-95 -translate-y-[62%]' : 'opacity-90'
+          }`}
         >
-          <Image
+          <img
             src="/gunungan.webp"
             alt="Gunungan Wayang"
-            width={480}
-            height={600}
-            priority
-            quality={75}
-            className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(245,158,11,0.4)]"
+            className="w-full h-full object-contain"
           />
         </div>
 
         {/* 3. THE MAIN CONTENT (NAMES + SLIM GUEST BOX + BUTTON) - BOTTOM-8 */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full flex flex-col items-center gap-3 z-20 px-4">
-          {/* 'THE WEDDING OF' in small gold serif */}
+        <div
+          className={`absolute bottom-8 left-1/2 -translate-x-1/2 w-full flex flex-col items-center gap-3 z-20 px-4 transition-all duration-700 ease-in-out ${
+            isOpening ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'
+          }`}
+        >
+          {/* Contrast gradient behind text group to enhance legibility against Gunungan without backdrop-blur */}
+          <div className="absolute -inset-x-4 -top-6 -bottom-2 bg-gradient-to-t from-black/75 via-black/40 to-transparent pointer-events-none -z-10 rounded-2xl" />
+
+          {/* 'THE WEDDING OF' in small gold serif with drop-shadow */}
           <p
-            className="text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-400/90 select-none m-0 p-0"
-            style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000, 0 2px 6px rgba(0,0,0,0.9)' }}
+            className="text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-300 font-medium select-none m-0 p-0 drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]"
+            style={{ fontFamily: FONT_SERIF, textShadow: '0 2px 4px rgba(0,0,0,0.9)' }}
           >
             The Wedding Of
           </p>
 
-          {/* Hardcoded Standard Couple Name */}
+          {/* Hardcoded Standard Couple Name with drop-shadow */}
           <div className="w-full flex justify-center text-center items-center m-0 p-0">
-            <h1 className="text-4xl font-serif text-amber-500">
+            <h1
+              className="text-4xl font-serif text-amber-500 font-bold drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]"
+              style={{ textShadow: '0 2px 6px rgba(0,0,0,0.95), 0 4px 10px rgba(0,0,0,0.9)' }}
+            >
               Adli &amp; Rima
             </h1>
           </div>
 
           {/* Sleek, Slim Guest Box - No backdrop-blur, solid dark bg */}
-          <div
-            className="guest-box bg-[#0a1128]/90 border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 shadow-xl text-center w-[85%] max-w-[260px]"
-            style={{
-              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4), inset 0 0 16px rgba(245, 158, 11, 0.1)',
-            }}
-          >
+          <div className="guest-box bg-[#0a1128] border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 text-center w-[85%] max-w-[260px]">
             {/* Sogan Corner Filigrees */}
             <div className="absolute top-1.5 left-1.5 w-2 h-2 border-t border-l border-amber-400/70 rounded-tl pointer-events-none" />
             <div className="absolute top-1.5 right-1.5 w-2 h-2 border-t border-r border-amber-400/70 rounded-tr pointer-events-none" />
@@ -193,14 +197,14 @@ function CoverPage({
 
             <p
               className="text-[9px] sm:text-[10px] tracking-[0.25em] text-amber-200 uppercase font-medium"
-              style={{ fontFamily: FONT_SERIF, textShadow: '0 1px 3px #000' }}
+              style={{ fontFamily: FONT_SERIF }}
             >
               KEPADA YTH. BAPAK/IBU/SAUDARA/I
             </p>
             <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent my-0.5" />
             <p
               className="text-sm sm:text-base text-amber-300 font-semibold tracking-wide truncate max-w-[220px]"
-              style={{ fontFamily: FONT_DISPLAY, textShadow: '0 1px 3px #000' }}
+              style={{ fontFamily: FONT_DISPLAY }}
             >
               {guestName && guestName.trim() ? guestName : 'Tamu Undangan'}
             </p>
@@ -211,14 +215,12 @@ function CoverPage({
             <button
               type="button"
               onClick={handleOpen}
-              className="px-6 py-2 rounded-full text-xs sm:text-sm tracking-[0.25em] uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95"
+              className="px-6 py-2 rounded-full text-xs sm:text-sm tracking-[0.25em] uppercase transition-all duration-300 relative overflow-hidden group cursor-pointer flex items-center gap-2 hover:scale-105 active:scale-95"
               style={{
                 fontFamily: FONT_SERIF,
-                background: 'linear-gradient(135deg, rgba(180, 83, 9, 0.9) 0%, rgba(120, 53, 15, 0.95) 100%)',
+                background: 'linear-gradient(135deg, rgba(180, 83, 9, 0.95) 0%, rgba(120, 53, 15, 1) 100%)',
                 border    : '1px solid rgba(245, 158, 11, 0.65)',
                 color     : '#fef3c7',
-                boxShadow : '0 4px 20px rgba(217, 119, 6, 0.35), 0 0 12px rgba(0,0,0,0.8)',
-                textShadow: '0 1px 2px rgba(0,0,0,0.8)',
               }}
             >
               <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-amber-300 fill-current" aria-hidden="true">
@@ -248,6 +250,21 @@ export default function Home() {
       audioRef.current.volume = 0.3;
     }
   }, []);
+
+  // Pause music when tab/browser is minimized or hidden, resume when visible
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (audioRef.current) audioRef.current.pause();
+      } else {
+        if (isPlaying && audioRef.current) {
+          audioRef.current.play().catch((e) => console.log(e));
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [isPlaying]);
 
   // Auto-play music on invitation entry (triggered by Buka Undangan user click)
   const handlePlayMusic = () => {
