@@ -353,7 +353,7 @@ export default function Home() {
         <GuestNameReader onName={setGuestName} />
       </Suspense>
 
-      {/* ── STICKY HEADER (Fixed Top Logo with localized radial background) ── */}
+      {/* ── STICKY HEADER (COMMENTED OUT FOR IOS MEMORY DEBUGGING) ──
       <motion.header
         className="fixed top-0 left-0 right-0 z-40 flex items-center justify-center pointer-events-none pt-2 sm:pt-2.5 transform-gpu"
         style={{ willChange: 'transform, opacity' }}
@@ -380,6 +380,7 @@ export default function Home() {
           />
         </div>
       </motion.header>
+      */}
 
       {/* ── Opening Cover ── */}
       {!isOpened && (
@@ -391,11 +392,13 @@ export default function Home() {
       )}
 
       {/* ════════════════════════════════════════════════════════════════
-          1. SECTION HERO (Tinggi min-h-screen, relatif)
-          ════════════════════════════════════════════════════════════════ */}
+          ISI UNDANGAN (COMMENTED OUT UNTUK DEBUGGING MEMORI IOS)
+          ════════════════════════════════════════════════════════════════
+
+      -- 1. SECTION HERO (Tinggi min-h-screen, relatif) --
       <section className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden px-4 pt-12 sm:pt-16 pb-12 sm:pb-16 text-center bg-[#0B1528]">
 
-        {/* ── Subtle Ambient Gold Radial Glow ── */}
+        -- Subtle Ambient Gold Radial Glow --
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -404,7 +407,7 @@ export default function Home() {
           aria-hidden="true"
         />
 
-        {/* ── 1. RUMAH JOGLO SEBAGAI BACKGROUND (Centered behind typography) ── */}
+        -- 1. RUMAH JOGLO SEBAGAI BACKGROUND (Centered behind typography) --
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] sm:w-[110%] md:w-[95%] max-w-4xl md:max-w-5xl z-0 pointer-events-none flex items-center justify-center transform-gpu"
           style={{ willChange: 'transform, opacity' }}
@@ -424,7 +427,7 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* ── 2. ANIMASI LAMPU GANTUNG (Snugly tucked at top with pendulum sway) ── */}
+        -- 2. ANIMASI LAMPU GANTUNG (Snugly tucked at top with pendulum sway) --
         <motion.div
           className="absolute top-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none flex flex-col items-center transform-gpu"
           style={{ willChange: 'transform, opacity' }}
@@ -454,9 +457,9 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* ── 3. 4 SUDUT ORNAMEN BUNGA (Subtle, Ambient Breeze Swaying) ── */}
+        -- 3. 4 SUDUT ORNAMEN BUNGA (Subtle, Ambient Breeze Swaying) --
 
-        {/* Bunga Kiri Atas */}
+        -- Bunga Kiri Atas --
         <motion.div
           className="absolute top-0 left-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84 transform-gpu"
           style={{ willChange: 'transform, opacity' }}
@@ -483,7 +486,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Bunga Kanan Atas */}
+        -- Bunga Kanan Atas --
         <motion.div
           className="absolute top-0 right-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84 transform-gpu"
           style={{ willChange: 'transform, opacity' }}
@@ -510,7 +513,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Bunga Kiri Bawah */}
+        -- Bunga Kiri Bawah --
         <motion.div
           className="absolute bottom-0 left-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92 transform-gpu"
           style={{ willChange: 'transform, opacity' }}
@@ -537,7 +540,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Bunga Kanan Bawah */}
+        -- Bunga Kanan Bawah --
         <motion.div
           className="absolute bottom-0 right-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92 transform-gpu"
           style={{ willChange: 'transform, opacity' }}
@@ -564,10 +567,10 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* ── 4. LAYER KONTEN TEKS (Balanced Vertical Spacing & Ornate Calligraphy) ── */}
+        -- 4. LAYER KONTEN TEKS (Balanced Vertical Spacing & Ornate Calligraphy) --
         <div className="relative z-30 text-center flex flex-col items-center justify-between flex-1 w-full max-w-2xl mx-auto px-4 py-8 sm:py-12 my-auto min-h-[68vh] sm:min-h-[75vh]">
           
-          {/* Top Block: Sogan Filigree & The Wedding Celebration Of */}
+          -- Top Block: Sogan Filigree & The Wedding Celebration Of --
           <div className="flex flex-col items-center pt-2 sm:pt-4">
             <motion.div
               className="flex items-center gap-2.5 w-32 sm:w-40 mb-2.5 transform-gpu"
@@ -592,7 +595,7 @@ export default function Home() {
             </motion.p>
           </div>
 
-          {/* Center Block: Grand Calligraphic 'Adli & Rima' with generous vertical breathing room */}
+          -- Center Block: Grand Calligraphic 'Adli & Rima' with generous vertical breathing room --
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -616,7 +619,7 @@ export default function Home() {
                 <span>A</span>dli &amp; <span>R</span>ima
               </h1>
 
-              {/* Calligraphic Flourish Swash Beneath Name */}
+              -- Calligraphic Flourish Swash Beneath Name --
               <div className="flex items-center justify-center -mt-2 sm:-mt-3 w-full max-w-xs sm:max-w-md pointer-events-none opacity-85">
                 <svg viewBox="0 0 300 28" className="w-full h-auto text-amber-400 drop-shadow-[0_2px_6px_rgba(245,158,11,0.35)]" fill="none">
                   <path
@@ -640,7 +643,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Bottom Block: Warm Invitation Text & Dated Separator (Pushed further down naturally) */}
+          -- Bottom Block: Warm Invitation Text & Dated Separator (Pushed further down naturally) --
           <div className="flex flex-col items-center gap-5 sm:gap-6 pb-4 sm:pb-8">
             <motion.p
               className="text-xs sm:text-sm md:text-base text-slate-200/90 font-light leading-relaxed max-w-md sm:max-w-lg mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] px-4 transform-gpu"
@@ -674,18 +677,16 @@ export default function Home() {
 
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          KONTEN TENGAH: PROFIL MEMPELAI, ACARA/COUNTDOWN, GALERI, CAMERA
-          ════════════════════════════════════════════════════════════════ */}
+      -- KONTEN TENGAH: PROFIL MEMPELAI, ACARA/COUNTDOWN, GALERI, CAMERA --
 
-      {/* Profil Mempelai (Groom & Bride) */}
+      -- Profil Mempelai (Groom & Bride) --
       <MempelaiSection />
 
       <div className="w-full py-6 px-8 flex justify-center">
         <OrnamentDivider />
       </div>
 
-      {/* Countdown (Waktu & Acara) */}
+      -- Countdown (Waktu & Acara) --
       <section className="relative w-full flex flex-col items-center px-0.5 sm:px-4 overflow-hidden">
         <motion.div
           className="w-full max-w-4xl flex justify-center transform-gpu"
@@ -703,14 +704,14 @@ export default function Home() {
         <OrnamentDivider />
       </div>
 
-      {/* Love Story (Cerita Kita) */}
+      -- Love Story (Cerita Kita) --
       <LoveStory />
 
       <div className="w-full py-6 px-8 flex justify-center">
         <OrnamentDivider />
       </div>
 
-      {/* Gallery Prewedding */}
+      -- Gallery Prewedding --
       <section className="relative w-full flex flex-col items-center px-4">
         <motion.div
           className="w-full max-w-5xl transform-gpu"
@@ -728,7 +729,7 @@ export default function Home() {
         <OrnamentDivider />
       </div>
 
-      {/* DispossCam (Kamera Tamu) */}
+      -- DispossCam (Kamera Tamu) --
       <section className="relative w-full flex flex-col items-center px-4">
         <motion.div
           className="w-full max-w-md transform-gpu"
@@ -742,16 +743,14 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Amplop Digital / Digital Gift */}
+      -- Amplop Digital / Digital Gift --
       <DigitalGift />
 
       <div className="w-full py-6 px-8 flex justify-center">
         <OrnamentDivider />
       </div>
 
-      {/* ════════════════════════════════════════════════════════════════
-          2. SECTION BUKU TAMU / GUESTBOOK & UCAPAN
-          ════════════════════════════════════════════════════════════════ */}
+      -- 2. SECTION BUKU TAMU / GUESTBOOK & UCAPAN --
       <section className="relative w-full flex flex-col items-center py-16 px-4">
         <motion.div
           className="w-full max-w-lg transform-gpu"
@@ -765,9 +764,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          FOOTER
-          ════════════════════════════════════════════════════════════════ */}
+      -- FOOTER --
       <footer
         className="w-full flex flex-col items-center gap-4 py-16 px-4 border-t border-amber-500/10 text-center"
       >
@@ -797,6 +794,8 @@ export default function Home() {
           Dibuat dengan ❤️ — Anchored Realm
         </p>
       </footer>
+
+      */}
 
     </main>
   );
