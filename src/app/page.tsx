@@ -353,7 +353,7 @@ export default function Home() {
         <GuestNameReader onName={setGuestName} />
       </Suspense>
 
-      {/* ── STICKY HEADER (COMMENTED OUT FOR IOS MEMORY DEBUGGING) ──
+      ── STICKY HEADER (COMMENTED OUT FOR IOS MEMORY DEBUGGING) ──
       <motion.header
         className="fixed top-0 left-0 right-0 z-40 flex items-center justify-center pointer-events-none pt-2 sm:pt-2.5 transform-gpu"
         style={{ willChange: 'transform, opacity' }}
@@ -380,7 +380,7 @@ export default function Home() {
           />
         </div>
       </motion.header>
-      */}
+     
 
       {/* ── Opening Cover ── */}
       {!isOpened && (
