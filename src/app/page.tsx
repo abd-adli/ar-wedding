@@ -177,14 +177,9 @@ function CoverPage({
           {/* 'Adli & Rima' in grand, expressive gold calligraphy */}
           <div className="w-full flex justify-center text-center items-center pl-3 sm:pl-4 m-0 p-0">
             <h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.15] select-none text-center w-full m-0 p-0 ${greatVibes.className}`}
+              className={`text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.15] select-none text-center w-full m-0 p-0 text-amber-300 drop-shadow-[0_4px_16px_rgba(245,158,11,0.6)] ${greatVibes.className}`}
               style={{
-                background: 'linear-gradient(160deg, #fef3c7 0%, #fbbf24 35%, #d97706 65%, #92400e 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor : 'transparent',
-                backgroundClip      : 'text',
-                overflow            : 'visible',
-                filter              : 'drop-shadow(0 2px 8px rgba(0,0,0,0.9))',
+                textShadow: '0 2px 8px rgba(0,0,0,1), 0 4px 16px rgba(245,158,11,0.4)',
               }}
             >
               <span>A</span>dli &amp; <span>R</span>ima
@@ -257,6 +252,7 @@ export default function Home() {
   const [isOpened,  setIsOpened]  = useState(false);
   const [guestName, setGuestName] = useState('Tamu Undangan');
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Set default audio volume to 30% (0.3) on mount
@@ -384,13 +380,12 @@ export default function Home() {
       )}
 
       {/* ════════════════════════════════════════════════════════════════
-          ISI UNDANGAN (COMMENTED OUT UNTUK DEBUGGING MEMORI IOS)
-          ════════════════════════════════════════════════════════════════
+          ISI UNDANGAN
+          ════════════════════════════════════════════════════════════════ */}
 
-      -- 1. SECTION HERO (Tinggi min-h-screen, relatif) --
+      {/* ── 1. SECTION HERO ── */}
       <section className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden px-4 pt-12 sm:pt-16 pb-12 sm:pb-16 text-center bg-[#0B1528]">
-
-        -- Subtle Ambient Gold Radial Glow --
+        {/* Subtle Ambient Gold Radial Glow */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -399,13 +394,13 @@ export default function Home() {
           aria-hidden="true"
         />
 
-        -- 1. RUMAH JOGLO SEBAGAI BACKGROUND (Centered behind typography) --
+        {/* 1. RUMAH JOGLO SEBAGAI BACKGROUND */}
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] sm:w-[110%] md:w-[95%] max-w-4xl md:max-w-5xl z-0 pointer-events-none flex items-center justify-center transform-gpu"
           style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={isOpened ? { opacity: 0.22, scale: 1 } : { opacity: 0, scale: 0.94 }}
-          transition={{ duration: 1.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isOpened ? { opacity: 0.22, scale: 1 } : { opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.9, delay: 0.15, ease: 'easeOut' }}
         >
           <Image
             src="/joglo-bg.webp"
@@ -419,24 +414,9 @@ export default function Home() {
           />
         </motion.div>
 
-        -- 2. ANIMASI LAMPU GANTUNG (Snugly tucked at top with pendulum sway) --
-        <motion.div
-          className="absolute top-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none flex flex-col items-center transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: -30 }}
-          animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.div
-            className="w-20 sm:w-24 md:w-28 drop-shadow-md mx-auto block opacity-50 transform-gpu"
-            style={{ transformOrigin: 'top center', willChange: 'transform' }}
-            animate={{ rotate: [-4, 4, -4], y: [-2, 2, -2] }}
-            transition={{
-              duration: 5.5,
-              ease: 'easeInOut',
-              repeat: Infinity,
-            }}
-          >
+        {/* 2. ANIMASI LAMPU GANTUNG (CSS Wiggle Murni) */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none flex flex-col items-center">
+          <div className="w-20 sm:w-24 md:w-28 drop-shadow-md mx-auto block opacity-50 origin-top animate-[wiggle_4s_ease-in-out_infinite]">
             <Image
               src="/lampu-gantung.webp"
               alt="Lampu Gantung"
@@ -446,25 +426,14 @@ export default function Home() {
               quality={75}
               className="w-full h-auto"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        -- 3. 4 SUDUT ORNAMEN BUNGA (Subtle, Ambient Breeze Swaying) --
+        {/* 3. 4 SUDUT ORNAMEN BUNGA (CSS Wiggle Murni, Bebas Framer Motion) */}
 
-        -- Bunga Kiri Atas --
-        <motion.div
-          className="absolute top-0 left-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84 transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={isOpened ? { opacity: 0.95, scale: 1 } : { opacity: 0, scale: 0.92 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.div
-            className="transform-gpu"
-            style={{ transformOrigin: 'top left', willChange: 'transform' }}
-            animate={{ rotate: [-2, 2, -2] }}
-            transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
-          >
+        {/* Bunga Kiri Atas */}
+        <div className="absolute top-0 left-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84">
+          <div className="origin-top-left animate-[wiggle_4s_ease-in-out_infinite]">
             <Image
               src="/ornamen-kiri-atas.webp"
               alt=""
@@ -475,23 +444,12 @@ export default function Home() {
               sizes="(max-width: 640px) 192px, (max-width: 768px) 240px, 300px"
               className="w-full h-auto object-contain"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        -- Bunga Kanan Atas --
-        <motion.div
-          className="absolute top-0 right-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84 transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={isOpened ? { opacity: 0.95, scale: 1 } : { opacity: 0, scale: 0.92 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.div
-            className="transform-gpu"
-            style={{ transformOrigin: 'top right', willChange: 'transform' }}
-            animate={{ rotate: [2, -2, 2] }}
-            transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
-          >
+        {/* Bunga Kanan Atas */}
+        <div className="absolute top-0 right-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84">
+          <div className="origin-top-right animate-[wiggle_4s_ease-in-out_infinite]">
             <Image
               src="/ornamen-kanan-atas.webp"
               alt=""
@@ -502,23 +460,12 @@ export default function Home() {
               sizes="(max-width: 640px) 192px, (max-width: 768px) 240px, 300px"
               className="w-full h-auto object-contain"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        -- Bunga Kiri Bawah --
-        <motion.div
-          className="absolute bottom-0 left-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92 transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={isOpened ? { opacity: 0.92, scale: 1 } : { opacity: 0, scale: 0.92 }}
-          transition={{ duration: 1.2, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.div
-            className="transform-gpu"
-            style={{ transformOrigin: 'bottom left', willChange: 'transform' }}
-            animate={{ rotate: [-2, 2, -2] }}
-            transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
-          >
+        {/* Bunga Kiri Bawah */}
+        <div className="absolute bottom-0 left-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92">
+          <div className="origin-bottom-left animate-[wiggle_4s_ease-in-out_infinite]">
             <Image
               src="/ornamen-kiri-bawah.webp"
               alt=""
@@ -529,23 +476,12 @@ export default function Home() {
               sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 320px"
               className="w-full h-auto object-contain object-bottom"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        -- Bunga Kanan Bawah --
-        <motion.div
-          className="absolute bottom-0 right-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92 transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={isOpened ? { opacity: 0.92, scale: 1 } : { opacity: 0, scale: 0.92 }}
-          transition={{ duration: 1.2, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.div
-            className="transform-gpu"
-            style={{ transformOrigin: 'bottom right', willChange: 'transform' }}
-            animate={{ rotate: [2, -2, 2] }}
-            transition={{ duration: 7, ease: 'easeInOut', repeat: Infinity }}
-          >
+        {/* Bunga Kanan Bawah */}
+        <div className="absolute bottom-0 right-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92">
+          <div className="origin-bottom-right animate-[wiggle_4s_ease-in-out_infinite]">
             <Image
               src="/ornamen-kanan-bawah.webp"
               alt=""
@@ -556,20 +492,20 @@ export default function Home() {
               sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 320px"
               className="w-full h-auto object-contain object-bottom"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        -- 4. LAYER KONTEN TEKS (Balanced Vertical Spacing & Ornate Calligraphy) --
+        {/* 4. LAYER KONTEN TEKS */}
         <div className="relative z-30 text-center flex flex-col items-center justify-between flex-1 w-full max-w-2xl mx-auto px-4 py-8 sm:py-12 my-auto min-h-[68vh] sm:min-h-[75vh]">
           
-          -- Top Block: Sogan Filigree & The Wedding Celebration Of --
+          {/* Top Block: Sogan Filigree & The Wedding Celebration Of */}
           <div className="flex flex-col items-center pt-2 sm:pt-4">
             <motion.div
               className="flex items-center gap-2.5 w-32 sm:w-40 mb-2.5 transform-gpu"
               style={{ willChange: 'transform, opacity' }}
               initial={{ opacity: 0, scaleX: 0 }}
               animate={isOpened ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
-              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
             >
               <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-400/60" />
               <span className="text-amber-400/80 text-[10px]">✦</span>
@@ -579,39 +515,33 @@ export default function Home() {
             <motion.p
               className="text-[10px] sm:text-xs tracking-[0.45em] uppercase text-amber-300 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] select-none transform-gpu"
               style={{ fontFamily: "var(--font-eb-garamond), serif", willChange: 'transform, opacity' }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-              transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              transition={{ duration: 0.6, delay: 0.25, ease: 'easeOut' }}
             >
               The Wedding Celebration Of
             </motion.p>
           </div>
 
-          -- Center Block: Grand Calligraphic 'Adli & Rima' with generous vertical breathing room --
+          {/* Center Block: Grand Calligraphic 'Adli & Rima' with safe text rendering */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }}
             style={{ willChange: 'transform, opacity' }}
             className="my-8 sm:my-12 md:my-16 overflow-visible relative flex flex-col items-center transform-gpu"
           >
             <div className="flex flex-col items-center">
               <h1
-                className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-normal leading-[1.18] px-6 sm:px-10 py-2 select-none ${greatVibes.className} text-center relative z-10 overflow-visible`}
+                className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-normal leading-[1.18] px-6 sm:px-10 py-2 select-none ${greatVibes.className} text-center relative z-10 overflow-visible text-amber-300`}
                 style={{
-                  background:
-                    'linear-gradient(145deg, #ffffff 0%, #fef3c7 20%, #fde68a 45%, #f59e0b 70%, #d97706 88%, #92400e 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor : 'transparent',
-                  backgroundClip      : 'text',
-                  filter:
-                    'drop-shadow(0 2px 8px rgba(0,0,0,0.9)) drop-shadow(0 0 15px rgba(245,158,11,0.25))',
+                  textShadow: '0 2px 12px rgba(0,0,0,0.95), 0 0 20px rgba(245,158,11,0.4)',
                 }}
               >
-                <span>A</span>dli &amp; <span>R</span>ima
+                <span>A</span>dli <span className="text-amber-400 font-light">&amp;</span> <span>R</span>ima
               </h1>
 
-              -- Calligraphic Flourish Swash Beneath Name --
+              {/* Calligraphic Flourish Swash Beneath Name */}
               <div className="flex items-center justify-center -mt-2 sm:-mt-3 w-full max-w-xs sm:max-w-md pointer-events-none opacity-85">
                 <svg viewBox="0 0 300 28" className="w-full h-auto text-amber-400 drop-shadow-[0_2px_6px_rgba(245,158,11,0.35)]" fill="none">
                   <path
@@ -635,14 +565,14 @@ export default function Home() {
             </div>
           </motion.div>
 
-          -- Bottom Block: Warm Invitation Text & Dated Separator (Pushed further down naturally) --
+          {/* Bottom Block: Warm Invitation Text & Dated Separator */}
           <div className="flex flex-col items-center gap-5 sm:gap-6 pb-4 sm:pb-8">
             <motion.p
               className="text-xs sm:text-sm md:text-base text-slate-200/90 font-light leading-relaxed max-w-md sm:max-w-lg mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] px-4 transform-gpu"
               style={{ fontFamily: FONT_SERIF, willChange: 'transform, opacity' }}
-              initial={{ opacity: 0, y: 18 }}
-              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-              transition={{ duration: 0.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+              transition={{ duration: 0.6, delay: 0.45, ease: 'easeOut' }}
             >
               Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri dan memberikan doa restu pada hari bahagia kami.
             </motion.p>
@@ -650,9 +580,9 @@ export default function Home() {
             <motion.div
               className="flex items-center justify-center gap-3 w-full max-w-xs mx-auto transform-gpu"
               style={{ willChange: 'transform, opacity' }}
-              initial={{ opacity: 0, y: 18 }}
-              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-              transition={{ duration: 0.9, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={isOpened ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+              transition={{ duration: 0.6, delay: 0.55, ease: 'easeOut' }}
             >
               <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/50 to-amber-500/80" />
               <span
@@ -669,24 +599,24 @@ export default function Home() {
 
       </section>
 
-      -- KONTEN TENGAH: PROFIL MEMPELAI, ACARA/COUNTDOWN, GALERI, CAMERA --
+      {/* ── KONTEN TENGAH ── */}
 
-      -- Profil Mempelai (Groom & Bride) --
+      {/* Profil Mempelai (Groom & Bride) */}
       <MempelaiSection />
 
       <div className="w-full py-6 px-8 flex justify-center">
         <OrnamentDivider />
       </div>
 
-      -- Countdown (Waktu & Acara) --
+      {/* Countdown (Waktu & Acara) */}
       <section className="relative w-full flex flex-col items-center px-0.5 sm:px-4 overflow-hidden">
         <motion.div
           className="w-full max-w-4xl flex justify-center transform-gpu"
           style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           <Countdown />
         </motion.div>
@@ -696,22 +626,22 @@ export default function Home() {
         <OrnamentDivider />
       </div>
 
-      -- Love Story (Cerita Kita) --
+      {/* Love Story (Cerita Kita) */}
       <LoveStory />
 
       <div className="w-full py-6 px-8 flex justify-center">
         <OrnamentDivider />
       </div>
 
-      -- Gallery Prewedding --
+      {/* Gallery Prewedding */}
       <section className="relative w-full flex flex-col items-center px-4">
         <motion.div
           className="w-full max-w-5xl transform-gpu"
           style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           <Gallery />
         </motion.div>
@@ -721,42 +651,64 @@ export default function Home() {
         <OrnamentDivider />
       </div>
 
-      -- DispossCam (Kamera Tamu) --
-      <section className="relative w-full flex flex-col items-center px-4">
-        <motion.div
-          className="w-full max-w-md transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7 }}
-        >
-          <DispossCam />
-        </motion.div>
+      {/* DispossCam (Kamera Tamu - LAZY LOADED) */}
+      <section className="relative w-full flex flex-col items-center px-4 py-8">
+        {!isCameraOpen ? (
+          <div className="flex flex-col items-center text-center gap-4 max-w-sm w-full p-6 rounded-2xl bg-slate-900/70 border border-amber-500/20 shadow-xl">
+            <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-xl text-amber-400 tracking-wide" style={{ fontFamily: FONT_DISPLAY }}>Disposs Cam</h3>
+              <p className="text-xs text-slate-400 font-serif mt-1">Abadikan momen istimewa Anda dengan sentuhan kamera analog</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsCameraOpen(true)}
+              className="px-6 py-2.5 rounded-full text-xs uppercase tracking-[0.2em] font-serif bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 text-amber-100 transition-all shadow-lg mt-2 cursor-pointer border border-amber-500/40 active:scale-95"
+            >
+              Buka Kamera
+            </button>
+          </div>
+        ) : (
+          <div className="w-full max-w-md flex flex-col items-center relative">
+            <button
+              type="button"
+              onClick={() => setIsCameraOpen(false)}
+              className="mb-4 px-4 py-1.5 rounded-full text-xs font-serif text-slate-400 border border-slate-700 hover:text-white hover:border-slate-500 transition-colors cursor-pointer"
+            >
+              ✕ Tutup Kamera
+            </button>
+            <DispossCam />
+          </div>
+        )}
       </section>
 
-      -- Amplop Digital / Digital Gift --
+      {/* Amplop Digital / Digital Gift */}
       <DigitalGift />
 
       <div className="w-full py-6 px-8 flex justify-center">
         <OrnamentDivider />
       </div>
 
-      -- 2. SECTION BUKU TAMU / GUESTBOOK & UCAPAN --
+      {/* Buku Tamu / Guestbook & Ucapan */}
       <section className="relative w-full flex flex-col items-center py-16 px-4">
         <motion.div
           className="w-full max-w-lg transform-gpu"
           style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           <Guestbook />
         </motion.div>
       </section>
 
-      -- FOOTER --
+      {/* Footer */}
       <footer
         className="w-full flex flex-col items-center gap-4 py-16 px-4 border-t border-amber-500/10 text-center"
       >
@@ -773,7 +725,7 @@ export default function Home() {
             className="text-amber-500/80 tracking-[0.25em]"
             style={{ fontFamily: FONT_DISPLAY, fontSize: '0.95rem' }}
           >
-            Adli &amp; Rima
+            <span>A</span>dli &amp; <span>R</span>ima
           </p>
           <p
             className="text-[10px] text-slate-500 mt-1 tracking-[0.22em]"
@@ -786,8 +738,6 @@ export default function Home() {
           Dibuat dengan ❤️ — Anchored Realm
         </p>
       </footer>
-
-      */}
 
     </main>
   );
