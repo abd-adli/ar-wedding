@@ -518,7 +518,7 @@ export default function Home() {
 
         {/* Bunga Kiri Atas — origin: top left */}
         <div
-          className="absolute top-0 left-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84 animate-flora"
+          className="absolute top-0 left-0 z-10 pointer-events-none w-36 sm:w-44 md:w-52 animate-flora"
           style={{ transformOrigin: 'top left' }}
         >
           <Image
@@ -535,7 +535,7 @@ export default function Home() {
 
         {/* Bunga Kanan Atas — origin: top right */}
         <div
-          className="absolute top-0 right-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84 animate-flora-alt"
+          className="absolute top-0 right-0 z-10 pointer-events-none w-36 sm:w-44 md:w-52 animate-flora-alt"
           style={{ transformOrigin: 'top right' }}
         >
           <Image
@@ -552,7 +552,7 @@ export default function Home() {
 
         {/* Bunga Kiri Bawah — origin: bottom left */}
         <div
-          className="absolute bottom-0 left-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92 animate-flora-slow"
+          className="absolute bottom-0 left-0 z-10 pointer-events-none w-36 sm:w-44 md:w-52 animate-flora-slow"
           style={{ transformOrigin: 'bottom left' }}
         >
           <Image
@@ -569,7 +569,7 @@ export default function Home() {
 
         {/* Bunga Kanan Bawah — origin: bottom right */}
         <div
-          className="absolute bottom-0 right-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92 animate-flora-alt-slow"
+          className="absolute bottom-0 right-0 z-10 pointer-events-none w-36 sm:w-44 md:w-52 animate-flora-alt-slow"
           style={{ transformOrigin: 'bottom right' }}
         >
           <Image
@@ -644,16 +644,24 @@ export default function Home() {
               Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri dan memberikan doa restu pada hari bahagia kami.
             </p>
 
-            <div className="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/50 to-amber-500/80" />
-              <span
-                className="text-xs sm:text-sm tracking-[0.35em] text-amber-300 font-medium select-none [text-shadow:_0_4px_10px_black]"
-                style={{ fontFamily: FONT_DISPLAY }}
-              >
-                — 16.01.2027 —
-              </span>
-              <div className="h-px flex-1 bg-gradient-to-l from-transparent via-amber-500/50 to-amber-500/80" />
-            </div>
+         <div className="flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/50 to-amber-500/80" />
+          <div className="flex flex-col items-center gap-1">
+            <span
+              className="text-xs sm:text-sm tracking-[0.25em] text-amber-300 font-medium select-none"
+              style={{ fontFamily: FONT_DISPLAY }}
+            >
+              — 16.01.2027 M —
+            </span>
+            <span
+              className="text-[10px] sm:text-xs tracking-[0.25em] text-amber-400/80 font-light select-none"
+              style={{ fontFamily: FONT_DISPLAY }}
+            >
+              08.08.1448 H
+            </span>
+          </div>
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent via-amber-500/50 to-amber-500/80" />
+        </div>
           </div>
 
         </div>
