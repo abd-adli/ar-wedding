@@ -88,6 +88,28 @@ body {
   50% { transform: rotate(3deg); }
 }
 
+/* ── GPU-SAFE: Lampu Gantung Pendulum (transform-origin: top center) ─────── */
+@keyframes pendulum {
+  0%, 100% { transform: rotate(-4deg); }
+  50%      { transform: rotate(4deg); }
+}
+
+/* ── GPU-SAFE: Bunga / Daun Breathing Sway (scale + rotate, sangat tipis) ── */
+@keyframes flora-breathe {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25%      { transform: scale(1.02) rotate(1.5deg); }
+  50%      { transform: scale(1.03) rotate(0deg); }
+  75%      { transform: scale(1.02) rotate(-1.5deg); }
+}
+
+/* Variasi terbalik untuk ornamen sudut yang berbeda */
+@keyframes flora-breathe-alt {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25%      { transform: scale(1.02) rotate(-1.2deg); }
+  50%      { transform: scale(1.03) rotate(0deg); }
+  75%      { transform: scale(1.02) rotate(1.2deg); }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -111,6 +133,31 @@ body {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+/* ── Lampu Gantung Goyang ──────────────────────────────────────────────────── */
+.animate-pendulum {
+  animation: pendulum 5s ease-in-out infinite;
+  transform-origin: top center;
+  will-change: transform;
+}
+
+/* ── Bunga Breathing Sway ──────────────────────────────────────────────────── */
+.animate-flora {
+  animation: flora-breathe 7s ease-in-out infinite;
+  will-change: transform;
+}
+.animate-flora-alt {
+  animation: flora-breathe-alt 8s ease-in-out infinite;
+  will-change: transform;
+}
+.animate-flora-slow {
+  animation: flora-breathe 9s ease-in-out infinite;
+  will-change: transform;
+}
+.animate-flora-alt-slow {
+  animation: flora-breathe-alt 10s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* ── Utility Classes ───────────────────────────────────────────────────────── */

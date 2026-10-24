@@ -82,7 +82,7 @@ function GuestNameReader({ onName }: { onName: (name: string) => void }) {
   return null;
 }
 
-// ─── Cover Page (Pure HTML & Tailwind, No Framer Motion) ──────────────────────
+// ─── Cover Page (GPU-Safe Split Gunungan + Fade-Out) ──────────────────────────
 function CoverPage({
   guestName,
   onOpen,
@@ -109,17 +109,20 @@ function CoverPage({
       }
     }, 400);
 
-    // 2. Cover menghilang secara mulus dengan transisi CSS murni
+    // 2. Unmount Cover setelah animasi split + fade selesai (1400ms)
     setTimeout(() => {
       onOpen();
-    }, 800);
+    }, 1400);
   };
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex justify-center items-center bg-[#0B1528] overflow-hidden select-none transition-all duration-1000 ease-in-out ${
-        isOpening ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
-      }`}
+      className="fixed inset-0 z-50 flex justify-center items-center bg-[#0B1528] overflow-hidden select-none"
+      style={{
+        opacity: isOpening ? 0 : 1,
+        transition: 'opacity 1.2s ease-in-out',
+        willChange: 'opacity',
+      }}
     >
       {/* Subtle Sogan Corner Accents */}
       <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-500/30 rounded-tl pointer-events-none z-0" />
@@ -127,13 +130,20 @@ function CoverPage({
       <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-500/30 rounded-bl pointer-events-none z-0" />
       <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-500/30 rounded-br pointer-events-none z-0" />
 
-      {/* ── COVER CONTENT (Absolute Positioning Structure) ── */}
-      <div className="relative w-full h-full max-w-lg mx-auto overflow-hidden pointer-events-auto">
-        {/* 1. THE LOGO (PINNED TO TOP-8) */}
+      {/* ── COVER CONTENT ── */}
+      <div className="relative w-full h-full max-w-lg mx-auto overflow-hidden">
+
+        {/* 1. THE LOGO (PINNED TO TOP-8) — fades up on open */}
         <div
-          className={`absolute top-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center transition-all duration-700 ease-in-out ${
-            isOpening ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'
-          }`}
+          className="absolute top-8 left-1/2 z-30 flex flex-col items-center"
+          style={{
+            transform: isOpening
+              ? 'translateX(-50%) translateY(-20px)'
+              : 'translateX(-50%) translateY(0)',
+            opacity: isOpening ? 0 : 1,
+            transition: 'transform 0.8s ease-in-out, opacity 0.8s ease-in-out',
+            willChange: 'transform, opacity',
+          }}
         >
           <div className="w-14 sm:w-16 md:w-20">
             <Image
@@ -148,60 +158,124 @@ function CoverPage({
           </div>
         </div>
 
-        {/* 2. THE GUNUNGAN (HTML <img> biasa, Tanpa Drop-Shadow, Animasi Tailwind Murni) */}
+        {/* 2. GUNUNGAN MEMBELAH — Kiri slide ke kiri, Kanan slide ke kanan */}
+        {/* Container yang menampung kedua belahan */}
         <div
-          className={`absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] min-w-[380px] max-w-[95%] scale-110 sm:scale-120 z-0 pointer-events-none flex items-center justify-center overflow-visible h-[520px] sm:h-[580px] md:h-[620px] transition-all duration-1000 ease-in-out ${
-            isOpening ? 'opacity-0 scale-95 -translate-y-[62%]' : 'opacity-90'
-          }`}
+          className="absolute top-[60%] left-1/2 w-[420px] min-w-[380px] max-w-[95%] h-[520px] sm:h-[580px] md:h-[620px] z-0 pointer-events-none"
+          style={{
+            transform: 'translateX(-50%) translateY(-50%) scale(1.1)',
+          }}
         >
-          <img
-            src="/gunungan.webp"
-            alt="Gunungan Wayang"
-            className="w-full h-full object-contain"
-          />
+          {/* Belahan KIRI — clip kiri 50%, slide ke translateX(-110%) */}
+          <div
+            className="absolute inset-0 overflow-hidden"
+            style={{
+              clipPath: 'inset(0 50% 0 0)',
+              transform: isOpening ? 'translateX(-110%)' : 'translateX(0)',
+              opacity: isOpening ? 0.3 : 0.9,
+              transition: 'transform 1.1s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s ease-in-out',
+              willChange: 'transform, opacity',
+            }}
+          >
+            <img
+              src="/gunungan.webp"
+              alt="Gunungan Kiri"
+              className="w-full h-full object-contain"
+            />
+          </div>
+
+          {/* Belahan KANAN — clip kanan 50%, slide ke translateX(110%) */}
+          <div
+            className="absolute inset-0 overflow-hidden"
+            style={{
+              clipPath: 'inset(0 0 0 50%)',
+              transform: isOpening ? 'translateX(110%)' : 'translateX(0)',
+              opacity: isOpening ? 0.3 : 0.9,
+              transition: 'transform 1.1s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s ease-in-out',
+              willChange: 'transform, opacity',
+            }}
+          >
+            <img
+              src="/gunungan.webp"
+              alt="Gunungan Kanan"
+              className="w-full h-full object-contain"
+            />
+          </div>
         </div>
 
-        {/* 3. THE MAIN CONTENT (NAMES + SLIM GUEST BOX + BUTTON) - BOTTOM-8 */}
+        {/* 3. THE MAIN CONTENT (NAMES + GUEST BOX + BUTTON) — slides down + fades */}
         <div
-          className={`absolute bottom-8 left-1/2 -translate-x-1/2 w-full flex flex-col items-center gap-3 z-20 px-4 transition-all duration-700 ease-in-out ${
-            isOpening ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'
-          }`}
+          className="absolute bottom-8 left-1/2 w-full flex flex-col items-center gap-3 z-20 px-4"
+          style={{
+            transform: isOpening
+              ? 'translateX(-50%) translateY(30px)'
+              : 'translateX(-50%) translateY(0)',
+            opacity: isOpening ? 0 : 1,
+            transition: 'transform 0.9s ease-in-out, opacity 0.8s ease-in-out',
+            willChange: 'transform, opacity',
+          }}
         >
-          {/* Contrast gradient behind text group to enhance legibility against Gunungan without backdrop-blur */}
+          {/* Contrast gradient behind text group (STATIC — not animated, iOS safe) */}
           <div className="absolute -inset-x-4 -top-6 -bottom-2 bg-gradient-to-t from-black/75 via-black/40 to-transparent pointer-events-none -z-10 rounded-2xl" />
 
-          {/* 'THE WEDDING OF' with required [text-shadow:_0_4px_10px_black] */}
-      {/* 'THE WEDDING OF' dengan Radial Glow Gelap biar gak ketabrak */}
-        <div className="relative inline-block mt-4 mb-1">
-          {/* Efek lampu sorot hitam (Glow) di belakang teks */}
-          <div className="absolute inset-0 bg-black/60 blur-md rounded-full -m-2 z-0"></div>
-          
-          <p 
-            className="relative z-10 text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-300 font-bold"
-            style={{ 
-              fontFamily: FONT_SERIF,
-              textShadow: '1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black' 
-            }}
-          >
-            THE WEDDING OF
-          </p>
-        </div>
+          {/* 'THE WEDDING OF' dengan Radial Glow Gelap */}
+          <div className="relative inline-block mt-4 mb-1">
+            {/* Glow backing (STATIC element, blur is safe here — not animated) */}
+            <div className="absolute inset-0 bg-black/60 blur-md rounded-full -m-2 z-0" />
+            <p
+              className="relative z-10 text-center text-xs sm:text-sm tracking-[0.45em] uppercase text-amber-300 font-bold"
+              style={{
+                fontFamily: FONT_SERIF,
+                textShadow: '1px 1px 2px black, -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black',
+              }}
+            >
+              THE WEDDING OF
+            </p>
+          </div>
 
-        {/* Couple Name (Aksara Jawa / Jawa Palsu) dengan outline kuli */}
-        <div className="w-full flex justify-center text-center items-center m-0 p-0">
-          <h1 
-            className="text-5xl sm:text-6xl md:text-7xl text-amber-400 font-normal select-none"
-            style={{ 
-              fontFamily: FONT_JAWA,
-              textShadow: '3px 3px 8px rgba(0,0,0,0.9), -1px -1px 3px black, 1px -1px 3px black, -1px 1px 3px black, 1px 1px 3px black' 
-            }}
-          >
-            Adli &amp; Rima
-          </h1>
-        </div>
+          {/* Couple Name (Aksara Jawa / Jawa Palsu) dengan outline kuli */}
+          <div className="w-full flex justify-center text-center items-center m-0 p-0">
+            <h1
+              className="text-5xl sm:text-6xl md:text-7xl text-amber-400 font-normal select-none"
+              style={{
+                fontFamily: FONT_JAWA,
+                textShadow: '3px 3px 8px rgba(0,0,0,0.9), -1px -1px 3px black, 1px -1px 3px black, -1px 1px 3px black, 1px 1px 3px black',
+              }}
+            >
+              Adli &amp; Rima
+            </h1>
+          </div>
 
-          {/* Sleek, Slim Guest Box - No backdrop-blur, solid dark bg */}
-          <div className="guest-box bg-[#0a1128] border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 text-center w-[85%] max-w-[260px]">
+          {/* Tanggal Masehi & Hijriah */}
+          <div className="flex flex-col items-center gap-0.5 mt-0.5 mb-0.5">
+            {/* Garis emas tipis */}
+            <div className="flex items-center gap-2 w-full max-w-[240px]">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/50" />
+              <span className="text-amber-500/70 text-[9px]">✦</span>
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/50" />
+            </div>
+            {/* Tanggal Masehi */}
+            <p
+              className="text-[11px] sm:text-xs tracking-[0.3em] text-amber-300 font-medium select-none"
+              style={{
+                fontFamily: FONT_SERIF,
+                textShadow: '1px 1px 3px rgba(0,0,0,0.9)',
+              }}
+            >
+              16 · JANUARI · 2027
+            </p>
+            {/* Tanggal Hijriah */}
+            <p
+              className="text-[10px] sm:text-[11px] tracking-[0.2em] text-amber-400/70 select-none"
+              style={{
+                fontFamily: FONT_SERIF,
+                textShadow: '1px 1px 3px rgba(0,0,0,0.9)',
+              }}
+            >
+              8 Sya&#x02BC;ban 1448 H
+            </p>
+          </div>
+          <div className="guest-box bg-slate-950/40 backdrop-blur-sm border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 text-center w-[85%] max-w-[260px]">
             {/* Sogan Corner Filigrees */}
             <div className="absolute top-1.5 left-1.5 w-2 h-2 border-t border-l border-amber-400/70 rounded-tl pointer-events-none" />
             <div className="absolute top-1.5 right-1.5 w-2 h-2 border-t border-r border-amber-400/70 rounded-tr pointer-events-none" />
@@ -232,8 +306,8 @@ function CoverPage({
               style={{
                 fontFamily: FONT_SERIF,
                 background: 'linear-gradient(135deg, rgba(180, 83, 9, 0.95) 0%, rgba(120, 53, 15, 1) 100%)',
-                border    : '1px solid rgba(245, 158, 11, 0.65)',
-                color     : '#fef3c7',
+                border: '1px solid rgba(245, 158, 11, 0.65)',
+                color: '#fef3c7',
               }}
             >
               <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-amber-300 fill-current" aria-hidden="true">
@@ -425,9 +499,9 @@ export default function Home() {
           />
         </div>
 
-        {/* 2. LAMPU GANTUNG (Gambar Statis Murni) */}
+        {/* 2. LAMPU GANTUNG (Animasi Pendulum — GPU-Safe, transform-origin: top) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none flex flex-col items-center">
-          <div className="w-20 sm:w-24 md:w-28 drop-shadow-md mx-auto block opacity-50">
+          <div className="w-20 sm:w-24 md:w-28 mx-auto block opacity-50 animate-pendulum">
             <Image
               src="/lampu-gantung.webp"
               alt="Lampu Gantung"
@@ -440,10 +514,13 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 3. 4 SUDUT ORNAMEN BUNGA (Gambar Statis Murni - No Animation) */}
+        {/* 3. 4 SUDUT ORNAMEN BUNGA (Breathing Sway — GPU-Safe, transform only) */}
 
-        {/* Bunga Kiri Atas */}
-        <div className="absolute top-0 left-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84">
+        {/* Bunga Kiri Atas — origin: top left */}
+        <div
+          className="absolute top-0 left-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84 animate-flora"
+          style={{ transformOrigin: 'top left' }}
+        >
           <Image
             src="/ornamen-kiri-atas.webp"
             alt=""
@@ -456,8 +533,11 @@ export default function Home() {
           />
         </div>
 
-        {/* Bunga Kanan Atas */}
-        <div className="absolute top-0 right-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84">
+        {/* Bunga Kanan Atas — origin: top right */}
+        <div
+          className="absolute top-0 right-0 z-10 pointer-events-none w-48 sm:w-60 md:w-72 lg:w-84 animate-flora-alt"
+          style={{ transformOrigin: 'top right' }}
+        >
           <Image
             src="/ornamen-kanan-atas.webp"
             alt=""
@@ -470,8 +550,11 @@ export default function Home() {
           />
         </div>
 
-        {/* Bunga Kiri Bawah */}
-        <div className="absolute bottom-0 left-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92">
+        {/* Bunga Kiri Bawah — origin: bottom left */}
+        <div
+          className="absolute bottom-0 left-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92 animate-flora-slow"
+          style={{ transformOrigin: 'bottom left' }}
+        >
           <Image
             src="/ornamen-kiri-bawah.webp"
             alt=""
@@ -484,8 +567,11 @@ export default function Home() {
           />
         </div>
 
-        {/* Bunga Kanan Bawah */}
-        <div className="absolute bottom-0 right-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92">
+        {/* Bunga Kanan Bawah — origin: bottom right */}
+        <div
+          className="absolute bottom-0 right-0 z-10 pointer-events-none w-52 sm:w-64 md:w-80 lg:w-92 animate-flora-alt-slow"
+          style={{ transformOrigin: 'bottom right' }}
+        >
           <Image
             src="/ornamen-kanan-bawah.webp"
             alt=""

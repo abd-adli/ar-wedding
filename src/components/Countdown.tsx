@@ -134,6 +134,12 @@ export default function Countdown() {
             >
               Sabtu, 16 Januari 2027
             </p>
+            <p
+              className="text-[10px] sm:text-xs text-amber-400/75 font-light tracking-[0.2em] drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)] -mt-0.5"
+              style={{ fontFamily: "var(--font-cormorant), serif" }}
+            >
+              8 Sya&#x02BC;ban 1448 H
+            </p>
           </motion.div>
 
           {/* 4 Separate Rounded White Boxes */}
@@ -329,6 +335,12 @@ export default function Countdown() {
               style={{ fontFamily: "var(--font-cormorant), serif" }}
             >
               Sabtu, 16 Januari 2027
+            </p>
+            <p
+              className="text-[11px] sm:text-xs text-amber-400/70 font-light tracking-[0.18em] drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] -mt-0.5"
+              style={{ fontFamily: "var(--font-cormorant), serif" }}
+            >
+              8 Sya&#x02BC;ban 1448 H
             </p>
 
             <div className="flex items-center gap-2 text-sm sm:text-base text-amber-300 font-light tracking-wider drop-shadow-sm">
