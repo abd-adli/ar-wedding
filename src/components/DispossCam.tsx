@@ -9,6 +9,7 @@ import {
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/lib/supabase';
+import { sendViaHiddenIframe } from '@/lib/googleScriptSync';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -26,6 +27,9 @@ type UIState =
 const TABLE = 'guest_photos';
 const BUCKET = 'dissposcam-bucket';
 const FOLDER = 'disposscam-images';
+const GOOGLE_SCRIPT_URL =
+  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
+  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -378,6 +382,13 @@ export default function DispossCam() {
         console.warn('[DispossCam] Supabase photo DB insert warning:', dbErr);
       }
 
+
+      // 3. CORS-safe background form submission to Google Apps Script / Drive
+      sendViaHiddenIframe(GOOGLE_SCRIPT_URL, {
+        type: 'photo',
+        guestName: guestNameVal,
+        imageBase64: dataUrl.replace(/^data:image\/\w+;base64,/, ''),
+      });
 
       // 4. Display photo to guest immediately
       setCapturedUrl(publicImageUrl);

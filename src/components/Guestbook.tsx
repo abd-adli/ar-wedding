@@ -3,11 +3,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createClient } from '@supabase/supabase-js';
+import { sendViaHiddenIframe } from '@/lib/googleScriptSync';
 
 // ─── 1. Initialize Supabase Client ────────────────────────────────────────────
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+const GOOGLE_SCRIPT_URL =
+  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
+  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 export interface GuestbookEntry {
@@ -223,6 +228,15 @@ export default function Guestbook() {
           prev.map((m) => (m.id === tempId ? savedEntry! : m))
         );
       }
+
+      // Dual-write to Google Sheets via CORS-safe background hidden iframe
+      sendViaHiddenIframe(GOOGLE_SCRIPT_URL, {
+        type: 'rsvp',
+        name: newEntry.guest_name,
+        attendance,
+        pax: attendance === 'hadir' ? pax : 0,
+        message: newEntry.message,
+      });
 
       // Re-fetch to guarantee absolute synchronization
       fetchMessages();
