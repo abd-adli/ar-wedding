@@ -9,7 +9,6 @@ import {
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/lib/supabase';
-import { sendViaHiddenIframe } from '@/lib/googleScriptSync';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -27,9 +26,7 @@ type UIState =
 const TABLE = 'guest_photos';
 const BUCKET = 'dissposcam-bucket';
 const FOLDER = 'disposscam-images';
-const GOOGLE_SCRIPT_URL =
-  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
-  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
+
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -330,7 +327,7 @@ export default function DispossCam() {
     stopStream();
     setUiState('uploading');
 
-    const dataUrl = canvas.toDataURL('image/jpeg', 0.88);
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
     const guestNameVal = guestNameRef.current || 'Tamu';
 
     try {
@@ -383,12 +380,52 @@ export default function DispossCam() {
       }
 
 
-      // 3. CORS-safe background form submission to Google Apps Script / Drive
-      sendViaHiddenIframe(GOOGLE_SCRIPT_URL, {
-        type: 'photo',
-        guestName: guestNameVal,
-        imageBase64: dataUrl.replace(/^data:image\/\w+;base64,/, ''),
-      });
+      // 3. Sync to Google Drive: try /api/gas-proxy first, fallback to direct no-cors fetch
+      try {
+        const drivePayload = {
+          type: 'photo',
+          guestName: guestNameVal,
+          imageBase64: dataUrl.replace(/^data:image\/\w+;base64,/, ''),
+        };
+        const payloadStr = JSON.stringify(drivePayload);
+        const GOOGLE_SCRIPT_URL =
+          process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
+          'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
+
+        let driveSynced = false;
+        try {
+          const proxyRes = await fetch('/api/gas-proxy', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payloadStr,
+          });
+          if (proxyRes.ok) {
+            driveSynced = true;
+          }
+        } catch {
+          // proxy failed — will fallback below
+        }
+
+        if (!driveSynced) {
+          // Fallback: direct no-cors fetch — opaque response means it reached GAS
+          const fallbackRes = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: payloadStr,
+          });
+          // opaque response (type === 'opaque') means success with no-cors
+          if (fallbackRes.type === 'opaque' || fallbackRes.ok) {
+            driveSynced = true;
+          }
+        }
+
+        if (!driveSynced) {
+          console.warn('[DispossCam] Google Drive sync could not be confirmed.');
+        }
+      } catch (driveErr) {
+        console.warn('[DispossCam] Google Drive sync warning (non-blocking):', driveErr);
+      }
 
       // 4. Display photo to guest immediately
       setCapturedUrl(publicImageUrl);

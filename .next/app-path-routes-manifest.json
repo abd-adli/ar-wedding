@@ -1,6 +1,7 @@
 {
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/api/gas-proxy/route": "/api/gas-proxy",
   "/disposs-cam/page": "/disposs-cam",
   "/page": "/"
 }

@@ -34,7 +34,7 @@ __turbopack_context__.v((parentImport) => {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
   "static/chunks/node_modules_0rn7b8tqr0yg9._.js",
-  "static/chunks/src_0qncs96qv81_e._.js"
+  "static/chunks/src_components_Guestbook_tsx_1eq97wjzq7y8_._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/Guestbook.tsx [app-client] (ecmascript, next/dynamic entry)");
     });

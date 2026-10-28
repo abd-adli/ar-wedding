@@ -3,16 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createClient } from '@supabase/supabase-js';
-import { sendViaHiddenIframe } from '@/lib/googleScriptSync';
 
 // ─── 1. Initialize Supabase Client ────────────────────────────────────────────
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const GOOGLE_SCRIPT_URL =
-  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
-  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
+
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 export interface GuestbookEntry {
@@ -229,14 +226,47 @@ export default function Guestbook() {
         );
       }
 
-      // Dual-write to Google Sheets via CORS-safe background hidden iframe
-      sendViaHiddenIframe(GOOGLE_SCRIPT_URL, {
-        type: 'rsvp',
-        name: newEntry.guest_name,
-        attendance,
-        pax: attendance === 'hadir' ? pax : 0,
-        message: newEntry.message,
-      });
+      // Dual-write to Google Sheets: try /api/gas-proxy first, fallback to direct no-cors fetch
+      try {
+        const rsvpPayload = {
+          type: 'rsvp',
+          name: newEntry.guest_name,
+          attendance,
+          pax: attendance === 'hadir' ? pax : 0,
+          message: newEntry.message,
+        };
+        const payloadStr = JSON.stringify(rsvpPayload);
+        const GAS_URL =
+          process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
+          'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
+
+        let sheetSynced = false;
+        try {
+          const proxyRes = await fetch('/api/gas-proxy', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payloadStr,
+          });
+          if (proxyRes.ok) sheetSynced = true;
+        } catch {
+          // proxy failed — fallback below
+        }
+
+        if (!sheetSynced) {
+          const fallbackRes = await fetch(GAS_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: payloadStr,
+          });
+          // opaque response means request reached GAS — treat as success
+          if (fallbackRes.type === 'opaque' || fallbackRes.ok) sheetSynced = true;
+        }
+
+        if (!sheetSynced) console.warn('[Guestbook] Google Sheets sync could not be confirmed.');
+      } catch (sheetErr) {
+        console.warn('[Guestbook] Google Sheets sync warning (non-blocking):', sheetErr);
+      }
 
       // Re-fetch to guarantee absolute synchronization
       fetchMessages();

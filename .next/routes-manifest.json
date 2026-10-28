@@ -42,6 +42,12 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
+      "page": "/api/gas-proxy",
+      "regex": "^/api/gas\\-proxy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/gas\\-proxy(?:/)?$"
+    },
+    {
       "page": "/disposs-cam",
       "regex": "^/disposs\\-cam(?:/)?$",
       "routeKeys": {},

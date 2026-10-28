@@ -22,7 +22,6 @@ var _s = __turbopack_context__.k.signature();
 const supabaseUrl = ("TURBOPACK compile-time value", "https://cikmvjseuvflnznvzyff.supabase.co") || '';
 const supabaseAnonKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpa212anNldXZmbG56bnZ6eWZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4OTY2MDUsImV4cCI6MjEwNzQ3MjYwNX0.69DWHHo37b4I9UszgWZuBSDKSVmTYV2q9_5ZqXMRiR4") || '';
 const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseAnonKey);
-const GOOGLE_SCRIPT_URL = ("TURBOPACK compile-time value", "https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec") || 'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
 // ─── Style Constants ──────────────────────────────────────────────────────────
 const FONT_DISPLAY = "var(--font-cinzel), serif";
 const FONT_SERIF = "var(--font-cormorant), serif";
@@ -209,6 +208,46 @@ function Guestbook() {
                 // Swap optimistic temporary entry with confirmed record from Supabase
                 setMessages((prev)=>prev.map((m)=>m.id === tempId ? savedEntry : m));
             }
+            // Dual-write to Google Sheets: try /api/gas-proxy first, fallback to direct no-cors fetch
+            try {
+                const rsvpPayload = {
+                    type: 'rsvp',
+                    name: newEntry.guest_name,
+                    attendance,
+                    pax: attendance === 'hadir' ? pax : 0,
+                    message: newEntry.message
+                };
+                const payloadStr = JSON.stringify(rsvpPayload);
+                const GAS_URL = ("TURBOPACK compile-time value", "https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec") || 'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
+                let sheetSynced = false;
+                try {
+                    const proxyRes = await fetch('/api/gas-proxy', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: payloadStr
+                    });
+                    if (proxyRes.ok) sheetSynced = true;
+                } catch  {
+                // proxy failed — fallback below
+                }
+                if (!sheetSynced) {
+                    const fallbackRes = await fetch(GAS_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8'
+                        },
+                        body: payloadStr
+                    });
+                    // opaque response means request reached GAS — treat as success
+                    if (fallbackRes.type === 'opaque' || fallbackRes.ok) sheetSynced = true;
+                }
+                if (!sheetSynced) console.warn('[Guestbook] Google Sheets sync could not be confirmed.');
+            } catch (sheetErr) {
+                console.warn('[Guestbook] Google Sheets sync warning (non-blocking):', sheetErr);
+            }
             // Re-fetch to guarantee absolute synchronization
             fetchMessages();
         } catch (err) {
@@ -238,7 +277,7 @@ function Guestbook() {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/Guestbook.tsx",
-                lineNumber: 255,
+                lineNumber: 294,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -257,7 +296,7 @@ function Guestbook() {
                                 strokeDasharray: "4 3"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 266,
+                                lineNumber: 305,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -267,7 +306,7 @@ function Guestbook() {
                                 fill: "currentColor"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 267,
+                                lineNumber: 306,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -278,7 +317,7 @@ function Guestbook() {
                                 opacity: ".55"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 268,
+                                lineNumber: 307,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -289,13 +328,13 @@ function Guestbook() {
                                 opacity: ".55"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 269,
+                                lineNumber: 308,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 265,
+                        lineNumber: 304,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -306,7 +345,7 @@ function Guestbook() {
                         children: "Ucapan & Doa Restu"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 272,
+                        lineNumber: 311,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -321,7 +360,7 @@ function Guestbook() {
                         children: "Buku Tamu"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 276,
+                        lineNumber: 315,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -332,7 +371,7 @@ function Guestbook() {
                         children: "Untaian doa dan harapan terbaik Anda adalah berkah terindah bagi kami."
                     }, void 0, false, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 289,
+                        lineNumber: 328,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -342,7 +381,7 @@ function Guestbook() {
                                 className: "h-px flex-1 bg-gradient-to-r from-transparent to-amber-500/40"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 294,
+                                lineNumber: 333,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -350,26 +389,26 @@ function Guestbook() {
                                 children: "✦"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 295,
+                                lineNumber: 334,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/40"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 296,
+                                lineNumber: 335,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 293,
+                        lineNumber: 332,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Guestbook.tsx",
-                lineNumber: 264,
+                lineNumber: 303,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -399,7 +438,7 @@ function Guestbook() {
                         className: "h-px w-full bg-gradient-to-r from-transparent via-amber-500/50 to-transparent"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 309,
+                        lineNumber: 348,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -446,17 +485,17 @@ function Guestbook() {
                                                     d: "M5 13l4 4L19 7"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Guestbook.tsx",
-                                                    lineNumber: 329,
+                                                    lineNumber: 368,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 328,
+                                                lineNumber: 367,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Guestbook.tsx",
-                                            lineNumber: 327,
+                                            lineNumber: 366,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -467,18 +506,18 @@ function Guestbook() {
                                             children: "Ucapan & doa restu Anda telah berhasil dikirimkan!"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Guestbook.tsx",
-                                            lineNumber: 332,
+                                            lineNumber: 371,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Guestbook.tsx",
-                                    lineNumber: 315,
+                                    lineNumber: 354,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 313,
+                                lineNumber: 352,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -495,7 +534,7 @@ function Guestbook() {
                                                 children: "Nama Anda"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 342,
+                                                lineNumber: 381,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -510,13 +549,13 @@ function Guestbook() {
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 345,
+                                                lineNumber: 384,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 341,
+                                        lineNumber: 380,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -529,7 +568,7 @@ function Guestbook() {
                                                 children: "Konfirmasi Kehadiran"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 360,
+                                                lineNumber: 399,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -547,18 +586,18 @@ function Guestbook() {
                                                         children: val === 'hadir' ? '✓ Hadir' : '✗ Tidak Hadir'
                                                     }, val, false, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 365,
+                                                        lineNumber: 404,
                                                         columnNumber: 19
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 363,
+                                                lineNumber: 402,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 359,
+                                        lineNumber: 398,
                                         columnNumber: 13
                                     }, this),
                                     attendance === 'hadir' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -571,7 +610,7 @@ function Guestbook() {
                                                 children: "Jumlah Tamu (Pax)"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 385,
+                                                lineNumber: 424,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -584,7 +623,7 @@ function Guestbook() {
                                                         children: "−"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 389,
+                                                        lineNumber: 428,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -595,7 +634,7 @@ function Guestbook() {
                                                         children: pax
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 394,
+                                                        lineNumber: 433,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -605,19 +644,19 @@ function Guestbook() {
                                                         children: "+"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 395,
+                                                        lineNumber: 434,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 388,
+                                                lineNumber: 427,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 384,
+                                        lineNumber: 423,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -630,7 +669,7 @@ function Guestbook() {
                                                 children: "Ucapan & Doa Restu"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 406,
+                                                lineNumber: 445,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -645,13 +684,13 @@ function Guestbook() {
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 409,
+                                                lineNumber: 448,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 405,
+                                        lineNumber: 444,
                                         columnNumber: 13
                                     }, this),
                                     errorMsg && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -662,7 +701,7 @@ function Guestbook() {
                                         children: errorMsg
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 424,
+                                        lineNumber: 463,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -702,7 +741,7 @@ function Guestbook() {
                                                                 strokeOpacity: ".2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                                lineNumber: 449,
+                                                                lineNumber: 488,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -710,20 +749,20 @@ function Guestbook() {
                                                                 strokeLinecap: "round"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                                lineNumber: 450,
+                                                                lineNumber: 489,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 448,
+                                                        lineNumber: 487,
                                                         columnNumber: 21
                                                     }, this),
                                                     "Mengirimkan…"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 447,
+                                                lineNumber: 486,
                                                 columnNumber: 19
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                                 children: [
@@ -739,54 +778,54 @@ function Guestbook() {
                                                             d: "M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 7.5 7.5 0 0112 17.25h-2.625c-.621 0-1.125.504-1.125 1.125v3.375"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/Guestbook.tsx",
-                                                            lineNumber: 457,
+                                                            lineNumber: 496,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 456,
+                                                        lineNumber: 495,
                                                         columnNumber: 21
                                                     }, this),
                                                     "Kirim Ucapan & Doa"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 455,
+                                                lineNumber: 494,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Guestbook.tsx",
-                                            lineNumber: 445,
+                                            lineNumber: 484,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 430,
+                                        lineNumber: 469,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 339,
+                                lineNumber: 378,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 311,
+                        lineNumber: 350,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "h-px w-full bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 467,
+                        lineNumber: 506,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Guestbook.tsx",
-                lineNumber: 301,
+                lineNumber: 340,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -803,7 +842,7 @@ function Guestbook() {
                                         children: "💌"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 474,
+                                        lineNumber: 513,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -814,13 +853,13 @@ function Guestbook() {
                                         children: "Daftar Ucapan & Doa"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 475,
+                                        lineNumber: 514,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 473,
+                                lineNumber: 512,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -831,13 +870,13 @@ function Guestbook() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 479,
+                                lineNumber: 518,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 472,
+                        lineNumber: 511,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -848,12 +887,12 @@ function Guestbook() {
                                 className: "w-6 h-6 border-2 border-amber-500/30 border-t-amber-400 rounded-full animate-spin"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 487,
+                                lineNumber: 526,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Guestbook.tsx",
-                            lineNumber: 486,
+                            lineNumber: 525,
                             columnNumber: 13
                         }, this) : messages.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "text-center py-8 px-4 rounded-xl border border-amber-500/15",
@@ -866,12 +905,12 @@ function Guestbook() {
                                 children: "Belum ada ucapan. Jadilah yang pertama memberikan doa restu untuk Rima & Adli!"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 491,
+                                lineNumber: 530,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Guestbook.tsx",
-                            lineNumber: 490,
+                            lineNumber: 529,
                             columnNumber: 13
                         }, this) : messages.map((item, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                 initial: {
@@ -903,7 +942,7 @@ function Guestbook() {
                                                         children: item.guest_name ? item.guest_name.charAt(0).toUpperCase() : 'G'
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 507,
+                                                        lineNumber: 546,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -914,7 +953,7 @@ function Guestbook() {
                                                         children: item.guest_name
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 510,
+                                                        lineNumber: 549,
                                                         columnNumber: 21
                                                     }, this),
                                                     item.attendance === 'hadir' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -925,20 +964,20 @@ function Guestbook() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 514,
+                                                        lineNumber: 553,
                                                         columnNumber: 23
                                                     }, this) : item.attendance === 'tidak_hadir' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "text-[10px] text-rose-400 bg-rose-900/20 border border-rose-500/20 rounded-full px-2 py-0.5",
                                                         children: "✗ Tidak Hadir"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                                        lineNumber: 518,
+                                                        lineNumber: 557,
                                                         columnNumber: 23
                                                     }, this) : null
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 506,
+                                                lineNumber: 545,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -949,13 +988,13 @@ function Guestbook() {
                                                 children: formatRelativeTime(item.created_at)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                                lineNumber: 523,
+                                                lineNumber: 562,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 505,
+                                        lineNumber: 544,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -970,30 +1009,30 @@ function Guestbook() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Guestbook.tsx",
-                                        lineNumber: 528,
+                                        lineNumber: 567,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, item.id, true, {
                                 fileName: "[project]/src/components/Guestbook.tsx",
-                                lineNumber: 497,
+                                lineNumber: 536,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/Guestbook.tsx",
-                        lineNumber: 484,
+                        lineNumber: 523,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Guestbook.tsx",
-                lineNumber: 471,
+                lineNumber: 510,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Guestbook.tsx",
-        lineNumber: 253,
+        lineNumber: 292,
         columnNumber: 5
     }, this);
 }
