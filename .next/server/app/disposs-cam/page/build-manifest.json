@@ -7,7 +7,7 @@
   "lowPriorityFiles": [],
   "rootMainFiles": [
     "static/chunks/2__bzo0l62idb.js",
-    "static/chunks/0v2azvilwavbo.js",
+    "static/chunks/1xqw6oj1vq819.js",
     "static/chunks/216iyidhmrh3u.js",
     "static/chunks/turbopack-3-ry682tkyiqk.js"
   ],
@@ -15,7 +15,7 @@
   "ampFirstPages": [],
   "rootMainFilesTree": {},
   "pagesChunkGroupBootstrapParams": {
-    "/disposs-cam/page": {"otherChunks":["static/chunks/2__bzo0l62idb.js","static/chunks/0v2azvilwavbo.js","static/chunks/216iyidhmrh3u.js"],"runtimeModuleIds":[94553]}
+    "/disposs-cam/page": {"otherChunks":["static/chunks/2__bzo0l62idb.js","static/chunks/1xqw6oj1vq819.js","static/chunks/216iyidhmrh3u.js"],"runtimeModuleIds":[94553]}
   },
   "chunkLoadingGlobal": "TURBOPACK"
 }

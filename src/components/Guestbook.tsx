@@ -75,16 +75,26 @@ export default function Guestbook() {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
+      let entries: GuestbookEntry[] = [];
+      const res = await supabase
         .from('wedding_guestbook')
         .select('id, guest_name, message, attendance, pax, created_at')
         .order('created_at', { ascending: false });
 
-      if (error) {
-        console.warn('Fetch wedding_guestbook error:', error.message);
-      } else if (data) {
-        setMessages(data);
+      // Fallback if attendance or pax columns don't exist in Supabase schema
+      if (res.error && res.error.message?.includes('attendance')) {
+        const fallback = await supabase
+          .from('wedding_guestbook')
+          .select('id, guest_name, message, created_at')
+          .order('created_at', { ascending: false });
+        if (fallback.data) {
+          entries = fallback.data as unknown as GuestbookEntry[];
+        }
+      } else if (res.data) {
+        entries = res.data as unknown as GuestbookEntry[];
       }
+
+      setMessages(entries);
     } catch (err) {
       console.warn('Fetch wedding_guestbook exception:', err);
     } finally {
@@ -176,7 +186,8 @@ export default function Guestbook() {
 
     // Save to Supabase wedding_guestbook table
     try {
-      const { data, error } = await supabase
+      let savedEntry: GuestbookEntry | null = null;
+      const res = await supabase
         .from('wedding_guestbook')
         .insert([
           {
@@ -188,12 +199,28 @@ export default function Guestbook() {
         ])
         .select();
 
-      if (error) {
-        console.error('Insert to wedding_guestbook failed:', error.message);
-      } else if (data && data[0]) {
+      // Fallback if attendance/pax columns don't exist in Supabase schema
+      if (res.error && res.error.message?.includes('attendance')) {
+        const fallback = await supabase
+          .from('wedding_guestbook')
+          .insert([
+            {
+              guest_name: newEntry.guest_name,
+              message: `${attendance === 'hadir' ? `[Hadir - ${pax} Pax] ` : '[Tidak Hadir] '}${newEntry.message}`,
+            },
+          ])
+          .select();
+        if (fallback.data && fallback.data[0]) {
+          savedEntry = fallback.data[0] as unknown as GuestbookEntry;
+        }
+      } else if (res.data && res.data[0]) {
+        savedEntry = res.data[0] as unknown as GuestbookEntry;
+      }
+
+      if (savedEntry) {
         // Swap optimistic temporary entry with confirmed record from Supabase
         setMessages((prev) =>
-          prev.map((m) => (m.id === tempId ? (data[0] as GuestbookEntry) : m))
+          prev.map((m) => (m.id === tempId ? savedEntry! : m))
         );
       }
 
