@@ -1,17 +1,17 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-const GOOGLE_SCRIPT_URL =
-  process.env.GOOGLE_SCRIPT_URL ||
-  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
-  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
-
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const googleScriptUrl =
+      process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
+      process.env.GOOGLE_SCRIPT_URL ||
+      'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
+
     const body = await request.json();
 
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
+    const response = await fetch(googleScriptUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'text/plain;charset=utf-8',
@@ -36,7 +36,10 @@ export async function POST(request: Request) {
     if (!response.ok) {
       return NextResponse.json(
         {
-          error: data?.message || data?.error || `Google Apps Script returned HTTP ${response.status}`,
+          error:
+            data?.message ||
+            data?.error ||
+            `Google Apps Script returned HTTP ${response.status}`,
           details: data,
         },
         { status: response.status }
