@@ -4,4 +4,4 @@
 :HL["/_next/static/media/JawaPalsu-s.p.28jxwrue903w5.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
 :HL["/_next/static/media/de9751bfdfafdac8-s.p.0tlhhw_qyyfys.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"rwHEr19i5T7FqGSTspDs3","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"UkEpfqGvMriC0BYmalxgf","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

@@ -42,12 +42,6 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
-      "page": "/api/webhook",
-      "regex": "^/api/webhook(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/api/webhook(?:/)?$"
-    },
-    {
       "page": "/disposs-cam",
       "regex": "^/disposs\\-cam(?:/)?$",
       "routeKeys": {},
