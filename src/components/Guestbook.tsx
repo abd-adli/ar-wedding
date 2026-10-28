@@ -14,6 +14,8 @@ export interface GuestbookEntry {
   id: string | number;
   guest_name: string;
   message: string;
+  attendance?: string;
+  pax?: number;
   created_at: string;
 }
 
@@ -60,6 +62,8 @@ function formatRelativeTime(dateString: string): string {
 export default function Guestbook() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+  const [attendance, setAttendance] = useState<'hadir' | 'tidak_hadir' | ''>('');
+  const [pax, setPax] = useState<number>(1);
   const [messages, setMessages] = useState<GuestbookEntry[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -73,7 +77,7 @@ export default function Guestbook() {
       setLoading(true);
       const { data, error } = await supabase
         .from('wedding_guestbook')
-        .select('id, guest_name, message, created_at')
+        .select('id, guest_name, message, attendance, pax, created_at')
         .order('created_at', { ascending: false });
 
       if (error) {
@@ -141,6 +145,10 @@ export default function Guestbook() {
       setErrorMsg('Silakan tuliskan ucapan atau doa restu Anda.');
       return;
     }
+    if (!attendance) {
+      setErrorMsg('Silakan pilih konfirmasi kehadiran.');
+      return;
+    }
 
     setErrorMsg('');
     setSubmitting(true);
@@ -150,12 +158,16 @@ export default function Guestbook() {
       id: tempId,
       guest_name: name.trim(),
       message: message.trim(),
+      attendance: attendance,
+      pax: attendance === 'hadir' ? pax : 0,
       created_at: new Date().toISOString(),
     };
 
     // ─── 5. Dynamic Update: Immediate local state update (optimistic UI) ──────
     setMessages((prev) => [newEntry, ...prev]);
     setMessage('');
+    setAttendance('');
+    setPax(1);
     setShowSuccessToast(true);
 
     setTimeout(() => {
@@ -170,6 +182,8 @@ export default function Guestbook() {
           {
             guest_name: newEntry.guest_name,
             message: newEntry.message,
+            attendance: attendance,
+            pax: attendance === 'hadir' ? pax : 0,
           },
         ])
         .select();
@@ -182,6 +196,24 @@ export default function Guestbook() {
           prev.map((m) => (m.id === tempId ? (data[0] as GuestbookEntry) : m))
         );
       }
+
+      // Also send to Google Sheets via Apps Script
+      try {
+        await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            type: 'rsvp',
+            name: newEntry.guest_name,
+            attendance,
+            pax: attendance === 'hadir' ? pax : 0,
+            message: newEntry.message,
+          }),
+        });
+      } catch (sheetErr) {
+        console.warn('Google Sheets RSVP sync failed (non-blocking):', sheetErr);
+      }
+
       // Re-fetch to guarantee absolute synchronization
       fetchMessages();
     } catch (err) {
@@ -308,6 +340,52 @@ export default function Guestbook() {
               />
             </div>
 
+            {/* RSVP: Kehadiran */}
+            <div>
+              <label className="block text-xs tracking-[0.25em] uppercase text-amber-500/85 mb-2 font-medium" style={{ fontFamily: FONT_SANS }}>
+                Konfirmasi Kehadiran
+              </label>
+              <div className="flex gap-3">
+                {(['hadir', 'tidak_hadir'] as const).map((val) => (
+                  <button
+                    key={val}
+                    type="button"
+                    onClick={() => setAttendance(val)}
+                    className={`flex-1 py-2.5 rounded-xl text-xs tracking-[0.18em] uppercase font-medium transition-all duration-200 border ${
+                      attendance === val
+                        ? 'border-amber-500/70 text-amber-200 bg-amber-900/40'
+                        : 'border-amber-500/20 text-slate-400 bg-slate-900/40 hover:border-amber-500/40'
+                    }`}
+                    style={{ fontFamily: FONT_SANS }}
+                  >
+                    {val === 'hadir' ? '✓ Hadir' : '✗ Tidak Hadir'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* RSVP: Jumlah Tamu */}
+            {attendance === 'hadir' && (
+              <div>
+                <label className="block text-xs tracking-[0.25em] uppercase text-amber-500/85 mb-2 font-medium" style={{ fontFamily: FONT_SANS }}>
+                  Jumlah Tamu (Pax)
+                </label>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setPax(p => Math.max(1, p - 1))}
+                    className="w-9 h-9 rounded-lg border border-amber-500/30 text-amber-400 bg-slate-900/60 hover:border-amber-500/60 transition-colors text-lg leading-none flex items-center justify-center"
+                  >−</button>
+                  <span className="flex-1 text-center text-base text-amber-200 font-semibold" style={{ fontFamily: FONT_DISPLAY }}>{pax}</span>
+                  <button
+                    type="button"
+                    onClick={() => setPax(p => Math.min(20, p + 1))}
+                    className="w-9 h-9 rounded-lg border border-amber-500/30 text-amber-400 bg-slate-900/60 hover:border-amber-500/60 transition-colors text-lg leading-none flex items-center justify-center"
+                  >+</button>
+                </div>
+              </div>
+            )}
+
             {/* Message Textarea */}
             <div>
               <label className="block text-xs tracking-[0.25em] uppercase text-amber-500/85 mb-2 font-medium" style={{ fontFamily: FONT_SANS }}>
@@ -410,13 +488,22 @@ export default function Guestbook() {
                 style={{ willChange: 'transform, opacity', ...GLASS_INNER }}
               >
                 <div className="flex items-center justify-between gap-2 border-b border-amber-500/10 pb-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-600/40 to-amber-950/60 border border-amber-500/30 flex items-center justify-center text-amber-300 text-xs font-semibold">
                       {item.guest_name ? item.guest_name.charAt(0).toUpperCase() : 'G'}
                     </div>
                     <span className="text-sm font-semibold text-amber-200 tracking-wide" style={{ fontFamily: FONT_DISPLAY }}>
                       {item.guest_name}
                     </span>
+                    {item.attendance === 'hadir' ? (
+                      <span className="text-[10px] text-emerald-400 bg-emerald-900/20 border border-emerald-500/20 rounded-full px-2 py-0.5">
+                        ✓ Hadir {item.pax && item.pax > 1 ? `×${item.pax}` : ''}
+                      </span>
+                    ) : item.attendance === 'tidak_hadir' ? (
+                      <span className="text-[10px] text-rose-400 bg-rose-900/20 border border-rose-500/20 rounded-full px-2 py-0.5">
+                        ✗ Tidak Hadir
+                      </span>
+                    ) : null}
                   </div>
                   <span className="text-[11px] text-amber-500/60 shrink-0 font-light" style={{ fontFamily: FONT_SANS }}>
                     {formatRelativeTime(item.created_at)}

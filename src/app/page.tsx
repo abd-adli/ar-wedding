@@ -24,10 +24,7 @@ const Gallery = dynamic(() => import('@/components/Gallery'), {
   ssr: false,
   loading: () => <div className="min-h-[500px]" />,
 });
-const DispossCam = dynamic(() => import('@/components/DispossCam'), {
-  ssr: false,
-  loading: () => <div className="min-h-[350px]" />,
-});
+
 const DigitalGift = dynamic(() => import('@/components/DigitalGift'), {
   ssr: false,
   loading: () => <div className="min-h-[400px]" />,
@@ -275,7 +272,7 @@ function CoverPage({
               8 Sya&#x02BC;ban 1448 H
             </p>
           </div>
-          <div className="guest-box bg-slate-950/40 backdrop-blur-sm border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 text-center w-[85%] max-w-[260px]">
+          <div className="guest-box bg-slate-950/40 md:backdrop-blur-sm border border-amber-500/40 rounded-2xl relative z-20 flex flex-col items-center gap-1 py-2 px-4 text-center w-[85%] max-w-[260px]">
             {/* Sogan Corner Filigrees */}
             <div className="absolute top-1.5 left-1.5 w-2 h-2 border-t border-l border-amber-400/70 rounded-tl pointer-events-none" />
             <div className="absolute top-1.5 right-1.5 w-2 h-2 border-t border-r border-amber-400/70 rounded-tr pointer-events-none" />
@@ -323,13 +320,64 @@ function CoverPage({
   );
 }
 
+// ─── DispossCtaCard ───────────────────────────────────────────────────────────
+function DispossCtaCard({ guestName }: { guestName: string }) {
+  const href = guestName && guestName !== 'Tamu Undangan'
+    ? `/disposs-cam?to=${encodeURIComponent(guestName)}`
+    : '/disposs-cam';
+  return (
+    <div className="flex flex-col items-center text-center gap-5 max-w-sm w-full p-8 rounded-2xl bg-slate-950/80 border border-amber-500/20 shadow-2xl">
+      {/* Camera Icon */}
+      <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-400">
+        <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.4}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </div>
+
+      {/* Text */}
+      <div>
+        <h3
+          className="text-xl text-amber-400 tracking-wide mb-1"
+          style={{ fontFamily: FONT_DISPLAY }}
+        >
+          Disposs Cam
+        </h3>
+        <p className="text-xs text-slate-400 leading-relaxed" style={{ fontFamily: FONT_SERIF }}>
+          Abadikan momen istimewa Anda dengan sentuhan kamera analog bergaya Sogan
+        </p>
+      </div>
+
+      {/* Divider */}
+      <div className="flex items-center gap-3 w-36">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent to-amber-700/30" />
+        <span className="text-amber-600/40 text-xs">✦</span>
+        <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-700/30" />
+      </div>
+
+      {/* CTA Button — links to /disposs-cam page */}
+      <a
+        href={href}
+        className="px-7 py-2.5 rounded-full text-xs uppercase tracking-[0.22em] text-amber-200 border border-amber-500/50 bg-gradient-to-r from-amber-900/70 to-amber-950/80 hover:from-amber-800/70 hover:to-amber-900/80 hover:border-amber-400 transition-all duration-300 shadow-lg cursor-pointer flex items-center gap-2 active:scale-95"
+        style={{ fontFamily: FONT_SERIF }}
+      >
+        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Buka Disposs Cam
+      </a>
+    </div>
+  );
+}
+
 // ─── Main Page Component ──────────────────────────────────────────────────────
 export default function Home() {
   const [isOpened,  setIsOpened]  = useState(false);
   const [guestName, setGuestName] = useState('Tamu Undangan');
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isCameraOpen, setIsCameraOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
 
   // Set default audio volume to 30% (0.3) on mount
   useEffect(() => {
@@ -447,7 +495,7 @@ export default function Home() {
         }`}
       >
         <div
-          className="relative pointer-events-auto cursor-pointer flex items-center justify-center px-6 py-2 rounded-full bg-slate-900/40"
+          className="relative pointer-events-auto cursor-pointer flex items-center justify-center px-6 py-2 rounded-full bg-slate-950/70"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <Image
@@ -706,41 +754,11 @@ export default function Home() {
         <OrnamentDivider />
       </div>
 
-      {/* DispossCam (Kamera Tamu - LAZY LOADED) */}
+      {/* DispossCam CTA — navigates to dedicated /disposs-cam page */}
       <section className="relative w-full flex flex-col items-center px-4 py-8">
-        {!isCameraOpen ? (
-          <div className="flex flex-col items-center text-center gap-4 max-w-sm w-full p-6 rounded-2xl bg-slate-900/70 border border-amber-500/20 shadow-xl">
-            <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="text-xl text-amber-400 tracking-wide" style={{ fontFamily: FONT_DISPLAY }}>Disposs Cam</h3>
-              <p className="text-xs text-slate-400 font-serif mt-1">Abadikan momen istimewa Anda dengan sentuhan kamera analog</p>
-            </div>
-            <button
-              type="button"
-              onClick={() => setIsCameraOpen(true)}
-              className="px-6 py-2.5 rounded-full text-xs uppercase tracking-[0.2em] font-serif bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 text-amber-100 transition-all shadow-lg mt-2 cursor-pointer border border-amber-500/40 active:scale-95"
-            >
-              Buka Kamera
-            </button>
-          </div>
-        ) : (
-          <div className="w-full max-w-md flex flex-col items-center relative">
-            <button
-              type="button"
-              onClick={() => setIsCameraOpen(false)}
-              className="mb-4 px-4 py-1.5 rounded-full text-xs font-serif text-slate-400 border border-slate-700 hover:text-white hover:border-slate-500 transition-colors cursor-pointer"
-            >
-              ✕ Tutup Kamera
-            </button>
-            <DispossCam />
-          </div>
-        )}
+        <DispossCtaCard guestName={guestName} />
       </section>
+
 
       {/* Amplop Digital / Digital Gift */}
       <DigitalGift />

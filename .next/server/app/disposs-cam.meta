@@ -1,0 +1,34 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/disposs-cam/layout,_N_T_/disposs-cam/page,_N_T_/disposs-cam"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/disposs-cam/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 64,
+    "slots": {
+      "children": {
+        "hints": 96,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/ffe8a8d1c8bc172da5a6dcc42e44e0e5b1f9cbfce74feefdbc97a6b5a70f79ab/$/disposs-cam",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/disposs-cam/page"
+    },
+    "isFallback": false
+  }
+}

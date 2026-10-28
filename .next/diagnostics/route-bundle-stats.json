@@ -1,0 +1,40 @@
+[
+  {
+    "route": "/",
+    "firstLoadUncompressedJsBytes": 631134,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\42onvq6nokjl2.js",
+      ".next\\static\\chunks\\2ur5d5qf7pysm.js",
+      ".next\\static\\chunks\\3op7hzi_6x5sm.js",
+      ".next\\static\\chunks\\33rg9ww-tb4tu.js",
+      ".next\\static\\chunks\\2__bzo0l62idb.js",
+      ".next\\static\\chunks\\0v2azvilwavbo.js",
+      ".next\\static\\chunks\\216iyidhmrh3u.js",
+      ".next\\static\\chunks\\turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/disposs-cam",
+    "firstLoadUncompressedJsBytes": 483668,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\42onvq6nokjl2.js",
+      ".next\\static\\chunks\\0ae4truz0ll7_.js",
+      ".next\\static\\chunks\\11yu0des9olb4.js",
+      ".next\\static\\chunks\\2__bzo0l62idb.js",
+      ".next\\static\\chunks\\0v2azvilwavbo.js",
+      ".next\\static\\chunks\\216iyidhmrh3u.js",
+      ".next\\static\\chunks\\turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/_not-found",
+    "firstLoadUncompressedJsBytes": 455990,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\42onvq6nokjl2.js",
+      ".next\\static\\chunks\\2__bzo0l62idb.js",
+      ".next\\static\\chunks\\0v2azvilwavbo.js",
+      ".next\\static\\chunks\\216iyidhmrh3u.js",
+      ".next\\static\\chunks\\turbopack-3-ry682tkyiqk.js"
+    ]
+  }
+]

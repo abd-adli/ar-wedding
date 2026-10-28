@@ -17,15 +17,13 @@ type UIState =
   | 'loading'    // getUserMedia in flight
   | 'live'       // camera running, ready to shoot
   | 'processing' // canvas compositing in progress
-  | 'uploading'  // blob → supabase in flight
+  | 'uploading'  // base64 → Google Drive in flight
   | 'success'    // upload complete
   | 'error';     // something went wrong
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
-const BUCKET = 'dissposcam-bucket';
-const FOLDER = 'disposscam-images';
-const TABLE  = 'guest_photos';
+const TABLE = 'guest_photos';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -208,12 +206,22 @@ export default function DispossCam() {
   const streamRef  = useRef<MediaStream | null>(null);
   /** Pre-loaded overlay image so canvas compositing is synchronous. */
   const overlayImg = useRef<HTMLImageElement | null>(null);
+  const guestNameRef = useRef<string>('Tamu');
   const [frameError,  setFrameError]  = useState(false);
 
   const [uiState,     setUiState]     = useState<UIState>('idle');
   const [errorMsg,    setErrorMsg]    = useState('');
   const [capturedUrl, setCapturedUrl] = useState<string | null>(null);
   const [flash,       setFlash]       = useState(false);
+
+  // ── Read guestName from URL ?to= query param ───────────────────────────────
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const to = params.get('to');
+      guestNameRef.current = to ? decodeURIComponent(to.replace(/\+/g, ' ')).trim() || 'Tamu' : 'Tamu';
+    }
+  }, []);
 
   // ── Pre-load frame overlay ─────────────────────────────────────────────────
   useEffect(() => {
@@ -222,36 +230,6 @@ export default function DispossCam() {
     img.src         = '/frame-sogan.webp';
     img.onload      = () => { overlayImg.current = img; setFrameError(false); };
     img.onerror     = () => { overlayImg.current = null; setFrameError(true); };
-  }, []);
-
-  // ── Debug Supabase Storage Connection & Buckets ────────────────────────────
-  useEffect(() => {
-    async function debugStorageConnection() {
-      console.log('%c[DispossCam Storage Debug]', 'color: #f59e0b; font-weight: bold;');
-      console.log('Target Bucket:', BUCKET);
-      console.log('Testing supabase.storage.listBuckets()...');
-
-      try {
-        const { data: buckets, error: bError } = await supabase.storage.listBuckets();
-        console.log('[DispossCam Debug] listBuckets() raw response:', {
-          data: buckets,
-          error: bError,
-          status: bError ? (bError as any).status || (bError as any).statusCode : 'OK',
-        });
-
-        console.log(`[DispossCam Debug] Testing supabase.storage.from('${BUCKET}').list('${FOLDER}')...`);
-        const { data: files, error: fError } = await supabase.storage.from(BUCKET).list(FOLDER, { limit: 5 });
-        console.log(`[DispossCam Debug] from('${BUCKET}').list('${FOLDER}') raw response:`, {
-          data: files,
-          error: fError,
-          status: fError ? (fError as any).status || (fError as any).statusCode : 'OK',
-        });
-      } catch (err) {
-        console.error('[DispossCam Debug] Exception during storage diagnostic:', err);
-      }
-    }
-
-    debugStorageConnection();
   }, []);
 
   // ── Cleanup stream on unmount ──────────────────────────────────────────────
@@ -341,104 +319,29 @@ export default function DispossCam() {
       drawFallbackFrame(ctx, size);
     }
 
+    // 4. Stop stream and prepare for upload
     stopStream();
+    setUiState('uploading');
 
-    // 4. Export as JPEG blob
-    canvas.toBlob(async (blob) => {
-      if (!blob) {
-        setErrorMsg('Gagal memproses foto. Silakan coba lagi.');
-        setUiState('error');
-        return;
-      }
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+    const imageBase64 = dataUrl.split(',')[1];
+    const guestNameVal = guestNameRef.current;
 
-      setUiState('uploading');
-
-      const fileName = `guest_${Date.now()}.jpg`;
-      const filePath = `${FOLDER}/${fileName}`;
-
-      try {
-        console.log(`[DispossCam Debug] Uploading ${blob.size} bytes to '${BUCKET}/${filePath}'...`);
-
-        // 5. Upload to Supabase Storage inside 'disposscam-images' folder
-        const { data: uploadData, error: uploadError } = await supabase.storage
-          .from(BUCKET)
-          .upload(filePath, blob, {
-            contentType : 'image/jpeg',
-            upsert      : false,
-          });
-
-        console.log('[DispossCam Debug] Upload raw result:', { data: uploadData, error: uploadError });
-
-        if (uploadError) throw uploadError;
-
-        // 6. Retrieve public URL
-        const { data: urlData } = supabase.storage
-          .from(BUCKET)
-          .getPublicUrl(filePath);
-
-        const publicUrl = urlData.publicUrl;
-
-        // 7. Insert record into guest_photos table (supports image_url or photo_url)
-        let { error: insertError } = await supabase
-          .from(TABLE)
-          .insert({
-            image_url  : publicUrl,
-            created_at : new Date().toISOString(),
-          });
-
-        if (insertError && insertError.message?.includes('image_url')) {
-          const { error: fallbackError } = await supabase
-            .from(TABLE)
-            .insert({
-              photo_url  : publicUrl,
-              created_at : new Date().toISOString(),
-            });
-          insertError = fallbackError;
-        }
-
-        if (insertError) throw insertError;
-
-        setCapturedUrl(publicUrl);
-        setUiState('success');
-      } catch (err: unknown) {
-        // Robust stringify handling standard non-enumerable properties on Error objects
-        let errorStringified = '';
-        try {
-          if (err && typeof err === 'object') {
-            errorStringified = JSON.stringify(err, Object.getOwnPropertyNames(err), 2);
-            if (errorStringified === '{}' || errorStringified === '{\n}') {
-              errorStringified = JSON.stringify(err, null, 2);
-            }
-          } else {
-            errorStringified = String(err);
-          }
-        } catch {
-          errorStringified = String(err);
-        }
-
-        console.error('[DispossCam] raw error:', errorStringified);
-        console.error('[DispossCam] err.message:', (err as any)?.message);
-        console.error('[DispossCam] err.name:', (err as any)?.name);
-        console.error('[DispossCam] err.error_description:', (err as any)?.error_description);
-        console.error('[DispossCam] error properties:', {
-          status: (err as any)?.status || (err as any)?.statusCode,
-          code: (err as any)?.code,
-          details: (err as any)?.details,
-          hint: (err as any)?.hint,
-        });
-
-        const displayMsg =
-          (err as any)?.message ||
-          (err as any)?.error_description ||
-          (err as any)?.error ||
-          (errorStringified && errorStringified !== '{}'
-            ? errorStringified
-            : 'Gagal mengunggah foto. Coba lagi.');
-
-        setErrorMsg(displayMsg);
-        setUiState('error');
-      }
-    }, 'image/jpeg', 0.92);
+    try {
+      const res = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ type: 'photo', guestName: guestNameVal, imageBase64 }),
+      });
+      const result = await res.json();
+      const imageUrl: string = result.imageUrl;
+      await supabase.from(TABLE).insert({ image_url: imageUrl, created_at: new Date().toISOString() });
+      setCapturedUrl(imageUrl);
+      setUiState('success');
+    } catch (err) {
+      setErrorMsg((err as any)?.message || 'Gagal mengunggah foto.');
+      setUiState('error');
+    }
   }, [uiState, stopStream]);
 
   // ── Reset ──────────────────────────────────────────────────────────────────
@@ -461,7 +364,7 @@ export default function DispossCam() {
   const busyLabel =
     uiState === 'loading'    ? 'Membuka kamera...'     :
     uiState === 'processing' ? 'Memproses foto...'     :
-    uiState === 'uploading'  ? 'Menyimpan kenangan...' : '';
+    uiState === 'uploading'  ? 'Mengirim ke Drive...'  : '';
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
