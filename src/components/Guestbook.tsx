@@ -9,9 +9,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const GOOGLE_SCRIPT_URL =
-  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
-  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
+const API_URL = '/api/webhook';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 export interface GuestbookEntry {
@@ -228,11 +226,11 @@ export default function Guestbook() {
         );
       }
 
-      // Also send to Google Sheets via Apps Script
+      // Also send to Google Sheets via Apps Script through local API route
       try {
-        await fetch(GOOGLE_SCRIPT_URL, {
+        await fetch(API_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             type: 'rsvp',
             name: newEntry.guest_name,
@@ -240,7 +238,6 @@ export default function Guestbook() {
             pax: attendance === 'hadir' ? pax : 0,
             message: newEntry.message,
           }),
-          mode: 'cors',
         });
       } catch (sheetErr) {
         console.warn('Google Sheets RSVP sync failed (non-blocking):', sheetErr);

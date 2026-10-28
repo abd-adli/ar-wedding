@@ -24,9 +24,7 @@ type UIState =
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const TABLE = 'guest_photos';
-const GOOGLE_SCRIPT_URL =
-  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
-  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
+const API_URL = '/api/webhook';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -332,11 +330,10 @@ export default function DispossCam() {
     const guestNameVal = guestNameRef.current || 'Tamu';
 
     try {
-      const res = await fetch(GOOGLE_SCRIPT_URL, {
+      const res = await fetch(API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'photo', guestName: guestNameVal, imageBase64 }),
-        mode: 'cors',
       });
 
       const responseText = await res.text();
@@ -357,10 +354,10 @@ export default function DispossCam() {
         result?.data?.url ||
         '';
 
-      if (!imageUrl) {
+      if (!res.ok || !imageUrl) {
         const errorDetail =
-          result?.message ||
           result?.error ||
+          result?.message ||
           (!res.ok ? `Server error (HTTP ${res.status}).` : 'Tidak menerima URL foto dari server.');
         throw new Error(errorDetail);
       }
