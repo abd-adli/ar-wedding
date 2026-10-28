@@ -18,15 +18,6 @@ interface BankAccount {
 
 const BANK_ACCOUNTS: BankAccount[] = [
   {
-    id: 'bca',
-    bankName: 'Bank BCA',
-    bankBadge: 'BCA',
-    accountNumber: '7402232806',
-    accountHolder: 'Abdul Qodir Adli',
-    colorAccent: 'rgba(59, 130, 246, 0.4)',
-    badgeBg: 'bg-blue-600/30 text-blue-300 border-blue-400/40',
-  },
-  {
     id: 'bni',
     bankName: 'Bank BNI',
     bankBadge: 'BNI',
@@ -34,6 +25,15 @@ const BANK_ACCOUNTS: BankAccount[] = [
     accountHolder: 'Rima Sugiarto',
     colorAccent: 'rgba(249, 115, 22, 0.4)',
     badgeBg: 'bg-orange-600/30 text-orange-300 border-orange-400/40',
+  },
+  {
+    id: 'bca',
+    bankName: 'Bank BCA',
+    bankBadge: 'BCA',
+    accountNumber: '7402232806',
+    accountHolder: 'Abdul Qodir Adli',
+    colorAccent: 'rgba(59, 130, 246, 0.4)',
+    badgeBg: 'bg-blue-600/30 text-blue-300 border-blue-400/40',
   },
   {
     id: 'mandiri',

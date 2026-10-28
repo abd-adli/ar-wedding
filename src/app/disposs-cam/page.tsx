@@ -6,8 +6,8 @@ import DispossCamLoader from '@/components/DispossCamLoader';
 import GuestPhotoGallery from '@/components/GuestPhotoGallery';
 
 export const metadata: Metadata = {
-  title: 'Disposs Cam — Adli & Rima Wedding',
-  description: 'Abadikan momen istimewa Anda di pernikahan Adli & Rima dengan kamera analog bergaya Sogan.',
+  title: 'Disposs Cam — Rima & Adli Wedding',
+  description: 'Abadikan momen istimewa Anda di pernikahan Rima & Adli dengan kamera analog bergaya Sogan.',
 };
 
 export default function DispossCamPage() {
@@ -82,7 +82,7 @@ export default function DispossCamPage() {
           className="w-8 h-auto opacity-50"
         />
         <p className="text-xs text-amber-400 font-serif" style={{ fontFamily: 'var(--font-cormorant), serif' }}>
-          Adli &amp; Rima — 16 Januari 2027
+          Rima &amp; Adli — 16 Januari 2027
         </p>
         <p className="text-[10px] text-slate-500 font-mono">
           Anchored Realm · Wedding Invitation &amp; Live Gallery

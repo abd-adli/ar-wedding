@@ -1,3 +1,19 @@
-{"timestamp":"00:00:23.824","source":"Server","level":"WARN","message":"⚠ Slow filesystem detected. The benchmark took 283ms. If \\\\?\\D:\\Alma\\AR-Wedding\\.next\\dev is a network drive, consider moving it to a local folder.\nSee more: https://nextjs.org/docs/app/guides/local-development"}
-{"timestamp":"00:00:26.383","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:01:53.400","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:00:16.560","source":"Server","level":"WARN","message":"⚠ Slow filesystem detected. The benchmark took 653ms. If \\\\?\\D:\\Alma\\AR-Wedding\\.next\\dev is a network drive, consider moving it to a local folder.\nSee more: https://nextjs.org/docs/app/guides/local-development"}
+{"timestamp":"00:00:18.236","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:50.811","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:01:30.896","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:02:10.699","source":"Browser","level":"WARN","message":"'oklab(0.768595 0.0561344 0.154817 / 0.35)' is not an animatable color. Use the equivalent color code instead.. For more information and steps for solving, visit https://motion.dev/troubleshooting/color-not-animatable"}
+{"timestamp":"00:02:10.984","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33m'oklab(0.768595 0.0561344 0.154817 / 0.35)' is not an animatable color. Use the equivalent color code instead.. For more information and steps for solving, visit https://motion.dev/troubleshooting/color-not-animatable\\u001b[39m\" \"\\u001b[2m(<anonymous>)\\u001b[22m\""}
+{"timestamp":"00:10:06.995","source":"Server","level":"LOG","message":"✓ Compiled in 4s"}
+{"timestamp":"00:12:45.994","source":"Server","level":"LOG","message":"✓ Compiled in 1236ms"}
+{"timestamp":"00:12:56.075","source":"Server","level":"LOG","message":"✓ Compiled in 472ms"}
+{"timestamp":"00:13:30.498","source":"Server","level":"LOG","message":"✓ Compiled in 112ms"}
+{"timestamp":"00:13:36.045","source":"Server","level":"LOG","message":"✓ Compiled in 237ms"}
+{"timestamp":"00:14:05.489","source":"Server","level":"LOG","message":"✓ Compiled in 749ms"}
+{"timestamp":"00:14:24.311","source":"Server","level":"LOG","message":"✓ Compiled in 1101ms"}
+{"timestamp":"00:14:27.786","source":"Server","level":"LOG","message":"✓ Compiled in 86ms"}
+{"timestamp":"00:15:04.735","source":"Server","level":"LOG","message":"✓ Compiled in 521ms"}
+{"timestamp":"00:15:12.711","source":"Server","level":"LOG","message":"✓ Compiled in 53ms"}
+{"timestamp":"00:15:37.152","source":"Server","level":"LOG","message":"✓ Compiled in 477ms"}
+{"timestamp":"00:16:22.568","source":"Server","level":"LOG","message":"✓ Compiled in 366ms"}
+{"timestamp":"00:16:36.380","source":"Server","level":"LOG","message":"✓ Compiled in 268ms"}

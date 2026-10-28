@@ -23,13 +23,6 @@
       "static/chunks/_1ld4mfg5vfeo_._.js"
     ]
   },
-  "[project]/src/components/DispossCam.tsx [app-client] (ecmascript, next/dynamic entry)": {
-    "id": "[project]/src/components/DispossCam.tsx [app-client] (ecmascript, next/dynamic entry)",
-    "files": [
-      "static/chunks/node_modules_0rn7b8tqr0yg9._.js",
-      "static/chunks/src_0wtyeqkcgcb-s._.js"
-    ]
-  },
   "[project]/src/components/DigitalGift.tsx [app-client] (ecmascript, next/dynamic entry)": {
     "id": "[project]/src/components/DigitalGift.tsx [app-client] (ecmascript, next/dynamic entry)",
     "files": [

@@ -37,7 +37,7 @@ export default function MempelaiSection() {
           The Happy Couple
         </span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif tracking-widest text-amber-400 font-bold mb-4 drop-shadow-sm">
-          GROOM &amp; BRIDE
+          BRIDE &amp; GROOM
         </h2>
 
         {/* Small golden accent divider */}
@@ -57,89 +57,10 @@ export default function MempelaiSection() {
         </p>
       </motion.div>
 
-      {/* ── VERTICAL LAYOUT (Groom -> Divider -> Bride) ── */}
+      {/* ── VERTICAL LAYOUT (Bride -> Divider -> Groom) ── */}
       <div className="w-full max-w-xl flex flex-col items-center gap-14 relative z-10">
         
-        {/* ── 2. PROFIL MEMPELAI PRIA (ADLI) ── */}
-        <motion.div
-          className="flex flex-col items-center text-center w-full transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          {/* Frame Foto Portrait */}
-          <div className="relative group mb-6">
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/25 to-amber-700/10 opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
-            <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/90">
-              <Image
-                src="/groom.webp"
-                alt="Foto Abdul Qodir Adli"
-                fill
-                sizes="(max-width: 640px) 192px, 224px"
-                quality={75}
-                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-            {/* Elegant corner accents */}
-            <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-amber-400/80 rounded-tl pointer-events-none" />
-            <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-amber-400/80 rounded-tr pointer-events-none" />
-            <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-amber-400/80 rounded-bl pointer-events-none" />
-            <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-amber-400/80 rounded-br pointer-events-none" />
-          </div>
-
-          {/* Nama Lengkap */}
-          <h3
-            className="text-4xl sm:text-5xl text-amber-400 mb-2 drop-shadow-[0_2px_15px_rgba(245,158,11,0.25)] select-none"
-            style={{ fontFamily: FONT_JAWA }}
-          >
-            Abdul Qodir Adli S.si
-          </h3>
-
-          {/* Orang Tua */}
-          <p className="text-xs uppercase tracking-[0.25em] text-slate-400 font-serif mb-1">
-            Putra dari
-          </p>
-          <p className="text-sm sm:text-base text-slate-200 font-serif font-medium tracking-wide mb-5">
-            Bapak Much Taryo &amp; Ibu Karmini
-          </p>
-
-          {/* Tombol Instagram */}
-          <motion.a
-            href="https://www.instagram.com/abd.adli_/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/80 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md transform-gpu"
-            style={{ willChange: 'transform' }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <InstagramIcon className="w-3.5 h-3.5 text-amber-400" />
-            <span>@abd.adli_</span>
-          </motion.a>
-        </motion.div>
-
-        {/* ── 3. DIVIDER: SIMBOL "&" ELEGAN BESAR ── */}
-        <motion.div
-          className="flex items-center justify-center gap-4 w-full my-2 transform-gpu"
-          style={{ willChange: 'transform, opacity' }}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-        >
-          <div className="h-px flex-1 max-w-[80px] sm:max-w-[120px] bg-gradient-to-r from-transparent via-amber-500/40 to-amber-500/70" />
-          <span
-            className="text-5xl sm:text-6xl text-amber-400/90 leading-none select-none drop-shadow-[0_2px_10px_rgba(245,158,11,0.3)]"
-            style={{ fontFamily: FONT_JAWA }}
-          >
-            &amp;
-          </span>
-          <div className="h-px flex-1 max-w-[80px] sm:max-w-[120px] bg-gradient-to-l from-transparent via-amber-500/40 to-amber-500/70" />
-        </motion.div>
-
-        {/* ── 4. PROFIL MEMPELAI WANITA (RIMA) ── */}
+        {/* ── 2. PROFIL MEMPELAI WANITA (RIMA) ── */}
         <motion.div
           className="flex flex-col items-center text-center w-full transform-gpu"
           style={{ willChange: 'transform, opacity' }}
@@ -196,6 +117,85 @@ export default function MempelaiSection() {
           >
             <InstagramIcon className="w-3.5 h-3.5 text-amber-400" />
             <span>@rsp_1104</span>
+          </motion.a>
+        </motion.div>
+
+        {/* ── 3. DIVIDER: SIMBOL "&" ELEGAN BESAR ── */}
+        <motion.div
+          className="flex items-center justify-center gap-4 w-full my-2 transform-gpu"
+          style={{ willChange: 'transform, opacity' }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
+          <div className="h-px flex-1 max-w-[80px] sm:max-w-[120px] bg-gradient-to-r from-transparent via-amber-500/40 to-amber-500/70" />
+          <span
+            className="text-5xl sm:text-6xl text-amber-400/90 leading-none select-none drop-shadow-[0_2px_10px_rgba(245,158,11,0.3)]"
+            style={{ fontFamily: FONT_JAWA }}
+          >
+            &amp;
+          </span>
+          <div className="h-px flex-1 max-w-[80px] sm:max-w-[120px] bg-gradient-to-l from-transparent via-amber-500/40 to-amber-500/70" />
+        </motion.div>
+
+        {/* ── 4. PROFIL MEMPELAI PRIA (ADLI) ── */}
+        <motion.div
+          className="flex flex-col items-center text-center w-full transform-gpu"
+          style={{ willChange: 'transform, opacity' }}
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          {/* Frame Foto Portrait */}
+          <div className="relative group mb-6">
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-500/25 to-amber-700/10 opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+            <div className="relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/90">
+              <Image
+                src="/groom.webp"
+                alt="Foto Abdul Qodir Adli"
+                fill
+                sizes="(max-width: 640px) 192px, 224px"
+                quality={75}
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            {/* Elegant corner accents */}
+            <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-amber-400/80 rounded-tl pointer-events-none" />
+            <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-amber-400/80 rounded-tr pointer-events-none" />
+            <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-amber-400/80 rounded-bl pointer-events-none" />
+            <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-amber-400/80 rounded-br pointer-events-none" />
+          </div>
+
+          {/* Nama Lengkap */}
+          <h3
+            className="text-4xl sm:text-5xl text-amber-400 mb-2 drop-shadow-[0_2px_15px_rgba(245,158,11,0.25)] select-none"
+            style={{ fontFamily: FONT_JAWA }}
+          >
+            Abdul Qodir Adli S.si
+          </h3>
+
+          {/* Orang Tua */}
+          <p className="text-xs uppercase tracking-[0.25em] text-slate-400 font-serif mb-1">
+            Putra dari
+          </p>
+          <p className="text-sm sm:text-base text-slate-200 font-serif font-medium tracking-wide mb-5">
+            Bapak Much Taryo &amp; Ibu Karmini
+          </p>
+
+          {/* Tombol Instagram */}
+          <motion.a
+            href="https://www.instagram.com/abd.adli_/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/80 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md transform-gpu"
+            style={{ willChange: 'transform' }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <InstagramIcon className="w-3.5 h-3.5 text-amber-400" />
+            <span>@abd.adli_</span>
           </motion.a>
         </motion.div>
 

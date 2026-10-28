@@ -45,7 +45,7 @@ function Countdown() {
         }
     }["Countdown.useEffect"], []);
     const handleSaveCalendar = ()=>{
-        const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Pernikahan Adli & Rima')}&dates=20270116T010000Z/20270116T060000Z&details=${encodeURIComponent('Pernikahan Adli & Rima (Tema: Anchored Realm). Pukul 08:00 - 13:00 WIB di Vator Pacific Atrium.')}&location=${encodeURIComponent('Vator Pacific Atrium')}`;
+        const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Pernikahan Rima & Adli')}&dates=20270116T010000Z/20270116T060000Z&details=${encodeURIComponent('Pernikahan Rima & Adli (Tema: Anchored Realm). Pukul 08:00 - 13:00 WIB di Vator Pacific Atrium.')}&location=${encodeURIComponent('Vator Pacific Atrium')}`;
         window.open(googleCalendarUrl, '_blank', 'noopener,noreferrer');
     };
     const isOver = mounted && time !== null && time.total === 0;
@@ -596,7 +596,7 @@ function Countdown() {
                                         style: {
                                             fontFamily: "var(--font-cinzel), serif"
                                         },
-                                        children: "RESEPSI PERNIKAHAN"
+                                        children: "AKAD & RESEPSI PERNIKAHAN"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Countdown.tsx",
                                         lineNumber: 309,

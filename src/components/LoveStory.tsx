@@ -114,7 +114,7 @@ export default function LoveStory() {
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-amber-500/60 shadow-2xl bg-slate-900/90 aspect-[16/10] sm:aspect-[16/9]">
             <Image
               src="/lovestory-bg.webp"
-              alt="Adli & Rima Love Story"
+              alt="Rima & Adli Love Story"
               fill
               sizes="(max-width: 640px) 100vw, 576px"
               quality={75}
@@ -142,7 +142,7 @@ export default function LoveStory() {
                 className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-amber-200/90 font-medium px-4 py-1 rounded-full bg-slate-950/90 border border-amber-500/40 shadow-md"
                 style={{ fontFamily: FONT_SERIF }}
               >
-                Adli &amp; Rima • Our Story
+                Rima &amp; Adli • Our Story
               </span>
             </div>
           </div>

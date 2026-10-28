@@ -82,7 +82,7 @@ function MempelaiSection() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                         className: "text-3xl sm:text-4xl md:text-5xl font-serif tracking-widest text-amber-400 font-bold mb-4 drop-shadow-sm",
-                        children: "GROOM & BRIDE"
+                        children: "BRIDE & GROOM"
                     }, void 0, false, {
                         fileName: "[project]/src/components/MempelaiSection.tsx",
                         lineNumber: 39,
@@ -179,8 +179,8 @@ function MempelaiSection() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/90",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                            src: "/groom.webp",
-                                            alt: "Foto Abdul Qodir Adli",
+                                            src: "/bride.webp",
+                                            alt: "Foto Rima Sugiarto",
                                             fill: true,
                                             sizes: "(max-width: 640px) 192px, 224px",
                                             quality: 75,
@@ -234,7 +234,7 @@ function MempelaiSection() {
                                 style: {
                                     fontFamily: FONT_JAWA
                                 },
-                                children: "Abdul Qodir Adli S.si"
+                                children: "Rima Sugiarto S.Farm"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/MempelaiSection.tsx",
                                 lineNumber: 93,
@@ -242,7 +242,7 @@ function MempelaiSection() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-xs uppercase tracking-[0.25em] text-slate-400 font-serif mb-1",
-                                children: "Putra dari"
+                                children: "Putri dari"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/MempelaiSection.tsx",
                                 lineNumber: 101,
@@ -250,14 +250,14 @@ function MempelaiSection() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-sm sm:text-base text-slate-200 font-serif font-medium tracking-wide mb-5",
-                                children: "Bapak Much Taryo & Ibu Karmini"
+                                children: "Bapak Bambang Sugiarto & Ibu Sri Marminah"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/MempelaiSection.tsx",
                                 lineNumber: 104,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].a, {
-                                href: "https://www.instagram.com/abd.adli_/",
+                                href: "https://www.instagram.com/rsp_1104/",
                                 target: "_blank",
                                 rel: "noopener noreferrer",
                                 className: "inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/80 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md transform-gpu",
@@ -279,7 +279,7 @@ function MempelaiSection() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "@abd.adli_"
+                                        children: "@rsp_1104"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/MempelaiSection.tsx",
                                         lineNumber: 119,
@@ -385,8 +385,8 @@ function MempelaiSection() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "relative w-48 h-64 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border border-amber-500/50 shadow-xl bg-slate-900/90",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
-                                            src: "/bride.webp",
-                                            alt: "Foto Rima Sugiarto",
+                                            src: "/groom.webp",
+                                            alt: "Foto Abdul Qodir Adli",
                                             fill: true,
                                             sizes: "(max-width: 640px) 192px, 224px",
                                             quality: 75,
@@ -440,7 +440,7 @@ function MempelaiSection() {
                                 style: {
                                     fontFamily: FONT_JAWA
                                 },
-                                children: "Rima Sugiarto S.Farm"
+                                children: "Abdul Qodir Adli S.si"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/MempelaiSection.tsx",
                                 lineNumber: 172,
@@ -448,7 +448,7 @@ function MempelaiSection() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-xs uppercase tracking-[0.25em] text-slate-400 font-serif mb-1",
-                                children: "Putri dari"
+                                children: "Putra dari"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/MempelaiSection.tsx",
                                 lineNumber: 180,
@@ -456,14 +456,14 @@ function MempelaiSection() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-sm sm:text-base text-slate-200 font-serif font-medium tracking-wide mb-5",
-                                children: "Bapak Bambang Sugiarto & Ibu Sri Marminah"
+                                children: "Bapak Much Taryo & Ibu Karmini"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/MempelaiSection.tsx",
                                 lineNumber: 183,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].a, {
-                                href: "https://www.instagram.com/rsp_1104/",
+                                href: "https://www.instagram.com/abd.adli_/",
                                 target: "_blank",
                                 rel: "noopener noreferrer",
                                 className: "inline-flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/40 bg-slate-900/80 hover:bg-amber-500/10 hover:border-amber-400 text-amber-300 text-xs tracking-wider transition-all duration-300 shadow-md transform-gpu",
@@ -485,7 +485,7 @@ function MempelaiSection() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "@rsp_1104"
+                                        children: "@abd.adli_"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/MempelaiSection.tsx",
                                         lineNumber: 198,

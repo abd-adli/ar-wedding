@@ -239,7 +239,7 @@ function CoverPage({
                 textShadow: '3px 3px 8px rgba(0,0,0,0.9), -1px -1px 3px black, 1px -1px 3px black, -1px 1px 3px black, 1px 1px 3px black',
               }}
             >
-              Adli &amp; Rima
+              Rima &amp; Adli
             </h1>
           </div>
 
@@ -657,7 +657,7 @@ export default function Home() {
               className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-normal text-amber-400 [text-shadow:_0_4px_10px_black] text-center select-none"
               style={{ fontFamily: FONT_JAWA }}
             >
-              Adli &amp; Rima
+              Rima &amp; Adli
             </h1>
 
             {/* Calligraphic Flourish Swash Beneath Name */}
@@ -791,7 +791,7 @@ export default function Home() {
             className="text-3xl sm:text-4xl text-amber-400 [text-shadow:_0_4px_10px_black]"
             style={{ fontFamily: FONT_JAWA }}
           >
-            Adli &amp; Rima
+            Rima &amp; Adli
           </p>
           <p
             className="text-[10px] text-slate-500 mt-1 tracking-[0.22em]"

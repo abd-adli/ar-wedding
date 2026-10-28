@@ -568,70 +568,70 @@ const DEFAULT_ITEMS = [
     {
         id: 'def-1',
         src: '/prewed-1.webp',
-        alt: 'Adli & Rima — Tepian Senja',
+        alt: 'Rima & Adli — Tepian Senja',
         caption: 'Berdua di Tepian Senja',
         span: 'tall'
     },
     {
         id: 'def-2',
         src: '/prewed-2.webp',
-        alt: 'Adli & Rima — Kebun Teh',
+        alt: 'Rima & Adli — Kebun Teh',
         caption: 'Di Antara Hijau Abadi',
         span: 'normal'
     },
     {
         id: 'def-3',
         src: '/prewed-3.webp',
-        alt: 'Adli & Rima — Detail Batik',
+        alt: 'Rima & Adli — Detail Batik',
         caption: 'Warisan Nusantara',
         span: 'normal'
     },
     {
         id: 'def-4',
         src: '/prewed-4.webp',
-        alt: 'Adli & Rima — Candi',
+        alt: 'Rima & Adli — Candi',
         caption: 'Dua Jiwa, Satu Candi',
         span: 'wide'
     },
     {
         id: 'def-5',
         src: '/prewed-5.webp',
-        alt: 'Adli & Rima — Sawah',
+        alt: 'Rima & Adli — Sawah',
         caption: 'Di Lembah Padi',
         span: 'normal'
     },
     {
         id: 'def-6',
         src: '/prewed-6.webp',
-        alt: 'Adli & Rima — Indoor',
+        alt: 'Rima & Adli — Indoor',
         caption: 'Senyum Pertama',
         span: 'tall'
     },
     {
         id: 'def-7',
         src: '/prewed-7.webp',
-        alt: 'Adli & Rima — Outdoor',
+        alt: 'Rima & Adli — Outdoor',
         caption: 'Perjalanan Dimulai',
         span: 'normal'
     },
     {
         id: 'def-8',
         src: '/prewed-8.webp',
-        alt: 'Adli & Rima — Close-up',
+        alt: 'Rima & Adli — Close-up',
         caption: 'Cinta Dalam Detail',
         span: 'wide'
     },
     {
         id: 'def-9',
         src: '/prewed-9.webp',
-        alt: 'Adli & Rima — Golden Hour',
+        alt: 'Rima & Adli — Golden Hour',
         caption: 'Cahaya Sore yang Abadi',
         span: 'normal'
     },
     {
         id: 'def-10',
         src: '/prewed-10.webp',
-        alt: 'Adli & Rima — Formal Portrait',
+        alt: 'Rima & Adli — Formal Portrait',
         caption: 'Potret Pengantin Sogan',
         span: 'normal'
     }
@@ -1268,7 +1268,7 @@ function Gallery() {
                         style: {
                             fontFamily: "var(--font-eb-garamond), serif"
                         },
-                        children: "— Adli & Rima"
+                        children: "— Rima & Adli"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Gallery.tsx",
                         lineNumber: 370,

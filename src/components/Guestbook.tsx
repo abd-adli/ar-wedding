@@ -423,7 +423,7 @@ export default function Guestbook() {
                 onChange={(e) => setMessage(e.target.value)}
                 onFocus={() => setFocusedField('message')}
                 onBlur={() => setFocusedField(null)}
-                placeholder="Tuliskan ucapan dan doa tulus untuk Adli & Rima…"
+                placeholder="Tuliskan ucapan dan doa tulus untuk Rima & Adli…"
                 rows={3}
                 className="w-full px-4 py-3 rounded-xl placeholder-slate-500 resize-none leading-relaxed text-sm"
                 style={focusStyle('message')}
@@ -501,7 +501,7 @@ export default function Guestbook() {
           ) : messages.length === 0 ? (
             <div className="text-center py-8 px-4 rounded-xl border border-amber-500/15" style={GLASS_INNER}>
               <p className="text-sm text-slate-400 italic" style={{ fontFamily: FONT_SERIF }}>
-                Belum ada ucapan. Jadilah yang pertama memberikan doa restu untuk Adli &amp; Rima!
+                Belum ada ucapan. Jadilah yang pertama memberikan doa restu untuk Rima &amp; Adli!
               </p>
             </div>
           ) : (

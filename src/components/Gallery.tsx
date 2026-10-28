@@ -17,16 +17,16 @@ export interface GalleryItem {
 // ─── Default Curated Placeholders ─────────────────────────────────────────────
 
 const DEFAULT_ITEMS: GalleryItem[] = [
-  { id: 'def-1',  src: '/prewed-1.webp', alt: 'Adli & Rima — Tepian Senja',      caption: 'Berdua di Tepian Senja',    span: 'tall'   },
-  { id: 'def-2',  src: '/prewed-2.webp', alt: 'Adli & Rima — Kebun Teh',         caption: 'Di Antara Hijau Abadi',     span: 'normal' },
-  { id: 'def-3',  src: '/prewed-3.webp', alt: 'Adli & Rima — Detail Batik',      caption: 'Warisan Nusantara',          span: 'normal' },
-  { id: 'def-4',  src: '/prewed-4.webp', alt: 'Adli & Rima — Candi',             caption: 'Dua Jiwa, Satu Candi',      span: 'wide'   },
-  { id: 'def-5',  src: '/prewed-5.webp', alt: 'Adli & Rima — Sawah',             caption: 'Di Lembah Padi',            span: 'normal' },
-  { id: 'def-6',  src: '/prewed-6.webp', alt: 'Adli & Rima — Indoor',            caption: 'Senyum Pertama',            span: 'tall'   },
-  { id: 'def-7',  src: '/prewed-7.webp', alt: 'Adli & Rima — Outdoor',           caption: 'Perjalanan Dimulai',        span: 'normal' },
-  { id: 'def-8',  src: '/prewed-8.webp', alt: 'Adli & Rima — Close-up',          caption: 'Cinta Dalam Detail',        span: 'wide'   },
-  { id: 'def-9',  src: '/prewed-9.webp', alt: 'Adli & Rima — Golden Hour',       caption: 'Cahaya Sore yang Abadi',    span: 'normal' },
-  { id: 'def-10', src: '/prewed-10.webp', alt: 'Adli & Rima — Formal Portrait',   caption: 'Potret Pengantin Sogan',    span: 'normal' },
+  { id: 'def-1',  src: '/prewed-1.webp', alt: 'Rima & Adli — Tepian Senja',      caption: 'Berdua di Tepian Senja',    span: 'tall'   },
+  { id: 'def-2',  src: '/prewed-2.webp', alt: 'Rima & Adli — Kebun Teh',         caption: 'Di Antara Hijau Abadi',     span: 'normal' },
+  { id: 'def-3',  src: '/prewed-3.webp', alt: 'Rima & Adli — Detail Batik',      caption: 'Warisan Nusantara',          span: 'normal' },
+  { id: 'def-4',  src: '/prewed-4.webp', alt: 'Rima & Adli — Candi',             caption: 'Dua Jiwa, Satu Candi',      span: 'wide'   },
+  { id: 'def-5',  src: '/prewed-5.webp', alt: 'Rima & Adli — Sawah',             caption: 'Di Lembah Padi',            span: 'normal' },
+  { id: 'def-6',  src: '/prewed-6.webp', alt: 'Rima & Adli — Indoor',            caption: 'Senyum Pertama',            span: 'tall'   },
+  { id: 'def-7',  src: '/prewed-7.webp', alt: 'Rima & Adli — Outdoor',           caption: 'Perjalanan Dimulai',        span: 'normal' },
+  { id: 'def-8',  src: '/prewed-8.webp', alt: 'Rima & Adli — Close-up',          caption: 'Cinta Dalam Detail',        span: 'wide'   },
+  { id: 'def-9',  src: '/prewed-9.webp', alt: 'Rima & Adli — Golden Hour',       caption: 'Cahaya Sore yang Abadi',    span: 'normal' },
+  { id: 'def-10', src: '/prewed-10.webp', alt: 'Rima & Adli — Formal Portrait',   caption: 'Potret Pengantin Sogan',    span: 'normal' },
 ];
 
 const PLACEHOLDER_GRADIENTS = [
@@ -371,7 +371,7 @@ export default function Gallery() {
           className="mt-3 text-[11px] tracking-[0.32em] uppercase text-amber-800/45"
           style={{ fontFamily: "var(--font-eb-garamond), serif" }}
         >
-          — Adli &amp; Rima
+          — Rima &amp; Adli
         </footer>
       </motion.blockquote>
     </section>

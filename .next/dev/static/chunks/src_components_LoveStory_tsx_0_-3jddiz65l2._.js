@@ -213,7 +213,7 @@ function LoveStory() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$image$2d$component$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__Image__as__default$3e$__["default"], {
                                         src: "/lovestory-bg.webp",
-                                        alt: "Adli & Rima Love Story",
+                                        alt: "Rima & Adli Love Story",
                                         fill: true,
                                         sizes: "(max-width: 640px) 100vw, 576px",
                                         quality: 75,
@@ -269,7 +269,7 @@ function LoveStory() {
                                             style: {
                                                 fontFamily: FONT_SERIF
                                             },
-                                            children: "Adli & Rima • Our Story"
+                                            children: "Rima & Adli • Our Story"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/LoveStory.tsx",
                                             lineNumber: 141,

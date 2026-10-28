@@ -121,7 +121,7 @@ export default function GuestPhotoGallery() {
           className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed"
           style={{ fontFamily: FONT_SERIF }}
         >
-          Koleksi foto spontan dan hangat yang diabadikan langsung oleh para tamu di hari bahagia Adli &amp; Rima
+          Koleksi foto spontan dan hangat yang diabadikan langsung oleh para tamu di hari bahagia Rima &amp; Adli
         </p>
 
         <div className="flex items-center gap-3 mt-2">

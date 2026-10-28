@@ -39,9 +39,9 @@ export default function Countdown() {
 
   const handleSaveCalendar = () => {
     const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-      'Pernikahan Adli & Rima'
+      'Pernikahan Rima & Adli'
     )}&dates=20270116T010000Z/20270116T060000Z&details=${encodeURIComponent(
-      'Pernikahan Adli & Rima (Tema: Anchored Realm). Pukul 08:00 - 13:00 WIB di Vator Pacific Atrium.'
+      'Pernikahan Rima & Adli (Tema: Anchored Realm). Pukul 08:00 - 13:00 WIB di Vator Pacific Atrium.'
     )}&location=${encodeURIComponent('Vator Pacific Atrium')}`;
 
     window.open(googleCalendarUrl, '_blank', 'noopener,noreferrer');
@@ -310,7 +310,7 @@ export default function Countdown() {
               className="text-2xl sm:text-3xl md:text-4xl font-light tracking-[0.25em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
               style={{ fontFamily: "var(--font-cinzel), serif" }}
             >
-              RESEPSI PERNIKAHAN
+             AKAD & RESEPSI PERNIKAHAN
             </h3>
 
             {/* Sogan divider */}
