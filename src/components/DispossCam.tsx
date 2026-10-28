@@ -26,9 +26,6 @@ type UIState =
 const TABLE = 'guest_photos';
 const BUCKET = 'dissposcam-bucket';
 const FOLDER = 'disposscam-images';
-const GOOGLE_SCRIPT_URL =
-  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
-  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -381,18 +378,6 @@ export default function DispossCam() {
         console.warn('[DispossCam] Supabase photo DB insert warning:', dbErr);
       }
 
-      // 3. Dual-write to Google Drive via Apps Script (fire-and-forget, non-blocking)
-      try {
-        const imageBase64 = dataUrl.replace(/^data:image\/\w+;base64,/, '');
-        fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ type: 'photo', guestName: guestNameVal, imageBase64 }),
-        }).catch((e) => console.warn('[DispossCam] Google Drive sync non-blocking catch:', e));
-      } catch {
-        // non-blocking
-      }
 
       // 4. Display photo to guest immediately
       setCapturedUrl(publicImageUrl);

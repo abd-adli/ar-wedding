@@ -9,10 +9,6 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const GOOGLE_SCRIPT_URL =
-  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
-  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
-
 // ─── Types ────────────────────────────────────────────────────────────────────
 export interface GuestbookEntry {
   id: string | number;
@@ -226,24 +222,6 @@ export default function Guestbook() {
         setMessages((prev) =>
           prev.map((m) => (m.id === tempId ? savedEntry! : m))
         );
-      }
-
-      // Also send to Google Sheets via Apps Script (robust direct fetch with no-cors fallback)
-      try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({
-            type: 'rsvp',
-            name: newEntry.guest_name,
-            attendance,
-            pax: attendance === 'hadir' ? pax : 0,
-            message: newEntry.message,
-          }),
-        });
-      } catch (sheetErr) {
-        console.warn('Google Sheets RSVP sync failed (non-blocking):', sheetErr);
       }
 
       // Re-fetch to guarantee absolute synchronization
