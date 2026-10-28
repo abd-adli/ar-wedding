@@ -9,6 +9,10 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+const GOOGLE_SCRIPT_URL =
+  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
+  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 export interface GuestbookEntry {
   id: string | number;
@@ -226,7 +230,7 @@ export default function Guestbook() {
 
       // Also send to Google Sheets via Apps Script
       try {
-        await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
+        await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({
@@ -236,6 +240,7 @@ export default function Guestbook() {
             pax: attendance === 'hadir' ? pax : 0,
             message: newEntry.message,
           }),
+          mode: 'cors',
         });
       } catch (sheetErr) {
         console.warn('Google Sheets RSVP sync failed (non-blocking):', sheetErr);

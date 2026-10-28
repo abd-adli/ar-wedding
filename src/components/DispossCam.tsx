@@ -24,6 +24,9 @@ type UIState =
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const TABLE = 'guest_photos';
+const GOOGLE_SCRIPT_URL =
+  process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
+  'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -214,11 +217,11 @@ export default function DispossCam() {
   const [capturedUrl, setCapturedUrl] = useState<string | null>(null);
   const [flash,       setFlash]       = useState(false);
 
-  // ── Read guestName from URL ?to= query param ───────────────────────────────
+  // ── Read guestName from URL ?to= or ?guest= query param ───────────────────
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      const to = params.get('to');
+      const to = params.get('to') || params.get('guest');
       guestNameRef.current = to ? decodeURIComponent(to.replace(/\+/g, ' ')).trim() || 'Tamu' : 'Tamu';
     }
   }, []);
@@ -289,8 +292,9 @@ export default function DispossCam() {
 
     setUiState('processing');
 
-    // Square crop from centre
-    const size = Math.min(video.videoWidth, video.videoHeight);
+    // Square crop from centre (clamped to max 1280px for optimal speed & memory safety)
+    const rawSize = Math.min(video.videoWidth, video.videoHeight);
+    const size = Math.min(rawSize, 1280);
     canvas.width  = size;
     canvas.height = size;
 
@@ -298,9 +302,9 @@ export default function DispossCam() {
     if (!ctx) { setUiState('error'); setErrorMsg('Canvas context unavailable.'); return; }
 
     // 1. Draw video frame (centre-cropped square)
-    const sx = (video.videoWidth  - size) / 2;
-    const sy = (video.videoHeight - size) / 2;
-    ctx.drawImage(video, sx, sy, size, size, 0, 0, size, size);
+    const sx = (video.videoWidth  - rawSize) / 2;
+    const sy = (video.videoHeight - rawSize) / 2;
+    ctx.drawImage(video, sx, sy, rawSize, rawSize, 0, 0, size, size);
 
     // 2. Colour grade
     const imgData = ctx.getImageData(0, 0, size, size);
@@ -323,23 +327,60 @@ export default function DispossCam() {
     stopStream();
     setUiState('uploading');
 
-    const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
-    const imageBase64 = dataUrl.split(',')[1];
-    const guestNameVal = guestNameRef.current;
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+    const imageBase64 = dataUrl.replace(/^data:image\/\w+;base64,/, '');
+    const guestNameVal = guestNameRef.current || 'Tamu';
 
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
+      const res = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({ type: 'photo', guestName: guestNameVal, imageBase64 }),
+        mode: 'cors',
       });
-      const result = await res.json();
-      const imageUrl: string = result.imageUrl;
-      await supabase.from(TABLE).insert({ image_url: imageUrl, created_at: new Date().toISOString() });
+
+      const responseText = await res.text();
+      let result: any = null;
+
+      try {
+        result = JSON.parse(responseText);
+      } catch {
+        console.warn('[DispossCam] Server response was not JSON:', responseText.slice(0, 200));
+      }
+
+      const imageUrl: string =
+        result?.imageUrl ||
+        result?.url ||
+        result?.fileUrl ||
+        result?.link ||
+        result?.data?.imageUrl ||
+        result?.data?.url ||
+        '';
+
+      if (!imageUrl) {
+        const errorDetail =
+          result?.message ||
+          result?.error ||
+          (!res.ok ? `Server error (HTTP ${res.status}).` : 'Tidak menerima URL foto dari server.');
+        throw new Error(errorDetail);
+      }
+
+      // Save to Supabase guest_photos table
+      let { error: insertError } = await supabase
+        .from(TABLE)
+        .insert({ image_url: imageUrl, created_at: new Date().toISOString() });
+
+      if (insertError && insertError.message?.includes('image_url')) {
+        await supabase
+          .from(TABLE)
+          .insert({ photo_url: imageUrl, created_at: new Date().toISOString() });
+      }
+
       setCapturedUrl(imageUrl);
       setUiState('success');
-    } catch (err) {
-      setErrorMsg((err as any)?.message || 'Gagal mengunggah foto.');
+    } catch (err: unknown) {
+      console.error('[DispossCam] Upload error:', err);
+      setErrorMsg((err as any)?.message || 'Gagal mengunggah foto ke Google Drive.');
       setUiState('error');
     }
   }, [uiState, stopStream]);
