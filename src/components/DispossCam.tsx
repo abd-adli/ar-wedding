@@ -24,6 +24,8 @@ type UIState =
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const TABLE = 'guest_photos';
+const BUCKET = 'dissposcam-bucket';
+const FOLDER = 'disposscam-images';
 const GOOGLE_SCRIPT_URL =
   process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
   'https://script.google.com/macros/s/AKfycbwPnE5dFxVxcGIiYrtVs1COD4wAC9P0074rgjC34S35YDhTF95hVf_yEa-4xNGTHHo1/exec';
@@ -328,71 +330,72 @@ export default function DispossCam() {
     setUiState('uploading');
 
     const dataUrl = canvas.toDataURL('image/jpeg', 0.88);
-    const imageBase64 = dataUrl.replace(/^data:image\/\w+;base64,/, '');
     const guestNameVal = guestNameRef.current || 'Tamu';
 
     try {
-      let finalImageUrl: string = dataUrl;
+      let publicImageUrl: string = dataUrl;
 
-      // ── Forward to Google Apps Script / Google Drive ───────────────────────
-      // Try direct fetch first to get the Drive imageUrl if CORS allows
+      // 1. Try uploading to Supabase Storage ('dissposcam-bucket')
       try {
-        const res = await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ type: 'photo', guestName: guestNameVal, imageBase64 }),
-        });
+        const byteString = atob(dataUrl.split(',')[1]);
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([ab], { type: 'image/jpeg' });
+        const fileName = `photo_${Date.now()}_${Math.random().toString(36).substring(2, 7)}.jpg`;
+        const filePath = `${FOLDER}/${fileName}`;
 
-        if (res.ok) {
-          const responseText = await res.text();
-          try {
-            const result = JSON.parse(responseText);
-            const driveUrl =
-              result?.imageUrl ||
-              result?.url ||
-              result?.fileUrl ||
-              result?.link ||
-              result?.data?.imageUrl ||
-              result?.data?.url;
-            if (driveUrl) {
-              finalImageUrl = driveUrl;
-            }
-          } catch {
-            // response was not JSON
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from(BUCKET)
+          .upload(filePath, blob, {
+            contentType: 'image/jpeg',
+            upsert: false,
+          });
+
+        if (!uploadError && uploadData) {
+          const { data: urlData } = supabase.storage
+            .from(BUCKET)
+            .getPublicUrl(filePath);
+          if (urlData?.publicUrl) {
+            publicImageUrl = urlData.publicUrl;
           }
         }
-      } catch (corsErr) {
-        console.warn('[DispossCam] Direct fetch encountered CORS, sending via no-cors fallback:', corsErr);
-        // Fallback: send via mode: 'no-cors' so Google Apps Script still receives and saves to Google Drive
-        try {
-          await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ type: 'photo', guestName: guestNameVal, imageBase64 }),
-          });
-        } catch (beaconErr) {
-          console.warn('[DispossCam] Fallback no-cors beacon failed:', beaconErr);
-        }
+      } catch (storageErr) {
+        console.warn('[DispossCam] Supabase Storage upload error, falling back to dataUrl:', storageErr);
       }
 
-      // ── Save to Supabase guest_photos table (guaranteed storage for live gallery)
+      // 2. Save record to Supabase guest_photos table (guaranteed storage for live gallery)
       try {
         let { error: insertError } = await supabase
           .from(TABLE)
-          .insert({ image_url: finalImageUrl, created_at: new Date().toISOString() });
+          .insert({ image_url: publicImageUrl, created_at: new Date().toISOString() });
 
         if (insertError && insertError.message?.includes('image_url')) {
           await supabase
             .from(TABLE)
-            .insert({ photo_url: finalImageUrl, created_at: new Date().toISOString() });
+            .insert({ photo_url: publicImageUrl, created_at: new Date().toISOString() });
         }
       } catch (dbErr) {
-        console.warn('[DispossCam] Supabase photo insert warning:', dbErr);
+        console.warn('[DispossCam] Supabase photo DB insert warning:', dbErr);
       }
 
-      // ── Display photo to guest immediately ─────────────────────────────────
-      setCapturedUrl(finalImageUrl);
+      // 3. Dual-write to Google Drive via Apps Script (fire-and-forget, non-blocking)
+      try {
+        const imageBase64 = dataUrl.replace(/^data:image\/\w+;base64,/, '');
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ type: 'photo', guestName: guestNameVal, imageBase64 }),
+        }).catch((e) => console.warn('[DispossCam] Google Drive sync non-blocking catch:', e));
+      } catch {
+        // non-blocking
+      }
+
+      // 4. Display photo to guest immediately
+      setCapturedUrl(publicImageUrl);
       setUiState('success');
     } catch (err: unknown) {
       console.error('[DispossCam] Upload error:', err);
@@ -422,7 +425,7 @@ export default function DispossCam() {
   const busyLabel =
     uiState === 'loading'    ? 'Membuka kamera...'     :
     uiState === 'processing' ? 'Memproses foto...'     :
-    uiState === 'uploading'  ? 'Mengirim ke Drive...'  : '';
+    uiState === 'uploading'  ? 'Menyimpan kenangan...' : '';
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
