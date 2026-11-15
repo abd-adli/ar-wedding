@@ -36,6 +36,10 @@ export const metadata: Metadata = {
   description:
     'You are warmly invited to witness the sacred union of Rima & Adli on January 16, 2027. A celebration rooted in Javanese tradition and timeless love — Anchored Realm.',
   keywords: ['Rima Adli wedding', 'undangan digital', 'Anchored Realm', 'Javanese wedding', 'January 2027'],
+  icons: {
+    icon: [{ url: '/icon.png', type: 'image/png', sizes: '512x512' }],
+    apple: [{ url: '/apple-icon.png', type: 'image/png', sizes: '180x180' }],
+  },
   openGraph: {
     title: 'Rima & Adli — The Wedding',
     description: 'Join us as we celebrate our union on January 16, 2027.',
