@@ -343,18 +343,35 @@ export default function Countdown() {
               8 Sya&#x02BC;ban 1448 H
             </p>
 
-            <div className="flex items-center gap-2 text-sm sm:text-base text-amber-300 font-light tracking-wider drop-shadow-sm">
-              <svg
-                viewBox="0 0 24 24"
-                className="w-4 h-4 text-amber-400 fill-none stroke-current stroke-2 shrink-0"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              <span style={{ fontFamily: "var(--font-eb-garamond), serif" }}>
-                Pukul 08:00 - 13:00 WIB
-              </span>
+            <div className="flex flex-col items-center gap-1 mt-0.5">
+              {/* Akad time row */}
+              <div className="flex items-center gap-2 text-sm sm:text-base text-amber-300 font-light tracking-wider drop-shadow-sm">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-4 h-4 text-amber-400 fill-none stroke-current stroke-2 shrink-0"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span style={{ fontFamily: "var(--font-eb-garamond), serif" }}>
+                  Akad: 08.00 – 10.00 WIB
+                </span>
+              </div>
+              {/* Resepsi time row */}
+              <div className="flex items-center gap-2 text-sm sm:text-base text-amber-300 font-light tracking-wider drop-shadow-sm">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-4 h-4 text-amber-400 fill-none stroke-current stroke-2 shrink-0"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span style={{ fontFamily: "var(--font-eb-garamond), serif" }}>
+                  Resepsi: 10.00 – 13.00 WIB
+                </span>
+              </div>
             </div>
           </motion.div>
 
