@@ -24,6 +24,10 @@ const Gallery = dynamic(() => import('@/components/Gallery'), {
   ssr: false,
   loading: () => <div className="min-h-[500px]" />,
 });
+const AdabWalimah = dynamic(() => import('@/components/AdabWalimah'), {
+  ssr: false,
+  loading: () => <div className="min-h-[400px]" />,
+});
 
 const DigitalGift = dynamic(() => import('@/components/DigitalGift'), {
   ssr: false,
@@ -729,6 +733,17 @@ export default function Home() {
       <section className="relative w-full flex flex-col items-center px-0.5 sm:px-4 overflow-hidden">
         <div className="w-full max-w-4xl flex justify-center">
           <Countdown />
+        </div>
+      </section>
+
+      <div className="w-full py-6 px-8 flex justify-center">
+        <OrnamentDivider />
+      </div>
+
+      {/* Adab Menghadiri Walimah */}
+      <section className="relative w-full flex flex-col items-center px-4">
+        <div className="w-full max-w-lg">
+          <AdabWalimah />
         </div>
       </section>
 
